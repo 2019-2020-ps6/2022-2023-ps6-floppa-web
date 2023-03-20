@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-quiz-form',
@@ -21,6 +22,7 @@ export class QuizFormComponent implements OnInit {
   public quizForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
+    // Form creation
     this.quizForm = this.formBuilder.group({
       name: [''],
       theme: ['']
@@ -30,12 +32,13 @@ export class QuizFormComponent implements OnInit {
     // Advanced validation: https://angular.io/guide/form-validation#reactive-form-validation
   }
 
-  ngOnInit(): void {
+  ngOnInit() {
   }
 
-  addQuiz(): void {
-    // We retrieve here the quiz object from the quizForm and we cast the type "as Quiz".
+  addQuiz() {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
+
+    quizToCreate.questions = [];
 
     this.quizService.addQuiz(quizToCreate);
   }
