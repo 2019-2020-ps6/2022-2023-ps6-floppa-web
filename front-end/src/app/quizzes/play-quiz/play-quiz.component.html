@@ -1,0 +1,10 @@
+<img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+<h4>{{quiz.name}}</h4>
+<span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
+<h3>{{quiz.questions[numQuestion].label}}</h3>
+<img class="answer" alt="answer-1" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-1.jpg" (click)="check(1)">
+<img class="answer" alt="answer-2" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-2.jpg" (click)="check(2)">
+<img class="answer" alt="answer-3" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-3.jpg" (click)="check(3)">
+<img class="answer" alt="answer-4" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-4.jpg" (click)="check(4)">
+<span id="answer-label">qsdg</span>
+<button id="next-question-button" class="button-card" (click)="nextQuestion()">Question Suivante</button>

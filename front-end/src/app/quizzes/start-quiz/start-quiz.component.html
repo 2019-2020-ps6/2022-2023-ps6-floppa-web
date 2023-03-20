@@ -1,5 +1,6 @@
-<button id="back-button" class="button-card" (click)="goBack()">Retour</button>
+<button id="back-button" class="button-card" routerLink="/quiz-list">Retour</button>
 
+<img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
 <h2 id="quiz-name">{{quiz.name}}</h2>
-<img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="floppa">
-<button id="start-quiz-button" class="button-card" routerLink="/quiz-list">Démarrer le quiz</button>
+<span id="nb-of-question">{{quiz.questions.length}} questions</span>
+<button id="start-quiz-button" class="button-card" routerLink="/play-quiz/{{quiz.id}}">Démarrer le quiz</button>

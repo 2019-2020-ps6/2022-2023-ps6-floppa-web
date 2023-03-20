@@ -23,13 +23,24 @@
 }
 
 #quiz-img {
-    //center the image responsive
+    
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
-    //reduce the size of the image
+    
     height: auto;
     max-width: 700px;
     max-height: 700px;
+
+    border-radius: 50px;
+}
+
+#nb-of-question {
+    display:block;
+    text-align: center;
+}
+
+#start-quiz-button {
+    border-radius: 10px;
 }
