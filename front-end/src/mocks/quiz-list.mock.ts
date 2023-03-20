@@ -1,16 +1,16 @@
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 
-export const QUESTION_ACTOR: Question = {
+export const QUESTION_FLOPPA: Question = {
     id: '1',
-    label: 'Jean Gabin a joué dans...',
+    label: 'Qui est le caracal ?',
     answers: [
         {
-            value: 'Les tuches II',
+            value: 'Capy',
             isCorrect: false,
         },
         {
-            value: 'La grande illusion',
+            value: 'Floppa',
             isCorrect: true,
         }
     ]
@@ -19,14 +19,14 @@ export const QUESTION_ACTOR: Question = {
 export const QUIZ_LIST: Quiz[] = [
     {
         id: '1',
-        name: 'Les acteurs', // What's happening if I change this value..?
-        theme: 'Actor',
-        questions: [QUESTION_ACTOR],
+        name: 'Les félins', // What's happening if I change this value..?
+        theme: 'Les animaux',
+        questions: [QUESTION_FLOPPA],
     },
     {
         id: '2',
-        name: 'Les technos WEB',
-        theme: 'Technologies',
+        name: 'Les oiseaux',
+        theme: 'Les animaux',
         questions: [],
     }
 ];
