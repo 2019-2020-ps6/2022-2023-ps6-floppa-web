@@ -5,16 +5,31 @@
 }
 
 #start-quiz-button {
-    display:flex;
-    margin-left: 50%;
-    margin-top: 700px
+    //center the button
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px
 }
 
 #back-button {
-    display: flex;
+    display: block;
+    margin-top: 20px;
 }
 
 #quiz-name {
-    display:flex;
-    margin-left: 50%;
+    //center the text
+    text-align: center;
+}
+
+#quiz-img {
+    //center the image responsive
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    //reduce the size of the image
+    height: auto;
+    max-width: 700px;
+    max-height: 700px;
 }
