@@ -15,7 +15,7 @@ export class PlayQuizComponent implements OnInit {
 
   public quiz: Quiz;
   public numQuestion: number = 1;
-  public lb = document.getElementById('answer-label');
+  public answered = false;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
@@ -28,16 +28,34 @@ export class PlayQuizComponent implements OnInit {
   }
 
   check(indexAnswer: number): void {
-    if (this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect) {
-        document.getElementById('answer-label').innerHTML = "Vrai";
+    if (!this.answered) {
+      if (this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect) {
+          document.getElementById('answer-label').innerHTML = "Vrai";
+      }
+      else {
+          document.getElementById('answer-label').innerHTML = "Faux";
+      }
     }
-    else {
-        document.getElementById('answer-label').innerHTML = "Faux";
-    }
-    //console.log(this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect);
+    this.answered = true;
   }
 
   nextQuestion(): void {
-    this.numQuestion++;
+    if (this.answered) {
+      this.numQuestion++;
+      if (this.numQuestion > this.quiz.questions.length) {
+        document.location.href = '/final-screen/' + this.quiz.id;
+      }
+      this.update();
+    }
+  }
+
+  update(): void {
+    document.getElementById('answer-label').innerHTML = "";
+    let answers = document.getElementsByClassName('answer');
+    for (let i = 0; i < answers.length; i++) {
+      let img = answers[i] as HTMLImageElement;
+      img.src = "/assets/quiz-" + this.quiz.id + "/question-" + this.numQuestion + "/img-" + (i+1) + ".jpg";
+    }
+    this.answered = false;
   }
 }

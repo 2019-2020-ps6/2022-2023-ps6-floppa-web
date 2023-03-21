@@ -5,6 +5,7 @@ import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -12,6 +13,7 @@ const routes: Routes = [
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'start-quiz/:id', component: StartQuizComponent},
     {path: 'play-quiz/:id', component: PlayQuizComponent},
+    {path: 'final-screen/:id', component: FinalScreenComponent},
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
 ];
 
