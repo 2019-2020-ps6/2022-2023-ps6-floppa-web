@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
 import { ReactiveFormsModule } from '@angular/forms';
+import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-quiz-form',
@@ -20,6 +21,8 @@ export class QuizFormComponent implements OnInit {
    * More information about Reactive Forms: https://angular.io/guide/reactive-forms#step-1-creating-a-formgroup-instance
    */
   public quizForm: FormGroup;
+  
+  public THEME_LIST: string[] = ["Les animaux", "Géographie", "Le sport", "Cuisine", "Musique"];
 
   constructor(public formBuilder: FormBuilder, public quizService: QuizService) {
     // Form creation
@@ -39,8 +42,9 @@ export class QuizFormComponent implements OnInit {
     const quizToCreate: Quiz = this.quizForm.getRawValue() as Quiz;
 
     quizToCreate.questions = [];
-
+    quizToCreate.theme = (<HTMLInputElement>document.getElementById("theme_selector")).value;
+    quizToCreate.id = (QUIZ_LIST.length+1).toString();
+    console.log(quizToCreate.id)
     this.quizService.addQuiz(quizToCreate);
   }
-
 }

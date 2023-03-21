@@ -21,8 +21,8 @@ export class QuizListComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  quizSelected(selected: boolean): void {
-    console.log('event received from child:', selected);
+  startQuiz(quiz: Quiz): void {
+    this.router.navigate(['/start-quiz/' + quiz.name]);
   }
 
   editQuiz(quiz: Quiz): void {
@@ -33,3 +33,4 @@ export class QuizListComponent implements OnInit {
     this.quizService.deleteQuiz(quiz);
   }
 }
+
