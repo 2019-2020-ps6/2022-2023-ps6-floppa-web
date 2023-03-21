@@ -16,6 +16,7 @@ export class PlayQuizComponent implements OnInit {
   public quiz: Quiz;
   public numQuestion: number = 1;
   public answered = false;
+  public score = 0;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
@@ -30,16 +31,19 @@ export class PlayQuizComponent implements OnInit {
   check(indexAnswer: number): void {
     if (!this.answered) {
       if (this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect) {
-          document.getElementById('answer-label').innerHTML = "Vrai";
+          document.getElementById('answer-label').innerHTML = "Bonne réponse";
+          this.score++;
       }
       else {
-          document.getElementById('answer-label').innerHTML = "Faux";
+          document.getElementById('answer-label').innerHTML = "Mauvaise réponse";
       }
+      document.getElementById('next-question-button').style.display="block";
     }
     this.answered = true;
   }
 
   nextQuestion(): void {
+    document.getElementById('next-question-button').style.display="none"
     if (this.answered) {
       this.numQuestion++;
       if (this.numQuestion > this.quiz.questions.length) {
