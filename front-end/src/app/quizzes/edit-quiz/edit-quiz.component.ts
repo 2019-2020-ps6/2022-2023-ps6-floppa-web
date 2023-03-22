@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
+import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -18,7 +19,7 @@ export class EditQuizComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.quizService.setSelectedQuiz(id);
+    this.quiz = QUIZ_LIST[Number(id) - 1];
   }
 
 }
