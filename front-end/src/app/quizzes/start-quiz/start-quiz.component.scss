@@ -1,0 +1,46 @@
+@import '../../../styles/card.scss';
+
+.edit {
+    margin-left: 0.3em;
+}
+
+#start-quiz-button {
+    //center the button
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px
+}
+
+#back-button {
+    display: block;
+    margin-top: 20px;
+}
+
+#quiz-name {
+    //center the text
+    text-align: center;
+}
+
+#quiz-img {
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    
+    height: auto;
+    max-width: 700px;
+    max-height: 700px;
+
+    border-radius: 50px;
+}
+
+#nb-of-question {
+    display:block;
+    text-align: center;
+}
+
+#start-quiz-button {
+    border-radius: 10px;
+}

@@ -1,0 +1,15 @@
+@import '../../../styles/card.scss';
+
+#quiz-img {
+    max-width: 166px;
+    max-height: 166px;
+    margin-top: 40px;
+    border-radius: 54px;
+    display: inline-block;
+}
+
+.answer {
+    max-height: 268px;
+    max-width: 470px;
+}
+
