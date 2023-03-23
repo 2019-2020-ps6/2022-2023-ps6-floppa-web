@@ -21,6 +21,7 @@ export class QuizService {
    */
   private quizzes: Quiz[] = QUIZ_LIST;
 
+  private score: number = 0;
   /*
    Observable which contains the list of the quiz.
    Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -79,6 +80,18 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+  getScore(): number {
+    return this.score;
+  }
+
+  addScore(): void {
+    this.score++;
+    console.log(this.score);
+  }
+
+  resetScore(): void {
+    this.score = 0;
+  }
   /*
   Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
   addQuestion(quiz: Quiz, question: Question) {

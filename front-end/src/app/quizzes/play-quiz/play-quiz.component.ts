@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
@@ -13,13 +13,14 @@ import { Location } from '@angular/common';
 })
 export class PlayQuizComponent implements OnInit {
 
+  public score: number = 0;
+
   public quiz: Quiz;
   public numQuestion: number = 1;
   public answered = false;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
-    this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-    console.log(this.quiz);
+    
   }
 
   ngOnInit(): void {
@@ -30,16 +31,21 @@ export class PlayQuizComponent implements OnInit {
   check(indexAnswer: number): void {
     if (!this.answered) {
       if (this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect) {
-          document.getElementById('answer-label').innerHTML = "Vrai";
+          document.getElementById('answer-label').innerHTML = "Bonne réponse";
+          this.score++;
+          this.quizService.addScore();
+          console.log(this.quizService.getScore());
       }
       else {
-          document.getElementById('answer-label').innerHTML = "Faux";
+          document.getElementById('answer-label').innerHTML = "Mauvaise réponse";
       }
+      document.getElementById('next-question-button').style.display="block";
     }
     this.answered = true;
   }
 
   nextQuestion(): void {
+    document.getElementById('next-question-button').style.display="none"
     if (this.answered) {
       this.numQuestion++;
       if (this.numQuestion > this.quiz.questions.length) {
