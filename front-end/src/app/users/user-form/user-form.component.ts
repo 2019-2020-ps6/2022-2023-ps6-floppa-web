@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +17,8 @@ export class UserFormComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, public userService: UserService) {
     this.userForm = this.formBuilder.group({
       firstName: [''],
-      lastName: ['']
+      lastName: [''],
+      alzheimerStade: ['']
     });
   }
 

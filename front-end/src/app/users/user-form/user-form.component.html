@@ -1,16 +1,26 @@
-<div class="card">
-    <h2>Create a new user</h2>
-    <form class="user-form" [formGroup]="userForm">
-      <label for="firstName">
-        First name <br>
-        <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
-      </label>
-      <br>
-      <label for="lastName">
-        Last name <br>
-        <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
-      </label>
-      <br>
-      <button type="submit" class="button-card" (click)="addUser()">Create</button>
-    </form>
-  </div>
+
+<h2>Nouvel utilisateur</h2>
+
+<form class="user-form" [formGroup]="userForm">
+  <label for="firstName">
+    Prénom : 
+    <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+  </label>
+  <br>
+
+  <label for="lastName">
+    Nom : 
+    <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+  </label>
+  <br>
+
+  <label for="alzheimerStade">
+    Stade Alzheimer : <br>
+    Sélectionez une plage <br>
+    <input type="radio" name="stage" value="stade leger"> Stade léger (stade 1 à 2) <br>
+    <input type="radio" name="stage" value="stade intermédiaire"> Stade intermédiaire (stade 3 à 5) <br>
+    <input type="radio" name="stage" value="stade avance"> Stade avancé (stade 6 à 7) <br>
+  </label>
+
+  <button type="submit" class="button-card" (click)="addUser()">Create</button>
+</form>
