@@ -22,6 +22,9 @@ export class FinalScreenComponent implements OnInit {
     console.log(this.quizService.getScore());
     let id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST[Number(id)-1]
+    setTimeout(() => {
+      this.goHome();
+    }, 2*60*1000);
   }
 
   goHome(): void {

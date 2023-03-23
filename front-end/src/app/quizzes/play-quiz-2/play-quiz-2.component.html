@@ -1,0 +1,29 @@
+<div style="display: flex; flex-direction: column;">
+    <div style="display: flex; align-items: center; margin-top:20px;">
+        <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+        <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: flex-start; margin-top: 20px;">
+            <h4>{{quiz.name}}</h4>
+            <span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 32px;">
+        <h3>{{quiz.questions[numQuestion-1].label}}</h3>
+        <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:1000px;">
+            <img class="answer" alt="answer-1" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-1.jpg" (click)="check(1)">
+            <img class="answer" alt="answer-2" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-2.jpg" (click)="check(2)">
+            <img class="answer" alt="answer-3" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-3.jpg" (click)="check(3)">
+            <img class="answer" alt="answer-4" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-4.jpg" (click)="check(4)">
+        </div>
+    </div>
+</div>
+<div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between;">
+    <span></span>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <span id="answer-label"></span>
+        <button id="next-question-button" (click)="nextQuestion()">Question Suivante</button>
+    </div>
+    <div style="display: flex; flex-direction: column; align-items: center;">
+        <img id="hint" src="/assets/hint.png" alt="hint" (click)="useHint()">
+        <h2 id="hint-text">Indice</h2>
+    </div>
+</div>
