@@ -52,5 +52,10 @@ export class UserService {
   deleteUser(user: User): void {
     const urlWithId = this.userUrl + '/' + user.id;
     this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
+    for (let i=0; i<this.users.length; i++){
+      if (this.users[i] == user){
+        this.users.splice(i, 1);
+      }
+    }
   }
 }
