@@ -38,6 +38,8 @@ export class UserService {
 
   addUser(user: User): void {
     this.http.post<User>(this.userUrl, user, this.httpOptions).subscribe(() => this.retrieveUsers());
+    this.users.push(user);
+    this.users$.next(this.users);
   }
 
   setSelectedUser(userId: string): void {
@@ -50,5 +52,10 @@ export class UserService {
   deleteUser(user: User): void {
     const urlWithId = this.userUrl + '/' + user.id;
     this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
+    for (let i=0; i<this.users.length; i++){
+      if (this.users[i] == user){
+        this.users.splice(i, 1);
+      }
+    }
   }
 }
