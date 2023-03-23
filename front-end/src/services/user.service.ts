@@ -38,6 +38,8 @@ export class UserService {
 
   addUser(user: User): void {
     this.http.post<User>(this.userUrl, user, this.httpOptions).subscribe(() => this.retrieveUsers());
+    this.users.push(user);
+    this.users$.next(this.users);
   }
 
   setSelectedUser(userId: string): void {
