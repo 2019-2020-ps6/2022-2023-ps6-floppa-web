@@ -40,6 +40,9 @@ export class PlayQuizComponent implements OnInit {
           document.getElementById('answer-label').innerHTML = "Mauvaise réponse";
       }
       document.getElementById('next-question-button').style.display="block";
+      setTimeout(() => {
+        this.nextQuestion();
+      }, 2*60*1000);
     }
     this.answered = true;
   }
