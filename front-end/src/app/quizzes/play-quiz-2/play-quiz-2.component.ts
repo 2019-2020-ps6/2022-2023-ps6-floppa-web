@@ -41,11 +41,15 @@ export class PlayQuizComponent2 implements OnInit {
           document.getElementById('answer-label').innerHTML = "Mauvaise réponse";
       }
       document.getElementById('next-question-button').style.display="block";
+      setTimeout(() => {
+        this.nextQuestion();
+      }, 2*60*1000);
     }
     this.answered = true;
   }
 
   nextQuestion(): void {
+    console.log("OUI");
     document.getElementById('next-question-button').style.display="none"
     if (this.answered) {
       this.numQuestion++;
