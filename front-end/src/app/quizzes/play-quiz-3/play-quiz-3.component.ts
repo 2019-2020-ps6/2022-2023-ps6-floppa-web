@@ -29,7 +29,8 @@ export class PlayQuizComponent3 implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    this.quiz = QUIZ_LIST[Number(id)-1]
+    this.quiz = QUIZ_LIST[Number(id)-1];
+    this.reduceWrongAnswers();
   }
 
   check(indexAnswer: number): void {
@@ -78,6 +79,8 @@ export class PlayQuizComponent3 implements OnInit {
     soundImg.src = "/assets/sound.png";
     document.getElementById('hint-text').style.color = "black";
     document.getElementById('sound-text').style.color = "black";
+    this.enlargeAllAnswers();
+    this.reduceWrongAnswers();
   }
 
   useHint(): void {
@@ -119,6 +122,26 @@ export class PlayQuizComponent3 implements OnInit {
       else if (i === rdmnb1 || i === rdmnb2) {
         img.src = "/assets/void.png";
       }
+    }
+  }
+
+  reduceWrongAnswers(): void {
+    let answers = document.getElementsByClassName('answer');
+    for (let i = 0; i < answers.length; i++) {
+      if (!this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
+        let img = answers[i] as HTMLImageElement;
+        img.width = 400;
+        img.height = 228;
+      }
+    }
+  }
+
+  enlargeAllAnswers(): void {
+    let answers = document.getElementsByClassName('answer');
+    for (let i = 0; i < answers.length; i++) {
+        let img = answers[i] as HTMLImageElement;
+        img.width = 470;
+        img.height = 268;
     }
   }
 
