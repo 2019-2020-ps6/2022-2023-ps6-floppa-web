@@ -59,8 +59,16 @@
                   "maximumError": "10kb"
                 }
               ]
-            }
+            },
+          "development": {
+            "buildOptimizer": false,
+            "optimization": false,
+            "vendorChunk": true,
+            "extractLicenses": false,
+            "sourceMap": true,
+            "namedChunks": true
           }
+        }
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -70,8 +78,12 @@
           "configurations": {
             "production": {
               "browserTarget": "starter-quiz-two:build:production"
+            },
+            "development": {
+              "browserTarget": "starter-quiz-two:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",

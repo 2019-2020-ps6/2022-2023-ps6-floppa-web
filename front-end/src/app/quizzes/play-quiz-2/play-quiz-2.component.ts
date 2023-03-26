@@ -8,16 +8,17 @@ import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-start-quiz',
-  templateUrl: './play-quiz.component.html',
-  styleUrls: ['./play-quiz.component.scss']
+  templateUrl: './play-quiz-2.component.html',
+  styleUrls: ['./play-quiz-2.component.scss']
 })
-export class PlayQuizComponent implements OnInit {
+export class PlayQuizComponent2 implements OnInit {
 
   public score: number = 0;
 
   public quiz: Quiz;
   public numQuestion: number = 1;
-  public answered = false;
+  public answered: boolean = false;
+  public isHintUsed: boolean = false;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     
@@ -48,6 +49,7 @@ export class PlayQuizComponent implements OnInit {
   }
 
   nextQuestion(): void {
+    console.log("OUI");
     document.getElementById('next-question-button').style.display="none"
     if (this.answered) {
       this.numQuestion++;
@@ -66,5 +68,42 @@ export class PlayQuizComponent implements OnInit {
       img.src = "/assets/quiz-" + this.quiz.id + "/question-" + this.numQuestion + "/img-" + (i+1) + ".jpg";
     }
     this.answered = false;
+    this.isHintUsed = false;
+    let hintImg = document.getElementById('hint') as HTMLImageElement;
+    hintImg.src = "/assets/hint.png";
+    document.getElementById('hint-text').style.color = "green";
+    document.getElementById('hint-text').style.color = "black";
+  }
+
+  useHint(): void {
+    if (!this.isHintUsed && !this.answered) {
+      let hintImg = document.getElementById('hint') as HTMLImageElement;
+      hintImg.src = "/assets/used-hint.png";
+      document.getElementById('hint-text').style.color = "green"
+      this.isHintUsed = true;
+      this.remove2Images();
+    }
+  }
+
+  remove2Images(): void {
+    let rdmnb1 = Math.floor(Math.random() * 3);
+    let rdmnb2 = Math.floor(Math.random() * 3);
+
+    if (rdmnb1 === rdmnb2) {
+      rdmnb2++;
+      if (rdmnb2 > 2)
+        rdmnb2 = 0;
+    }
+    let answers = document.getElementsByClassName('answer');
+    for (let i = 0; i < answers.length; i++) {
+      let img = answers[i] as HTMLImageElement;
+      if (this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
+        rdmnb1++;
+        rdmnb2++;
+      }
+      else if (i === rdmnb1 || i === rdmnb2) {
+        img.src = "/assets/void.png";
+      }
+    }
   }
 }
