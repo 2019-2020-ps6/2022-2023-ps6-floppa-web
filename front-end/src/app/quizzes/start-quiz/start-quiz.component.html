@@ -1,0 +1,6 @@
+<img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
+
+<img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+<h2 id="quiz-name">{{quiz.name}}</h2>
+<span id="nb-of-question">{{quiz.questions.length}} questions</span>
+<button id="start-quiz-button" routerLink="/play-quiz-3/{{quiz.id}}">Démarrer le quiz</button>
