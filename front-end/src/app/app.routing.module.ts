@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { UserListComponent } from './users/user-list/user-list.component';
+import { UserFormComponent } from './users/user-form/user-form.component';
 import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
@@ -19,6 +20,8 @@ const routes: Routes = [
     {path: 'play-quiz-3/:id', component: PlayQuizComponent3},
     {path: 'final-screen/:id', component: FinalScreenComponent},
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
+    { path: 'user-form', component: UserFormComponent},
+
 ];
 
 @NgModule({

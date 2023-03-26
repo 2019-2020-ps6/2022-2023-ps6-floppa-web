@@ -58,4 +58,8 @@ export class UserService {
       }
     }
   }
+
+  validateUser(user: User): void{
+    
+  }
 }
