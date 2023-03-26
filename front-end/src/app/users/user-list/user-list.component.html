@@ -1,4 +1,5 @@
-<app-user-form></app-user-form>
+<!--<app-user-form></app-user-form>!-->
+<button class="form" [routerLink]="['/user-form']">Ajouter un patient</button>
 <div class="user-list">
     <div class="user" *ngFor="let user of userList">
         <app-user [user]="user" (deleteUser)="deleteUser($event)"></app-user>
