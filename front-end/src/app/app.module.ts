@@ -17,6 +17,10 @@ import { UserComponent } from './users/user/user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserListComponent } from './users/user-list/user-list.component';
 import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
+import { QuizService } from 'src/services/quiz.service';
+import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
+import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +37,9 @@ import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
     UserFormComponent,
     UserListComponent,
     StartQuizComponent,
+    PlayQuizComponent,
+    FinalScreenComponent,
+    PlayQuizComponent2
   ],
   imports: [
     BrowserModule,
@@ -40,7 +47,7 @@ import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
     AppRoutingModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
