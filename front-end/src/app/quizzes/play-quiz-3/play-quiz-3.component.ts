@@ -5,8 +5,8 @@ import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location } from '@angular/common';
 
-declare var SpeechSynthesisUtterance: any;
-declare var speechSynthesis: any;
+declare const SpeechSynthesisUtterance: any;
+declare const speechSynthesis: any;
 
 @Component({
   selector: 'app-start-quiz',
@@ -21,7 +21,6 @@ export class PlayQuizComponent3 implements OnInit {
   public numQuestion: number = 1;
   public answered: boolean = false;
   public isHintUsed: boolean = false;
-  public isSoundUsed: boolean = false;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     
@@ -57,7 +56,7 @@ export class PlayQuizComponent3 implements OnInit {
     if (this.answered) {
       this.numQuestion++;
       if (this.numQuestion > this.quiz.questions.length) {
-        document.location.href = '/final-screen/' + this.quiz.id;
+        document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score;
       }
       this.update();
     }
@@ -72,7 +71,6 @@ export class PlayQuizComponent3 implements OnInit {
     }
     this.answered = false;
     this.isHintUsed = false;
-    this.isSoundUsed = false;
     let hintImg = document.getElementById('hint') as HTMLImageElement;
     hintImg.src = "/assets/hint.png";
     let soundImg = document.getElementById('sound-img') as HTMLImageElement;
@@ -94,11 +92,10 @@ export class PlayQuizComponent3 implements OnInit {
   }
 
   useSound(): void {
-    if (!this.isSoundUsed && !this.answered) {
+    if (!this.answered) {
       let soundImg = document.getElementById('sound-img') as HTMLImageElement;
       soundImg.src = "/assets/used-sound.png";
       document.getElementById("sound-text").style.color = "green";
-      this.isSoundUsed = true;
       this.readSentence(); 
     }
   }

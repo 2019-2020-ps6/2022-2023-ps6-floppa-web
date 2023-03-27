@@ -1,6 +1,11 @@
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 
+export const THEME_LIST: String[] = [
+    'Les félins',
+]
+
+
 export const QUESTION_FELINS_1: Question = {
     id: '1',
     label: 'Qui est le caracal ?',
@@ -50,7 +55,7 @@ export const QUESTION_FELINS_2: Question = {
 export const QUIZ_LIST: Quiz[] = [
     {
         id: '1',
-        name: 'Les félins', // What's happening if I change this value..?
+        name: 'Les félins',
         theme: 'Les animaux',
         questions: [QUESTION_FELINS_1, QUESTION_FELINS_2],
     },
