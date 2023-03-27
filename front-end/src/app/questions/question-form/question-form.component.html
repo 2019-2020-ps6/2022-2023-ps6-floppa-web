@@ -1,3 +1,4 @@
+
 <div class="card">
   <h2>Create a new question</h2>
   <form class="quiz-form" [formGroup]="questionForm">
@@ -20,9 +21,10 @@
         </div>
       </div>
     </div>
-    <button type="submit" class="button-card" (click)="addQuestion()">Create</button>
+    <button *ngIf = "this.questionForm.valid" type="submit" class="button-card" (click)="addQuestion()" routerLink="/edit-quiz/1">Create</button><!--{{this.quiz.id}}-->
   </form>
 </div>
 
 <!-- Uncomment below to see your form structure and how it changes-->
-<!-- <br><br>{{quizForm.getRawValue() | json}} -->
+<!--<br><br>{{questionForm.getRawValue() | json}}-->
+<!--<br><br>{{this.quiz.id | json}}-->

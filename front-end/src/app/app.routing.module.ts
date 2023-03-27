@@ -7,6 +7,7 @@ import { UserFormComponent } from './users/user-form/user-form.component';
 import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
+import { QuestionFormComponent } from './questions/question-form/question-form.component';
 import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
 import { PlayQuizComponent3 } from './quizzes/play-quiz-3/play-quiz-3.component';
 
@@ -19,6 +20,7 @@ const routes: Routes = [
     {path: 'play-quiz-2/:id', component: PlayQuizComponent2},
     {path: 'play-quiz-3/:id', component: PlayQuizComponent3},
     {path: 'final-screen/:id', component: FinalScreenComponent},
+    {path: 'question-form', component: QuestionFormComponent },
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
 
