@@ -20,7 +20,7 @@ const routes: Routes = [
     {path: 'play-quiz-2/:id', component: PlayQuizComponent2},
     {path: 'play-quiz-3/:id', component: PlayQuizComponent3},
     {path: 'final-screen/:id', component: FinalScreenComponent},
-    {path: 'question-form', component: QuestionFormComponent },
+    {path: 'question-form/:id', component: QuestionFormComponent },
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
 
