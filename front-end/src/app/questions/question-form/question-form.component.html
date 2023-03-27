@@ -21,10 +21,6 @@
         </div>
       </div>
     </div>
-    <button *ngIf = "this.questionForm.valid" type="submit" class="button-card" (click)="addQuestion()" routerLink="/edit-quiz/1">Create</button><!--{{this.quiz.id}}-->
+    <button *ngIf = "this.isQuestionFormValid()" type="submit" class="button-card" (click)="addQuestion()" routerLink="/edit-quiz/{{this.quizId}}">Create</button>
   </form>
 </div>
-
-<!-- Uncomment below to see your form structure and how it changes-->
-<!--<br><br>{{questionForm.getRawValue() | json}}-->
-<!--<br><br>{{this.quiz.id | json}}-->
