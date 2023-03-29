@@ -70,9 +70,9 @@ export class QuizService {
     }
   }
 
-  addQuestion(quiz: Quiz, question: Question): void {
-    const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath;
-    this.http.post<Question>(questionUrl, question, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
+  addQuestion(quizId: string, question: Question): void {
+    const questionUrl = this.quizUrl + '/' + quizId + '/' + this.questionsPath;
+    this.http.post<Question>(questionUrl, question, this.httpOptions).subscribe(() => this.setSelectedQuiz(quizId));
   }
 
   deleteQuestion(quiz: Quiz, question: Question): void {

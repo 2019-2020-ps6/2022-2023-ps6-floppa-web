@@ -1,8 +1,10 @@
 import { Question } from './question.model';
+import { Association } from './association.model';
 
 export interface Quiz {
     id: string;
     name: string;
     theme?: string;
-    questions: Question[];
+    questions?: Question[];
+    associations?: Association[];
 }
