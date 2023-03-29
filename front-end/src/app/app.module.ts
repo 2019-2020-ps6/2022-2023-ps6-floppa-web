@@ -21,7 +21,8 @@ import { QuizService } from 'src/services/quiz.service';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
-
+import { AssociationListComponent } from './associations/association-list/association-list.component';
+import { AssociationComponent } from './associations/association/association.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,7 +40,9 @@ import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component'
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
-    PlayQuizComponent2
+    PlayQuizComponent2,
+    AssociationListComponent,
+    AssociationComponent,
   ],
   imports: [
     BrowserModule,

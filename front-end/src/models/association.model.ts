@@ -1,5 +1,5 @@
 export interface Connectable {
-    label: string;
+    value: string;
     correctConnection: Connectable;
     currentConnection: Connectable;
     isConnected: boolean;

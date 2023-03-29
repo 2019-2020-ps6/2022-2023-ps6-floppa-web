@@ -15,6 +15,7 @@ export class AssociationComponent implements OnInit {
     constructor() { }
     ngOnInit(): void { }
 
-
+    delete(): void {
+    }
     
 }

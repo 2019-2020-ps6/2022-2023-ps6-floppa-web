@@ -1,0 +1,5 @@
+<div class="association-list">
+    <div class="association" *ngFor="let association of quiz.associations">
+        <app-association [association]="association" (editAssociation)="editAssociation($event)" (deleteAssociation)="deleteAssociation($event)"></app-association>
+    </div>
+  </div>

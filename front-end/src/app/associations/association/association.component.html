@@ -1,0 +1,10 @@
+<div class="card">
+    <h2>
+        <i class="fab fa-leanpub"></i>
+        {{association.label}}
+    </h2>
+    <div class="connection" *ngFor="let connectable of association.toConnect; let i = index">
+        {{i}} - {{connectable.value}} -> {{connectable.correctConnection.value}}<br>
+    </div>
+    <button class="button-card" (click)="delete()">Delete</button>
+</div>
