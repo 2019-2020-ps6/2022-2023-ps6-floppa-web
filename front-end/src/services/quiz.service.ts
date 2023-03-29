@@ -80,6 +80,14 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+  //temporaire, à changer pour le back end
+  deleteQuestionFromQuiz(quiz: Quiz, question: Question): void {
+    const index = quiz.questions.findIndex((q) => q.label === question.label);
+    if (index !== -1) {
+      quiz.questions.splice(index, 1);
+    }
+  }
+
   getScore(): number {
     return this.score;
   }
