@@ -1,14 +1,20 @@
-export interface Association{
-    label: string;
-    toConnect: Connectable[];
-    toBeConnected: Connectable[];
-}
+import { Component, OnInit, Input } from '@angular/core';
+import { Association } from 'src/models/association.model';
 
-export interface Connectable{
-    label: string;
-    image: string;
-    correctConnection: Connectable;
-    currentConnection: Connectable;
-    isConnected: boolean;
-    isCorrect: boolean;
+
+@Component({
+    selector: 'app-association',
+    templateUrl: './association.component.html',
+    styleUrls: ['./association.component.scss']
+  })
+export class AssociationComponent implements OnInit {
+
+    @Input()
+    association: Association;
+
+    constructor() { }
+    ngOnInit(): void { }
+
+
+    
 }
