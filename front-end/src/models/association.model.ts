@@ -1,7 +1,7 @@
 export interface Connectable {
     value: string;
-    correctConnection: Connectable;
-    currentConnection: Connectable;
+    correctConnection?: Connectable;
+    currentConnection?: Connectable;
     isConnected: boolean;
     isCorrect: boolean;
 }

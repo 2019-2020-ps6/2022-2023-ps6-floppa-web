@@ -67,23 +67,26 @@ export const CONNECTABLE_TIGRE1: Connectable = {
 
 export const ASSOCIATION_FELINS_1: Association = {
     id: '1',
-    label: 'Qui est le tigre blanc ?',
+    label: 'Quel animal, quel son?',
     toConnect: [
         {
-            value: 'Animal',
+            //CONNECTABLE_TIGRE1
+            value: 'Tigre',
             correctConnection: CONNECTABLE_TIGRE1,
             currentConnection: null,
             isConnected: false,
             isCorrect: true,
-        }],
-    toBeConnected: [
+        },
         {
-            value: 'Son',
-            correctConnection: CONNECTABLE_TIGRE2,
+            value: 'Caracal',
+            correctConnection: null,
             currentConnection: null,
             isConnected: false,
-            isCorrect: true, 
+            isCorrect: false,  
         }
+    ],
+    toBeConnected: [
+        CONNECTABLE_TIGRE2
     ]
 };
 

@@ -5,7 +5,7 @@ import { Quiz } from '../models/quiz.model';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-
+import { Association } from '../models/association.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -87,6 +87,14 @@ export class QuizService {
       quiz.questions.splice(index, 1);
     }
   }
+
+    //temporaire, à changer pour le back end
+    deleteAssociationFromQuiz(quiz: Quiz, association: Association): void {
+      const index = quiz.associations.findIndex((q) => q.label === association.label);
+      if (index !== -1) {
+        quiz.associations.splice(index, 1);
+      }
+    }
 
   getScore(): number {
     return this.score;
