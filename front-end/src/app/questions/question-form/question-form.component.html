@@ -1,26 +1,26 @@
-<button class="back-button" routerLink="/edit-quiz/{{this.quizId}}">Back</button><br>
+<button class="back-button" routerLink="/edit-quiz/{{this.quizId}}">Retour</button><br>
 <div class="card">
-  <h2>Create a new question</h2>
+  <h2>Créer nouvelle question</h2>
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
-      Title <br>
+      Titre <br>
       <input class="input-custom" type="text" id="label" [formControlName]="'label'">
     </label>
     <br>
-    <button class="button-card" (click)="addAnswer()">Add Answer</button>
+    <button class="button-card" (click)="addAnswer()">Ajouter réponse</button>
     <div class="answer" formArrayName="answers">
       <div *ngFor="let address of answers.controls; let i=index">
         <div class="answer-form" [formGroupName]="i">
           <label>
-            Answer
+            Réponse {{i}}
             <input type="text" [formControlName]="'value'">
             <br>
-            Correct
+            Bonne réponse
             <input type="checkbox" [formControlName]="'isCorrect'">
           </label>
         </div>
       </div>
     </div>
-    <button *ngIf = "this.isQuestionFormValid()" type="submit" class="button-card" (click)="addQuestion()" routerLink="/edit-quiz/{{this.quizId}}">Create</button>
+    <button *ngIf = "this.isQuestionFormValid()" type="submit" class="button-card" (click)="addQuestion()" routerLink="/edit-quiz/{{this.quizId}}">Créer</button>
   </form>
 </div>

@@ -4,7 +4,9 @@
         {{association.label}}
     </h2>
     <div class="connection" *ngFor="let connectable of association.toConnect; let i = index">
-        {{i}} - {{connectable.value}} -> {{connectable.correctConnection?.value}}<br>
+        {{i}} - {{connectable.value}}
+        <img alt="->" width = "20x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
+        {{connectable.correctConnection?.value}}
     </div>
-    <button class="button-card" (click)="delete()">Delete</button>
+    <button class="button-card" (click)="delete()">Supprimer</button>
 </div>
