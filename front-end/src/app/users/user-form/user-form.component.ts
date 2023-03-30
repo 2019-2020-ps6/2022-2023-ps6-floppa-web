@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user-form',
@@ -16,7 +17,9 @@ export class UserFormComponent implements OnInit {
   constructor(public formBuilder: FormBuilder, public userService: UserService) {
     this.userForm = this.formBuilder.group({
       firstName: [''],
-      lastName: ['']
+      lastName: [''],
+      alzheimerStade: [''],
+      photo: ['']
     });
   }
 
@@ -26,6 +29,7 @@ export class UserFormComponent implements OnInit {
   addUser(): void {
     // We retrieve here the user object from the userForm and we cast the type "as User".
     const userToCreate: User = this.userForm.getRawValue() as User;
+    console.log(userToCreate);
     this.userService.addUser(userToCreate);
   }
 }
