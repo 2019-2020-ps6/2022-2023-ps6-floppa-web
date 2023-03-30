@@ -1,0 +1,30 @@
+<form class="user-form" [formGroup]="userForm">
+    <label for="firstName">
+      Prénom : 
+      <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+    </label>
+    <br>
+  
+    <label for="lastName">
+      Nom : 
+      <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+    </label>
+    <br>
+  
+    <label for="alzheimerStade">
+      Stade Alzheimer : <br>
+      Sélectionez une plage <br>
+      <input type="radio" name="stage" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
+      <input type="radio" name="stage" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
+      <input type="radio" name="stage" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+    </label>
+  
+    <label for="photo">
+      Photo :<br>
+      Cliquer sur l'icone pour ajouter une photo
+      <input type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
+      <br>
+    </label>
+  
+    <button type="submit" class="button-card" (click)="edit(this.user)" [routerLink]="['/user-list']">Valider</button>
+  </form>

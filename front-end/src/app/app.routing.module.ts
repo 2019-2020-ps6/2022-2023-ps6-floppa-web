@@ -10,6 +10,7 @@ import { FinalScreenComponent } from './quizzes/final-screen/final-screen.compon
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
 import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
 import { PlayQuizComponent3 } from './quizzes/play-quiz-3/play-quiz-3.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -23,6 +24,7 @@ const routes: Routes = [
     {path: 'question-form', component: QuestionFormComponent },
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
+    { path: 'user-edit', component: UserEditComponent},
 
 ];
 

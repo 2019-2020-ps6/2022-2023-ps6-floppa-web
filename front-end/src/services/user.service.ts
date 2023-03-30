@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { ThisReceiver } from '@angular/compiler';
 
 @Injectable({
   providedIn: 'root'
@@ -59,7 +60,8 @@ export class UserService {
     }
   }
 
-  validateUser(user: User): void{
-    
+  edit(user: User): void{
+    const urlWithId = this.userUrl + '/' + user.id;
+    this.http.post<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
 }
