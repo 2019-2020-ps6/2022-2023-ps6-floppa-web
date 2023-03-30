@@ -5,5 +5,5 @@
 <button class="create-button" routerLink = "/question-form/{{this.quiz.id}}" (click)="selectQuiz()">Créer une question à choix +</button>
 <app-question-list [quiz]="quiz"></app-question-list>
 <h3>Associations :</h3>
-<button class= "create-button" routerLink = "/association-form/{{this.quiz.id}}">Créer une association +</button>
+<button class= "create-button" routerLink = "/association-form/{{this.quiz.id}}" (click)="selectQuiz()">Créer une association +</button>
 <app-association-list [quiz]="quiz"></app-association-list>

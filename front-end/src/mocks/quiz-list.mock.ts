@@ -1,6 +1,6 @@
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
-import { Association, Connectable } from '../models/association.model';
+import { Association, Connectable, Connection } from '../models/association.model';
 
 export const QUESTION_FELINS_1: Question = {
     id: '1',
@@ -48,46 +48,26 @@ export const QUESTION_FELINS_2: Question = {
     ]
 };
 
-export const CONNECTABLE_TIGRE2: Connectable = {
-    value: 'Tigre',
-    correctConnection: null,
-    currentConnection: null,
-    isConnected: false,
-    isCorrect: false,
-
+export const CONNECTION_FELIN_1: Connection = {
+    valueToConnect: 'Tigre',
+    valueToBeConnected: 'grrrrr'
 }
 
-export const CONNECTABLE_TIGRE1: Connectable = {
-    value: 'grrrrr',
-    correctConnection: CONNECTABLE_TIGRE2,
-    currentConnection: null,
-    isConnected: false,
-    isCorrect: false,
+export const CONNECTION_FELIN_2: Connection = {
+    valueToConnect: 'Chat',
+    valueToBeConnected: 'meow'
+}
+
+export const CONNECTION_FELIN_3: Connection = {
+    valueToConnect: 'Lynx',
+    valueToBeConnected: null
 }
 
 export const ASSOCIATION_FELINS_1: Association = {
     id: '1',
     label: 'Quel animal, quel son?',
-    toConnect: [
-        {
-            //CONNECTABLE_TIGRE1
-            value: 'Tigre',
-            correctConnection: CONNECTABLE_TIGRE1,
-            currentConnection: null,
-            isConnected: false,
-            isCorrect: true,
-        },
-        {
-            value: 'Caracal',
-            correctConnection: null,
-            currentConnection: null,
-            isConnected: false,
-            isCorrect: false,  
-        }
-    ],
-    toBeConnected: [
-        CONNECTABLE_TIGRE2
-    ]
+    connections: [CONNECTION_FELIN_1, CONNECTION_FELIN_2, CONNECTION_FELIN_3],
+    isCorrect: false
 };
 
 

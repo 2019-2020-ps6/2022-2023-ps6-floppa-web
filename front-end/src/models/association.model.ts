@@ -6,9 +6,16 @@ export interface Connectable {
     isCorrect: boolean;
 }
 
+export interface Connection {
+    valueToConnect: string;
+    valueToBeConnected: string;
+}
+
 export interface Association {
     id: string;
     label: string;
-    toConnect: Connectable[];
-    toBeConnected: Connectable[];
+    // toConnect: Connectable[];
+    // toBeConnected: Connectable[];
+    connections: Connection[];
+    isCorrect: boolean;
 }

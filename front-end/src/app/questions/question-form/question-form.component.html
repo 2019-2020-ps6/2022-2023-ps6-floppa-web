@@ -3,20 +3,19 @@
   <h2>Créer nouvelle question</h2>
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
-      Titre <br>
-      <input class="input-custom" type="text" id="label" [formControlName]="'label'">
+      Question :<br>
+      <input class="input-text" type="text" id="label" [formControlName]="'label'">
     </label>
-    <br>
-    <button class="button-card" (click)="addAnswer()">Ajouter réponse</button>
+    <button style= "margin: 10px;" class="button-card" (click)="addAnswer()">Ajouter réponse</button>
     <div class="answer" formArrayName="answers">
       <div *ngFor="let address of answers.controls; let i=index">
         <div class="answer-form" [formGroupName]="i">
           <label>
-            Réponse {{i}}
-            <input type="text" [formControlName]="'value'">
+            Réponse {{i + 1}} :
+            <input class = "input-text" type="text" [formControlName]="'value'">
             <br>
             Bonne réponse
-            <input type="checkbox" [formControlName]="'isCorrect'">
+            <input class = "input-text" type="checkbox" [formControlName]="'isCorrect'">
           </label>
         </div>
       </div>

@@ -23,6 +23,7 @@ import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
 import { AssociationListComponent } from './associations/association-list/association-list.component';
 import { AssociationComponent } from './associations/association/association.component';
+import { AssociationFormComponent } from './associations/association-form/association-form.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,6 +44,7 @@ import { AssociationComponent } from './associations/association/association.com
     PlayQuizComponent2,
     AssociationListComponent,
     AssociationComponent,
+    AssociationFormComponent
   ],
   imports: [
     BrowserModule,
