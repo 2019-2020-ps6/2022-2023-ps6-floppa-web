@@ -1,0 +1,17 @@
+<div class="card">
+    <h2>
+        <i class="fab fa-leanpub"></i>
+        {{association.label}}
+    </h2>
+    <!-- <div class="connection" *ngFor="let connectable of association.toConnect; let i = index">
+        {{i}} - {{connectable.value}}
+        <img alt="->" width = "20x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
+        {{connectable.correctConnection?.value}}
+    </div> -->
+    <div class="connection" *ngFor="let connection of association.connections; let i = index">
+        {{i}} - {{connection.valueToConnect}}
+        <img alt="->" width = "20x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
+        {{connection.valueToBeConnected}}
+    </div>
+    <button class="button-card" (click)="delete()">Supprimer</button>
+</div>
