@@ -12,6 +12,7 @@ import {Location} from '@angular/common';
 })
 export class StartQuizComponent implements OnInit {
 
+  public stage: Number = 0;
   public quiz: Quiz;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
