@@ -38,7 +38,7 @@ export class AnswerComponent implements OnInit {
   }
 
   getCorrectAnswer(): number {
-    for (let i = 0; i < this.quiz.questions[this.numQuestion].answers.length; i++) {
+    for (let i = 0; i < this.quiz.questions[this.numQuestion-1].answers.length; i++) {
       if (this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
         console.log(i);
         return i;
