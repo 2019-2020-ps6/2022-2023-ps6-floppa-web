@@ -1,15 +1,32 @@
-<div style="display: flex; flex-direction: row; margin-top: 20px;">
-    <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
-    <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: flex-start; margin-top: 20px;">
-        <h4>{{quiz.name}}</h4>
-        <span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
+<div style="display: flex; flex-direction: row; margin-top: 20px; justify-content: space-between;">
+    <div style="display:flex; flex-direction: row;">
+        <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+        <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: center;">
+            <h4>{{quiz.name}}</h4>
+            <span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
+        </div>
+    </div>
+    
+    <h3 style="display:flex; align-self: center; float: right; margin-right: 30px;">Utilisateur</h3>
+</div>
+<div *ngIf="stage === 0">
+    <div class="answer-text" *ngIf="isCorrect">
+        <h1 style="color: rgb(16, 206, 16)">Bonne réponse !</h1>
+    </div>
+    <div class="answer-text" *ngIf="!isCorrect">
+        <h3>Mauvaise réponse</h3>
     </div>
 </div>
-<div *ngIf="isCorrect">
-    <span style="color: green">bonne réponse</span>
+
+<div *ngIf="stage>0">
+    <h1 class="answer-text">La bonne réponse est :</h1>
 </div>
-<div *ngIf="!isCorrect">
-    <span>Mauvaise réponse</span>
+<div style="display:flex; justify-content: center;">
+    <img id="answer-img" alt="answer-{{correctAnswer+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{correctAnswer+1}}.jpg">
 </div>
-<img class="answer" alt="answer-{{correctAnswer+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{correctAnswer+1}}.jpg">
-<button id="next-question-button" (click)="nextQuestion()">Question Suivante</button>
+<div *ngIf="isCorrect && stage>0" style="display: flex; justify-content: center;">
+    <h1 style="color: rgb(16, 206, 16)" class="answer-text">Bravo !</h1>
+</div>
+<div style="display: flex; justify-content: center;">
+    <button id="next-question-button" (click)="nextQuestion()">Question Suivante</button>
+</div>

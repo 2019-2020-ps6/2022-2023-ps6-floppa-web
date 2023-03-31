@@ -20,7 +20,7 @@ export class PlayQuizComponent implements OnInit {
 
   public score: number;
 
-  public stage = 2;
+  public stage: number;
 
   public quiz: Quiz;
   public numQuestion: number;
@@ -36,34 +36,12 @@ export class PlayQuizComponent implements OnInit {
     this.quiz = QUIZ_LIST[Number(id)-1];
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
-    console.log(this.numQuestion, id)
+    this.stage = Number(this.route.snapshot.paramMap.get('stage'));
   }
 
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
-    console.log(isCorrect);
-    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion;
-  }
-
-  nextQuestion(): void {
-    document.getElementById('next-question-button').style.display="none"
-    if (this.answered) {
-      this.numQuestion++;
-      if (this.numQuestion > this.quiz.questions.length) {
-        document.location.href = '/final-screen/' + this.quiz.id;
-      }
-      this.update();
-    }
-  }
-
-  update(): void {
-    document.getElementById('answer-label').innerHTML = "";
-    let answers = document.getElementsByClassName('answer');
-    for (let i = 0; i < answers.length; i++) {
-      let img = answers[i] as HTMLImageElement;
-      img.src = "/assets/quiz-" + this.quiz.id + "/question-" + this.numQuestion + "/img-" + (i+1) + ".jpg";
-    }
-    this.answered = false;
+    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.stage;
   }
 
   useHint(): void {

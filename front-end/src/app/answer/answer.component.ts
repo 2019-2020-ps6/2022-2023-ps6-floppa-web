@@ -17,6 +17,7 @@ export class AnswerComponent implements OnInit {
   public score: number;
   public numQuestion: number;
   public correctAnswer: number;
+  public stage: number;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     
@@ -35,12 +36,12 @@ export class AnswerComponent implements OnInit {
         this.isCorrect = false;
     }
     this.correctAnswer = this.getCorrectAnswer();
+    this.stage = Number(this.route.snapshot.paramMap.get('stage'));
   }
 
   getCorrectAnswer(): number {
     for (let i = 0; i < this.quiz.questions[this.numQuestion-1].answers.length; i++) {
       if (this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
-        console.log(i);
         return i;
       }
     }
@@ -50,10 +51,10 @@ export class AnswerComponent implements OnInit {
   nextQuestion(): void {
     this.numQuestion++;
     if (this.numQuestion > this.quiz.questions.length) {
-      document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score;
+      document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.stage;
     }
     else {
-      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + this.numQuestion;
+      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + this.numQuestion + "/" + this.stage;
     }
   }
 }
