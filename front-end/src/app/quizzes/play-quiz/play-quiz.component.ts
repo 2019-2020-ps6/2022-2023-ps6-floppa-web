@@ -36,7 +36,7 @@ export class PlayQuizComponent implements OnInit {
     this.quiz = QUIZ_LIST[Number(id)-1];
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
-
+    console.log(this.numQuestion, id)
   }
 
   check(indexAnswer: number): void {

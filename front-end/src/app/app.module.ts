@@ -25,6 +25,8 @@ import { AssociationListComponent } from './associations/association-list/associ
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { QuestionChoice } from './questions/question-choice/question-choice.component';
+import { AnswerComponent } from './answer/answer.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -46,13 +48,14 @@ import { QuestionChoice } from './questions/question-choice/question-choice.comp
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
-    QuestionChoice
+    QuestionChoice,
+    AnswerComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

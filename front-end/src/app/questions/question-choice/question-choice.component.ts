@@ -23,7 +23,7 @@ export class QuestionChoice implements OnInit {
   constructor(private quizService: QuizService) { }
 
   ngOnInit(): void {
-    this.question = this.quiz.questions[this.numQuestion];
+    this.question = this.quiz.questions[this.numQuestion-1];
   }
 
   check(indexAnswer: number): void {
