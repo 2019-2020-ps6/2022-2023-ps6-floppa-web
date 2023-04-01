@@ -1,0 +1,11 @@
+<h1 style="display: flex; justify-content: center; align-self: center; margin-top: 100px;">Cliquer sur la photo de vous</h1>
+<h1 style="display: flex; justify-content: center; align-self: center;">avec votre nom</h1>
+
+<div style="display: flex; flex-direction: row;">
+    <div *ngFor="let user of userList">
+        <div class="user">
+            <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/quiz-list/{{user.firstName}}-{{user.lastName}}">
+            <h1>{{user.firstName}} {{user.lastName}}</h1>
+        </div>
+    </div>
+</div>

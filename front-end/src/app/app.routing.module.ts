@@ -8,27 +8,30 @@ import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
-import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
-import { PlayQuizComponent3 } from './quizzes/play-quiz-3/play-quiz-3.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
 import { ConnectionComponent } from './quizzes/connection/connection.component';
+import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
+import { AnswerComponent } from './answer/answer.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
-    {path: 'quiz-list', component: QuizListComponent},
+    {path: 'quiz-list/:user', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
-    {path: 'start-quiz/:id', component: StartQuizComponent},
-    {path: 'play-quiz/:id', component: PlayQuizComponent},
     {path: 'play-association/:id', component: PlayAssociationComponent},
-    {path: 'play-quiz-2/:id', component: PlayQuizComponent2},
-    {path: 'play-quiz-3/:id', component: PlayQuizComponent3},
-    {path: 'final-screen/:id', component: FinalScreenComponent},
+    {path: 'question-form/:id', component: QuestionFormComponent },
+    {path: 'connection/:id', component: ConnectionComponent},
+    {path: 'start-quiz/:id/:assistance', component: StartQuizComponent},
+    {path: 'play-quiz/:id/:score/:numQuestion/:assistance', component: PlayQuizComponent},
+    {path: 'final-screen/:id/:score/:assistance', component: FinalScreenComponent},
     {path: 'question-form/:id', component: QuestionFormComponent },
     {path: 'association-form/:id', component: AssociationFormComponent },
-    {path: 'connection/:id', component: ConnectionComponent},
-    { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
+    {path: 'answer/:id/:score/:isCorrect/:numQuestion/:assistance', component: AnswerComponent},
+    {path: 'home-profil-choice', component: HomeProfilChoiceComponent},
+    { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
+    { path: 'user-edit', component: UserEditComponent},
 
 ];
 

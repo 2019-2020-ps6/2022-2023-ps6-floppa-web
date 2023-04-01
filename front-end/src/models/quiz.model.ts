@@ -7,4 +7,5 @@ export interface Quiz {
     theme?: string;
     questions?: Question[];
     associations?: Association[];
+    users: string[];
 }

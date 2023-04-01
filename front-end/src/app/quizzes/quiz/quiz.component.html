@@ -10,6 +10,6 @@
     <span>
         Nombre de questions : {{quiz.questions.length}}<br>
     </span>
-    <button style="float: left;" class="button-card" routerLink="/start-quiz/{{quiz.id}}">Jouer</button>
+    <button style="float: left;" class="button-card" routerLink="/start-quiz/{{quiz.id}}/{{user.assistance}}">Jouer</button>
     <button style="float: right;" class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
 </div>

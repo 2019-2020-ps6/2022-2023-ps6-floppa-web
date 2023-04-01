@@ -20,12 +20,16 @@ import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { QuizService } from 'src/services/quiz.service';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
-import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationListComponent } from './associations/association-list/association-list.component';
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
 import { ConnectionComponent } from './quizzes/connection/connection.component';
+import { QuestionChoice } from './questions/question-choice/question-choice.component';
+import { AnswerComponent } from './answer/answer.component';
+import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
+import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     AppComponent,
@@ -43,18 +47,24 @@ import { ConnectionComponent } from './quizzes/connection/connection.component';
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
-    PlayQuizComponent2,
     PlayAssociationComponent,
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
-    ConnectionComponent
+    ConnectionComponent,
+    UserEditComponent,
+    AssociationListComponent,
+    AssociationComponent,
+    AssociationFormComponent,
+    QuestionChoice,
+    AnswerComponent,
+    HomeProfilChoiceComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 <div class="card">
     <h2>
         <i class="fas fa-user"></i>
-        <img src="{{user.photo}}.value.replace('C:\fakepath\','')" alt="photo d'un utilisateur"/>
-        {{user.firstName}} {{user.lastName}} 
+        <img src="{{user.photo}}" alt="photo d'un utilisateur"/>
+        {{user.firstName}} {{user.lastName}}
     </h2>
     <p>{{user.alzheimerStade}}</p>
     <br>
     <button class="button-card" (click)="delete()">Delete</button>
-    <button class="button-card" (click)="edit()" [routerLink]="['/user-form']">Edit</button>
+    <button class="button-card" (click)="edit(this.user)" [routerLink]="['/user-edit']">Edit</button>
 </div>

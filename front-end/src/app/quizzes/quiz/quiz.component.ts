@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
+import { User } from 'src/models/user.model';
 
 @Component({
   selector: 'app-quiz',
@@ -10,6 +11,9 @@ export class QuizComponent implements OnInit {
 
   @Input()
   quiz: Quiz;
+
+  @Input()
+  user: User;
 
   @Output()
   startQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
