@@ -3,7 +3,7 @@
   <h2>Créer nouvelle question</h2>
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
-      Question :<br>
+      Question :
       <input class="input-text" type="text" id="label" [formControlName]="'label'">
     </label>
     <button style= "margin: 10px;" class="button-card" (click)="addAnswer()">Ajouter réponse</button>
@@ -12,10 +12,9 @@
         <div class="answer-form" [formGroupName]="i">
           <label>
             Réponse {{i + 1}} :
-            <input class = "input-text" type="text" [formControlName]="'value'">
-            <br>
-            Bonne réponse
-            <input class = "input-text" type="checkbox" [formControlName]="'isCorrect'">
+            <input class = "input-text" type="text" [formControlName]="'value'"><br>
+            Bonne réponse :
+            <input style="margin: 10px; width: 20px; height: 20px;" class = "input" type="checkbox" [formControlName]="'isCorrect'">
           </label>
         </div>
       </div>

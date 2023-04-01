@@ -2,14 +2,14 @@
     <h2>
         <i class="fab fa-leanpub"></i>
         {{quiz.name}}
+        <button style= "float: right;" class="button-card" (click)="delete()">Supprimer</button>
     </h2>
-    <h5>
+    <h4>
         {{quiz.theme}}
-    </h5>
+    </h4>
     <span>
-        {{quiz.questions.length}}
+        Nombre de questions : {{quiz.questions.length}}<br>
     </span>
-    <button class="button-card" routerLink="/start-quiz/{{quiz.id}}">Jouer</button>
-    <button class="button-card" (click)="delete()">Supprimer</button>
-    <button class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
+    <button style="float: left;" class="button-card" routerLink="/start-quiz/{{quiz.id}}">Jouer</button>
+    <button style="float: right;" class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
 </div>

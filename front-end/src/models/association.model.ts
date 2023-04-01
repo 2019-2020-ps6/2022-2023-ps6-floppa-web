@@ -14,8 +14,6 @@ export interface Connection {
 export interface Association {
     id: string;
     label: string;
-    // toConnect: Connectable[];
-    // toBeConnected: Connectable[];
     connections: Connection[];
     isCorrect: boolean;
 }

@@ -11,6 +11,8 @@ import { QuestionFormComponent } from './questions/question-form/question-form.c
 import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component';
 import { PlayQuizComponent3 } from './quizzes/play-quiz-3/play-quiz-3.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
+import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
+import { ConnectionComponent } from './quizzes/connection/connection.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -18,11 +20,13 @@ const routes: Routes = [
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'start-quiz/:id', component: StartQuizComponent},
     {path: 'play-quiz/:id', component: PlayQuizComponent},
+    {path: 'play-association/:id', component: PlayAssociationComponent},
     {path: 'play-quiz-2/:id', component: PlayQuizComponent2},
     {path: 'play-quiz-3/:id', component: PlayQuizComponent3},
     {path: 'final-screen/:id', component: FinalScreenComponent},
     {path: 'question-form/:id', component: QuestionFormComponent },
     {path: 'association-form/:id', component: AssociationFormComponent },
+    {path: 'connection/:id', component: ConnectionComponent},
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
 

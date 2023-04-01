@@ -24,6 +24,8 @@ import { PlayQuizComponent2 } from './quizzes/play-quiz-2/play-quiz-2.component'
 import { AssociationListComponent } from './associations/association-list/association-list.component';
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
+import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
+import { ConnectionComponent } from './quizzes/connection/connection.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,9 +44,11 @@ import { AssociationFormComponent } from './associations/association-form/associ
     PlayQuizComponent,
     FinalScreenComponent,
     PlayQuizComponent2,
+    PlayAssociationComponent,
     AssociationListComponent,
     AssociationComponent,
-    AssociationFormComponent
+    AssociationFormComponent,
+    ConnectionComponent
   ],
   imports: [
     BrowserModule,
