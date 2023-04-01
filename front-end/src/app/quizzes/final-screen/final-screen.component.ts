@@ -12,15 +12,14 @@ import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 export class FinalScreenComponent implements OnInit {
 
   public quiz: Quiz;
-  score: number;
+  public score: number;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) {
-    this.score = this.quizService.getScore();
+  constructor(private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
-    console.log(this.quizService.getScore());
     let id = this.route.snapshot.paramMap.get('id');
+    this.score = Number(this.route.snapshot.paramMap.get('score'));
     this.quiz = QUIZ_LIST[Number(id)-1]
     setTimeout(() => {
       this.goHome();

@@ -1,10 +1,9 @@
-import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
 import { ActivatedRoute } from '@angular/router';
-import { NgZone } from '@angular/core';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
@@ -14,17 +13,11 @@ import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 })
 export class QuestionFormComponent implements OnInit {
 
-  @Input('quiz')
   quiz!: Quiz;
-  @Output() quizEmitter = new EventEmitter<Quiz>();
 
   public questionForm: FormGroup;
-
+  public quizId: string;
   constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
-    // Form creation
-    this.quizService.quizSelected$.subscribe((quiz) => {
-      this.quiz = quiz;
-    }, (error) => {});
     this.initializeQuestionForm();
   }
 
@@ -36,6 +29,7 @@ export class QuestionFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.quizId = this.route.snapshot.paramMap.get('id');
   }
 
   get answers(): FormArray {
@@ -53,12 +47,18 @@ export class QuestionFormComponent implements OnInit {
     this.answers.push(this.createAnswer());
   }
 
+  public isQuestionFormValid(): boolean {
+    return this.questionForm.valid && 
+    this.questionForm.get('answers').value.length > 0 && 
+    this.questionForm.get('answers').value.some((answer: any) => answer.isCorrect);
+  }
+
   addQuestion(): void {
-    if (this.questionForm.valid) {
-      this.quizEmitter.emit(this.quiz);
-      const question = this.questionForm.getRawValue() as Question;
-      this.quizService.addQuestion(this.quiz, question);
-      this.initializeQuestionForm();
-    }
+    if (!this.isQuestionFormValid) return;
+    const question = this.questionForm.getRawValue() as Question;
+    this.quizService.addQuestion(this.quizId, question);
+    //Change for the Back End since the http push doesn't work.
+    QUIZ_LIST[Number(this.quizId) - 1].questions.push(question);  
+    this.initializeQuestionForm();
   }
 }

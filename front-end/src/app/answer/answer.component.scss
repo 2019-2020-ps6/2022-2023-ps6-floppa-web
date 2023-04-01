@@ -1,0 +1,26 @@
+#quiz-img {
+    max-width: 166px;
+    max-height: 166px;
+    border-radius: 54px;
+}
+
+#next-question-button {
+    margin-top: 10px;
+    width:400px;
+    height: 100px;
+    border-radius:25px;
+    font-size: 32px;
+}
+
+.answer-text {
+    display: flex;
+    justify-content: center;
+}
+
+#answer-img {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    margin-top: 80px;
+    margin-bottom: 80px;
+}

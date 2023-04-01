@@ -1,0 +1,24 @@
+<button class="back-button" routerLink="/edit-quiz/{{this.quizId}}">Retour</button><br>
+<div class="card">
+  <h2>Créer nouvelle association</h2>
+  <form class="quiz-form" [formGroup]="associationForm">
+    <label for="label">
+      Intitulé :
+      <input class="input-text" type="text" id="label" [formControlName]="'label'">
+    </label>
+    <button style= "margin: 10px;" class="button-card" (click)="addConnection()">Ajouter connexion</button>
+    <div class="answer" formArrayName="connections">
+      <div *ngFor="let address of connections.controls; let i=index">
+        <div class="answer-form" [formGroupName]="i">
+          <label>
+            <label style="font-weight: bold;">Connexion {{i + 1}}</label><br>
+            <input class= "input-text" type="text" [formControlName]="'valueToConnect'">
+            <img style= "padding:5px;" alt="->" width = "30x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
+            <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'">
+          </label>
+        </div>
+      </div>
+    </div>
+    <button *ngIf = "this.isAssociationFormValid()" type="submit" class="button-card" (click)="addAssociation()" routerLink="/edit-quiz/{{this.quizId}}">Créer</button>
+  </form>
+</div>
