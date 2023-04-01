@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UrlSegment } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
     selector: 'app-user-edit',
@@ -14,24 +14,37 @@ import { UrlSegment } from '@angular/router';
 
 export class UserEditComponent implements OnInit {
 
-  public userForm: FormGroup;
+  public userEdit: FormGroup;
   public user: User;
+  private userId: string;
   
-  constructor(public formBuilder: FormBuilder, public userService: UserService) {
-    this.userForm = this.formBuilder.group({
-      firstName: ['user.firstName'],
-      lastName: ['user.lastName'],
-      alzheimerStade: ['user.alzheimerStade'],
-      photo: ['user.photo']
+  constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute) {
+    this.userEdit = this.formBuilder.group({
+      firstName: [''],
+      lastName: [''],
+      alzheimerStade: [''],
+      photo: ['']
+    });
+  }
+
+  ngOnInit(): void {
+    this.route.paramMap.subscribe(params => {
+      this.userId = params.get('id');
+      this.userService.getUser(this.userId).subscribe(user => {
+        this.userEdit.patchValue(user);
+        this.userEdit = this.formBuilder.group({
+          firstName: this.user.firstName,
+          lastName: this.user.lastName,
+          alzheimerStade: this.user.alzheimerStade,
+          photo: this.user.photo
+        });
+      });
     });
   }
   
-  ngOnInit(): void {
-  }
-  
-  edit(user: User): void {
-    const userToEdit: User = this.userForm.getRawValue() as User;
+  edit(formValue: any): void {
+    const userToEdit: User = formValue as User;
     console.log(userToEdit);
     this.userService.edit(userToEdit);
-  }
+}
 }

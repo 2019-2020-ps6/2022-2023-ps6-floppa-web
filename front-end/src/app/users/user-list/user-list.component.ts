@@ -11,11 +11,11 @@ import { USER_LIST } from 'src/mocks/user-list.mock';
 })
 export class UserListComponent implements OnInit {
 
-  public userList: User[] = USER_LIST;
+  public userList: User[] = [];
 
   constructor(private userService: UserService) {
     this.userService.users$.subscribe((users: User[]) => {
-      this.userList = users;
+      this.userList = userService.getUsers();
     });
   }
 

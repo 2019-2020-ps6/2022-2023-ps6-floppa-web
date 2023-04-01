@@ -7,5 +7,5 @@
     <p>{{user.alzheimerStade}}</p>
     <br>
     <button class="button-card" (click)="delete()">Delete</button>
-    <button class="button-card" (click)="edit()" [routerLink]="['/user-edit']">Edit</button>
+    <button class="button-card" (click)="edit(this.user)" [routerLink]="['/user-edit']">Edit</button>
 </div>
