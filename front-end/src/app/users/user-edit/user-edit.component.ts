@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';import {Location} from '@angular/common';
+
 
 @Component({
     selector: 'app-user-edit',
@@ -18,7 +19,7 @@ export class UserEditComponent implements OnInit {
   public user: User;
   private userId: string;
   
-  constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute) {
+  constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute, private location: Location) {
     this.userEdit = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
@@ -46,5 +47,10 @@ export class UserEditComponent implements OnInit {
     const userToEdit: User = formValue as User;
     console.log(userToEdit);
     this.userService.edit(userToEdit);
-}
+  }
+
+  goBack():void {
+    this.location.back();
+  }
+
 }
