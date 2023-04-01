@@ -29,9 +29,9 @@ const routes: Routes = [
     {path: 'association-form/:id', component: AssociationFormComponent },
     {path: 'answer/:id/:score/:isCorrect/:numQuestion/:assistance', component: AnswerComponent},
     {path: 'home-profil-choice', component: HomeProfilChoiceComponent},
-    { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
     { path: 'user-edit', component: UserEditComponent},
+    { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
 
 ];
 

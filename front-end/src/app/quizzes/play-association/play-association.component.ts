@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Association } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
@@ -17,6 +17,10 @@ export class PlayAssociationComponent implements OnInit {
     public shuffledValuesToBeConnected: string[] = [];
     public selectedLeft: string = "";
     public selectedRight: string = "";
+    public currentConnections: string[][] = [];
+
+    @Output()
+    answer = new EventEmitter<number>();
 
     constructor(private route: ActivatedRoute) {
 
@@ -50,10 +54,58 @@ export class PlayAssociationComponent implements OnInit {
 
     selectLeft(value: string): void {
         this.selectedLeft = value;
+
+        if(this.currentConnections.find((connection) => connection[0] === value))
+            this.deleteConnection(value, this.currentConnections.find((connection) => connection[0] === value)![1]);
+
+        if(this.selectedRight != "")
+            this.createConnection(this.selectedLeft, this.selectedRight);
     }
 
     selectRight(value: string): void {
         this.selectedRight = value;
+        
+        if(this.selectedLeft != "")
+            this.createConnection(this.selectedLeft, this.selectedRight);
+    }
+
+    createConnection(val1: string, val2: string): void {
+        this.currentConnections.push([val1, val2]);
+        this.selectedLeft = "";
+        this.selectedRight = "";
+    }
+
+    deleteConnection(val1: string, val2: string): void {
+        this.currentConnections = this.currentConnections.filter((connection) => connection[0] !== val1 && connection[1] !== val2);
+    }
+
+    check(): void {
+        if(this.currentConnections.length == 0)
+        {
+            console.log("Select at least one connection");
+            return;
+        }
+
+        for(const connection of this.currentConnections){
+            let connectionToCheck = this.associationToPlay.connections.find((connectionToCheck) => connectionToCheck.valueToConnect === connection[0] && connectionToCheck.valueToBeConnected === connection[1]);
+
+            if(!connectionToCheck){
+                console.log("Incorrect");
+                this.resetAssociation();
+                this.answer.emit(0);
+                return;
+            }
+        }
+        
+        console.log("Correct");
+        this.resetAssociation();
+        this.answer.emit(1);
+    }
+
+    resetAssociation(): void {
+        this.selectedLeft = "";
+        this.selectedRight = "";
+        this.currentConnections = [];
     }
 
     changeLinePosition(id: number): void {

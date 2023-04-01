@@ -1,19 +1,26 @@
-
-<div class = "association-game">
-    <div class= "connectors-left">
-        <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >
-            <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectLeft(value)">
-                {{value}}
-            </Button>
+<div>
+    <div class = "association-game">
+        <div class= "connectors-left">
+            <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >
+                <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectLeft(value)">
+                    {{value}}
+                </Button>
+            </div>
         </div>
-    </div>
-    <div class = "connectors-right">
-        <div *ngFor = "let value of shuffledValuesToBeConnected; let i=index" >
-            <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectRight(value)">
-                {{value}}
-            </Button>
-            <Button style="width: 500px; height:100px" (click)="changeLinePosition(i)"></Button>
+        <div class = "connectors-right">
+            <div *ngFor = "let value of shuffledValuesToBeConnected; let i=index" >
+                <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectRight(value)">
+                    {{value}}
+                </Button>
+            </div>
         </div>
+        <app-connection></app-connection>
     </div>
-    <app-connection></app-connection>
+    <div style="   position:absolute; 
+    margin-left:-50px;
+    left:50%;
+    width:100px;
+    bottom:0px;">
+        <Button style= "position:absolute; width:100px; height:50px " class = "button" (click)="check()">Check</Button>
+    </div>
 </div>

@@ -26,7 +26,7 @@ import { AssociationComponent } from './associations/association/association.com
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
 import { ConnectionComponent } from './quizzes/connection/connection.component';
-import { QuestionChoice } from './questions/question-choice/question-choice.component';
+import { PlayQuestionComponent } from './questions/play-question/play-question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { CommonModule } from '@angular/common';
@@ -56,7 +56,7 @@ import { CommonModule } from '@angular/common';
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
-    QuestionChoice,
+    PlayQuestionComponent,
     AnswerComponent,
     HomeProfilChoiceComponent
   ],
