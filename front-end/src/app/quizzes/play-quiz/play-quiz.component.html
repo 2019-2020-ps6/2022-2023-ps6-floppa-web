@@ -7,11 +7,11 @@
                 <span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
             </div>
         </div>
-        <div *ngIf="stage >= 1" style="align-self: center;">
+        <div *ngIf="assistance % 10 >= 1" style="align-self: center;">
             <img id="hint" src="/assets/hint.png" alt="hint" (click)="useHint()">
             <h2 id="hint-text">Indice</h2>
         </div>
-        <div *ngIf="stage >= 2">
+        <div *ngIf="assistance % 100 >= 10">
             <img id="sound-img" src="/assets/sound.png" alt="sound" (click)="useSound()">
             <h2 id="sound-text">Ecouter la question</h2>
         </div>

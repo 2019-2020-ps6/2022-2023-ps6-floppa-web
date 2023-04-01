@@ -27,6 +27,6 @@ export class FinalScreenComponent implements OnInit {
   }
 
   goHome(): void {
-    document.location.href = "/quiz-list";
+    document.location.href = "/home-profil-choice";
   }
 }

@@ -26,6 +26,7 @@ import { AssociationComponent } from './associations/association/association.com
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { QuestionChoice } from './questions/question-choice/question-choice.component';
 import { AnswerComponent } from './answer/answer.component';
+import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
@@ -44,12 +45,13 @@ import { CommonModule } from '@angular/common';
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
-    UserEditComponent
+    UserEditComponent,
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
     QuestionChoice,
-    AnswerComponent
+    AnswerComponent,
+    HomeProfilChoiceComponent
   ],
   imports: [
     BrowserModule,
