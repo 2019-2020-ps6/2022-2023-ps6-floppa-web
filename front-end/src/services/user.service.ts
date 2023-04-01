@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject, Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { User } from '../models/user.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
+import { ThisReceiver } from '@angular/compiler';
+import { UserEditComponent } from 'src/app/users/user-edit/user-edit.component';
+import { USER_LIST } from 'src/mocks/user-list.mock';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +14,7 @@ export class UserService {
   /*
    The list of user.
    */
-  private users: User[] = [];
+  private users: User[] = USER_LIST;
 
   /*
    Observable which contains the list of the user.
@@ -29,11 +32,21 @@ export class UserService {
     this.retrieveUsers();
   }
 
+  getUsers(): User[] {
+    console.log(this.users)
+    return this.users;
+  }
+
   retrieveUsers(): void {
     this.http.get<User[]>(this.userUrl).subscribe((userList) => {
       this.users = userList;
       this.users$.next(this.users);
     });
+  }
+
+  getUser(userId: string): Observable<User> {
+    const urlWithId = this.userUrl + '/' + userId;
+    return this.http.get<User>(urlWithId, this.httpOptions);
   }
 
   addUser(user: User): void {
@@ -59,7 +72,9 @@ export class UserService {
     }
   }
 
-  validateUser(user: User): void{
-    
+  edit(user: User): void{
+    const urlWithId = this.userUrl + '/' + user.id;
+    this.http.put<User>(urlWithId, user, this.httpOptions).subscribe(() => this.retrieveUsers());
   }
+
 }

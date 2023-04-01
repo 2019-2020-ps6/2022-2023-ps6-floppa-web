@@ -1,4 +1,4 @@
-
+<img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
 <h2>Nouvel utilisateur</h2>
 
 <form class="user-form" [formGroup]="userForm">
@@ -14,12 +14,20 @@
   </label>
   <br>
 
+  Paramètres de jeu : <br>
+
+  Police d'écriture : <!--normal moyen gros--> <br>
+
+  Indice : <!--oui/non--> <br>
+
+  Synthèse vocale : <!--oui/non--> <br>
+
   <label for="alzheimerStade">
     Stade Alzheimer : <br>
     Sélectionez une plage <br>
-    <input type="radio" name="stage" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
-    <input type="radio" name="stage" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-    <input type="radio" name="stage" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+    <input type="radio" name="alzheimerStade" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
+    <input type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
+    <input type="radio" name="alzheimerStade" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
   </label>
 
   <label for="photo">

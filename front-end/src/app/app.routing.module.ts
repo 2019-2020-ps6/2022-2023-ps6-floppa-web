@@ -8,6 +8,7 @@ import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { QuestionChoice } from './questions/question-choice/question-choice.component';
 import { AnswerComponent } from './answer/answer.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path: 'answer/:id/:score/:isCorrect/:numQuestion/:stage', component: AnswerComponent},
     { path: '', redirectTo: '/quiz-list', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
+    { path: 'user-edit', component: UserEditComponent},
 
 ];
 

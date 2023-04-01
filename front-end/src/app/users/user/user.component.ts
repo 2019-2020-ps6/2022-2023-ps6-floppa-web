@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-
+import { UserService } from '../../../services/user.service'; // Importez le service UserService
+import { Router } from '@angular/router'; // Importez le module Router
 import { User } from '../../../models/user.model';
 
 @Component({
@@ -16,7 +17,7 @@ export class UserComponent implements OnInit {
   deleteUser: EventEmitter<User> = new EventEmitter<User>();
   editUser: EventEmitter<User> = new EventEmitter<User>();
 
-  constructor() { }
+  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -25,8 +26,9 @@ export class UserComponent implements OnInit {
     this.deleteUser.emit(this.user);
   }
 
-  edit(){
-    this.editUser.emit(this.user);
+  edit(user: User): void {
+    this.userService.setSelectedUser(user.id);
+    this.router.navigate(['/user-edit']);
   }
 
 }

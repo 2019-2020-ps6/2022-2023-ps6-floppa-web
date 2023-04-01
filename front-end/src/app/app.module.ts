@@ -20,6 +20,7 @@ import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
 import { QuizService } from 'src/services/quiz.service';
 import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
 import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationListComponent } from './associations/association-list/association-list.component';
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
@@ -43,6 +44,7 @@ import { CommonModule } from '@angular/common';
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
+    UserEditComponent
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
