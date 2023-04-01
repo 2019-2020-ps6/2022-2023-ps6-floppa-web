@@ -82,13 +82,15 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Les félins',
         theme: 'Les animaux',
         questions: [QUESTION_FELINS_1, QUESTION_FELINS_2],
-        associations: [ASSOCIATION_FELINS_1]
+        associations: [ASSOCIATION_FELINS_1],
+        users: []
     },
     {
         id: '2',
         name: 'Les oiseaux',
         theme: 'Les animaux',
         questions: [],
-        associations: []
+        associations: [],
+        users: []
     }
 ];

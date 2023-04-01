@@ -12,6 +12,12 @@
     font-size: 32px;
 }
 
+#next-question-button:hover {
+    background-color: grey;
+    color: white;
+}
+
+
 .answer-text {
     display: flex;
     justify-content: center;
