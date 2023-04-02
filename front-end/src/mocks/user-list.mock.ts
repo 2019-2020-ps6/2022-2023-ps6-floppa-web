@@ -8,7 +8,7 @@ export const USER_LIST: User[] = [
         lastName: "Duo",
         alzheimerStade: "stade léger",
         assistance : "1000",
-        photo: "/assets/users/user.png"
+        photo: "/assets/users/Madeleine.png"
     },
     {
         id: "2",
@@ -16,7 +16,7 @@ export const USER_LIST: User[] = [
         lastName: "Quatro",
         alzheimerStade: "stade intermédiaire",
         assistance : "1001",
-        photo: "/assets/users/user.png"
+        photo: "/assets/users/Jacques.png"
     },
     {
         id: "3",
@@ -24,6 +24,6 @@ export const USER_LIST: User[] = [
         lastName:"Pentacle",
         alzheimerStade:"stade avancé",
         assistance : "1111",
-        photo:"/assets/users/user.png",
+        photo:"/assets/users/Valérie.png",
     }
 ]
