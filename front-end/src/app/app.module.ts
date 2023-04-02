@@ -16,7 +16,21 @@ import { QuestionComponent } from './questions/question/question.component';
 import { UserComponent } from './users/user/user.component';
 import { UserFormComponent } from './users/user-form/user-form.component';
 import { UserListComponent } from './users/user-list/user-list.component';
-
+import { StartQuizComponent } from './quizzes/start-quiz/start-quiz.component';
+import { QuizService } from 'src/services/quiz.service';
+import { FinalScreenComponent } from './quizzes/final-screen/final-screen.component';
+import { PlayQuizComponent } from './quizzes/play-quiz/play-quiz.component';
+import { UserEditComponent } from './users/user-edit/user-edit.component';
+import { AssociationListComponent } from './associations/association-list/association-list.component';
+import { AssociationComponent } from './associations/association/association.component';
+import { AssociationFormComponent } from './associations/association-form/association-form.component';
+import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
+import { ConnectionComponent } from './quizzes/connection/connection.component';
+import { PlayQuestionComponent } from './questions/play-question/play-question.component';
+import { AnswerComponent } from './answer/answer.component';
+import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
+import { CommonModule } from '@angular/common';
+import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,14 +45,30 @@ import { UserListComponent } from './users/user-list/user-list.component';
     UserComponent,
     UserFormComponent,
     UserListComponent,
+    StartQuizComponent,
+    PlayQuizComponent,
+    FinalScreenComponent,
+    PlayAssociationComponent,
+    AssociationListComponent,
+    AssociationComponent,
+    AssociationFormComponent,
+    ConnectionComponent,
+    UserEditComponent,
+    AssociationListComponent,
+    AssociationComponent,
+    AssociationFormComponent,
+    PlayQuestionComponent,
+    AnswerComponent,
+    HomeProfilChoiceComponent,
+    ThemeListComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [QuizService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

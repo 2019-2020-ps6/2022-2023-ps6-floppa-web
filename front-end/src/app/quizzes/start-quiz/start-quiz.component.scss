@@ -1,20 +1,56 @@
-@import '../../../styles/card.scss';
-
 .edit {
     margin-left: 0.3em;
 }
 
 #start-quiz-button {
-    display:flex;
-    margin-left: 50%;
-    margin-top: 700px
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    border-radius: 25px;
+    width: 354px;
+    height: 75px;
+    font-size: 24px;
 }
 
+#start-quiz-button:hover {
+    background-color: grey;
+    color: white;
+}
+
+
 #back-button {
-    display: flex;
+    display: block;
+    margin-top: 20px;
 }
 
 #quiz-name {
-    display:flex;
-    margin-left: 50%;
+    //center the text
+    text-align: center;
+}
+
+#quiz-img {
+    
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    
+    height: auto;
+    max-width: 700px;
+    max-height: 700px;
+
+    border-radius: 50px;
+}
+
+#nb-of-question {
+    display:block;
+    text-align: center;
+}
+
+
+#back {
+    margin-top: 10px;
+    max-width: 121px;
+    max-height: 121px;
 }

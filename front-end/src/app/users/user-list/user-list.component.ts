@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
+import { USER_LIST } from 'src/mocks/user-list.mock';
 
 @Component({
   selector: 'app-user-list',
@@ -14,7 +15,7 @@ export class UserListComponent implements OnInit {
 
   constructor(private userService: UserService) {
     this.userService.users$.subscribe((users: User[]) => {
-      this.userList = users;
+      this.userList = userService.getUsers();
     });
   }
 

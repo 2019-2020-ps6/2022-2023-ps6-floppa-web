@@ -5,7 +5,7 @@ import { Quiz } from '../models/quiz.model';
 import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
-
+import { Association } from '../models/association.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +21,7 @@ export class QuizService {
    */
   private quizzes: Quiz[] = QUIZ_LIST;
 
+  private score: number = 0;
   /*
    Observable which contains the list of the quiz.
    Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
@@ -32,6 +33,7 @@ export class QuizService {
 
   private quizUrl = serverUrl + '/quizzes';
   private questionsPath = 'questions';
+  private associationsPath = 'associations';
 
   private httpOptions = httpOptionsBase;
 
@@ -69,9 +71,9 @@ export class QuizService {
     }
   }
 
-  addQuestion(quiz: Quiz, question: Question): void {
-    const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath;
-    this.http.post<Question>(questionUrl, question, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
+  addQuestion(quizId: string, question: Question): void {
+    const questionUrl = this.quizUrl + '/' + quizId + '/' + this.questionsPath;
+    this.http.post<Question>(questionUrl, question, this.httpOptions).subscribe(() => this.setSelectedQuiz(quizId));
   }
 
   deleteQuestion(quiz: Quiz, question: Question): void {
@@ -79,6 +81,38 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
   }
 
+  addAssociation(quizId: string, association: Association): void {
+    const associationUrl = this.quizUrl + '/' + quizId + '/' + this.associationsPath;
+    this.http.post<Association>(associationUrl, association, this.httpOptions).subscribe(() => this.setSelectedQuiz(quizId));
+  }
+  //temporaire, à changer pour le back end
+  deleteQuestionFromQuiz(quiz: Quiz, question: Question): void {
+    const index = quiz.questions.findIndex((q) => q.label === question.label);
+    if (index !== -1) {
+      quiz.questions.splice(index, 1);
+    }
+  }
+
+    //temporaire, à changer pour le back end
+    deleteAssociationFromQuiz(quiz: Quiz, association: Association): void {
+      const index = quiz.associations.findIndex((q) => q.label === association.label);
+      if (index !== -1) {
+        quiz.associations.splice(index, 1);
+      }
+    }
+
+  getScore(): number {
+    return this.score;
+  }
+
+  addScore(): void {
+    this.score++;
+    console.log(this.score);
+  }
+
+  resetScore(): void {
+    this.score = 0;
+  }
   /*
   Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
   addQuestion(quiz: Quiz, question: Question) {

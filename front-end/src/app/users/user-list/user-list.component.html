@@ -1,6 +1,8 @@
-<app-user-form></app-user-form>
+
+<h1>Sélectionner un patient</h1>
+<button id="addUser" class="form" [routerLink]="['/user-form']">Ajouter un patient dans la liste</button>
 <div class="user-list">
     <div class="user" *ngFor="let user of userList">
         <app-user [user]="user" (deleteUser)="deleteUser($event)"></app-user>
     </div>
-  </div>
+</div>

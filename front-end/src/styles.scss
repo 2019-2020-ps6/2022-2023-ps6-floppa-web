@@ -9,3 +9,64 @@ body {
   margin: 0;
   background-color: $app-background-color;
 }
+
+.button {
+  background-color: $white;
+  border: solid 1px $blue;
+  border-radius: 10px;
+  color: $blue;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+.back-button {
+  background-color: $white;
+  border: solid 1px $blue;
+  border-radius: 10px;
+  color: $blue;
+  font-weight: bold;
+  padding: 1em 1em;
+  margin: 10px;
+}
+
+.create-button {
+  background-color: $white;
+  border: solid 1px $blue;
+  border-radius: 10px;
+  color: $blue;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+.create-button:hover {
+  background-color: $blue-grey;
+  border: solid 2px $blue;
+  border-radius: 10px;
+  color: $dark;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+.delete-button {
+  background-color: $white;
+  border: solid 1px $dark-grey;
+  border-radius: 10px;
+  color: $dark;
+  font-weight: bold;
+  padding: 0.5em 1em;
+}
+
+.delete-button:hover {
+  cursor: pointer;
+  background-color: $dark-grey;
+  color: $red;
+}
+
+.input-text {
+  border-radius: 7px; 
+  border-width: 1px;
+  height: 1.5em;
+}
+
+.checkbox {
+}
