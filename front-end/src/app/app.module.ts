@@ -28,6 +28,7 @@ import { QuestionChoice } from './questions/question-choice/question-choice.comp
 import { AnswerComponent } from './answer/answer.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { CommonModule } from '@angular/common';
+import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,7 +52,8 @@ import { CommonModule } from '@angular/common';
     AssociationFormComponent,
     QuestionChoice,
     AnswerComponent,
-    HomeProfilChoiceComponent
+    HomeProfilChoiceComponent,
+    ThemeListComponent
   ],
   imports: [
     BrowserModule,
