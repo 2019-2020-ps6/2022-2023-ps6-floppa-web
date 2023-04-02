@@ -16,7 +16,7 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
-    {path: 'quiz-list/:user', component: QuizListComponent},
+    {path: 'quiz-list/:user/:themeIndex', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'start-quiz/:id/:assistance', component: StartQuizComponent},
     {path: 'play-quiz/:id/:score/:numQuestion/:assistance', component: PlayQuizComponent},

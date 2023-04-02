@@ -5,6 +5,8 @@ import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
+import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { THEME_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-quiz-list',
@@ -17,15 +19,19 @@ export class QuizListComponent implements OnInit {
   public user: User;
   public username: string;
   public quizList: Quiz[] = [];
+  public themeIndex: number;
 
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
     this.userList = USER_LIST;
     this.getUser(this.username);
-    console.log(this.user);
-    this.quizService.quizzes$.subscribe((quizzes: Quiz[]) => {
-      this.quizList = quizzes;
-    });
+    this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
+    for (let i = 0; i < QUIZ_LIST.length; i++) {
+      console.log(THEME_LIST[this.themeIndex])
+      if (QUIZ_LIST[i].theme === THEME_LIST[this.themeIndex]) {
+        this.quizList.push(QUIZ_LIST[i]);
+      }
+    }
   }
 
   ngOnInit(): void {

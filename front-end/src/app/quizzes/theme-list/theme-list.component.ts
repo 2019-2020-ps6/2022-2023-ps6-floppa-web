@@ -39,7 +39,7 @@ export class ThemeListComponent implements OnInit {
   }
 
   goToTheme(themeIndex: number): void {
-    this.router.navigate(["/quiz-list/" + this.user.firstName + "-" + this.user.lastName]);
+    this.router.navigate(["/quiz-list/" + this.user.firstName + "-" + this.user.lastName + "/" + themeIndex]);
   }
 }
 
