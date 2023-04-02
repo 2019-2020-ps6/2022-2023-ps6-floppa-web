@@ -4,7 +4,7 @@
 <div style="display: flex; flex-direction: row;">
     <div *ngFor="let user of userList">
         <div class="user">
-            <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/quiz-list/{{user.firstName}}-{{user.lastName}}">
+            <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}">
             <h1>{{user.firstName}} {{user.lastName}}</h1>
         </div>
     </div>

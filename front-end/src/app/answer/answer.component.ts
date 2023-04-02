@@ -38,6 +38,14 @@ export class AnswerComponent implements OnInit {
       this.correctAnswer = this.getCorrectAnswer();
       
     this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
+    setTimeout(() => {
+      if (this.numQuestion+1 > this.quiz.questions.length) {
+        document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.assistance;
+      }
+      else {
+        document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.assistance;
+      }
+    }, 2 * 60 * 1000);
   }
 
   getCorrectAnswer(): number {
