@@ -2,8 +2,13 @@ import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { Association, Connectable, Connection } from '../models/association.model';
 
-export const THEME_LIST: String[] = [
-    'Les félins',
+export const THEME_LIST: string[] = [
+    'Les animaux',
+    'Géographie',
+    'Histoire',
+    'Le sport',
+    'Cuisine',
+    'Musique'
 ]
 
 
@@ -110,121 +115,6 @@ export const QUESTION_FELINS_5: Question = {
     ]
 };
 
-export const QUESTION_FELINS_6: Question = {
-    id: '2',
-    label: 'Qui est le tigre blanc ?',
-    answers: [
-        {
-            value: 'Tigre',
-            isCorrect: true,
-        },
-        {
-            value: 'Orvet',
-            isCorrect: false,
-        },
-        {
-            value: "Panda-Roux",
-            isCorrect: false,
-        },
-        {
-            value: 'Crocodile',
-            isCorrect: false,
-        }
-    ]
-};
-
-export const QUESTION_FELINS_7: Question = {
-    id: '2',
-    label: 'Qui est le tigre blanc ?',
-    answers: [
-        {
-            value: 'Tigre',
-            isCorrect: true,
-        },
-        {
-            value: 'Orvet',
-            isCorrect: false,
-        },
-        {
-            value: "Panda-Roux",
-            isCorrect: false,
-        },
-        {
-            value: 'Crocodile',
-            isCorrect: false,
-        }
-    ]
-};
-
-export const QUESTION_FELINS_8: Question = {
-    id: '2',
-    label: 'Qui est le tigre blanc ?',
-    answers: [
-        {
-            value: 'Tigre',
-            isCorrect: true,
-        },
-        {
-            value: 'Orvet',
-            isCorrect: false,
-        },
-        {
-            value: "Panda-Roux",
-            isCorrect: false,
-        },
-        {
-            value: 'Crocodile',
-            isCorrect: false,
-        }
-    ]
-};
-
-export const QUESTION_FELINS_9: Question = {
-    id: '2',
-    label: 'Qui est le tigre blanc ?',
-    answers: [
-        {
-            value: 'Tigre',
-            isCorrect: true,
-        },
-        {
-            value: 'Orvet',
-            isCorrect: false,
-        },
-        {
-            value: "Panda-Roux",
-            isCorrect: false,
-        },
-        {
-            value: 'Crocodile',
-            isCorrect: false,
-        }
-    ]
-};
-
-export const QUESTION_FELINS_10: Question = {
-    id: '2',
-    label: 'Qui est le tigre blanc ?',
-    answers: [
-        {
-            value: 'Tigre',
-            isCorrect: true,
-        },
-        {
-            value: 'Orvet',
-            isCorrect: false,
-        },
-        {
-            value: "Panda-Roux",
-            isCorrect: false,
-        },
-        {
-            value: 'Crocodile',
-            isCorrect: false,
-        }
-    ]
-};
-
 
 export const CONNECTION_FELIN_1: Connection = {
     valueToConnect: 'Tigre',
@@ -253,7 +143,7 @@ export const QUIZ_LIST: Quiz[] = [
     {
         id: '1',
         name: 'Les félins',
-        theme: 'Les animaux',
+        theme: THEME_LIST[0],
         questions: [QUESTION_FELINS_1, QUESTION_FELINS_2, QUESTION_FELINS_3, QUESTION_FELINS_4, QUESTION_FELINS_5],
         associations: [ASSOCIATION_FELINS_1],
         users: []
@@ -261,7 +151,7 @@ export const QUIZ_LIST: Quiz[] = [
     {
         id: '2',
         name: 'Les oiseaux',
-        theme: 'Les animaux',
+        theme: THEME_LIST[0],
         questions: [],
         associations: [],
         users: []

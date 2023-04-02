@@ -12,6 +12,7 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { AnswerComponent } from './answer/answer.component';
+import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -24,6 +25,7 @@ const routes: Routes = [
     {path: 'association-form/:id', component: AssociationFormComponent },
     {path: 'answer/:id/:score/:isCorrect/:numQuestion/:assistance', component: AnswerComponent},
     {path: 'home-profil-choice', component: HomeProfilChoiceComponent},
+    {path: 'theme-list/:user', component: ThemeListComponent},
     { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
     { path: 'user-edit', component: UserEditComponent},
