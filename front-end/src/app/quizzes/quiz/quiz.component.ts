@@ -30,6 +30,10 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  start(): void {
+    document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.assistance
+  }
+
   edit(): void {
     this.editQuiz.emit(this.quiz);
   }

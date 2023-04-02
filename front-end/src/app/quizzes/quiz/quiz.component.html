@@ -1,15 +1,6 @@
-<div class="card">
-    <h2>
-        <i class="fab fa-leanpub"></i>
-        {{quiz.name}}
-        <button style= "float: right;" class="button-card" (click)="delete()">Supprimer</button>
-    </h2>
-    <h4>
-        {{quiz.theme}}
-    </h4>
-    <span>
-        Nombre de questions : {{quiz.questions.length}}<br>
-    </span>
-    <button style="float: left;" class="button-card" routerLink="/start-quiz/{{quiz.id}}/{{user.assistance}}">Jouer</button>
+<div class="quiz" style="display: flex; flex-direction: column;">
+    <h2 style="display: flex; justify-content:center;">{{quiz.name}}</h2>
+    <img src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img" (click)="start()">
+    <button style= "float: right;" class="button-card" (click)="delete()">Supprimer</button>
     <button style="float: right;" class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
 </div>
