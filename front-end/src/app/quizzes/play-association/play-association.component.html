@@ -18,6 +18,10 @@
                 </Button>
             </div>
         </div>
-        <!--<app-connection></app-connection>-->
+        <div *ngIf="currentConnections.length > 0">
+            <div *ngFor="let connection of this.currentConnections; let i = index;">
+                <app-connection [id] = "i" [connection]="connection" [shuffledValuesToConnect] = "this.shuffledValuesToConnect" [shuffledValuesToBeConnected] = "this.shuffledValuesToBeConnected"></app-connection>
+            </div>
+        </div>
     </div>
 </div>
