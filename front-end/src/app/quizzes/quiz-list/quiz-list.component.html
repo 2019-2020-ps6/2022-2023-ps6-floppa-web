@@ -1,6 +1,9 @@
-<div style="display: flex; flex-direction: row; justify-content: flex-end;">
-    <h1 style="display: flex; justify-content: flex-end;">{{user.firstName}} {{user.lastName}}</h1>
-    <img style="display: flex; justify-content: flex-end;" alt="user-img" src="{{user.photo}}">
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <img id="back" src="/assets/back.png" alt="back" routerLink="">
+    <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+        <h1 style="display: flex; justify-content: flex-end;">{{user.firstName}} {{user.lastName}}</h1>
+        <img style="display: flex; justify-content: flex-end;" alt="user-img" src="{{user.photo}}">
+    </div>
 </div>
 <app-quiz-form></app-quiz-form>
 <div class="quiz-list">
