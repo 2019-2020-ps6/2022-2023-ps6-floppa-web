@@ -53,6 +53,179 @@ export const QUESTION_FELINS_2: Question = {
     ]
 };
 
+export const QUESTION_FELINS_3: Question = {
+    id: '3',
+    label: 'Qui est le plus rapide ?',
+    answers: [
+        {
+            value: 'Lion',
+            isCorrect: false,
+        },
+        {
+            value: 'Guépard',
+            isCorrect: true,
+        },
+        {
+            value: "Chat",
+            isCorrect: false,
+        },
+    ]
+};
+
+export const QUESTION_FELINS_4: Question = {
+    id: '4',
+    label: "Lequel n'est pas un félin ?",
+    answers: [
+        {
+            value: 'Chat',
+            isCorrect: false,
+        },
+        {
+            value: 'Chien',
+            isCorrect: true,
+        },
+    ]
+};
+
+export const QUESTION_FELINS_5: Question = {
+    id: '5',
+    label: 'Qui est à la fois vivant et mort ?',
+    answers: [
+        {
+            value: 'Méduse',
+            isCorrect: true,
+        },
+        {
+            value: 'Taureau',
+            isCorrect: false,
+        },
+        {
+            value: "Dragon",
+            isCorrect: false,
+        },
+        {
+            value: 'Chat',
+            isCorrect: true,
+        }
+    ]
+};
+
+export const QUESTION_FELINS_6: Question = {
+    id: '2',
+    label: 'Qui est le tigre blanc ?',
+    answers: [
+        {
+            value: 'Tigre',
+            isCorrect: true,
+        },
+        {
+            value: 'Orvet',
+            isCorrect: false,
+        },
+        {
+            value: "Panda-Roux",
+            isCorrect: false,
+        },
+        {
+            value: 'Crocodile',
+            isCorrect: false,
+        }
+    ]
+};
+
+export const QUESTION_FELINS_7: Question = {
+    id: '2',
+    label: 'Qui est le tigre blanc ?',
+    answers: [
+        {
+            value: 'Tigre',
+            isCorrect: true,
+        },
+        {
+            value: 'Orvet',
+            isCorrect: false,
+        },
+        {
+            value: "Panda-Roux",
+            isCorrect: false,
+        },
+        {
+            value: 'Crocodile',
+            isCorrect: false,
+        }
+    ]
+};
+
+export const QUESTION_FELINS_8: Question = {
+    id: '2',
+    label: 'Qui est le tigre blanc ?',
+    answers: [
+        {
+            value: 'Tigre',
+            isCorrect: true,
+        },
+        {
+            value: 'Orvet',
+            isCorrect: false,
+        },
+        {
+            value: "Panda-Roux",
+            isCorrect: false,
+        },
+        {
+            value: 'Crocodile',
+            isCorrect: false,
+        }
+    ]
+};
+
+export const QUESTION_FELINS_9: Question = {
+    id: '2',
+    label: 'Qui est le tigre blanc ?',
+    answers: [
+        {
+            value: 'Tigre',
+            isCorrect: true,
+        },
+        {
+            value: 'Orvet',
+            isCorrect: false,
+        },
+        {
+            value: "Panda-Roux",
+            isCorrect: false,
+        },
+        {
+            value: 'Crocodile',
+            isCorrect: false,
+        }
+    ]
+};
+
+export const QUESTION_FELINS_10: Question = {
+    id: '2',
+    label: 'Qui est le tigre blanc ?',
+    answers: [
+        {
+            value: 'Tigre',
+            isCorrect: true,
+        },
+        {
+            value: 'Orvet',
+            isCorrect: false,
+        },
+        {
+            value: "Panda-Roux",
+            isCorrect: false,
+        },
+        {
+            value: 'Crocodile',
+            isCorrect: false,
+        }
+    ]
+};
+
+
 export const CONNECTION_FELIN_1: Connection = {
     valueToConnect: 'Tigre',
     valueToBeConnected: 'grrrrr'
@@ -81,7 +254,7 @@ export const QUIZ_LIST: Quiz[] = [
         id: '1',
         name: 'Les félins',
         theme: 'Les animaux',
-        questions: [QUESTION_FELINS_1, QUESTION_FELINS_2],
+        questions: [QUESTION_FELINS_1, QUESTION_FELINS_2, QUESTION_FELINS_3, QUESTION_FELINS_4, QUESTION_FELINS_5],
         associations: [ASSOCIATION_FELINS_1],
         users: []
     },
