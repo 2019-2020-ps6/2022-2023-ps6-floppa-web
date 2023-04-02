@@ -17,13 +17,12 @@ export class PlayAssociationComponent implements OnInit {
     public shuffledValuesToBeConnected: string[] = [];
     public selectedLeft: string = "";
     public selectedRight: string = "";
-    public currentConnections: string[][] = [];
+    public currentConnections?: string[][] = [];
 
     @Output()
     answer = new EventEmitter<number>();
 
     constructor(private route: ActivatedRoute) {
-
     }
 
     ngOnInit(): void {
@@ -73,6 +72,7 @@ export class PlayAssociationComponent implements OnInit {
         this.currentConnections.push([val1, val2]);
         this.selectedLeft = "";
         this.selectedRight = "";
+        //console.log(this.currentConnections);
     }
 
     deleteConnection(val1: string, val2: string): void {
@@ -116,18 +116,5 @@ export class PlayAssociationComponent implements OnInit {
         this.selectedLeft = "";
         this.selectedRight = "";
         this.currentConnections = [];
-    }
-
-    changeLinePosition(id: number): void {
-        // let line = document.getElementById("line");
-        // document.getElementById("line").setAttribute("y2", "100");
-        // document.getElementById("line").setAttribute("x2", "300");
-        // console.log(line);
-
-        // let y2 = 100 * id;
-        // let line = document.getElementById("line" + id);
-        // document.getElementById("line").setAttribute("y2", String(y2));
-        // document.getElementById("line").setAttribute("x2", "300");
-        // console.log(line);
     }
 }
