@@ -12,7 +12,7 @@
             </div>
         </div>
         <div class = "connectors-right">
-            <div *ngFor = "let value of shuffledValuesToBeConnected; let i=index" >
+            <div *ngFor = "let value of shuffledValuesToBeConnected; let i=index">
                 <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectRight(value)">
                     {{value}}
                 </Button>

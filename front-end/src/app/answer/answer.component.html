@@ -24,10 +24,10 @@
 <div style="display:flex; justify-content: center;">
     <img *ngIf = "numQuestion <= quiz.questions.length" id="answer-img" alt="answer-{{correctAnswer+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{correctAnswer+1}}.jpg">
     <div *ngIf="numQuestion > quiz.questions.length" class="answer-text">
-        <div style="   display: inline-block;
-        margin: 20px;" *ngFor = "let connection of quiz.associations[numQuestion - quiz.associations.length - 2].connections; let i=index;">
+        <div style="display: inline-block; margin: 20px;" *ngFor = "let connection of quiz.associations[numQuestion - quiz.questions.length - 1].connections; let i=index;">
             <div class="card" style="margin: 10px;" *ngIf="connection.valueToConnect && connection.valueToBeConnected">
-                <div style="margin-top: 10px;">{{connection.valueToConnect}}
+                <div style="margin-top: 10px;">
+                    {{connection.valueToConnect}}
                     <img src="../../assets/quiz-editor/association-arrow.svg" alt="arrow" style="width: 20px; height: 20px;">
                     {{connection.valueToBeConnected}}
                 </div>
