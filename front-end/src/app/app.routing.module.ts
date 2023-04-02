@@ -10,6 +10,8 @@ import { FinalScreenComponent } from './quizzes/final-screen/final-screen.compon
 import { QuestionFormComponent } from './questions/question-form/question-form.component';
 import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
+import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
+import { ConnectionComponent } from './quizzes/connection/connection.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { AnswerComponent } from './answer/answer.component';
 import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
@@ -18,6 +20,9 @@ const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
     {path: 'quiz-list/:user/:themeIndex', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
+    {path: 'play-association/:id', component: PlayAssociationComponent},
+    {path: 'question-form/:id', component: QuestionFormComponent },
+    {path: 'connection/:id', component: ConnectionComponent},
     {path: 'start-quiz/:id/:assistance', component: StartQuizComponent},
     {path: 'play-quiz/:id/:score/:numQuestion/:assistance', component: PlayQuizComponent},
     {path: 'final-screen/:id/:score/:assistance', component: FinalScreenComponent},
@@ -29,6 +34,7 @@ const routes: Routes = [
     { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
     { path: 'user-edit', component: UserEditComponent},
+    { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
 
 ];
 

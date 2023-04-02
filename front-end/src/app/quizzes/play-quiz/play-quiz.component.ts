@@ -4,7 +4,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location } from '@angular/common';
-import { QuestionChoice } from 'src/app/questions/question-choice/question-choice.component';
+import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
 
 declare const SpeechSynthesisUtterance: any;
 declare const speechSynthesis: any;
@@ -16,7 +16,7 @@ declare const speechSynthesis: any;
 })
 export class PlayQuizComponent implements OnInit {
 
-  @ViewChild(QuestionChoice) questionChoice: QuestionChoice;
+  @ViewChild(PlayQuestionComponent) questionChoice: PlayQuestionComponent;
 
   public score: number;
 
@@ -42,6 +42,11 @@ export class PlayQuizComponent implements OnInit {
 
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
+    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
+  }
+
+  checkAssociation(): void {
+    let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
     document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
   }
 

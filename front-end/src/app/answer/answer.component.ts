@@ -4,8 +4,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location, CommonModule } from '@angular/common';
-import { QuestionChoice } from 'src/app/questions/question-choice/question-choice.component';
-
+import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -35,7 +34,9 @@ export class AnswerComponent implements OnInit {
     else {
         this.isCorrect = false;
     }
-    this.correctAnswer = this.getCorrectAnswer();
+    if(this.numQuestion <= this.quiz.questions.length)
+      this.correctAnswer = this.getCorrectAnswer();
+      
     this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
     setTimeout(() => {
       if (this.numQuestion+1 > this.quiz.questions.length) {
@@ -57,7 +58,7 @@ export class AnswerComponent implements OnInit {
   }
 
   nextQuestion(): void {
-    if (this.numQuestion+1 > this.quiz.questions.length) {
+    if (this.numQuestion+1 > this.quiz.questions.length + this.quiz.associations.length) {
       document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.assistance;
     }
     else {

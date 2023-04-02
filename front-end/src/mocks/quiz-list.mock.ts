@@ -1,6 +1,6 @@
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
-import { Association, Connectable, Connection } from '../models/association.model';
+import { Association, Connection } from '../models/association.model';
 
 export const THEME_LIST: string[] = [
     'Les animaux',

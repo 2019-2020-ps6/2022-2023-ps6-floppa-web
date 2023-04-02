@@ -3,7 +3,7 @@
         <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
         <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: center;">
             <h4>{{quiz.name}}</h4>
-            <span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
+            <span>Question {{numQuestion}}/{{quiz.questions.length + quiz.associations.length}}</span>
         </div>
     </div>
     
@@ -22,7 +22,18 @@
     <h1 class="answer-text">La bonne réponse est :</h1>
 </div>
 <div style="display:flex; justify-content: center;">
-    <img id="answer-img" alt="answer-{{correctAnswer+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{correctAnswer+1}}.jpg">
+    <img *ngIf = "numQuestion <= quiz.questions.length" id="answer-img" alt="answer-{{correctAnswer+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{correctAnswer+1}}.jpg">
+    <div *ngIf="numQuestion > quiz.questions.length" class="answer-text">
+        <div style="   display: inline-block;
+        margin: 20px;" *ngFor = "let connection of quiz.associations[numQuestion - quiz.associations.length - 2].connections; let i=index;">
+            <div class="card" style="margin: 10px;" *ngIf="connection.valueToConnect && connection.valueToBeConnected">
+                <div style="margin-top: 10px;">{{connection.valueToConnect}}
+                    <img src="../../assets/quiz-editor/association-arrow.svg" alt="arrow" style="width: 20px; height: 20px;">
+                    {{connection.valueToBeConnected}}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 <div *ngIf="isCorrect && assistance > 1000" style="display: flex; justify-content: center;">
     <h1 style="color: rgb(16, 206, 16)" class="answer-text">Bravo !</h1>
