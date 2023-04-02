@@ -50,12 +50,11 @@ export class AnswerComponent implements OnInit {
   }
 
   nextQuestion(): void {
-    this.numQuestion++;
-    if (this.numQuestion > this.quiz.questions.length + this.quiz.associations.length) {
+    if (this.numQuestion+1 > this.quiz.questions.length + this.quiz.associations.length) {
       document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.assistance;
     }
     else {
-      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + this.numQuestion + "/" + this.assistance;
+      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.assistance;
     }
   }
 }
