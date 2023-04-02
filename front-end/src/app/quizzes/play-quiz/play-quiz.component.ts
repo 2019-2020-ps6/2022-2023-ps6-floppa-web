@@ -37,7 +37,17 @@ export class PlayQuizComponent implements OnInit {
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
     this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
-    console.log(this.assistance+1 / 1000);
+    console.log(this.assistance % 10);
+    if (this.assistance % 10 >= 1) {
+      setTimeout(() => {
+        this.useHint();
+      }, 2 * 60 * 1000)
+    }
+    if (this.assistance % 100 >= 10) {
+      setTimeout(() => {
+        this.useSound();
+      }, 60 * 1000)
+    }
   }
 
   check(indexAnswer: number): void {

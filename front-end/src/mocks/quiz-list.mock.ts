@@ -98,7 +98,7 @@ export const QUESTION_FELINS_5: Question = {
     answers: [
         {
             value: 'Méduse',
-            isCorrect: true,
+            isCorrect: false,
         },
         {
             value: 'Taureau',
