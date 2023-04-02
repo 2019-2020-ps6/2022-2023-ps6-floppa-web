@@ -29,7 +29,7 @@ export class PlayAssociationComponent implements OnInit {
     ngOnInit(): void {
         let id = this.route.snapshot.paramMap.get('id');
         this.associationToPlay = QUIZ_LIST[Number(id) - 1].associations[0];
-        
+        this.associationToPlay.isCorrect = false;
         for(const element of this.associationToPlay.connections){
             this.shuffledValuesToConnect.push(element.valueToConnect);
             this.shuffledValuesToBeConnected.push(element.valueToBeConnected);

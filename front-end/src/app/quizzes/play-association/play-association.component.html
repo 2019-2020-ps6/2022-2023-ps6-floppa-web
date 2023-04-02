@@ -1,4 +1,8 @@
-<div>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 10px;">
+    <div>
+        <label style="font-weight: bold; font-size: 40px;">{{associationToPlay.label}}</label>
+        <Button style= "position:absolute; width:100px; height:50px; margin: 10px;" (click)="check()">Check</Button>
+    </div>
     <div class = "association-game">
         <div class= "connectors-left">
             <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >
@@ -14,13 +18,6 @@
                 </Button>
             </div>
         </div>
-        <app-connection></app-connection>
-    </div>
-    <div style="   position:absolute; 
-    margin-left:-50px;
-    left:50%;
-    width:100px;
-    bottom:0px;">
-        <Button style= "position:absolute; width:100px; height:50px" (click)="check()">Check</Button>
+        <!--<app-connection></app-connection>-->
     </div>
 </div>
