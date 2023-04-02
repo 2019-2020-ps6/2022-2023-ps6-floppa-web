@@ -34,7 +34,9 @@ export class AnswerComponent implements OnInit {
     else {
         this.isCorrect = false;
     }
-    this.correctAnswer = this.getCorrectAnswer();
+    if(this.numQuestion <= this.quiz.questions.length)
+      this.correctAnswer = this.getCorrectAnswer();
+      
     this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
   }
 
@@ -49,7 +51,7 @@ export class AnswerComponent implements OnInit {
 
   nextQuestion(): void {
     this.numQuestion++;
-    if (this.numQuestion > this.quiz.questions.length) {
+    if (this.numQuestion > this.quiz.questions.length + this.quiz.associations.length) {
       document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.assistance;
     }
     else {
