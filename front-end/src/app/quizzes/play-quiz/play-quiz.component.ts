@@ -47,6 +47,7 @@ export class PlayQuizComponent implements OnInit {
 
   checkAssociation(): void {
     let isCorrect = this.quiz.associations[this.numQuestion-1].isCorrect;
+    console.log(isCorrect);
     document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
   }
 

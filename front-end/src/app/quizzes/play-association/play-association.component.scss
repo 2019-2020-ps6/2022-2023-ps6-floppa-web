@@ -2,8 +2,8 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-gap: 20px;
-    position: fixed;
-    top: 50%;
+    position: absolute;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
 

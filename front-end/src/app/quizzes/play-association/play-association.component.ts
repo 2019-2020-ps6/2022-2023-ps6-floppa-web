@@ -89,8 +89,8 @@ export class PlayAssociationComponent implements OnInit {
 
         if(this.currentConnections.length != this.associationToPlay.connections.filter((connection) => connection.valueToConnect && connection.valueToBeConnected).length){
             console.log("Incorrect");
+            this.answer.emit();
             this.resetAssociation();
-            //this.answer.emit(0);
             return;
         }
 
@@ -99,19 +99,20 @@ export class PlayAssociationComponent implements OnInit {
 
             if(!connectionToCheck){
                 console.log("Incorrect");
+                this.answer.emit();
                 this.resetAssociation();
-                //this.answer.emit(0);
                 return;
             }
         }
         
         console.log("Correct");
-        this.resetAssociation();
         this.associationToPlay.isCorrect = true;
-        //this.answer.emit(1);
+        this.answer.emit();
+        this.resetAssociation();
     }
 
     resetAssociation(): void {
+        this.associationToPlay.isCorrect = false;
         this.selectedLeft = "";
         this.selectedRight = "";
         this.currentConnections = [];
