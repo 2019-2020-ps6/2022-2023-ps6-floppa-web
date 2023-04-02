@@ -15,6 +15,9 @@ export class PlayQuestionComponent implements OnInit {
   @Input()
   quiz: Quiz;
 
+  @Input()
+  assistance: number;
+
   public question : Question;
 
   @Output()
