@@ -44,7 +44,7 @@ import { CommonModule } from '@angular/common';
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
-    UserEditComponent
+    UserEditComponent,
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
