@@ -28,7 +28,6 @@ export class UserFormComponent implements OnInit {
   }
 
   addUser(): void {
-    // We retrieve here the user object from the userForm and we cast the type "as User".
     const userToCreate: User = this.userForm.getRawValue() as User;
     console.log(userToCreate);
     this.userService.addUser(userToCreate);

@@ -17,7 +17,6 @@ export class UserEditComponent implements OnInit {
 
   public userEdit: FormGroup;
   public user: User;
-  private userId: string;
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute, private location: Location) {
     this.userEdit = this.formBuilder.group({
@@ -29,16 +28,24 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
-      this.userId = params.get('id'); // initialisation de userId avec le paramètre 'id' de l'URL
-      this.userService.getUser(this.userId).subscribe(user => {
-        this.user = user;
-        if (user) {
-          this.userEdit.patchValue(user);
-          console.log(this.user);
-        }
+    this.userService.userSelected$.subscribe((userSelected: User) => {
+      
+      this.user = userSelected;
+
+      console.log(this.user);
+      console.log(this.user.firstName);
+
+      this.userEdit = this.formBuilder.group({
+        firstName: [this.user.firstName],
+        lastName: this.user.lastName,
+        alzheimerStade: this.user.alzheimerStade,
+        photo: this.user.photo
       });
+
+      this.userEdit.controls.firstName.setValue(this.user.firstName);
+
     });
+
   }
 
   edit(formValue: any): void {

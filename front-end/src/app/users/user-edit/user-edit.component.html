@@ -1,9 +1,9 @@
 <img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
-
-<form class="user-edit" [formGroup]="userEdit" (ngSubmit)="ngOnInit()" method="post" action="#">
+<!-- <ng-container *ngIf="user"> -->
+  <form class="user-edit" [formGroup]="userEdit" (ngSubmit)="ngOnInit()"> <!-- ngif -->
     <label for="firstName">
       Prénom : 
-      <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+      <input class="input-custom" type="text" id="firstName" value="test" [formControlName]="'firstName'">
     </label>
     <br>
   
@@ -13,13 +13,23 @@
     </label>
     <br>
 
-    Paramètres de jeu : <br>
+    Police d'écriture : <!--petit moyen gros--><br>
+    <button>Petit</button>
+    <button>Moyen</button>
+    <button>Gros</button>
 
-    Police d'écriture : <!--normal moyen gros--> <br>
+    <span [ngClass]="{'text-big': true, 'text-small': false}"> My text </span>
+    <br>
 
-    Indice : <!--oui/non--> <br>
+    Indice :
+    <input type="radio" name="indice" value="oui" > Oui
+    <input type="radio" name="indice" value="non" > Non
+    <br>
 
-    Synthèse vocale : <!--oui/non--> <br>
+    Synthèse vocale :
+    <input type="radio" name="vocale" value="oui" > Oui 
+    <input type="radio" name="vocale" value="non" > Non
+    <br>
     
     <label for="alzheimerStade">
       Stade Alzheimer : <br>
@@ -38,3 +48,4 @@
 
     <button type="submit" class="button-card" [routerLink]="['/user-list']">Valider</button>
   </form>
+<!-- </ng-container> -->

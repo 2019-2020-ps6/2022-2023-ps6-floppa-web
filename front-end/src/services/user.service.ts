@@ -38,10 +38,7 @@ export class UserService {
   }
 
   retrieveUsers(): void {
-    this.http.get<User[]>(this.userUrl).subscribe((userList) => {
-      this.users = userList;
-      this.users$.next(this.users);
-    });
+    this.users$.next(this.users);
   }
 
   getUser(userId: string): Observable<User> {
@@ -56,9 +53,10 @@ export class UserService {
   }
 
   setSelectedUser(userId: string): void {
-    const urlWithId = this.userUrl + '/' + userId;
-    this.http.get<User>(urlWithId).subscribe((user) => {
+    this.users$.subscribe((users) => {
+      const user = users.filter(user => user.id === userId)[0];
       this.userSelected$.next(user);
+      console.log("user: ", user);
     });
   }
 

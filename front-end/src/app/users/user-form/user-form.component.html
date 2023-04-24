@@ -16,14 +16,20 @@
 
   Paramètres de jeu : <br>
 
-  Police d'écriture : <!--normal moyen gros--> <br>
+  Police d'écriture : <!--petit moyen gros--><br>
+    <button>Petit</button>
+    <button>Moyen</button>
+    <button>Gros</button>
 
-  Indice : <!--oui/non-->
+    <span [ngClass]="{'text-big': true, 'text-small': false}"> My text </span>
+  <br>
+
+  Indice :
     <input type="radio" name="indice" value="oui" > Oui
     <input type="radio" name="indice" value="non" > Non
   <br>
 
-  Synthèse vocale : <!--oui/non-->
+  Synthèse vocale :
     <input type="radio" name="vocale" value="oui" > Oui 
     <input type="radio" name="vocale" value="non" > Non
   <br>
