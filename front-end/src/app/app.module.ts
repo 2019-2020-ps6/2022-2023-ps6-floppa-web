@@ -24,9 +24,13 @@ import { UserEditComponent } from './users/user-edit/user-edit.component';
 import { AssociationListComponent } from './associations/association-list/association-list.component';
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
-import { QuestionChoice } from './questions/question-choice/question-choice.component';
+import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
+import { ConnectionComponent } from './quizzes/connection/connection.component';
+import { PlayQuestionComponent } from './questions/play-question/play-question.component';
 import { AnswerComponent } from './answer/answer.component';
+import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { CommonModule } from '@angular/common';
+import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,11 +49,19 @@ import { CommonModule } from '@angular/common';
     PlayQuizComponent,
     FinalScreenComponent,
     UserEditComponent,
+    PlayAssociationComponent,
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
-    QuestionChoice,
-    AnswerComponent
+    ConnectionComponent,
+    UserEditComponent,
+    AssociationListComponent,
+    AssociationComponent,
+    AssociationFormComponent,
+    PlayQuestionComponent,
+    AnswerComponent,
+    HomeProfilChoiceComponent,
+    ThemeListComponent
   ],
   imports: [
     BrowserModule,

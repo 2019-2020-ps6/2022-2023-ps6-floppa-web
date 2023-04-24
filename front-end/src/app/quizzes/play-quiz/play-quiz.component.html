@@ -4,19 +4,20 @@
             <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
             <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: flex-start; margin-top: 20px;">
                 <h4>{{quiz.name}}</h4>
-                <span>Question {{numQuestion}}/{{quiz.questions.length}}</span>
+                <span>Question {{numQuestion}}/{{quiz.questions.length + quiz.associations.length}}</span>
             </div>
         </div>
-        <div *ngIf="stage >= 1" style="align-self: center;">
+        <div *ngIf="assistance % 10 >= 1" style="align-self: center;">
             <img id="hint" src="/assets/hint.png" alt="hint" (click)="useHint()">
             <h2 id="hint-text">Indice</h2>
         </div>
-        <div *ngIf="stage >= 2">
+        <div *ngIf="assistance % 100 >= 10">
             <img id="sound-img" src="/assets/sound.png" alt="sound" (click)="useSound()">
             <h2 id="sound-text">Ecouter la question</h2>
         </div>
         <h3>Utilisateur</h3> <!--à compléter avec user-->
     </div>
-    <app-question-choice (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion"></app-question-choice>
+    <app-play-association *ngIf="numQuestion > quiz.questions.length" (answer)="checkAssociation()"></app-play-association>
+    <app-play-question *ngIf="numQuestion <= quiz.questions.length" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance"></app-play-question>
 </div>
   

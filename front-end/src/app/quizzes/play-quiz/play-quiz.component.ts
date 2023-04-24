@@ -4,7 +4,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location } from '@angular/common';
-import { QuestionChoice } from 'src/app/questions/question-choice/question-choice.component';
+import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
 
 declare const SpeechSynthesisUtterance: any;
 declare const speechSynthesis: any;
@@ -16,11 +16,11 @@ declare const speechSynthesis: any;
 })
 export class PlayQuizComponent implements OnInit {
 
-  @ViewChild(QuestionChoice) questionChoice: QuestionChoice;
+  @ViewChild(PlayQuestionComponent) questionChoice: PlayQuestionComponent;
 
   public score: number;
 
-  public stage: number;
+  public assistance: number;
 
   public quiz: Quiz;
   public numQuestion: number;
@@ -36,12 +36,28 @@ export class PlayQuizComponent implements OnInit {
     this.quiz = QUIZ_LIST[Number(id)-1];
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
-    this.stage = Number(this.route.snapshot.paramMap.get('stage'));
+    this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
+    console.log(this.assistance % 10);
+    if (this.assistance % 10 >= 1) {
+      setTimeout(() => {
+        this.useHint();
+      }, 2 * 60 * 1000)
+    }
+    if (this.assistance % 100 >= 10) {
+      setTimeout(() => {
+        this.useSound();
+      }, 60 * 1000)
+    }
   }
 
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
-    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.stage;
+    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
+  }
+
+  checkAssociation(): void {
+    let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
+    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
   }
 
   useHint(): void {

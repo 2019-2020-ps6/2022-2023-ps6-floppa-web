@@ -3,17 +3,20 @@ import { Question } from '../../../models/question.model';
 import { Quiz } from '../../../models/quiz.model';
 import { QuizService } from '../../../services/quiz.service';
 @Component({
-  selector: 'app-question-choice',
-  templateUrl: './question-choice.component.html',
-  styleUrls: ['./question-choice.component.scss']
+  selector: 'app-play-question',
+  templateUrl: './play-question.component.html',
+  styleUrls: ['./play-question.component.scss']
 })
-export class QuestionChoice implements OnInit {
+export class PlayQuestionComponent implements OnInit {
 
   @Input()
   numQuestion: number;
 
   @Input()
   quiz: Quiz;
+
+  @Input()
+  assistance: number;
 
   public question : Question;
 

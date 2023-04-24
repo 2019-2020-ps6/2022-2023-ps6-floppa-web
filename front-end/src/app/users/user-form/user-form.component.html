@@ -1,7 +1,7 @@
 <img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
 <h2>Nouvel utilisateur</h2>
 
-<form class="user-form" [formGroup]="userForm">
+<form class="user-form" [formGroup]="userForm" (ngSubmit) = "addUser()">
   <label for="firstName">
     Prénom : 
     <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">

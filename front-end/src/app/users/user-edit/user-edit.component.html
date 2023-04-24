@@ -1,5 +1,6 @@
 <img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
-<form class="user-edit" [formGroup]="userEdit" (ngSubmit)="edit(userEdit.value)" method="post" action="#">
+
+<form class="user-edit" [formGroup]="userEdit" (ngSubmit)="ngOnInit()" method="post" action="#">
     <label for="firstName">
       Prénom : 
       <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
@@ -11,7 +12,15 @@
       <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
     </label>
     <br>
-  
+
+    Paramètres de jeu : <br>
+
+    Police d'écriture : <!--normal moyen gros--> <br>
+
+    Indice : <!--oui/non--> <br>
+
+    Synthèse vocale : <!--oui/non--> <br>
+    
     <label for="alzheimerStade">
       Stade Alzheimer : <br>
       Sélectionez une plage <br>

@@ -1,4 +1,3 @@
-import { last } from 'rxjs';
 import { User } from '../models/user.model';
 
 
@@ -8,20 +7,23 @@ export const USER_LIST: User[] = [
         firstName: "Madeleine",
         lastName: "Duo",
         alzheimerStade: "stade léger",
-        photo: ""
+        assistance : "1000",
+        photo: "/assets/users/Madeleine.png"
     },
     {
         id: "2",
         firstName: "Jaques",
         lastName: "Quatro",
         alzheimerStade: "stade intermédiaire",
-        photo: ""
+        assistance : "1001",
+        photo: "/assets/users/Jacques.png"
     },
     {
         id: "3",
         firstName:"Valerie",
         lastName:"Pentacle",
         alzheimerStade:"stade avancé",
-        photo:"",
+        assistance : "1111",
+        photo:"/assets/users/Valérie.png",
     }
 ]

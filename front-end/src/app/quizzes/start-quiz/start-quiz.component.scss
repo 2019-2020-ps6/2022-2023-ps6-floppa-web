@@ -3,12 +3,21 @@
 }
 
 #start-quiz-button {
-    //center the button
     display: block;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 50px
+    margin-top: 50px;
+    border-radius: 25px;
+    width: 354px;
+    height: 75px;
+    font-size: 24px;
 }
+
+#start-quiz-button:hover {
+    background-color: grey;
+    color: white;
+}
+
 
 #back-button {
     display: block;
@@ -39,12 +48,6 @@
     text-align: center;
 }
 
-#start-quiz-button {
-    border-radius: 25px;
-    width: 354px;
-    height: 75px;
-    font-size: 24px;
-}
 
 #back {
     margin-top: 10px;

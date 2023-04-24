@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { THEME_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -12,6 +13,7 @@ import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 export class EditQuizComponent implements OnInit {
 
   public quiz: Quiz;
+  public theme: number;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService) {
     this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
@@ -20,6 +22,11 @@ export class EditQuizComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST[Number(id) - 1];
+    for (let i = 0; i < THEME_LIST.length; i++) {
+      if (THEME_LIST[i] === this.quiz.theme) {
+        this.theme = i;
+      }
+    }
   }
 
   selectQuiz(): void {

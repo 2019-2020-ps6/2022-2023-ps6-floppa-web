@@ -12,8 +12,8 @@ import {Location} from '@angular/common';
 })
 export class StartQuizComponent implements OnInit {
 
-  public stage: Number = 0;
   public quiz: Quiz;
+  public assistance: number;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
@@ -21,6 +21,7 @@ export class StartQuizComponent implements OnInit {
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
+    this.assistance = Number(this.route.snapshot.paramMap.get("assistance"));
     this.quiz = QUIZ_LIST[Number(id)-1]
   }
 

@@ -2,7 +2,8 @@
     <h1>{{quiz.questions[numQuestion-1].label}}</h1>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:80%;">
         <div *ngFor="let answer of question.answers; let i=index">
-            <img class="answer" alt="answer-{{i+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{i+1}}.jpg" (click)="check(i+1)">
+            <img class="answer" alt="answer-{{i+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{i+1}}.jpg" (click)="check(i+1)" 
+            [ngClass]="{'correct-answer': answer.isCorrect && assistance % 1000 > 100}">
         </div>
     </div>
 </div>
