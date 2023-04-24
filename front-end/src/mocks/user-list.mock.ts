@@ -10,7 +10,7 @@ export const USER_LIST: User[] = [
         assistance : "1000",
         photo: "/assets/users/Madeleine.png",
         numberPlayed: 12,
-        lastGame: 2,
+        lastGame: 0,
         favoriteQuiz: "Les félins"
     },
     {
@@ -21,7 +21,7 @@ export const USER_LIST: User[] = [
         assistance : "1001",
         photo: "/assets/users/Jacques.png",
         numberPlayed: 24,
-        lastGame: 4,
+        lastGame: 1,
         favoriteQuiz: "Les oiseaux"
     },
     {
