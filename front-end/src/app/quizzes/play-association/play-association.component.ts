@@ -19,6 +19,9 @@ export class PlayAssociationComponent implements OnInit {
     public selectedRight: string = "";
     public currentConnections?: string[][] = [];
 
+    @Input()
+    public numAssociation: number;
+
     @Output()
     answer = new EventEmitter<number>();
 
@@ -27,7 +30,8 @@ export class PlayAssociationComponent implements OnInit {
 
     ngOnInit(): void {
         let id = this.route.snapshot.paramMap.get('id');
-        this.associationToPlay = QUIZ_LIST[Number(id) - 1].associations[0];
+        console.log(this.numAssociation);
+        this.associationToPlay = QUIZ_LIST[Number(id) - 1].associations[this.numAssociation];
         this.associationToPlay.isCorrect = false;
         for(const element of this.associationToPlay.connections){
             this.shuffledValuesToConnect.push(element.valueToConnect);
