@@ -1,0 +1,13 @@
+<div>
+    <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
+    <h1 style="display: flex; justify-content: center; align-self: center; margin-top: 100px;">Sélectionner un patient</h1>
+</div>
+
+<div style="display: flex; flex-direction: row;">
+    <div *ngFor="let user of userList">
+        <div class="user">
+            <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats/{{user.firstName}}-{{user.lastName}}">
+            <h1>{{user.firstName}} {{user.lastName}}</h1>
+        </div>
+    </div>
+</div>
