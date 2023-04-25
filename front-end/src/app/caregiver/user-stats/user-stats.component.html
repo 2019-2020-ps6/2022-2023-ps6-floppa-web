@@ -1,0 +1,21 @@
+<div style="display: flex; flex-direction: column; justify-content: space-between;">
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/user-management">
+    <h1 style="display: flex; justify-content: center; align-self: center">Statistiques utilisateur</h1>
+</div>
+<hr>
+<div style="display: flex; flex-direction: column; margin: 0 auto;">
+    <img id="user-img"  alt="user-img" src="{{user.photo}}">
+    <h1>{{user.firstName}} {{user.lastName}}</h1>
+</div>
+<div style="display: flex; flex-direction: column; margin: 0 auto;">
+    <h2>Nombre de parties : {{user.numberPlayed}}</h2>
+    <h2 *ngIf="user.lastGame===0">Dernière partie : Aujourd'hui</h2>
+    <h2 *ngIf="user.lastGame===1">Dernière partie: Il y a 1 jour</h2>
+    <h2 *ngIf="user.lastGame>1">Dernière partie: Il y a {{user.lastGame}} jours</h2>
+    <h2>Quiz Préféré : {{user.favoriteQuiz}}</h2>
+</div>
+
+<div style="display: flex; justify-content: center;">
+    <button id="quiz-stats">Statistiques par Quiz</button>
+</div>

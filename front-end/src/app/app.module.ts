@@ -31,6 +31,8 @@ import { AnswerComponent } from './answer/answer.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { CommonModule } from '@angular/common';
 import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
+import { UserManagementComponent } from './caregiver/user-management/user-management.component';
+import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -60,7 +62,9 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
     PlayQuestionComponent,
     AnswerComponent,
     HomeProfilChoiceComponent,
-    ThemeListComponent
+    ThemeListComponent,
+    UserManagementComponent,
+    UserStatsComponent
   ],
   imports: [
     BrowserModule,
