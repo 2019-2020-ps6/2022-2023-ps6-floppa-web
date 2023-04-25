@@ -6,6 +6,7 @@ import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
+import { USER_LIST } from 'src/mocks/user-list.mock';
 
 
 @Component({
@@ -28,7 +29,16 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.userSelected$.subscribe((userSelected: User) => {
+    let id = this.route.snapshot.paramMap.get('id');
+    this.user = USER_LIST[Number(id) - 1];
+
+    this.userEdit = this.formBuilder.group({
+      firstName: [this.user.firstName],
+      lastName: this.user.lastName,
+      alzheimerStade: '',
+      photo: ''
+    });
+    /*this.userService.userSelected$.subscribe((userSelected: User) => {
       
       this.user = userSelected;
 
@@ -44,7 +54,7 @@ export class UserEditComponent implements OnInit {
 
       this.userEdit.controls.firstName.setValue(this.user.firstName);
 
-    });
+    });*/
 
   }
 

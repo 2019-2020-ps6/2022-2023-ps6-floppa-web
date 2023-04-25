@@ -33,7 +33,7 @@ const routes: Routes = [
     {path: 'theme-list/:user', component: ThemeListComponent},
     { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     { path: 'user-form', component: UserFormComponent},
-    { path: 'user-edit', component: UserEditComponent},
+    { path: 'user-edit/:id', component: UserEditComponent},
     { path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
 
 ];

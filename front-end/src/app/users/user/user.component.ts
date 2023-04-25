@@ -28,7 +28,7 @@ export class UserComponent implements OnInit {
 
   edit(user: User): void {
     console.log("user.component",user);
-    this.router.navigate(['/user-edit']);
+    this.router.navigate(['/user-edit/'+this.user.id]);
 
     this.userService.setSelectedUser(user.id);
   }
