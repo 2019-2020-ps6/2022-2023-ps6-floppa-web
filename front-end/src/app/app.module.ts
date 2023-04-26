@@ -33,6 +33,7 @@ import { CommonModule } from '@angular/common';
 import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 import { UserManagementComponent } from './caregiver/user-management/user-management.component';
 import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
+import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +65,8 @@ import { UserStatsComponent } from './caregiver/user-stats/user-stats.component'
     HomeProfilChoiceComponent,
     ThemeListComponent,
     UserManagementComponent,
-    UserStatsComponent
+    UserStatsComponent,
+    UserQuizStatsComponent
   ],
   imports: [
     BrowserModule,

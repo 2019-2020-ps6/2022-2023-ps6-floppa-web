@@ -15,6 +15,9 @@ export class QuizComponent implements OnInit {
   @Input()
   user: User;
 
+  @Input()
+  type: string;
+
   @Output()
   startQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
@@ -40,5 +43,9 @@ export class QuizComponent implements OnInit {
 
   delete(): void {
     this.deleteQuiz.emit(this.quiz);
+  }
+
+  goToQuizStats(): void {
+    document.location.href = "/user-quiz-stats/" + this.user.firstName + "-" + this.user.lastName;
   }
 }
