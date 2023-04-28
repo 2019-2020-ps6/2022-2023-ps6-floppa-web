@@ -9,11 +9,11 @@
     <h1>{{user.firstName}} {{user.lastName}}</h1>
 </div>
 <div style="display: flex; flex-direction: column; margin: 0 auto;">
-    <h2>Nombre de parties : {{user.numberPlayed}}</h2>
-    <h2 *ngIf="user.lastGame===0">Dernière partie : Aujourd'hui</h2>
-    <h2 *ngIf="user.lastGame===1">Dernière partie: Il y a 1 jour</h2>
-    <h2 *ngIf="user.lastGame>1">Dernière partie: Il y a {{user.lastGame}} jours</h2>
-    <h2>Quiz Préféré : {{user.favoriteQuiz}}</h2>
+    <h2>Nombre de parties : {{this.numberPlayed}}</h2>
+    <h2 *ngIf="this.lastGame===0">Dernière partie : Aujourd'hui</h2>
+    <h2 *ngIf="this.lastGame===1">Dernière partie: Il y a 1 jour</h2>
+    <h2 *ngIf="this.lastGame>1">Dernière partie: Il y a {{this.lastGame}} jours</h2>
+    <h2>Quiz Préféré : {{this.favoriteQuiz}}</h2>
 </div>
 
 <div style="display: flex; justify-content: center;">

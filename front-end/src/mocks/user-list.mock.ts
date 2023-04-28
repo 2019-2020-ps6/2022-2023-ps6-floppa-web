@@ -9,9 +9,23 @@ export const USER_LIST: User[] = [
         alzheimerStade: "stade léger",
         assistance : "1000",
         photo: "/assets/users/Madeleine.png",
-        numberPlayed: 12,
+        /*numberPlayed: 12,
         lastGame: 0,
-        favoriteQuiz: "Les félins"
+        favoriteQuiz: "Les félins",*/
+        quizSessions: {
+            "1": {
+                date: 1682640000000,
+                quizId: "1"
+            },
+            "2": {
+                date: 1682553600000,
+                quizId: "2"
+            },
+            "3": {
+                date: 1682553600000,
+                quizId: "1"
+            }
+        }
     },
     {
         id: "2",
@@ -20,9 +34,20 @@ export const USER_LIST: User[] = [
         alzheimerStade: "stade intermédiaire",
         assistance : "1001",
         photo: "/assets/users/Jacques.png",
-        numberPlayed: 24,
-        lastGame: 1,
-        favoriteQuiz: "Les oiseaux"
+        quizSessions: {
+            "1": {
+                date: 1682640000000,
+                quizId: "1"
+            },
+            "2": {
+                date: 1682553600000,
+                quizId: "2"
+            },
+            "3": {
+                date: 1682553600000,
+                quizId: "1"
+            }
+        }
     },
     {
         id: "3",
@@ -31,8 +56,19 @@ export const USER_LIST: User[] = [
         alzheimerStade:"stade avancé",
         assistance : "1111",
         photo:"/assets/users/Valérie.png",
-        numberPlayed: 36,
-        lastGame: 3,
-        favoriteQuiz: "Les félins"
+        quizSessions: {
+            "1": {
+                date: 1682640000000,
+                quizId: "1"
+            },
+            "2": {
+                date: 1682553600000,
+                quizId: "2"
+            },
+            "3": {
+                date: 1682553600000,
+                quizId: "1"
+            }
+        }
     }
 ]
