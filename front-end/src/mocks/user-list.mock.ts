@@ -15,15 +15,18 @@ export const USER_LIST: User[] = [
         quizSessions: {
             "1": {
                 date: 1682640000000,
-                quizId: "1"
+                quizId: "1",
+                answers: [true, true, false,false,false,true]
             },
             "2": {
                 date: 1682553600000,
-                quizId: "2"
+                quizId: "2",
+                answers: [true, true, false,true,false,false]
             },
             "3": {
                 date: 1682553600000,
-                quizId: "1"
+                quizId: "1",
+                answers: [true, true, true,true,false,true]
             }
         }
     },
@@ -37,15 +40,18 @@ export const USER_LIST: User[] = [
         quizSessions: {
             "1": {
                 date: 1682640000000,
-                quizId: "1"
+                quizId: "1",
+                answers: [true, true, false,false,false,true]
             },
             "2": {
                 date: 1682553600000,
-                quizId: "2"
+                quizId: "2",
+                answers: [true, true, false,false,false,true]
             },
             "3": {
                 date: 1682553600000,
-                quizId: "1"
+                quizId: "1",
+                answers: [true, true, false,false,false,true]
             }
         }
     },
@@ -59,15 +65,18 @@ export const USER_LIST: User[] = [
         quizSessions: {
             "1": {
                 date: 1682640000000,
-                quizId: "1"
+                quizId: "1",
+                answers: [true, true, false,false,false,true]
             },
             "2": {
                 date: 1682553600000,
-                quizId: "2"
+                quizId: "2",
+                answers: [true, true, false,false,false,true]
             },
             "3": {
                 date: 1682553600000,
-                quizId: "1"
+                quizId: "1",
+                answers: [true, true, false,false,false,true]
             }
         }
     }

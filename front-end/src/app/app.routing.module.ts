@@ -40,7 +40,7 @@ const routes: Routes = [
     {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     {path:'user-management', component: UserManagementComponent},
     {path:'user-stats/:user', component: UserStatsComponent},
-    {path:'user-quiz-stats/:user', component: UserQuizStatsComponent}
+    {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent}
 
 ];
 

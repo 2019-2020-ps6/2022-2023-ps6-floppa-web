@@ -46,6 +46,6 @@ export class QuizComponent implements OnInit {
   }
 
   goToQuizStats(): void {
-    document.location.href = "/user-quiz-stats/" + this.user.firstName + "-" + this.user.lastName;
+    document.location.href = "/user-quiz-stats/" + this.user.firstName + "-" + this.user.lastName + "/" + this.quiz.id;
   }
 }

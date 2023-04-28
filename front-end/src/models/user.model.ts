@@ -11,4 +11,5 @@ export interface User {
 export interface QuizSession {
     date: number;
     quizId: string;
+    answers: boolean[];
 }

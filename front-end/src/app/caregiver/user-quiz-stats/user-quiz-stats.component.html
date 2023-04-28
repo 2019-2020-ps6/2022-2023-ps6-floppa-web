@@ -1,1 +1,22 @@
-<h1>{{user.firstName}}</h1>
+<div style="display: flex; flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; flex-direction: row; justify-content: space-between;">
+        <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/user-management">
+        <div>
+            <img id="user-img"  alt="user-img" src="{{user.photo}}">
+            <h1>{{user.firstName}} {{user.lastName}}</h1>
+        </div>
+        <div style="display: flex; flex-direction: row;">
+            <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+            <h4>{{quiz.name}}</h4>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: column; margin: 0 auto;">
+        
+        <br>
+        <h2>Nombre de tentatives : {{this.numberTry}}</h2>
+        <h2 *ngIf="this.lastGame===0">Dernière partie : Aujourd'hui</h2>
+        <h2 *ngIf="this.lastGame===1">Dernière partie: Il y a 1 jour</h2>
+        <h2 *ngIf="this.lastGame>1">Dernière partie: Il y a {{this.lastGame}} jours</h2>
+        <h2>Score moyen {{this.meanScore}}%</h2>
+    </div>
+</div>

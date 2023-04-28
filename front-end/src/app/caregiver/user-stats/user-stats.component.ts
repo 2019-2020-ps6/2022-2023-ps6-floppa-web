@@ -41,7 +41,6 @@ export class UserStatsComponent implements OnInit {
     const today = new Date().getTime();
     this.lastGame = Number.MAX_VALUE;
 
-    // count quiz sessions for each quizId
     const quizIdCount = {};
     for (const session of Object.values(this.user.quizSessions)) {
         const diff = Math.abs(today - session.date) / (86400000);
@@ -56,9 +55,8 @@ export class UserStatsComponent implements OnInit {
         }
     }
 
-    // find quizId with the most quiz sessions
-    let maxCount = 0;
-    let mostFrequentQuizId;
+    let maxCount: number = 0;
+    let mostFrequentQuizId: any;
     for (const quizId of Object.keys(quizIdCount)) {
         if (quizIdCount[quizId] > maxCount) {
             maxCount = quizIdCount[quizId];
