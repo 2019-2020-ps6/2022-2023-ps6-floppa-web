@@ -34,6 +34,7 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 import { UserManagementComponent } from './caregiver/user-management/user-management.component';
 import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
+import { ChartsModule } from 'ng2-charts';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-st
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

@@ -27,6 +27,11 @@ export const USER_LIST: User[] = [
                 date: 1682553600000,
                 quizId: "1",
                 answers: [true, true, true,true,false,true]
+            },
+            "4": {
+                date: 1682453600000,
+                quizId: "1",
+                answers: [true, true, true,true,false,false]
             }
         }
     },

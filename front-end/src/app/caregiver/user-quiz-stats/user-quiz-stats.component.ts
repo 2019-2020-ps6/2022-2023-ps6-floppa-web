@@ -4,6 +4,8 @@ import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
+import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
+import { Label } from 'ng2-charts/lib/base-chart.directive';
 
 @Component({
   selector: 'app-user-stats',
@@ -21,6 +23,19 @@ export class UserQuizStatsComponent implements OnInit {
     public meanScore: number;
     public quiz: Quiz;
     public progression: number;
+    public barChartOptions = {
+      scaleShowVerticalLines: false,
+      responsive: true
+    };
+    
+    public barChartLabels: Label[] = [];
+    public barChartType: ChartType = 'bar';
+    public barChartLegend = false;
+    public barChartPlugins = [];
+
+    public barChartData: ChartDataSets[] = [{ data: [], label: 'Score', backgroundColor: []}];
+    public colors: string[] = [];
+    
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
@@ -97,7 +112,21 @@ export class UserQuizStatsComponent implements OnInit {
         sumOfScoreDiffs += Number(score) - Number(scoresArray[i-1]);
         attempts++;
       }
+      if (Number(score)>90) this.colors.push('rgb(75,229,98)');
+      else if (Number(score)>80) this.colors.push('rgb(120,229,87)');
+      else if (Number(score)>70) this.colors.push('rgb(157,229,87)');
+      else if (Number(score)>60) this.colors.push('rgb(178,229,87)');
+      else if (Number(score)>50) this.colors.push('rgb(198,229,87)');
+      else if (Number(score)>40) this.colors.push('rgb(255,229,87)');
+      else if (Number(score)>30) this.colors.push('rgb(255,197,99)');
+      else if (Number(score)>20) this.colors.push('rgb(255,132,91)');
+      else if (Number(score)>10) this.colors.push('rgb(255,93,81)');
+      else this.colors.push('rgb(255,48,62)')
+      this.barChartLabels.push('Jour ' + i);
+      this.barChartData[0].data.push(Number(score));
     });
+    this.barChartData[0].backgroundColor = this.colors;
+    console.log(this.barChartData);
     if (attempts > 0) {
       return Math.round(sumOfScoreDiffs / attempts);
     }
@@ -105,6 +134,7 @@ export class UserQuizStatsComponent implements OnInit {
       return 0;
     }
   }
+
 
   getProgressionClass(): string {
     if (this.progression === 0) {
