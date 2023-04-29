@@ -17,6 +17,7 @@
         <h2 *ngIf="this.lastGame===0">Dernière partie : Aujourd'hui</h2>
         <h2 *ngIf="this.lastGame===1">Dernière partie: Il y a 1 jour</h2>
         <h2 *ngIf="this.lastGame>1">Dernière partie: Il y a {{this.lastGame}} jours</h2>
-        <h2>Score moyen {{this.meanScore}}%</h2>
+        <h2>Score moyen: {{this.meanScore}}%</h2>
+        <h2>Progression: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
     </div>
 </div>
