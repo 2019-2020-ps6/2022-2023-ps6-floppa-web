@@ -35,6 +35,7 @@ export class PlayQuizComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST[Number(id)-1];
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
+    //console.log(this.numQuestion);
     this.score = Number(this.route.snapshot.paramMap.get('score'));
     this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
     console.log(this.assistance % 10);
@@ -56,6 +57,7 @@ export class PlayQuizComponent implements OnInit {
   }
 
   checkAssociation(): void {
+    console.log(this.numQuestion-1 - this.quiz.questions.length);
     let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
     document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
   }
@@ -75,12 +77,19 @@ export class PlayQuizComponent implements OnInit {
       let soundImg = document.getElementById('sound-img') as HTMLImageElement;
       soundImg.src = "/assets/used-sound.png";
       document.getElementById("sound-text").style.color = "green";
-      this.readSentence(); 
+      this.readSentence();
     }
   }
 
   readSentence(): void {
-    const utterance = new SpeechSynthesisUtterance(this.quiz.questions[this.numQuestion-1].label);
+    let utterance = null;
+    if(this.quiz.questions.length > this.numQuestion-1) {
+    utterance = new SpeechSynthesisUtterance(this.quiz.questions[this.numQuestion-1].label);
+    }
+    else
+    {
+      utterance = new SpeechSynthesisUtterance(this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].label);
+    }
     speechSynthesis.speak(utterance);
   }
 }

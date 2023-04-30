@@ -6,22 +6,20 @@
     <div class = "association-game">
         <div class= "connectors-left">
             <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >
-                <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectLeft(value)">
+                <Button attr.id = "left-button{{i}}" style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectLeft(value, i)">
                     {{value}}
                 </Button>
             </div>
         </div>
         <div class = "connectors-right">
             <div *ngFor = "let value of shuffledValuesToBeConnected; let i=index">
-                <Button style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectRight(value)">
+                <Button attr.id = "right-button{{i}}" style="width: 500px; height:100px" class = "button" *ngIf = "value != null" (click)="selectRight(value, i)">
                     {{value}}
                 </Button>
             </div>
         </div>
-        <div *ngIf="currentConnections.length > 0">
-            <div *ngFor="let connection of this.currentConnections; let i = index;">
-                <app-connection [id] = "i" [connection]="connection" [shuffledValuesToConnect] = "this.shuffledValuesToConnect" [shuffledValuesToBeConnected] = "this.shuffledValuesToBeConnected"></app-connection>
-            </div>
-        </div>
     </div>
 </div>
+<svg #linescontainer style="position: absolute; width:100%; height:100%; top: 0;
+left: 0; pointer-events: none;">
+</svg>
