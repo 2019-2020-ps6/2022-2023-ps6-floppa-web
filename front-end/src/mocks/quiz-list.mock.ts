@@ -131,22 +131,49 @@ export const CONNECTION_FELIN_3: Connection = {
     valueToBeConnected: null
 }
 
-export const CONNECTION_FELIN_4: Connection = {
-    valueToConnect: 'A connecter',
-    valueToBeConnected: 'A être connecé'
+export const CONNECTION_FELIN_5: Connection = {
+    valueToConnect: 'Chien',
+    valueToBeConnected: 'Woaf'
 }
 
-export const ASSOCIATION_FELINS_1: Association = {
+export const CONNECTION_FELIN_6: Connection = {
+    valueToConnect: 'Poussin',
+    valueToBeConnected: 'Pioupiou'
+}
+
+export const CONNECTION_FELIN_7: Connection = {
+    valueToConnect: 'Vache',
+    valueToBeConnected: 'Meuuuu'
+}
+
+export const CONNECTION_FELIN_8: Connection = {
+    valueToConnect: 'Cheval',
+    valueToBeConnected: null
+}
+
+export const CONNECTION_FELIN_4: Connection = {
+    valueToConnect: 'A connecter',
+    valueToBeConnected: 'A être connecté'
+}
+
+export const ASSOCIATION_FELINS_2: Association = {
     id: '2',
     label: 'Quel animal, quel son?',
     connections: [CONNECTION_FELIN_1, CONNECTION_FELIN_2, CONNECTION_FELIN_3],
     isCorrect: false
 };
 
-export const ASSOCIATION_FELINS_2: Association = {
+export const ASSOCIATION_FELINS_1: Association = {
     id: '1',
-    label: 'Test en connectant les 2 boutons !',
+    label: 'Connecte les 2 boutons !',
     connections: [CONNECTION_FELIN_4],
+    isCorrect: false
+};
+
+export const ASSOCIATION_FELINS_3: Association = {
+    id: '1',
+    label: 'Quel animal fait quel son ?',
+    connections: [CONNECTION_FELIN_5, CONNECTION_FELIN_6],
     isCorrect: false
 };
 
@@ -157,7 +184,7 @@ export const QUIZ_LIST: Quiz[] = [
         name: 'Les félins',
         theme: THEME_LIST[0],
         questions: [QUESTION_FELINS_1, QUESTION_FELINS_2, QUESTION_FELINS_3, QUESTION_FELINS_4, QUESTION_FELINS_5],
-        associations: [ASSOCIATION_FELINS_2, ASSOCIATION_FELINS_1],
+        associations: [ASSOCIATION_FELINS_1, ASSOCIATION_FELINS_2, ASSOCIATION_FELINS_3],
         users: []
     },
     {

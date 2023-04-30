@@ -1,15 +1,14 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { Association } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
-import { ConnectionComponent } from '../connection/connection.component';
-
 @Component({
   selector: 'app-play-association',
   templateUrl: './play-association.component.html',
   styleUrls: ['./play-association.component.scss']
 })
-export class PlayAssociationComponent implements OnInit {
+
+export class PlayAssociationComponent implements AfterViewInit, OnInit {
 
     @Input('association')
     public associationToPlay!: Association;
@@ -17,7 +16,14 @@ export class PlayAssociationComponent implements OnInit {
     public shuffledValuesToBeConnected: string[] = [];
     public selectedLeft: string = "";
     public selectedRight: string = "";
+    public currentLeftButton: number;
+    public currentRightButton: number;
     public currentConnections?: string[][] = [];
+    public currentLines?: SVGLineElement[][];
+
+    @ViewChild('linescontainer', { static: false}) linesContainer!: ElementRef;
+
+    private line: SVGLineElement | null = null;
 
     @Input()
     public numAssociation: number;
@@ -28,19 +34,25 @@ export class PlayAssociationComponent implements OnInit {
     constructor(private route: ActivatedRoute) {
     }
 
+    ngAfterViewInit() {
+        // Access the SVG element here
+        console.log(this.linesContainer.nativeElement);
+      }
+
     ngOnInit(): void {
         let id = this.route.snapshot.paramMap.get('id');
-        console.log(this.numAssociation);
+        
         this.associationToPlay = QUIZ_LIST[Number(id) - 1].associations[this.numAssociation];
         this.associationToPlay.isCorrect = false;
         for(const element of this.associationToPlay.connections){
             this.shuffledValuesToConnect.push(element.valueToConnect);
             this.shuffledValuesToBeConnected.push(element.valueToBeConnected);
         }
-
+        
         this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);
         this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
         
+        this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
     }
 
     shuffle: any = (array: any[]) => {
@@ -55,18 +67,35 @@ export class PlayAssociationComponent implements OnInit {
         return array;
     }
 
-    selectLeft(value: string): void {
+    selectLeft(value: string, buttonId: number): void {
         this.selectedLeft = value;
+        this.currentLeftButton = buttonId;
 
         if(this.currentConnections.find((connection) => connection[0] === value))
+        {
             this.deleteConnection(value, this.currentConnections.find((connection) => connection[0] === value)![1]);
+            for(let element of this.currentLines)
+                element[this.currentLeftButton]?.remove();
+        }
 
         if(this.selectedRight != "")
             this.createConnection(this.selectedLeft, this.selectedRight);
     }
 
-    selectRight(value: string): void {
+    selectRight(value: string, buttonId: number): void {
         this.selectedRight = value;
+        this.currentRightButton = buttonId;
+
+        if(this.currentConnections.find((connection) => connection[1] === value))
+        {
+
+            this.deleteConnection(this.currentConnections.find((connection) => connection[1] === value)![0], value);
+            for(let element of this.currentLines)
+                for(let index of element)
+                {
+                    if(index) index[this.currentRightButton]?.remove();
+                }
+        }
         
         if(this.selectedLeft != "")
             this.createConnection(this.selectedLeft, this.selectedRight);
@@ -74,13 +103,35 @@ export class PlayAssociationComponent implements OnInit {
 
     createConnection(val1: string, val2: string): void {
         this.currentConnections.push([val1, val2]);
+        this.createLineBetweenButtons();
         this.selectedLeft = "";
         this.selectedRight = "";
-        //console.log(this.currentConnections);
+        this.currentLeftButton = -1;
+        this.currentRightButton = -1;
+        console.log(this.currentConnections);
     }
+
+
+    createLineBetweenButtons(): void {
+        const leftButton = document.getElementById(`left-button${this.currentLeftButton}`)!;
+        const rightButton = document.getElementById(`right-button${this.currentRightButton}`)!;
+
+        const rectLeft = leftButton.getBoundingClientRect();
+        const rectRight = rightButton.getBoundingClientRect();
+
+        const leftX = rectLeft.x + rectLeft.width / 2;
+        const leftY = rectLeft.y + rectLeft.height / 2;
+
+        const rightX = rectRight.x + rectRight.width / 2;
+        const rightY = rectRight.y + rectRight.height / 2;
+
+        this.drawLine(leftX, leftY, rightX, rightY);
+    }
+
 
     deleteConnection(val1: string, val2: string): void {
         this.currentConnections = this.currentConnections.filter((connection) => connection[0] !== val1 && connection[1] !== val2);
+    
     }
 
     check(): void {
@@ -119,6 +170,29 @@ export class PlayAssociationComponent implements OnInit {
         this.associationToPlay.isCorrect = false;
         this.selectedLeft = "";
         this.selectedRight = "";
+        this.currentLeftButton = -1;
+        this.currentRightButton = -1;
         this.currentConnections = [];
     }
+
+    drawLine(startX, startY, endX, endY) {
+
+        let id = this.currentLeftButton + "-" + this.currentRightButton;
+
+        if(document.getElementById(id)) return;
+
+        const svg = this.linesContainer.nativeElement as SVGElement;
+        this.line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
+        svg.appendChild(this.line);
+
+        this.line.setAttribute('stroke', 'black');
+        this.line.setAttribute('stroke-width', '10');
+        this.line.setAttribute('x1', startX.toString());
+        this.line.setAttribute('y1', startY.toString());
+        this.line.setAttribute('x2', endX.toString());
+        this.line.setAttribute('y2', endY.toString());
+        this.line.setAttribute('id', id);
+
+        this.currentLines[this.currentLeftButton][this.currentRightButton] = this.line;
+      }
 }
