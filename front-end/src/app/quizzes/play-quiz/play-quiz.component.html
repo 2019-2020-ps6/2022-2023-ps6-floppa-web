@@ -17,7 +17,7 @@
         </div>
         <h3>Utilisateur</h3> <!--à compléter avec user-->
     </div>
-    <app-play-association *ngIf="numQuestion > quiz.questions.length" (answer)="checkAssociation()"></app-play-association>
+    <app-play-association *ngIf="numQuestion > quiz.questions.length" (answer)="checkAssociation()" [numAssociation] = "numQuestion - quiz.questions.length - 1"></app-play-association>
     <app-play-question *ngIf="numQuestion <= quiz.questions.length" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance"></app-play-question>
 </div>
   
