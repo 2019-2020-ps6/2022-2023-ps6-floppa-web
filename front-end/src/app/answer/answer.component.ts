@@ -63,6 +63,7 @@ export class AnswerComponent implements OnInit {
     }
     else {
       document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.assistance;
+      console.log(this.numQuestion);
     }
   }
 }

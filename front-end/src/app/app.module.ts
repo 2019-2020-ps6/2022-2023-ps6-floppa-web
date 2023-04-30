@@ -25,7 +25,6 @@ import { AssociationListComponent } from './associations/association-list/associ
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
-import { ConnectionComponent } from './quizzes/connection/connection.component';
 import { PlayQuestionComponent } from './questions/play-question/play-question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
@@ -54,7 +53,6 @@ import { UserStatsComponent } from './caregiver/user-stats/user-stats.component'
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
-    ConnectionComponent,
     UserEditComponent,
     AssociationListComponent,
     AssociationComponent,
