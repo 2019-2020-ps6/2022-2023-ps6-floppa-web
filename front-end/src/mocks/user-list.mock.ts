@@ -14,7 +14,7 @@ export const USER_LIST: User[] = [
         favoriteQuiz: "Les félins",*/
         quizSessions: {
             "1": {
-                date: 1682640000000,
+                date: 1682453600000,
                 quizId: "1",
                 answers: [true, true, false,false,false,true]
             },
@@ -29,7 +29,7 @@ export const USER_LIST: User[] = [
                 answers: [true, true, true,true,false,true]
             },
             "4": {
-                date: 1682453600000,
+                date: 1682640000000,
                 quizId: "1",
                 answers: [true, true, true,true,false,false]
             }

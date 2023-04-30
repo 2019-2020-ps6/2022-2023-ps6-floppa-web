@@ -25,12 +25,27 @@ export class UserQuizStatsComponent implements OnInit {
     public progression: number;
     public barChartOptions = {
       scaleShowVerticalLines: false,
-      responsive: true
+      responsive: true,
+      title: {
+        display: true,
+        text: 'Score'
+      },
+      legend: false,
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true,
+            max: 100,
+          }
+        }]
+      },
+      hover: {
+        mode: null
+      }
     };
     
     public barChartLabels: Label[] = [];
     public barChartType: ChartType = 'bar';
-    public barChartLegend = false;
     public barChartPlugins = [];
 
     public barChartData: ChartDataSets[] = [{ data: [], label: 'Score', backgroundColor: []}];
@@ -105,44 +120,36 @@ export class UserQuizStatsComponent implements OnInit {
   }
 
   computeProgression(scoresByDayObj: {}): number {
+    console.log(scoresByDayObj);
     let sumOfScoreDiffs = 0;
     let attempts = 0;
     Object.values(scoresByDayObj).forEach((score,i,scoresArray) => {
       if (i>0) {
-        sumOfScoreDiffs += Number(score) - Number(scoresArray[i-1]);
+        sumOfScoreDiffs += Number(scoresArray[i-1]) - Number(score);
         attempts++;
       }
-      if (Number(score)>90) this.colors.push('rgb(75,229,98)');
-      else if (Number(score)>80) this.colors.push('rgb(120,229,87)');
-      else if (Number(score)>70) this.colors.push('rgb(157,229,87)');
-      else if (Number(score)>60) this.colors.push('rgb(178,229,87)');
-      else if (Number(score)>50) this.colors.push('rgb(198,229,87)');
-      else if (Number(score)>40) this.colors.push('rgb(255,229,87)');
-      else if (Number(score)>30) this.colors.push('rgb(255,197,99)');
-      else if (Number(score)>20) this.colors.push('rgb(255,132,91)');
-      else if (Number(score)>10) this.colors.push('rgb(255,93,81)');
-      else this.colors.push('rgb(255,48,62)')
-      this.barChartLabels.push('Jour ' + i);
-      this.barChartData[0].data.push(Number(score));
+      if (Number(score)>90) this.colors.unshift('rgb(75,229,98)');
+      else if (Number(score)>80) this.colors.unshift('rgb(120,229,87)');
+      else if (Number(score)>70) this.colors.unshift('rgb(157,229,87)');
+      else if (Number(score)>60) this.colors.unshift('rgb(178,229,87)');
+      else if (Number(score)>50) this.colors.unshift('rgb(198,229,87)');
+      else if (Number(score)>40) this.colors.unshift('rgb(255,229,87)');
+      else if (Number(score)>30) this.colors.unshift('rgb(255,197,99)');
+      else if (Number(score)>20) this.colors.unshift('rgb(255,132,91)');
+      else if (Number(score)>10) this.colors.unshift('rgb(255,93,81)');
+      else this.colors.unshift('rgb(255,48,62)')
+      let date = new Date();
+      date.setDate(date.getDate() - Number(Object.keys(scoresByDayObj)[i]));
+      let formattedDate = date.toLocaleDateString();
+      this.barChartLabels.unshift(formattedDate);
+      this.barChartData[0].data.unshift(Number(score));
     });
     this.barChartData[0].backgroundColor = this.colors;
-    console.log(this.barChartData);
     if (attempts > 0) {
       return Math.round(sumOfScoreDiffs / attempts);
     }
     else {
       return 0;
-    }
-  }
-
-
-  getProgressionClass(): string {
-    if (this.progression === 0) {
-      return '';
-    } else if (this.progression > 0) {
-      return 'positive';
-    } else {
-      return 'negative';
     }
   }
 }

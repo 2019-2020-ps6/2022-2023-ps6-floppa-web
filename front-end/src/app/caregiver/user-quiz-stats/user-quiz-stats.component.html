@@ -19,7 +19,7 @@
         <h2>Progression: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
       </div>
       <div class="chart">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [chartType]="barChartType"></canvas>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [chartType]="barChartType" [options]="barChartOptions"></canvas>
       </div>
     </div>
 </div>
