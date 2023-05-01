@@ -5,6 +5,8 @@ import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location } from '@angular/common';
 import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
+import { User } from 'src/models/user.model';
+import { USER_LIST } from 'src/mocks/user-list.mock';
 
 declare const SpeechSynthesisUtterance: any;
 declare const speechSynthesis: any;
@@ -26,6 +28,7 @@ export class PlayQuizComponent implements OnInit {
   public numQuestion: number;
   public answered = false;
   public isHintUsed = false;
+  public user: User;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     
@@ -35,10 +38,9 @@ export class PlayQuizComponent implements OnInit {
     let id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST[Number(id)-1];
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
-    //console.log(this.numQuestion);
     this.score = Number(this.route.snapshot.paramMap.get('score'));
-    this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
-    console.log(this.assistance % 10);
+    this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
+    this.assistance = Number(this.user.assistance);
     if (this.assistance % 10 >= 1) {
       setTimeout(() => {
         this.useHint();
@@ -53,13 +55,18 @@ export class PlayQuizComponent implements OnInit {
 
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
-    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
+    let currentSessionId = 0;
+    for (let id in this.user.quizSessions) {
+      if (Number(id) > currentSessionId) currentSessionId = Number(id);
+    }
+    this.user.quizSessions[currentSessionId-1].answers.push(isCorrect);
+    console.log(this.user.quizSessions);
+    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id;
   }
 
   checkAssociation(): void {
-    console.log(this.numQuestion-1 - this.quiz.questions.length);
     let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
-    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.assistance;
+    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id;
   }
 
   useHint(): void {

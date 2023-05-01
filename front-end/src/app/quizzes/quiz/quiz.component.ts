@@ -34,7 +34,7 @@ export class QuizComponent implements OnInit {
   }
 
   start(): void {
-    document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.assistance
+    document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.id
   }
 
   edit(): void {
