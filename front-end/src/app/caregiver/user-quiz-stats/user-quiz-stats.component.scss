@@ -1,0 +1,86 @@
+@import '~chart.js/dist/Chart.css';
+
+#back {
+    margin-top: 10px;
+    max-width: 121px;
+    max-height: 121px;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+    width: 100%;
+}
+
+#user-img {
+    max-width: 300px;
+    max-height: 300px;
+}
+
+h2 {
+    color: gray
+}
+
+#quiz-img {
+    max-width: 166px;
+    max-height: 166px;
+    border-radius: 54px;
+}
+
+.positive {
+    color: rgb(91, 202, 91);
+}
+
+.negative {
+    color: rgb(224, 65, 65);
+}
+
+.container {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "content";
+    height: 100vh;
+  }
+  
+  .header {
+    grid-area: header;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  .header img {
+    margin-right: 10px;
+  }
+  
+  .header div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  .content {
+    grid-area: content;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+  }
+  
+  .info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+  }
+  
+  .chart {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  

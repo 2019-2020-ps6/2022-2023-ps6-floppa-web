@@ -4,8 +4,12 @@ export interface User {
     lastName: string;
     alzheimerStade: string;
     assistance: string;
-    photo: String;
-    numberPlayed: number;
-    lastGame: number;
-    favoriteQuiz: string;
+    photo: string;
+    quizSessions: { [idQuiz: string]: QuizSession }
+}
+
+export interface QuizSession {
+    date: number;
+    quizId: string;
+    answers: boolean[];
 }

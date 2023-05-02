@@ -20,9 +20,11 @@ export class QuizListComponent implements OnInit {
   public username: string;
   public quizList: Quiz[] = [];
   public themeIndex: number;
+  public type: string;
 
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
+    this.type = this.route.snapshot.paramMap.get("type");
     this.userList = USER_LIST;
     this.getUser(this.username);
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
@@ -46,7 +48,7 @@ export class QuizListComponent implements OnInit {
   }
 
   startQuiz(quiz: Quiz): void {
-    this.router.navigate(['/start-quiz/' + quiz.name + '/' + this.user.assistance]);
+    this.router.navigate(['/start-quiz/' + quiz.name + '/' + this.user.id]);
   }
 
   editQuiz(quiz: Quiz): void {

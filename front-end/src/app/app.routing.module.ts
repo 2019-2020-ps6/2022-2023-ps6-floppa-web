@@ -16,27 +16,29 @@ import { AnswerComponent } from './answer/answer.component';
 import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 import { UserManagementComponent } from './caregiver/user-management/user-management.component';
 import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
+import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
-    {path: 'quiz-list/:user/:themeIndex', component: QuizListComponent},
+    {path: 'quiz-list/:user/:themeIndex/:type', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'play-association/:id', component: PlayAssociationComponent},
     {path: 'question-form/:id', component: QuestionFormComponent },
-    {path: 'start-quiz/:id/:assistance', component: StartQuizComponent},
-    {path: 'play-quiz/:id/:score/:numQuestion/:assistance', component: PlayQuizComponent},
-    {path: 'final-screen/:id/:score/:assistance', component: FinalScreenComponent},
+    {path: 'start-quiz/:id/:userid', component: StartQuizComponent},
+    {path: 'play-quiz/:id/:score/:numQuestion/:userid', component: PlayQuizComponent},
+    {path: 'final-screen/:id/:score/:userid', component: FinalScreenComponent},
     {path: 'question-form/:id', component: QuestionFormComponent },
     {path: 'association-form/:id', component: AssociationFormComponent },
-    {path: 'answer/:id/:score/:isCorrect/:numQuestion/:assistance', component: AnswerComponent},
+    {path: 'answer/:id/:score/:isCorrect/:numQuestion/:userid', component: AnswerComponent},
     {path: 'home-profil-choice', component: HomeProfilChoiceComponent},
-    {path: 'theme-list/:user', component: ThemeListComponent},
+    {path: 'theme-list/:user/:type', component: ThemeListComponent},
     {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     {path: 'uer-form', component: UserFormComponent},
     {path: 'user-edit', component: UserEditComponent},
     {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     {path:'user-management', component: UserManagementComponent},
-    {path:'user-stats/:user', component: UserStatsComponent}
+    {path:'user-stats/:user', component: UserStatsComponent},
+    {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent}
 
 ];
 

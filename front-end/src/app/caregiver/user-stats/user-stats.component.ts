@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
+import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-user-stats',
@@ -13,11 +14,15 @@ export class UserStatsComponent implements OnInit {
     public userList: User[];
     public username: string;
     public user: User;
+    public numberPlayed: number;
+    public lastGame: number;
+    public favoriteQuiz: string;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
     this.userList = USER_LIST;
     this.getUser(this.username);
+    this.getStats();
   }
 
   ngOnInit(): void {
@@ -30,4 +35,35 @@ export class UserStatsComponent implements OnInit {
       }
     }
   }
+
+  getStats(): void {
+    this.numberPlayed = Object.keys(this.user.quizSessions).length;
+    const today = new Date().getTime();
+    this.lastGame = Number.MAX_VALUE;
+
+    const quizIdCount = {};
+    for (const session of Object.values(this.user.quizSessions)) {
+        const diff = Math.abs(today - session.date) / (86400000);
+        if (diff < this.lastGame) {
+            this.lastGame = Math.round(diff);
+        }
+        const quizId = session.quizId;
+        if (quizIdCount[quizId]) {
+            quizIdCount[quizId]++;
+        } else {
+            quizIdCount[quizId] = 1;
+        }
+    }
+
+    let maxCount: number = 0;
+    let mostFrequentQuizId: any;
+    for (const quizId of Object.keys(quizIdCount)) {
+        if (quizIdCount[quizId] > maxCount) {
+            maxCount = quizIdCount[quizId];
+            mostFrequentQuizId = quizId;
+        }
+    }
+
+    this.favoriteQuiz = QUIZ_LIST[mostFrequentQuizId - 1].name;
+}
 }

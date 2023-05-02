@@ -5,6 +5,8 @@ import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location, CommonModule } from '@angular/common';
 import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
+import { USER_LIST } from 'src/mocks/user-list.mock';
+import { User } from 'src/models/user.model';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -17,6 +19,7 @@ export class AnswerComponent implements OnInit {
   public numQuestion: number;
   public correctAnswer: number;
   public assistance: number;
+  public user: User;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
     
@@ -36,14 +39,14 @@ export class AnswerComponent implements OnInit {
     }
     if(this.numQuestion <= this.quiz.questions.length)
       this.correctAnswer = this.getCorrectAnswer();
-      
-    this.assistance = Number(this.route.snapshot.paramMap.get('assistance'));
+    this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
+    this.assistance = Number(this.user.assistance);
     setTimeout(() => {
       if (this.numQuestion+1 > this.quiz.questions.length) {
-        document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.assistance;
+        document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id;
       }
       else {
-        document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.assistance;
+        document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id;
       }
     }, 2 * 60 * 1000);
   }
@@ -59,10 +62,10 @@ export class AnswerComponent implements OnInit {
 
   nextQuestion(): void {
     if (this.numQuestion+1 > this.quiz.questions.length + this.quiz.associations.length) {
-      document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.assistance;
+      document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id;
     }
     else {
-      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.assistance;
+      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id;
       console.log(this.numQuestion);
     }
   }
