@@ -79,6 +79,7 @@ h2 {
   
   .chart {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }

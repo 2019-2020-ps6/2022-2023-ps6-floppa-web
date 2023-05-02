@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
-import { ChartOptions, ChartDataSets, ChartType } from 'chart.js';
+import { ChartOptions, ChartDataSets, ChartType, Chart } from 'chart.js';
 import { Label } from 'ng2-charts/lib/base-chart.directive';
+import { BaseChartDirective } from 'ng2-charts';
 
 @Component({
   selector: 'app-user-stats',
   templateUrl: './user-quiz-stats.component.html',
   styleUrls: ['./user-quiz-stats.component.scss']
 })
-export class UserQuizStatsComponent implements OnInit {
 
+export class UserQuizStatsComponent implements OnInit {
     public userList: User[];
     public username: string;
     public user: User;
@@ -43,14 +44,17 @@ export class UserQuizStatsComponent implements OnInit {
         mode: null
       }
     };
-    
+
     public barChartLabels: Label[] = [];
+    public dates: Label[] = [];
     public barChartType: ChartType = 'bar';
     public barChartPlugins = [];
 
     public barChartData: ChartDataSets[] = [{ data: [], label: 'Score', backgroundColor: []}];
     public colors: string[] = [];
-    
+
+    public scoresByDayObj = {};
+    public scoreByDay: Record<number, number[]> = {};
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
@@ -60,7 +64,7 @@ export class UserQuizStatsComponent implements OnInit {
     this.getUser(this.username);
     this.getStats();
   }
-
+  
   ngOnInit(): void {
   }
 
@@ -75,7 +79,6 @@ export class UserQuizStatsComponent implements OnInit {
   getStats(): void {
     const today = new Date().getTime();
     let score = 0;
-    const scoreByDay: Record<number, number[]> = {};
 
     const sortedQuizSessions = Object.keys(this.user.quizSessions) //croissant => date + récente en dernier
       .sort((a,b) => this.user.quizSessions[a].date - this.user.quizSessions[b].date)
@@ -92,23 +95,22 @@ export class UserQuizStatsComponent implements OnInit {
         if (diff < this.lastGame) {
             this.lastGame = diff;
         }
-        if (scoreByDay[diff]) {
-          scoreByDay[diff].push(this.computeScore(session.answers));
+        if (this.scoreByDay[diff]) {
+          this.scoreByDay[diff].push(this.computeScore(session.answers));
         }
         else {
-          scoreByDay[diff] = [this.computeScore(session.answers)];
+          this.scoreByDay[diff] = [this.computeScore(session.answers)];
         }
         this.numberTry++;
       }
     }
     this.meanScore = score/this.numberTry;
 
-    const scoresByDayObj = {};
-    Object.keys(scoreByDay).forEach((diff) => {
-      const meanScore = scoreByDay[diff].reduce((acc, val) => acc + val, 0) / scoreByDay[diff].length;
-      scoresByDayObj[diff] = meanScore;
+    Object.keys(this.scoreByDay).forEach((diff) => {
+      const meanScore = this.scoreByDay[diff].reduce((acc, val) => acc + val, 0) / this.scoreByDay[diff].length;
+      this.scoresByDayObj[diff] = meanScore;
     });
-    this.progression = this.computeProgression(scoresByDayObj);
+    this.progression = this.computeProgression(this.scoresByDayObj);
   }
 
   computeScore(answers: boolean[]): number {
@@ -120,7 +122,6 @@ export class UserQuizStatsComponent implements OnInit {
   }
 
   computeProgression(scoresByDayObj: {}): number {
-    console.log(scoresByDayObj);
     let sumOfScoreDiffs = 0;
     let attempts = 0;
     Object.values(scoresByDayObj).forEach((score,i,scoresArray) => {
@@ -128,22 +129,14 @@ export class UserQuizStatsComponent implements OnInit {
         sumOfScoreDiffs += Number(scoresArray[i-1]) - Number(score);
         attempts++;
       }
-      if (Number(score)>90) this.colors.unshift('rgb(75,229,98)');
-      else if (Number(score)>80) this.colors.unshift('rgb(120,229,87)');
-      else if (Number(score)>70) this.colors.unshift('rgb(157,229,87)');
-      else if (Number(score)>60) this.colors.unshift('rgb(178,229,87)');
-      else if (Number(score)>50) this.colors.unshift('rgb(198,229,87)');
-      else if (Number(score)>40) this.colors.unshift('rgb(255,229,87)');
-      else if (Number(score)>30) this.colors.unshift('rgb(255,197,99)');
-      else if (Number(score)>20) this.colors.unshift('rgb(255,132,91)');
-      else if (Number(score)>10) this.colors.unshift('rgb(255,93,81)');
-      else this.colors.unshift('rgb(255,48,62)')
+      this.addColor(Number(score));
       let date = new Date();
       date.setDate(date.getDate() - Number(Object.keys(scoresByDayObj)[i]));
       let formattedDate = date.toLocaleDateString();
       this.barChartLabels.unshift(formattedDate);
       this.barChartData[0].data.unshift(Number(score));
     });
+    this.dates = this.barChartLabels;
     this.barChartData[0].backgroundColor = this.colors;
     if (attempts > 0) {
       return Math.round(sumOfScoreDiffs / attempts);
@@ -151,5 +144,45 @@ export class UserQuizStatsComponent implements OnInit {
     else {
       return 0;
     }
+
+  }
+
+  addColor(score: number): void {
+    if (score>90) this.colors.unshift('rgb(75,229,98)');
+    else if (score>80) this.colors.unshift('rgb(120,229,87)');
+    else if (score>70) this.colors.unshift('rgb(157,229,87)');
+    else if (score>60) this.colors.unshift('rgb(178,229,87)');
+    else if (score>50) this.colors.unshift('rgb(198,229,87)');
+    else if (score>40) this.colors.unshift('rgb(255,229,87)');
+    else if (score>30) this.colors.unshift('rgb(255,197,99)');
+    else if (score>20) this.colors.unshift('rgb(255,132,91)');
+    else if (score>10) this.colors.unshift('rgb(255,93,81)');
+    else this.colors.unshift('rgb(255,48,62)')
+  }
+
+  updateChart(selectedDate: string): void {
+    this.clearChart();
+    if (selectedDate === "Global") {
+      this.progression = this.computeProgression(this.scoresByDayObj);
+    }
+    else {
+      const dateArray = selectedDate.split('/');
+      const date = new Date(parseInt(dateArray[2]), parseInt(dateArray[1]) - 1, parseInt(dateArray[0]));
+      const today = new Date();
+      const diff = Math.ceil(Math.abs(today.getTime() - date.getTime())/(1000*3600*24)) - 1;
+      const scores = this.scoreByDay[diff];
+      scores.forEach((val,i) => {
+        this.barChartData[0].data.unshift(val);
+        this.addColor(val);
+        this.barChartLabels.unshift("Partie " + (i+1));
+      })
+      this.barChartData[0].backgroundColor = this.colors;
+    }
+  }
+
+  clearChart(): void {
+    this.barChartLabels = [];
+    this.colors = [];
+    this.barChartData[0].data = [];
   }
 }

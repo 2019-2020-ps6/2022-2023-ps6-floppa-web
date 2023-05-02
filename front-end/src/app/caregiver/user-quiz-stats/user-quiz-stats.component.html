@@ -19,7 +19,11 @@
         <h2>Progression: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
       </div>
       <div class="chart">
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [chartType]="barChartType" [options]="barChartOptions"></canvas>
+        <select (change)="updateChart($event.target.value)">
+          <option value="Global">Global</option>
+          <option *ngFor="let date of dates" value="{{date}}">{{date}}</option>
+        </select>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [chartType]="barChartType" [options]="barChartOptions" (chartClick)="onChartClick($event,canvas)"></canvas>
       </div>
     </div>
 </div>
