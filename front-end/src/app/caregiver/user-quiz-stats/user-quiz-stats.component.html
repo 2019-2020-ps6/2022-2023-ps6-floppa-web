@@ -12,18 +12,20 @@
     </div>
     <div class="content">
       <div class="info">
-        <h2>Nombre de tentatives : {{this.numberTry}}</h2>
-        <h2 *ngIf="this.lastGame===0">Dernière partie : Aujourd'hui</h2>
-        <h2 *ngIf="this.lastGame===1">Dernière partie: Il y a 1 jour</h2>
-        <h2 *ngIf="this.lastGame>1">Dernière partie: Il y a {{this.lastGame}} jours</h2>
+        <h2 *ngIf="type==='global'">Nombre de tentatives : {{this.numberTry}}</h2>
+        <h2 *ngIf="this.lastGame===0 && type==='global'">Dernière partie : Aujourd'hui</h2>
+        <h2 *ngIf="this.lastGame===1 && type==='global'">Dernière partie: Il y a 1 jour</h2>
+        <h2 *ngIf="this.lastGame>1 && type==='global'">Dernière partie: Il y a {{this.lastGame}} jours</h2>
         <h2>Progression: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
+        <h2 *ngIf="type==='date'">Similitude d'erreur : <span [ngClass]="{'positive': errorSimilarity < 50, 'negative': errorSimilarity > 50}">{{errorSimilarity}}%</span></h2>
+        <h2>Temps moyen par question : Todo</h2>
       </div>
       <div class="chart">
         <select (change)="updateChart($event.target.value)">
           <option value="Global">Global</option>
           <option *ngFor="let date of dates" value="{{date}}">{{date}}</option>
         </select>
-        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [chartType]="barChartType" [options]="barChartOptions" (chartClick)="onChartClick($event,canvas)"></canvas>
+        <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [chartType]="barChartType" [options]="barChartOptions"></canvas>
       </div>
     </div>
 </div>

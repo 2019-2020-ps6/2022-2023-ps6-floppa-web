@@ -55,6 +55,8 @@ export class UserQuizStatsComponent implements OnInit {
 
     public scoresByDayObj = {};
     public scoreByDay: Record<number, number[]> = {};
+    public type: string = "global";
+    public errorSimilarity: number;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
@@ -163,13 +165,16 @@ export class UserQuizStatsComponent implements OnInit {
   updateChart(selectedDate: string): void {
     this.clearChart();
     if (selectedDate === "Global") {
+      this.type = "global";
       this.progression = this.computeProgression(this.scoresByDayObj);
     }
     else {
+      this.type = "date";
       const dateArray = selectedDate.split('/');
       const date = new Date(parseInt(dateArray[2]), parseInt(dateArray[1]) - 1, parseInt(dateArray[0]));
       const today = new Date();
       const diff = Math.ceil(Math.abs(today.getTime() - date.getTime())/(1000*3600*24)) - 1;
+      this.errorSimilarity = this.computeErrorSimilarity(diff);
       const scores = this.scoreByDay[diff];
       scores.forEach((val,i) => {
         this.barChartData[0].data.unshift(val);
@@ -184,5 +189,38 @@ export class UserQuizStatsComponent implements OnInit {
     this.barChartLabels = [];
     this.colors = [];
     this.barChartData[0].data = [];
+  }
+
+  computeErrorSimilarity(diff: number): number {
+    let sessionsAnswers = [];
+    const today = new Date().getTime();
+    for (const session of Object.values(this.user.quizSessions)) {
+      if (session.quizId === this.id) {
+        const newDiff = Math.round(Math.abs(today - session.date) / (86400000));
+        if (diff === newDiff) {
+          sessionsAnswers.push(session.answers);
+        }
+      }
+    }
+    if (sessionsAnswers.length <= 1) return 0;
+    let numberError = 0;
+    let similarityTotal = 0;
+    
+    console.log(sessionsAnswers);
+    for (let i = 0; i < sessionsAnswers[0].length; i++) {
+      let errorDone = false;
+      let similarity = 0;
+      for (let j = 0; j < sessionsAnswers.length; j++) {
+        if (!sessionsAnswers[j][i]) {
+          console.log("cc");
+          if (!errorDone) errorDone = true;
+          else if (similarity===0) similarity+=2;
+          else similarity++;
+          numberError++;
+        }
+      }
+      similarityTotal += similarity;
+    }
+    return (similarityTotal / numberError) * 100;
   }
 }
