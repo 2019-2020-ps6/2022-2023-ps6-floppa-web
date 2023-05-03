@@ -41,7 +41,8 @@ export class StartQuizComponent implements OnInit {
     this.user.quizSessions[newId] = {
       date: new Date().getTime(),
       quizId: this.quiz.id,
-      answers: []
+      answers: [],
+      timePerQuestion: []
     };
   }
 

@@ -67,7 +67,7 @@ h2 {
   .content {
     grid-area: content;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   
   .info {
@@ -84,3 +84,6 @@ h2 {
     align-items: center;
   }
   
+  .underline {
+    text-decoration: underline;
+  }
