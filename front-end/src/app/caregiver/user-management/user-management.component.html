@@ -1,8 +1,13 @@
-<div>
-    <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
-    <h1 style="display: flex; justify-content: center; align-self: center; margin-top: 100px;">Sélectionner un patient</h1>
+<div style="display: grid; grid-template-columns: 1fr 1fr;">
+    <img id="back" style="margin:20px;" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
+    <div style="display: flex; justify-content: right; margin:20px;" routerLink="/theme-list/Madeleine-Duo/play">
+        <div id="quiz-editor" >
+            <img style="margin:10px;" src="/assets/quiz-editor.png" routerLink="/theme-list/Madeleine-Duo/play">
+            Accéder à l'éditeur de  Quiz
+        </div>
+    </div>
 </div>
-
+<h1 style="display: flex; justify-content: center; align-self: center;">Sélectionner un patient</h1>
 <div style="display: flex; flex-direction: row;">
     <div *ngFor="let user of userList">
         <div class="user">

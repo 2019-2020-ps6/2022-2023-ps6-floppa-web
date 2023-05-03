@@ -1,3 +1,5 @@
+@import '../../../styles/variables.scss';
+
 .user-img {
     max-width: 175px;
     max-height: 175px;
@@ -12,4 +14,17 @@
     margin-top: 10px;
     max-width: 121px;
     max-height: 121px;
+}
+
+#quiz-editor{
+    background-color: $white;
+    border: solid 3px $dark;
+    border-radius: 20px;
+    color: $dark;
+    font-weight: bold;
+    font-size: larger;
+    padding: .5em .5em;
+    display: grid;
+    text-align: center;
+    max-width: 200px;
 }
