@@ -1,13 +1,16 @@
 <div class="container">
     <div class="header">
-      <img id="back" src="/assets/back.png" alt="back" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/stats">
+      <div style="display: flex; flex-direction: column;">
+        <img id="back" src="/assets/back.png" alt="back" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/stats">
+        <h2 style="align-self: center;">Retour</h2>
+      </div>
       <div>
         <img id="user-img" alt="user-img" src="{{user.photo}}">
         <h1>{{user.firstName}} {{user.lastName}}</h1>
       </div>
       <div>
         <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
-        <h4>{{quiz.name}}</h4>
+        <h4 style="align-self:center; margin-right: 10px;">{{quiz.name}}</h4>
       </div>
     </div>
     <div class="content">
@@ -16,9 +19,9 @@
         <h2 *ngIf="this.lastGame===0 && type==='global'">Dernière partie : Aujourd'hui</h2>
         <h2 *ngIf="this.lastGame===1 && type==='global'">Dernière partie: Il y a 1 jour</h2>
         <h2 *ngIf="this.lastGame>1 && type==='global'">Dernière partie: Il y a {{this.lastGame}} jours</h2>
-        <h2><span class="underline" (click)="showHelp('progression')">Progression</span>: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
+        <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('progression')">Progression</span>: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
         <h2 *ngIf="type==='date'"><span class="underline" (click)="showHelp('error')">Similitude d'erreur</span>: <span [ngClass]="{'positive': errorSimilarity < 50, 'negative': errorSimilarity > 50}">{{errorSimilarity}}%</span></h2>
-        <h2><span class="underline" (click)="showHelp('time')">Temps moyen par question</span>: {{meanTime}}s (<span [ngClass]="{'positive':timeProgression < 0, 'negative':timeProgression > 0}">{{timeProgression}}s</span>)</h2>
+        <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('time')">Temps moyen par question</span>: {{meanTime}}s (<span [ngClass]="{'positive':timeProgression < 0, 'negative':timeProgression > 0}">{{timeProgression}}s</span>)</h2>
       </div>
       <div class="chart">
         <select (change)="updateChart($event.target.value)" style="border-radius: 5px; padding: 10px;">
