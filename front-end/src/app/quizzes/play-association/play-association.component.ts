@@ -119,10 +119,10 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         const rectLeft = leftButton.getBoundingClientRect();
         const rectRight = rightButton.getBoundingClientRect();
 
-        const leftX = rectLeft.x + rectLeft.width / 2;
+        const leftX = rectLeft.x + rectLeft.width
         const leftY = rectLeft.y + rectLeft.height / 2;
 
-        const rightX = rectRight.x + rectRight.width / 2;
+        const rightX = rectRight.x;
         const rightY = rectRight.y + rectRight.height / 2;
 
         this.drawLine(leftX, leftY, rightX, rightY);
