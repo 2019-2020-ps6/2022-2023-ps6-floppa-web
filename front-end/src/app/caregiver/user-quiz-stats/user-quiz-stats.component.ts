@@ -7,6 +7,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { ChartOptions, ChartDataSets, ChartType, Chart } from 'chart.js';
 import { Label } from 'ng2-charts/lib/base-chart.directive';
 import { BaseChartDirective } from 'ng2-charts';
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-user-stats',
@@ -55,8 +56,12 @@ export class UserQuizStatsComponent implements OnInit {
 
     public scoresByDayObj = {};
     public scoreByDay: Record<number, number[]> = {};
+    public timeByDay: Record<number, number[]> = {};
     public type: string = "global";
     public errorSimilarity: number;
+    public timePerQuestionByDayObj = {};
+    public meanTime: number = 0;
+    public timeProgression: number = 0;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
@@ -81,6 +86,7 @@ export class UserQuizStatsComponent implements OnInit {
   getStats(): void {
     const today = new Date().getTime();
     let score = 0;
+    let timePerQuetion = 0;
 
     const sortedQuizSessions = Object.keys(this.user.quizSessions) //croissant => date + récente en dernier
       .sort((a,b) => this.user.quizSessions[a].date - this.user.quizSessions[b].date)
@@ -92,6 +98,7 @@ export class UserQuizStatsComponent implements OnInit {
     this.lastGame = Number.MAX_VALUE;
     for (const session of Object.values(this.user.quizSessions)) {
       if (session.quizId === this.id) {
+        this.meanTime += this.meanArray(session.timePerQuestion);
         score += this.computeScore(session.answers);
         const diff = Math.round(Math.abs(today - session.date) / (86400000));
         if (diff < this.lastGame) {
@@ -103,16 +110,36 @@ export class UserQuizStatsComponent implements OnInit {
         else {
           this.scoreByDay[diff] = [this.computeScore(session.answers)];
         }
+        if (this.timeByDay[diff]) {
+          this.timeByDay[diff].push(this.meanArray(session.timePerQuestion));
+        }
+        else {
+          this.timeByDay[diff] = [this.meanArray(session.timePerQuestion)];
+        }
         this.numberTry++;
       }
     }
     this.meanScore = score/this.numberTry;
+    this.meanTime = Math.round(this.meanTime/this.numberTry);
 
     Object.keys(this.scoreByDay).forEach((diff) => {
       const meanScore = this.scoreByDay[diff].reduce((acc, val) => acc + val, 0) / this.scoreByDay[diff].length;
       this.scoresByDayObj[diff] = meanScore;
     });
+    Object.keys(this.timeByDay).forEach((diff) => {
+      const meanTime = this.timeByDay[diff].reduce((acc, val) => acc + val, 0) / this.timeByDay[diff].length;
+      this.timePerQuestionByDayObj[diff] = meanTime;
+    })
     this.progression = this.computeProgression(this.scoresByDayObj);
+    this.timeProgression = this.computeTimeProgression(this.timePerQuestionByDayObj);
+  }
+
+  meanArray(array: number[]): number {
+    let res = 0;
+    for (let i = 0; i<array.length; i++) {
+      res += array[i];
+    }
+    return res/(array.length);
   }
 
   computeScore(answers: boolean[]): number {
@@ -121,6 +148,19 @@ export class UserQuizStatsComponent implements OnInit {
       if (answer) score++;
     }
     return Math.round(score*100/answers.length);
+  }
+
+  computeTimeProgression(timeByDayObj: {}): number {
+    let sumOfTimeDiffs = 0;
+    let attempts = 0;
+    Object.values(timeByDayObj).forEach((time,i,timeArray) => {
+      if (i>0) {
+        sumOfTimeDiffs += Number(timeArray[i-1]) - Number(time);
+        attempts++;
+      }
+    });
+    if (attempts > 0) return Math.round(sumOfTimeDiffs / attempts);
+    return 0;
   }
 
   computeProgression(scoresByDayObj: {}): number {
@@ -146,7 +186,6 @@ export class UserQuizStatsComponent implements OnInit {
     else {
       return 0;
     }
-
   }
 
   addColor(score: number): void {
@@ -206,7 +245,6 @@ export class UserQuizStatsComponent implements OnInit {
     let numberError = 0;
     let similarityTotal = 0;
     
-    console.log(sessionsAnswers);
     for (let i = 0; i < sessionsAnswers[0].length; i++) {
       let errorDone = false;
       let similarity = 0;
@@ -221,5 +259,28 @@ export class UserQuizStatsComponent implements OnInit {
       similarityTotal += similarity;
     }
     return (similarityTotal / numberError) * 100;
+  }
+
+  showHelp(help: string): void {
+    let title: string;
+    let text: string;
+    switch(help) {
+      case 'progression':
+        title = 'Progression';
+        text = 'En moyenne, le score de ' + this.user.firstName + ' ' + this.user.lastName + ' augmente de ' + this.progression + '% entre chaque session';
+        break;
+      case 'error':
+        title = "Similitude d'erreur";
+        text = this.errorSimilarity + '% des erreurs ont déjà été faites par ' + this.user.firstName + ' ' + this.user.lastName;
+        break;
+      default:
+        title = "Temps moyen par question"
+        if (this.timeProgression > 0) 
+          text = "Le temps moyen par question de " + this.user.firstName + ' ' + this.user.lastName + ' augmente de ' + this.timeProgression + "s entre chaque session"
+        else
+          text = "Le temps moyen par question de " + this.user.firstName + ' ' + this.user.lastName + ' diminue de ' + Math.abs(this.timeProgression) + "s entre chaque session"
+        break;
+    }
+    Swal.fire(title, text, 'info');
   }
 }
