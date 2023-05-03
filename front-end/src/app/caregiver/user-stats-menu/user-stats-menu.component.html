@@ -1,0 +1,23 @@
+<div class="top">
+    <div>
+        <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
+        <h2>Retour</h2>
+    </div>
+    <div>
+        <img src="{{user.photo}}" alt="user-img">
+        <h3>{{user.firstName}} {{user.lastName}}</h3>
+    </div>
+</div>
+<hr>
+<div style="display: flex; flex-direction: rox; justify-content: space-between; margin-top: 200px;">
+    <div></div>
+    <div>
+        <img src="/assets/parameters.png" alt="parameters">
+        <h1>Gérer l'utilisateur</h1>
+    </div>
+    <div routerLink="/user-stats/{{user.firstName}}-{{user.lastName}}">
+        <img src="/assets/stats.png" alt="parameters">
+        <h1>Voir les statistiques</h1>
+    </div>
+    <div></div>
+</div>

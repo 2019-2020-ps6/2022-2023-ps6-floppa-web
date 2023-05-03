@@ -1,0 +1,23 @@
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top h2 {
+    margin-top: 0;
+    color: grey;
+    margin-left: 30px;
+}
+
+#back {
+    margin-top: 10px;
+    max-width: 121px;
+    max-height: 121px;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+    width: 100%;
+}

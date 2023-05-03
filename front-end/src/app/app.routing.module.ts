@@ -17,6 +17,7 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 import { UserManagementComponent } from './caregiver/user-management/user-management.component';
 import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
+import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -38,8 +39,8 @@ const routes: Routes = [
     {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
     {path:'user-management', component: UserManagementComponent},
     {path:'user-stats/:user', component: UserStatsComponent},
-    {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent}
-
+    {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent},
+    {path:'user-stats-menu/:userid', component: UserStatsMenuComponent}
 ];
 
 @NgModule({

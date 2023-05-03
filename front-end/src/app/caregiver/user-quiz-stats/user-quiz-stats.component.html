@@ -21,7 +21,7 @@
         <h2>Temps moyen par question : Todo</h2>
       </div>
       <div class="chart">
-        <select (change)="updateChart($event.target.value)">
+        <select (change)="updateChart($event.target.value)" style="border-radius: 5px; padding: 10px;">
           <option value="Global">Global</option>
           <option *ngFor="let date of dates" value="{{date}}">{{date}}</option>
         </select>

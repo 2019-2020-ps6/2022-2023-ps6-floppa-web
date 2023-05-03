@@ -179,7 +179,7 @@ export class UserQuizStatsComponent implements OnInit {
       scores.forEach((val,i) => {
         this.barChartData[0].data.unshift(val);
         this.addColor(val);
-        this.barChartLabels.unshift("Partie " + (i+1));
+        this.barChartLabels.push("Partie " + (i+1));
       })
       this.barChartData[0].backgroundColor = this.colors;
     }
@@ -212,7 +212,6 @@ export class UserQuizStatsComponent implements OnInit {
       let similarity = 0;
       for (let j = 0; j < sessionsAnswers.length; j++) {
         if (!sessionsAnswers[j][i]) {
-          console.log("cc");
           if (!errorDone) errorDone = true;
           else if (similarity===0) similarity+=2;
           else similarity++;
