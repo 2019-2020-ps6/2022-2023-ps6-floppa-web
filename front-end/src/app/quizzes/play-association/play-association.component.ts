@@ -185,7 +185,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         this.line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         svg.appendChild(this.line);
 
-        this.line.setAttribute('stroke', 'black');
+        this.line.setAttribute('stroke', 'blue');
         this.line.setAttribute('stroke-width', '10');
         this.line.setAttribute('x1', startX.toString());
         this.line.setAttribute('y1', startY.toString());
