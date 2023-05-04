@@ -35,6 +35,7 @@ import { UserStatsComponent } from './caregiver/user-stats/user-stats.component'
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
 import { ChartsModule } from 'ng2-charts';
 import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
+import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +68,8 @@ import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-m
     UserManagementComponent,
     UserStatsComponent,
     UserQuizStatsComponent,
-    UserStatsMenuComponent
+    UserStatsMenuComponent,
+    ThemeEditorComponent
   ],
   imports: [
     BrowserModule,

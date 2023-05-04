@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <img id="back" src="/assets/back.png" alt="back" routerLink="/user-management">
+</div>
+<h1 style="display: flex; justify-content: center;">Choisissez un thème</h1>
+<div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
+    <div *ngFor="let theme of themeList, let i=index">
+        <div class="theme">
+            <img class="theme-img" alt="theme-{{i+1}}" src="/assets/theme-img/theme-{{i+1}}.jpg" (click)="goToTheme(i)">
+            <h2 style="display: flex; justify-content: center;">{{theme}}</h2>
+        </div>
+    </div>
+</div>
