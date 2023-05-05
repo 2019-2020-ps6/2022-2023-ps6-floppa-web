@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
-import { THEME_LIST } from 'src/mocks/quiz-list.mock';
 import {THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
