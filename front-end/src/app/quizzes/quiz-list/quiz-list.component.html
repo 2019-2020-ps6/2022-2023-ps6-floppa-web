@@ -9,6 +9,8 @@
 <app-quiz-form></app-quiz-form>
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
-        <app-quiz [quiz]="quiz" [user]="user" [type]="type" (startQuiz)="startQuiz($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
+        <ng-container *ngIf="quiz.users.length===0 || quiz.users.includes(user.id)">
+            <app-quiz [quiz]="quiz" [user]="user" [type]="type" (startQuiz)="startQuiz($event)" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
+        </ng-container>
     </div>
   </div>
