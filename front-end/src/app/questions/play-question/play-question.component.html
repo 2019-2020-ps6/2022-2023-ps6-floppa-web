@@ -5,7 +5,7 @@
             <div style="display:flex; flex-direction:column; align-items: center;">
                 <img class="answer" alt="answer-{{i+1}}" src="/assets/quiz-{{quiz.id}}/question-{{numQuestion}}/img-{{i+1}}.jpg" (click)="check(i+1)" 
                 [ngClass]="{'correct-answer': answer.isCorrect && assistance % 1000 > 100}">
-                <h2>Photo n°{{i+1}}</h2>
+                <h2 class="answer-text">Photo n°{{i+1}}</h2>
             </div>
         </div>
     </div>
