@@ -4,6 +4,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { THEME_LIST } from 'src/mocks/quiz-list.mock';
+import {THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -22,8 +23,8 @@ export class EditQuizComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST[Number(id) - 1];
-    for (let i = 0; i < THEME_LIST.length; i++) {
-      if (THEME_LIST[i] === this.quiz.theme) {
+    for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
+      if (THEME_QUIZ_LIST[i].title === this.quiz.theme) {
         this.theme = i;
       }
     }
