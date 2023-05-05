@@ -119,10 +119,10 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         const rectLeft = leftButton.getBoundingClientRect();
         const rectRight = rightButton.getBoundingClientRect();
 
-        const leftX = rectLeft.x + rectLeft.width / 2;
+        const leftX = rectLeft.x + rectLeft.width
         const leftY = rectLeft.y + rectLeft.height / 2;
 
-        const rightX = rectRight.x + rectRight.width / 2;
+        const rightX = rectRight.x;
         const rightY = rectRight.y + rectRight.height / 2;
 
         this.drawLine(leftX, leftY, rightX, rightY);
@@ -185,7 +185,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         this.line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
         svg.appendChild(this.line);
 
-        this.line.setAttribute('stroke', 'black');
+        this.line.setAttribute('stroke', 'blue');
         this.line.setAttribute('stroke-width', '10');
         this.line.setAttribute('x1', startX.toString());
         this.line.setAttribute('y1', startY.toString());
