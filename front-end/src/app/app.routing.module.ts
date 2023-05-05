@@ -19,13 +19,13 @@ import { UserStatsComponent } from './caregiver/user-stats/user-stats.component'
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
 import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
+import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
     {path: 'quiz-list/:user/:themeIndex/:type', component: QuizListComponent},
     {path: 'edit-quiz/:id', component: EditQuizComponent},
     {path: 'play-association/:id', component: PlayAssociationComponent},
-    {path: 'question-form/:id', component: QuestionFormComponent },
     {path: 'start-quiz/:id/:userid', component: StartQuizComponent},
     {path: 'play-quiz/:id/:score/:numQuestion/:userid', component: PlayQuizComponent},
     {path: 'final-screen/:id/:score/:userid', component: FinalScreenComponent},
@@ -42,7 +42,8 @@ const routes: Routes = [
     {path:'user-stats/:user', component: UserStatsComponent},
     {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent},
     {path:'user-stats-menu/:userid', component: UserStatsMenuComponent},
-    {path: 'theme-editor', component: ThemeEditorComponent}
+    {path: 'theme-editor', component: ThemeEditorComponent},
+    {path: 'theme-form', component: ThemeFormComponent },
 ];
 
 @NgModule({

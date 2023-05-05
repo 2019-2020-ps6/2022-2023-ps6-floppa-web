@@ -12,15 +12,14 @@ export class ThemeEditorComponent implements OnInit {
   public themeList: string[];
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    this.themeList = [];
-    
-    for(let i = 0; i < THEME_QUIZ_LIST.length; i++) {
-      this.themeList.push(THEME_QUIZ_LIST[i].title);
-    }
     
   }
 
   ngOnInit(): void {
+    this.themeList = [];
+    for(let i = 0; i < THEME_QUIZ_LIST.length; i++) {
+      this.themeList.push(THEME_QUIZ_LIST[i].title);
+    }
   }
 
   goToTheme(themeIndex: number): void {
