@@ -25,7 +25,7 @@ import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
     {path: 'quiz-list/:user/:themeIndex/:type', component: QuizListComponent},
-    {path: 'edit-quiz/:id', component: EditQuizComponent},
+    {path: 'edit-quiz/:themeIndex/:id', component: EditQuizComponent},
     {path: 'play-association/:id', component: PlayAssociationComponent},
     {path: 'start-quiz/:id/:userid', component: StartQuizComponent},
     {path: 'play-quiz/:id/:score/:numQuestion/:userid', component: PlayQuizComponent},

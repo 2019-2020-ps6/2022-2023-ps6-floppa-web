@@ -22,11 +22,12 @@ export class EditQuizComponent implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST[Number(id) - 1];
-    for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
-      if (THEME_QUIZ_LIST[i].title === this.quiz.theme) {
-        this.theme = i;
-      }
-    }
+    // for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
+    //   if (THEME_QUIZ_LIST[i].title === this.quiz.theme) {
+    //     this.theme = i;
+    //   }
+    // }
+    this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
   }
 
   selectQuiz(): void {

@@ -17,6 +17,7 @@ export class QuestionFormComponent implements OnInit {
 
   public questionForm: FormGroup;
   public quizId: string;
+  public themeId: number;
   constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
     this.initializeQuestionForm();
   }
@@ -30,6 +31,7 @@ export class QuestionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizId = this.route.snapshot.paramMap.get('id');
+    this.themeId = Number(this.route.snapshot.paramMap.get('themeIndex'));
   }
 
   get answers(): FormArray {

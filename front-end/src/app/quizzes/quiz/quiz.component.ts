@@ -10,6 +10,9 @@ import { User } from 'src/models/user.model';
 export class QuizComponent implements OnInit {
 
   @Input()
+  themeIndex: number;
+
+  @Input()
   quiz: Quiz;
 
   @Input()

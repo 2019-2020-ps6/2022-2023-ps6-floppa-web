@@ -2,8 +2,8 @@
     <img id="back" src="/assets/back.png" alt="back" routerLink="/theme-editor">
 </div>
 <app-quiz-form></app-quiz-form>
-<div class="quiz-list">
+<div class="quiz-list" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div class="quiz" *ngFor="let quiz of quizList">
-        <app-quiz [quiz]="quiz" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
+        <app-quiz [themeIndex] = "this.themeIndex" [quiz]="quiz" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>
     </div>
 </div>

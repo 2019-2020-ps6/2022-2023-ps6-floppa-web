@@ -15,11 +15,11 @@ export class AssociationFormComponent implements OnInit {
 
   quiz!: Quiz;
   public quizId: string;
+  public themeId: number;
 
   public associationForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
-    this.initializeAssociationForm();
   }
 
   private initializeAssociationForm(): void {
@@ -30,7 +30,9 @@ export class AssociationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeAssociationForm();
     this.quizId = this.route.snapshot.paramMap.get('id');
+    this.themeId = Number(this.route.snapshot.paramMap.get('themeIndex'));
   }
 
   get connections(): FormArray {
@@ -63,6 +65,5 @@ export class AssociationFormComponent implements OnInit {
     this.quizService.addAssociation(this.quizId, association);
     //Change for the Back End since the http push doesn't work.
     QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
-    this.initializeAssociationForm();
   }
 }

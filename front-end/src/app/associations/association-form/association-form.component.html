@@ -1,4 +1,4 @@
-<button class="back-button" routerLink="/edit-quiz/{{this.quizId}}">Retour</button><br>
+<button class="back-button" routerLink="/edit-quiz/{{this.themeId}}/{{this.quizId}}">Retour</button><br>
 <div class="card">
   <h2>Créer nouvelle association</h2>
   <form class="quiz-form" [formGroup]="associationForm">
@@ -19,6 +19,6 @@
         </div>
       </div>
     </div>
-    <button *ngIf = "this.isAssociationFormValid()" type="submit" class="button-card" (click)="addAssociation()" routerLink="/edit-quiz/{{this.quizId}}">Créer</button>
+    <button *ngIf = "this.isAssociationFormValid()" type="submit" class="button-card" (click)="addAssociation()" routerLink="/edit-quiz/{{this.themeId}}/{{this.quizId}}">Créer</button>
   </form>
 </div>
