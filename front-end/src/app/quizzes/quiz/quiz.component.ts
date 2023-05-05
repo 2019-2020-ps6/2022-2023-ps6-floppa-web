@@ -33,6 +33,17 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onQuizClicked(): void {
+    if(this.type == 'play')
+    {
+        this.start();
+    } 
+    else if(this.type == 'stats')
+    {
+        this.goToQuizStats();
+    }
+  }
+
   start(): void {
     document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.id
   }

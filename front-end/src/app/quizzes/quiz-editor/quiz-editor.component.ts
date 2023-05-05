@@ -9,26 +9,19 @@ import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
-  selector: 'app-quiz-list',
-  templateUrl: './quiz-list.component.html',
-  styleUrls: ['./quiz-list.component.scss']
+  selector: 'app-quiz-editor',
+  templateUrl: './quiz-editor.component.html',
+  styleUrls: ['./quiz-editor.component.scss']
 })
 
-// QUIZ EDITOR
-export class QuizListComponent implements OnInit {
+export class QuizEditorComponent implements OnInit {
 
   public userList: User[];
-  public user: User;
-  public username: string;
   public quizList: Quiz[] = [];
   public themeIndex: number;
-  public type: string;
 
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
-    this.username = this.route.snapshot.paramMap.get("user");
-    this.type = this.route.snapshot.paramMap.get("type");
     this.userList = USER_LIST;
-    this.getUser(this.username);
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
     for (let i = 0; i < QUIZ_LIST.length; i++) {
       if (QUIZ_LIST[i].theme === THEME_QUIZ_LIST[this.themeIndex].title) {
@@ -38,18 +31,6 @@ export class QuizListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-  }
-
-  getUser(username: string): void {
-    for (let user of this.userList) {
-      if (user.firstName + "-" + user.lastName === username) {
-        this.user = user;
-      }
-    }
-  }
-
-  startQuiz(quiz: Quiz): void {
-    this.router.navigate(['/start-quiz/' + quiz.name + '/' + this.user.id]);
   }
 
   editQuiz(quiz: Quiz): void {

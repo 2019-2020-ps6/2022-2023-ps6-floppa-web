@@ -20,6 +20,7 @@ import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-st
 import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
 import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
+import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -44,6 +45,7 @@ const routes: Routes = [
     {path:'user-stats-menu/:userid', component: UserStatsMenuComponent},
     {path: 'theme-editor', component: ThemeEditorComponent},
     {path: 'theme-form', component: ThemeFormComponent },
+    {path: 'quiz-editor/:themeIndex', component: QuizEditorComponent}
 ];
 
 @NgModule({

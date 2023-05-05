@@ -1,7 +1,8 @@
 <div class="quiz" style="display: flex; flex-direction: column;">
     <h2 style="display: flex; justify-content:center;">{{quiz.name}}</h2>
-    <img *ngIf="type==='play'" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img" (click)="start()">
-    <img *ngIf="type==='stats'" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img" (click)="goToQuizStats()">
-    <button style= "float: right;" class="button-card" (click)="delete()">Supprimer</button>
-    <button style="float: right;" class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
+    <img src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img" (click)="onQuizClicked()">
+    <div *ngIf="type == null" style= "float: right;">
+        <button style= "float: right;" class="button-card" (click)="delete()">Supprimer</button>
+        <button class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
+    </div>
 </div>
