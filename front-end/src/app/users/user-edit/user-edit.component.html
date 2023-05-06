@@ -21,14 +21,18 @@
     <span [ngClass]="{'text-big': isBigText, 'text-small': isSmallText}"> My text </span>
     <br><br>
 
+    <label for="indice">
     Indice :
-    <input class="input-custom" type="radio" checked="indiceOuiChecked()" name="indice" value="oui" > Oui
-    <input class="input-custom" type="radio" checked="indiceNonChecked()" name="indice" value="non" > Non
+    <input class="input-custom" type="radio" name="indice" value="oui" [formControlName]="'indice'"> Oui
+    <input class="input-custom" type="radio" name="indice" value="non" [formControlName]="'indice'"> Non
+    </label>
     <br>
 
+    <label for="vocale">
     Synthèse vocale :
-    <input class="input-custom" type="radio" checked="vocaleOuiChecked()" name="vocale" value="oui" > Oui 
-    <input class="input-custom" type="radio" checked="vocaleNonChecked()" name="vocale" value="non" > Non
+    <input class="input-custom" type="radio" name="vocale" value="oui" [formControlName]="'vocale'"> Oui 
+    <input class="input-custom" type="radio" name="vocale" value="non" [formControlName]="'vocale'"> Non
+    </label>
     <br>
     
     <label for="alzheimerStade">

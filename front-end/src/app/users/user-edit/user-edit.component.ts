@@ -21,6 +21,7 @@ export class UserEditComponent implements OnInit {
   public users: User[];
   public isSmallText = false;
   public isBigText = false;
+  public id = this.route.snapshot.paramMap.get('id');
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute, private location: Location) {
 
@@ -33,77 +34,74 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-
-    this.user = this.userService.users$.getValue()[parseInt(id)-1];
+    this.user = this.userService.users$.getValue()[parseInt(this.id)-1];
+    console.log(parseInt(this.id)-1);
 
     console.log(this.user);
 
     this.userEdit = this.formBuilder.group({
       firstName: [this.user.firstName],
       lastName: [this.user.lastName],
+      indice: [this.getIndice()],
+      vocale: [this.getVocale()],
       alzheimerStade: [this.user.alzheimerStade],
       photo: [this.user.photo]
     });
 
-    this.indiceOuiChecked();
-    this.indiceNonChecked();
-
-    this.vocaleOuiChecked();
-    this.vocaleNonChecked();
+    console.log(this.user.assistance);
   }
 
-  getIndice(): Boolean {
+  getIndice(): string {
     if (this.user.assistance == "1111" || this.user.assistance == "1101" || this.user.assistance == "1011" || this.user.assistance == "1001"){
-      return true;
+      return "oui";
     }
     else {
-      return false;
+      return "non";
     }
   }
 
-  indiceOuiChecked(): Boolean {
-    if (this.getIndice()){
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  // indiceOuiChecked(): Boolean {
+  //   if (this.getIndice()){
+  //     return true;
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // }
 
-  indiceNonChecked(): Boolean {
-    if (this.getIndice()){
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
+  // indiceNonChecked(): Boolean {
+  //   if (this.getIndice()){
+  //     return false;
+  //   }
+  //   else {
+  //     return true;
+  //   }
+  // }
 
-  vocaleOuiChecked(): Boolean {
-    if (this.getVocale()){
-      return true;
-    }
-    else {
-      return false;
-    }
-  }
+  // vocaleOuiChecked(): Boolean {
+  //   if (this.getVocale()){
+  //     return true;
+  //   }
+  //   else {
+  //     return false;
+  //   }
+  // }
 
-  vocaleNonChecked(): Boolean {
-    if (this.getVocale()){
-      return false;
-    }
-    else {
-      return true;
-    }
-  }
+  // vocaleNonChecked(): Boolean {
+  //   if (this.getVocale()){
+  //     return false;
+  //   }
+  //   else {
+  //     return true;
+  //   }
+  // }
 
-  getVocale(): Boolean {
+  getVocale(): string {
     if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1011" || this.user.assistance == "1010"){
-      return true;
+      return "oui";
     }
     else {
-      return false;
+      return "non";
     }
   }
 
@@ -187,11 +185,13 @@ export class UserEditComponent implements OnInit {
     if (this.getNewIndice()){
       return "1001";
     }
+    else return this.user.assistance;
   }
 
 
   edit(): void {
     const userToEdit: User = this.userEdit.getRawValue() as User;
+    userToEdit.id = this.id;
     userToEdit.assistance = this.getNewAssistance(userToEdit);
     console.log(userToEdit);
     this.userService.edit(userToEdit);
