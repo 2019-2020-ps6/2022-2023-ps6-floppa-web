@@ -6,6 +6,8 @@ import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Association } from '../models/association.model';
+import { THEME_QUIZ_LIST } from '../mocks/quiz-list.mock';
+import { Theme } from '../models/theme.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -48,10 +50,12 @@ export class QuizService {
     });
   }
 
-  addQuiz(quiz: Quiz): void {
+  addQuiz(quiz: Quiz, theme: Theme): void {
     this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-    QUIZ_LIST.push(quiz);
-    this.quizzes$.next(QUIZ_LIST);
+    theme.quizList.push(quiz);
+    this.quizzes$.next(theme.quizList);
+    //QUIZ_LIST.push(quiz);
+    //this.quizzes$.next(QUIZ_LIST);
   }
 
   setSelectedQuiz(quizId: string): void {
@@ -61,12 +65,13 @@ export class QuizService {
     });
   }
 
-  deleteQuiz(quiz: Quiz): void {
+  deleteQuiz(quiz: Quiz, theme: Theme): void {
     const urlWithId = this.quizUrl + '/' + quiz.id;
     this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-    for (let i = 0; i<QUIZ_LIST.length; i++) {
-      if (QUIZ_LIST[i] === quiz) {
-        QUIZ_LIST.splice(i, 1);
+    let currentQuizList = theme.quizList;
+    for (let i = 0; i<currentQuizList.length; i++) {
+      if (currentQuizList[i] === quiz) {
+        currentQuizList.splice(i, 1);
       }
     }
   }

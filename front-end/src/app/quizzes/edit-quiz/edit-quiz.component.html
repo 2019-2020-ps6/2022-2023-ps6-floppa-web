@@ -1,10 +1,10 @@
 <!-- <button class="back-button" routerLink="/quiz-list/Madeleine-Duo/{{this.theme}}/play">Retour</button> -->
 <button class="back-button" routerLink="/quiz-editor/{{this.theme}}">Retour</button>
 
-<h1>{{quiz.name}}</h1>
+<h1>{{this.quiz.name}}</h1>
 <h3>Questions à choix :</h3>
-<button class="create-button" routerLink = "/question-form/{{this.quiz.id}}" (click)="selectQuiz()">Créer une question à choix +</button>
+<button class="create-button" routerLink = "/question-form/{{this.theme}}/{{this.quiz.id}}" (click)="selectQuiz()">Créer une question à choix +</button>
 <app-question-list [quiz]="quiz"></app-question-list>
 <h3>Associations :</h3>
-<button class= "create-button" routerLink = "/association-form/{{this.quiz.id}}" (click)="selectQuiz()">Créer une association +</button>
+<button class= "create-button" routerLink = "/association-form/{{this.theme}}/{{this.quiz.id}}" (click)="selectQuiz()">Créer une association +</button>
 <app-association-list [quiz]="quiz"></app-association-list>

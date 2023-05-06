@@ -42,9 +42,11 @@ export class ThemeFormComponent implements OnInit {
     if (!this.isThemeFormValid) return;
     const theme = this.themeForm.getRawValue() as Theme;
     theme.id = ThemeFormComponent.counter;
+    theme.quizList = [];
+    theme.coverImage = '';
     ThemeFormComponent.counter++;
     console.log(theme);
     //Change for the Back End since the http push doesn't work.
-    THEME_QUIZ_LIST.push(theme as Theme);
+    THEME_QUIZ_LIST.push(theme);
   }
 }

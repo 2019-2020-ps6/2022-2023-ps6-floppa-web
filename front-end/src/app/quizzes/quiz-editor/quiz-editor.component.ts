@@ -23,11 +23,12 @@ export class QuizEditorComponent implements OnInit {
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
     this.userList = USER_LIST;
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    for (let i = 0; i < QUIZ_LIST.length; i++) {
-      if (QUIZ_LIST[i].theme === THEME_QUIZ_LIST[this.themeIndex].title) {
-        this.quizList = THEME_QUIZ_LIST[this.themeIndex].quizList;
-      }
-    }
+    // for (let i = 0; i < QUIZ_LIST.length; i++) {
+    //   if (QUIZ_LIST[i].theme === THEME_QUIZ_LIST[this.themeIndex].title) {
+    //     this.quizList = THEME_QUIZ_LIST[this.themeIndex].quizList;
+    //   }
+    // }
+    this.quizList = THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex)?.quizList;
   }
 
   ngOnInit(): void {
@@ -38,7 +39,7 @@ export class QuizEditorComponent implements OnInit {
   }
 
   deleteQuiz(quiz: Quiz): void {
-    this.quizService.deleteQuiz(quiz);
+    this.quizService.deleteQuiz(quiz, THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex));
   }
 }
 

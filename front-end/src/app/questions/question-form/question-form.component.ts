@@ -4,7 +4,7 @@ import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-question-form',
@@ -31,7 +31,8 @@ export class QuestionFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.quizId = this.route.snapshot.paramMap.get('id');
-    this.themeId = Number(this.route.snapshot.paramMap.get('themeIndex'));
+    this.themeId = Number(this.route.snapshot.paramMap.get('theme'));
+    console.log(this.quizId + " & " + this.themeId);
   }
 
   get answers(): FormArray {
@@ -60,7 +61,8 @@ export class QuestionFormComponent implements OnInit {
     const question = this.questionForm.getRawValue() as Question;
     this.quizService.addQuestion(this.quizId, question);
     //Change for the Back End since the http push doesn't work.
-    QUIZ_LIST[Number(this.quizId) - 1].questions.push(question);  
+    THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.questions.push(question);
+    //QUIZ_LIST[Number(this.quizId) - 1].questions.push(question);  
     this.initializeQuestionForm();
   }
 }
