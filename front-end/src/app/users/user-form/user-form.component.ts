@@ -14,6 +14,8 @@ import {Location} from '@angular/common';
 export class UserFormComponent implements OnInit {
 
   public userForm: FormGroup;
+  public isSmallText = false;
+  public isBigText = false;
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private location: Location) {
     this.userForm = this.formBuilder.group({
@@ -25,6 +27,16 @@ export class UserFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  makeTextSmall(): void {
+    this.isSmallText = true;
+    this.isBigText = false;
+  }
+
+  makeTextBig(): void {
+    this.isSmallText = false;
+    this.isBigText = true;
   }
 
   addUser(): void {

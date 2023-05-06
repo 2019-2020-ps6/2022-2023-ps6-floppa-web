@@ -19,6 +19,8 @@ export class UserEditComponent implements OnInit {
   public userEdit: FormGroup;
   public user: User;
   public users: User[];
+  public isSmallText = false;
+  public isBigText = false;
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute, private location: Location) {
 
@@ -43,7 +45,16 @@ export class UserEditComponent implements OnInit {
       alzheimerStade: [this.user.alzheimerStade],
       photo: [this.user.photo]
     });
+  }
 
+  makeTextSmall(): void {
+    this.isSmallText = true;
+    this.isBigText = false;
+  }
+
+  makeTextBig(): void {
+    this.isSmallText = false;
+    this.isBigText = true;
   }
 
   edit(): void {

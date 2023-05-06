@@ -82,9 +82,8 @@ export class UserService {
       const urlWithId = this.userUrl + '/' + user.id;
       this.http.put<User>(urlWithId, user, this.httpOptions).subscribe(() => this.retrieveUsers());
       this.users$.next(this.users);
-  }
-
-    console.log(USER_LIST);
+      console.log(this.users);
+    }
   }
 
 }
