@@ -17,10 +17,7 @@ export class ThemeEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeList = [];
-    for(let i = 0; i < THEME_QUIZ_LIST.length; i++) {
-      this.themeList.push(THEME_QUIZ_LIST[i].title);
-    }
+    this.themeList = THEME_QUIZ_LIST.map(theme => theme.title)
   }
 
   goToTheme(themeIndex: number): void {
@@ -59,13 +56,14 @@ export class ThemeEditorComponent implements OnInit {
         return { title: title, description: description}
       }
     }).then((result) => {
-      THEME_QUIZ_LIST.push({
+      THEME_QUIZ_LIST.splice(THEME_QUIZ_LIST.length, 0, {
         id: THEME_QUIZ_LIST.length,
         title: result.value.title,
         description: result.value.description,
         quizList: [],
         coverImage: null
-      })
+      });
+      this.themeList = THEME_QUIZ_LIST.map(theme => theme.title)
     })
   }
 }
