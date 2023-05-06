@@ -5,6 +5,7 @@ import { Quiz } from 'src/models/quiz.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Association } from 'src/models/association.model';
+import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-association-form',
@@ -15,11 +16,11 @@ export class AssociationFormComponent implements OnInit {
 
   quiz!: Quiz;
   public quizId: string;
+  public themeId: number;
 
   public associationForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
-    this.initializeAssociationForm();
   }
 
   private initializeAssociationForm(): void {
@@ -30,7 +31,9 @@ export class AssociationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeAssociationForm();
     this.quizId = this.route.snapshot.paramMap.get('id');
+    this.themeId = Number(this.route.snapshot.paramMap.get('theme'));
   }
 
   get connections(): FormArray {
@@ -62,7 +65,8 @@ export class AssociationFormComponent implements OnInit {
     const association = this.associationForm.getRawValue() as Association;
     this.quizService.addAssociation(this.quizId, association);
     //Change for the Back End since the http push doesn't work.
-    QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
-    this.initializeAssociationForm();
+    THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.associations.push(association);
+    
+    //QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
   }
 }
