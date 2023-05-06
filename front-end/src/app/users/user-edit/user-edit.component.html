@@ -22,21 +22,21 @@
     <br><br>
 
     Indice :
-    <input class="input-custom" type="radio" name="indice" value="oui" > Oui
-    <input class="input-custom" type="radio" name="indice" value="non" > Non
+    <input class="input-custom" type="radio" checked="indiceOuiChecked()" name="indice" value="oui" > Oui
+    <input class="input-custom" type="radio" checked="indiceNonChecked()" name="indice" value="non" > Non
     <br>
 
     Synthèse vocale :
-    <input class="input-custom" type="radio" name="vocale" value="oui" > Oui 
-    <input class="input-custom" type="radio" name="vocale" value="non" > Non
+    <input class="input-custom" type="radio" checked="vocaleOuiChecked()" name="vocale" value="oui" > Oui 
+    <input class="input-custom" type="radio" checked="vocaleNonChecked()" name="vocale" value="non" > Non
     <br>
     
     <label for="alzheimerStade">
       Stade Alzheimer : <br>
       Sélectionez une plage <br>
-      <input class="input-custom" type="radio" name="alzheimerStade" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
+      <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
       <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-      <input class="input-custom" type="radio" name="alzheimerStade" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+      <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
     </label>
   
     <label for="photo">

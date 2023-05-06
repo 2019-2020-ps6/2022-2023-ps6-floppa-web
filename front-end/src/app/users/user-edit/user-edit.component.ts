@@ -45,7 +45,73 @@ export class UserEditComponent implements OnInit {
       alzheimerStade: [this.user.alzheimerStade],
       photo: [this.user.photo]
     });
+
+    this.indiceOuiChecked();
+    this.indiceNonChecked();
+
+    this.vocaleOuiChecked();
+    this.vocaleNonChecked();
   }
+
+ getIndice(): Boolean {
+  if (this.user.assistance == "1111" || this.user.assistance == "1101" || this.user.assistance == "1011" || this.user.assistance == "1001"){
+    return true;
+  }
+  else {
+    return false;
+  }
+ }
+
+ indiceOuiChecked(): Boolean {
+  if (this.getIndice()){
+    return true;
+  }
+  else {
+    return false;
+  }
+ }
+
+ indiceNonChecked(): Boolean {
+  if (this.getIndice()){
+    return false;
+  }
+  else {
+    return true;
+  }
+ }
+
+ vocaleOuiChecked(): Boolean {
+  if (this.getVocale()){
+    return true;
+  }
+  else {
+    return false;
+  }
+ }
+
+ vocaleNonChecked(): Boolean {
+  if (this.getVocale()){
+    return false;
+  }
+  else {
+    return true;
+  }
+ }
+
+ getVocale(): Boolean {
+  if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1011" || this.user.assistance == "1010"){
+    return true;
+  }
+  else {
+    return false;
+  }
+ }
+
+ getPoliceBig(): void {
+  if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1101" || this.user.assistance == "1100"){
+    this.isBigText = true;
+  }
+ }
 
   makeTextSmall(): void {
     this.isSmallText = true;
