@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-quiz-editor',
@@ -39,7 +40,21 @@ export class QuizEditorComponent implements OnInit {
   }
 
   deleteQuiz(quiz: Quiz): void {
-    this.quizService.deleteQuiz(quiz, THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex));
+    Swal.fire({
+      html: `
+        <h2 style="color:white">Êtes-vous sûr de<br>supprimer le Quiz<br>"`+quiz.name+`" ?</h2>
+        <img src="/assets/trash.png" alt="trash">
+      `,
+      background: 'rgb(131,104,96)',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+      focusConfirm: false,
+      confirmButtonColor: 'rgb(150,255,150)'
+    }).then((result) => {
+      if (result.isConfirmed) 
+        this.quizService.deleteQuiz(quiz, THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex));
+    });
   }
 }
 

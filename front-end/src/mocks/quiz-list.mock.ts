@@ -3,17 +3,6 @@ import { Question } from '../models/question.model';
 import { Association, Connection } from '../models/association.model';
 import { Theme } from '../models/theme.model';
 
-// export const THEME_LIST: string[] = [
-//     'Les animaux',
-//     'Géographie',
-//     'Histoire',
-//     'Le sport',
-//     'Cuisine',
-//     'Musique'
-// ]
-
-
-
 export const QUESTION_FELINS_1: Question = {
     id: '1',
     label: 'Qui est le caracal ?',
@@ -194,7 +183,35 @@ export const THEME_QUIZ_LIST: Theme[] = [
         description: null,
         quizList: null,
         coverImage: null
-    }
+    },
+    {
+        id: 2,
+        title: 'Histoire',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 3,
+        title: 'Le sport',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 4,
+        title: 'Cuisine',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 5,
+        title: 'Musique',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
 ]
 
 export const QUIZ_LIST: Quiz[] = [
