@@ -11,6 +11,7 @@ import Swal from 'sweetalert2';
 })
 export class ThemeEditorComponent implements OnInit {
   public themeList: string[];
+  public static counter: number = THEME_QUIZ_LIST.length;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     
@@ -57,12 +58,13 @@ export class ThemeEditorComponent implements OnInit {
       }
     }).then((result) => {
       THEME_QUIZ_LIST.splice(THEME_QUIZ_LIST.length, 0, {
-        id: THEME_QUIZ_LIST.length,
+        id: ThemeEditorComponent.counter,
         title: result.value.title,
         description: result.value.description,
         quizList: [],
         coverImage: null
       });
+      ThemeEditorComponent.counter++
       this.themeList = THEME_QUIZ_LIST.map(theme => theme.title)
     })
   }
