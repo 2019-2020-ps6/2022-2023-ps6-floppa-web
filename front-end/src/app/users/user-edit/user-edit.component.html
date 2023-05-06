@@ -1,9 +1,8 @@
 <img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
-<!-- <ng-container *ngIf="user"> -->
-  <form class="user-edit" [formGroup]="userEdit" (ngSubmit)="ngOnInit()"> <!-- ngif -->
+  <form class="user-edit" [formGroup]="userEdit" (ngSubmit)="ngOnInit()">
     <label for="firstName">
       Prénom : 
-      <input class="input-custom" type="text" id="firstName" value="test" [formControlName]="'firstName'">
+      <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
     </label>
     <br>
   
@@ -46,6 +45,5 @@
       <br>
     </label>
 
-    <button type="submit" class="button-card" [routerLink]="['/user-list']">Valider</button>
+    <button type="submit" class="button-card" (click)="edit()" [routerLink]="['/user-list']">Valider</button>
   </form>
-<!-- </ng-container> -->
