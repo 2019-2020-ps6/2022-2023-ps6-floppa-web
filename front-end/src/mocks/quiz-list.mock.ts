@@ -217,3 +217,4 @@ export const QUIZ_LIST: Quiz[] = [
 ];
 
 THEME_QUIZ_LIST[0].quizList = QUIZ_LIST;
+THEME_QUIZ_LIST[1].quizList = [];
