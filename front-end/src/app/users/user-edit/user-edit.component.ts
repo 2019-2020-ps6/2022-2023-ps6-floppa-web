@@ -53,65 +53,65 @@ export class UserEditComponent implements OnInit {
     this.vocaleNonChecked();
   }
 
- getIndice(): Boolean {
-  if (this.user.assistance == "1111" || this.user.assistance == "1101" || this.user.assistance == "1011" || this.user.assistance == "1001"){
-    return true;
+  getIndice(): Boolean {
+    if (this.user.assistance == "1111" || this.user.assistance == "1101" || this.user.assistance == "1011" || this.user.assistance == "1001"){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
-  else {
-    return false;
-  }
- }
 
- indiceOuiChecked(): Boolean {
-  if (this.getIndice()){
-    return true;
+  indiceOuiChecked(): Boolean {
+    if (this.getIndice()){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
-  else {
-    return false;
-  }
- }
 
- indiceNonChecked(): Boolean {
-  if (this.getIndice()){
-    return false;
+  indiceNonChecked(): Boolean {
+    if (this.getIndice()){
+      return false;
+    }
+    else {
+      return true;
+    }
   }
-  else {
-    return true;
-  }
- }
 
- vocaleOuiChecked(): Boolean {
-  if (this.getVocale()){
-    return true;
+  vocaleOuiChecked(): Boolean {
+    if (this.getVocale()){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
-  else {
-    return false;
-  }
- }
 
- vocaleNonChecked(): Boolean {
-  if (this.getVocale()){
-    return false;
+  vocaleNonChecked(): Boolean {
+    if (this.getVocale()){
+      return false;
+    }
+    else {
+      return true;
+    }
   }
-  else {
-    return true;
-  }
- }
 
- getVocale(): Boolean {
-  if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1011" || this.user.assistance == "1010"){
-    return true;
+  getVocale(): Boolean {
+    if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1011" || this.user.assistance == "1010"){
+      return true;
+    }
+    else {
+      return false;
+    }
   }
-  else {
-    return false;
-  }
- }
 
- getPoliceBig(): void {
-  if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1101" || this.user.assistance == "1100"){
-    this.isBigText = true;
+  getPoliceBig(): void {
+    if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1101" || this.user.assistance == "1100"){
+      this.isBigText = true;
+    }
   }
- }
 
   makeTextSmall(): void {
     this.isSmallText = true;
@@ -123,8 +123,76 @@ export class UserEditComponent implements OnInit {
     this.isBigText = true;
   }
 
+  getNewIndice(): Boolean {
+
+    const radioButtons = document.getElementsByName("indice") as NodeListOf<HTMLInputElement>;
+
+    let indiceValue = "";
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        indiceValue = radioButtons[i].value;
+        break;
+      }
+    }
+
+    if (indiceValue == "oui"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  getNewVocale(): Boolean {
+
+    const radioButtons = document.getElementsByName("vocale") as NodeListOf<HTMLInputElement>;
+
+    let vocaleValue = "";
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        vocaleValue = radioButtons[i].value;
+        break;
+      }
+    }
+
+    if (vocaleValue == "oui"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
+  getNewAssistance(user : User) : string {
+    if (this.isBigText && this.getNewIndice() && this.getNewVocale()){
+      return "1111";
+    }
+
+    if (this.isBigText && this.getNewVocale()){
+      return "1110";
+    }
+    if (this.isBigText && this.getNewIndice()){
+      return "1101";
+    }
+    if (this.getNewVocale() && this.getNewIndice()){
+      return "1011";
+    }
+
+    if (this.isBigText) {
+      return "1100";
+    }
+    if (this.getNewVocale()){
+      return "1010";
+    }
+    if (this.getNewIndice()){
+      return "1001";
+    }
+  }
+
+
   edit(): void {
     const userToEdit: User = this.userEdit.getRawValue() as User;
+    userToEdit.assistance = this.getNewAssistance(userToEdit);
     console.log(userToEdit);
     this.userService.edit(userToEdit);
   }
