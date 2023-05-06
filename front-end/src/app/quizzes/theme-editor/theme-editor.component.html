@@ -11,7 +11,7 @@
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div *ngFor="let theme of themeList, let i=index">
         <div class="theme">
-            <img class="theme-img" alt="theme-{{i+1}}" src="/assets/theme-img/theme-{{i+1}}.jpg" (click)="goToTheme(i)">
+            <img class="theme-img" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="theme-{{i+1}}" src="/assets/theme-img/theme-{{i+1}}.jpg" (click)="goToTheme(i)">
             <h2 style="display: flex; justify-content: center;">{{theme}}</h2>
         </div>
     </div>
