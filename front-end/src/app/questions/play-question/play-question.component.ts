@@ -43,7 +43,6 @@ export class PlayQuestionComponent implements OnInit {
         rdmnb2 = 0;
     }
     let answers = document.getElementsByClassName('answer');
-    let answerText = document.getElementsByClassName('answer-text');
     for (let i = 0; i < answers.length; i++) {
       let img = answers[i] as HTMLImageElement;
 
