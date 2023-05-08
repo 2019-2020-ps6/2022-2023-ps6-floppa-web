@@ -37,7 +37,7 @@ const routes: Routes = [
     {path: 'theme-list/:user/:type', component: ThemeListComponent},
     {path: 'user-edit/:id', component: UserEditComponent},
     {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
-    {path: 'uer-form', component: UserFormComponent},
+    {path: 'user-form', component: UserFormComponent},
     {path:'user-management', component: UserManagementComponent},
     {path:'user-stats/:user', component: UserStatsComponent},
     {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent},
