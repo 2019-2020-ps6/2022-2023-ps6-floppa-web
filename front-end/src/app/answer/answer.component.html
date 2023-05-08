@@ -6,8 +6,15 @@
             <span>Question {{numQuestion}}/{{quiz.questions.length + quiz.associations.length}}</span>
         </div>
     </div>
-    
-    <h3 style="display:flex; align-self: center; float: right; margin-right: 30px;">Utilisateur</h3>
+    <div style="display: flex; flex-direction: row;">
+        <h3 style="display:flex; align-self: center; float: right; margin-right: 30px;">{{user.firstName}} {{user.lastName}}</h3>
+        <div *ngIf="user.photo!==''">
+            <img src="{{user.photo}}" alt="user-img" id="user-img">
+        </div>
+        <div *ngIf="user.photo===''">
+            <img src="/assets/users/user.png" alt="user-img">
+        </div>
+    </div>
 </div>
 <div *ngIf="assistance === 1000">
     <div class="answer-text" *ngIf="isCorrect">

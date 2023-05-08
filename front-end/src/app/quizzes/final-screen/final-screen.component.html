@@ -1,7 +1,18 @@
-<div style="display: flex; align-items: center;">
-    <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
-    <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: flex-start; margin-top: 20px;">
-        <h4>{{quiz.name}}</h4>
+<div style="display: flex; flex-direction: row; margin-top: 20px; justify-content: space-between;">
+    <div style="display:flex; flex-direction: row;">
+        <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+        <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: center;">
+            <h4>{{quiz.name}}</h4>
+        </div>
+    </div>
+    <div style="display: flex; flex-direction: row;">
+        <h3 style="display:flex; align-self: center; float: right; margin-right: 30px;">{{user.firstName}} {{user.lastName}}</h3>
+        <div *ngIf="user.photo!==''">
+            <img src="{{user.photo}}" alt="user-img" id="user-img">
+        </div>
+        <div *ngIf="user.photo===''">
+            <img src="/assets/users/user.png" alt="user-img">
+        </div>
     </div>
 </div>
 
@@ -12,8 +23,8 @@
 </div>
 
 <div id="goHome">
-    <div style="display: flex; flex-direction: column; align-items: center;">
-      <img id="home" src="/assets/home.png" alt="home" (click)="goHome()">
+    <div style="display: flex; flex-direction: column; align-items: center;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+      <img id="home" src="/assets/home.png" alt="home">
       <h4 style="margin-top: 10px;">Accueil</h4>
     </div>
   </div>
