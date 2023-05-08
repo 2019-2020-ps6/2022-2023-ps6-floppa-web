@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { QuizComponent } from './quizzes/quiz/quiz.component';
-import { HeaderComponent } from './header/header.component';
 import { QuizFormComponent } from './quizzes/quiz-form/quiz-form.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -43,7 +42,6 @@ import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component
     AppComponent,
     QuizListComponent,
     QuizComponent,
-    HeaderComponent,
     QuizFormComponent,
     EditQuizComponent,
     QuestionListComponent,
