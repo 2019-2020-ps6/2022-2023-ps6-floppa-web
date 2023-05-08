@@ -55,6 +55,7 @@ import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
+    UserEditComponent,
     PlayAssociationComponent,
     AssociationListComponent,
     AssociationComponent,
