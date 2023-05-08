@@ -5,7 +5,7 @@ import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
-import { THEME_LIST } from 'src/mocks/quiz-list.mock';
+import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-theme-list',
@@ -18,13 +18,19 @@ export class ThemeListComponent implements OnInit {
   public user: User;
   public username: string;
   public themeList: string[];
+  public type: string;
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
+    this.type = this.route.snapshot.paramMap.get("type");
     this.userList = USER_LIST;
     this.getUser(this.username);
-    this.themeList = THEME_LIST;
+
+    this.themeList = [];
     
+    for(let i = 0; i < THEME_QUIZ_LIST.length; i++) {
+      this.themeList.push(THEME_QUIZ_LIST[i].title);
+    }
   }
 
   ngOnInit(): void {
@@ -39,7 +45,7 @@ export class ThemeListComponent implements OnInit {
   }
 
   goToTheme(themeIndex: number): void {
-    this.router.navigate(["/quiz-list/" + this.user.firstName + "-" + this.user.lastName + "/" + themeIndex]);
+    this.router.navigate(["/quiz-list/" + this.user.firstName + "-" + this.user.lastName + "/" + themeIndex + "/" + this.type]);
   }
 }
 

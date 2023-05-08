@@ -15,9 +15,12 @@
             <img id="sound-img" src="/assets/sound.png" alt="sound" (click)="useSound()">
             <h2 id="sound-text">Ecouter la question</h2>
         </div>
-        <h3>Utilisateur</h3> <!--à compléter avec user-->
+        <div style="display: flex; flex-direction: row; justify-content: flex-end;">
+            <h1 style="display: flex; justify-content: flex-end;">{{user.firstName}} {{user.lastName}}</h1>
+            <img style="display: flex; justify-content: flex-end;" alt="user-img" src="{{user.photo}}">
+        </div>
     </div>
-    <app-play-association *ngIf="numQuestion > quiz.questions.length" (answer)="checkAssociation()"></app-play-association>
+    <app-play-association *ngIf="numQuestion > quiz.questions.length" (answer)="checkAssociation()" [numAssociation] = "numQuestion - quiz.questions.length - 1"></app-play-association>
     <app-play-question *ngIf="numQuestion <= quiz.questions.length" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance"></app-play-question>
 </div>
   

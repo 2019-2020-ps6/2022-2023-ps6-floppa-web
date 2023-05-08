@@ -4,5 +4,13 @@ export interface User {
     lastName: string;
     alzheimerStade: string;
     assistance: string;
-    photo: String;
+    photo: string;
+    quizSessions: { [idQuiz: string]: QuizSession };
+}
+
+export interface QuizSession {
+    date: number;
+    quizId: string;
+    answers: boolean[];
+    timePerQuestion: number[];
 }

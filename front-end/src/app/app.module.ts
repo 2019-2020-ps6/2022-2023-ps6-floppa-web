@@ -25,12 +25,19 @@ import { AssociationListComponent } from './associations/association-list/associ
 import { AssociationComponent } from './associations/association/association.component';
 import { AssociationFormComponent } from './associations/association-form/association-form.component';
 import { PlayAssociationComponent } from './quizzes/play-association/play-association.component';
-import { ConnectionComponent } from './quizzes/connection/connection.component';
 import { PlayQuestionComponent } from './questions/play-question/play-question.component';
 import { AnswerComponent } from './answer/answer.component';
 import { HomeProfilChoiceComponent } from './home-profil-choice/home-profil-choice.component';
 import { CommonModule } from '@angular/common';
 import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
+import { UserManagementComponent } from './caregiver/user-management/user-management.component';
+import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
+import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
+import { ChartsModule } from 'ng2-charts';
+import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
+import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
+import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
+import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +60,6 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
     AssociationListComponent,
     AssociationComponent,
     AssociationFormComponent,
-    ConnectionComponent,
     UserEditComponent,
     AssociationListComponent,
     AssociationComponent,
@@ -61,13 +67,21 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
     PlayQuestionComponent,
     AnswerComponent,
     HomeProfilChoiceComponent,
-    ThemeListComponent
+    ThemeListComponent,
+    UserManagementComponent,
+    UserStatsComponent,
+    UserQuizStatsComponent,
+    UserStatsMenuComponent,
+    ThemeEditorComponent,
+    ThemeFormComponent,
+    QuizEditorComponent
   ],
   imports: [
     BrowserModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ChartsModule
   ],
   providers: [QuizService],
   bootstrap: [AppComponent]

@@ -10,10 +10,16 @@ import { User } from 'src/models/user.model';
 export class QuizComponent implements OnInit {
 
   @Input()
+  themeIndex: number;
+
+  @Input()
   quiz: Quiz;
 
   @Input()
   user: User;
+
+  @Input()
+  type: string;
 
   @Output()
   startQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
@@ -30,8 +36,19 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  onQuizClicked(): void {
+    if(this.type == 'play')
+    {
+        this.start();
+    } 
+    else if(this.type == 'stats')
+    {
+        this.goToQuizStats();
+    }
+  }
+
   start(): void {
-    document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.assistance
+    document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.id
   }
 
   edit(): void {
@@ -40,5 +57,9 @@ export class QuizComponent implements OnInit {
 
   delete(): void {
     this.deleteQuiz.emit(this.quiz);
+  }
+
+  goToQuizStats(): void {
+    document.location.href = "/user-quiz-stats/" + this.user.firstName + "-" + this.user.lastName + "/" + this.quiz.id;
   }
 }
