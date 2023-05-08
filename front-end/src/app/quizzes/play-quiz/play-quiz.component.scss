@@ -1,7 +1,7 @@
 #quiz-img {
-    max-width: 166px;
-    max-height: 166px;
-    border-radius: 54px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 30px;
 }
   
 h4 {
@@ -28,12 +28,17 @@ app-question-choice {
 }
 
 #hint {
-    width: 143px;
-    height: 206px;
+    width: auto;
+    max-height: 150px;
 }
 
 #sound-img {
-    max-width: 200px;
-    max-height: 200px;
-    margin-left: 40px;
+    max-width: 150px;
+    max-height: 150px;
+}
+
+#user-img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-left: 10px;
 }
