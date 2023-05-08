@@ -6,7 +6,6 @@
         <img style="display: flex; justify-content: flex-end;" alt="user-img" src="{{user.photo}}">
     </div>
 </div>
-<app-quiz-form></app-quiz-form>
 <div class="quiz-list">
     <div class="quiz" *ngFor="let quiz of quizList">
         <ng-container *ngIf="quiz.users.length===0 || quiz.users.includes(user.id)">

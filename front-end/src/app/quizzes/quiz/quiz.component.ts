@@ -10,6 +10,9 @@ import { User } from 'src/models/user.model';
 export class QuizComponent implements OnInit {
 
   @Input()
+  themeIndex: number;
+
+  @Input()
   quiz: Quiz;
 
   @Input()
@@ -31,6 +34,17 @@ export class QuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+  }
+
+  onQuizClicked(): void {
+    if(this.type == 'play')
+    {
+        this.start();
+    } 
+    else if(this.type == 'stats')
+    {
+        this.goToQuizStats();
+    }
   }
 
   start(): void {

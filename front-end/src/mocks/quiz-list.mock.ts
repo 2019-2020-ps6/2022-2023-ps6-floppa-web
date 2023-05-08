@@ -1,16 +1,7 @@
 import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { Association, Connection } from '../models/association.model';
-
-export const THEME_LIST: string[] = [
-    'Les animaux',
-    'Géographie',
-    'Histoire',
-    'Le sport',
-    'Cuisine',
-    'Musique'
-]
-
+import { Theme } from '../models/theme.model';
 
 export const QUESTION_FELINS_1: Question = {
     id: '1',
@@ -178,11 +169,56 @@ export const ASSOCIATION_FELINS_3: Association = {
 };
 
 
+export const THEME_QUIZ_LIST: Theme[] = [
+    {
+        id: 0,
+        title: 'Les animaux', 
+        description: null, 
+        quizList: null, 
+        coverImage: null
+    },
+    {
+        id: 1,
+        title: 'Géographie',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 2,
+        title: 'Histoire',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 3,
+        title: 'Le sport',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 4,
+        title: 'Cuisine',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+    {
+        id: 5,
+        title: 'Musique',
+        description: null,
+        quizList: null,
+        coverImage: null
+    },
+]
+
 export const QUIZ_LIST: Quiz[] = [
     {
         id: '1',
         name: 'Les félins',
-        theme: THEME_LIST[0],
+        theme: THEME_QUIZ_LIST[0].title,
         questions: [QUESTION_FELINS_1, QUESTION_FELINS_2, QUESTION_FELINS_3, QUESTION_FELINS_4, QUESTION_FELINS_5],
         associations: [ASSOCIATION_FELINS_1, ASSOCIATION_FELINS_2, ASSOCIATION_FELINS_3],
         users: []
@@ -190,9 +226,12 @@ export const QUIZ_LIST: Quiz[] = [
     {
         id: '2',
         name: 'Les oiseaux',
-        theme: THEME_LIST[0],
+        theme: THEME_QUIZ_LIST[0].title,
         questions: [],
         associations: [],
         users: ["1","3"]
     }
 ];
+
+THEME_QUIZ_LIST[0].quizList = QUIZ_LIST;
+THEME_QUIZ_LIST[1].quizList = [];
