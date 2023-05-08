@@ -3,7 +3,7 @@
         <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
         <h2>Retour</h2>
     </div>
-    <div class="button-div" routerLink="/user-edit">
+    <div class="button-div" routerLink="/user-form">
         <img src="/assets/add.png" alt="add">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Ajouter un utilisateur dans la liste</h3>
     </div>
@@ -13,11 +13,14 @@
     </div>
 </div>
 <h1 style="text-align: center;">Sélectionner un patient</h1>
-<div style="display: flex; flex-direction: row;">
-    <div *ngFor="let user of userList">
-        <div class="user">
+<div class="user-list">
+    <div *ngFor="let user of userList" class="user">
+        <div *ngIf="user.photo!==''">
             <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
-            <h1>{{user.firstName}} {{user.lastName}}</h1>
         </div>
+        <div *ngIf="user.photo===''">
+            <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/user-stats-menu/{{user.id}}">
+        </div>
+        <h1>{{user.firstName}} {{user.lastName}}</h1>
     </div>
 </div>
