@@ -13,41 +13,41 @@
     <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
   </label>
   <br>
-
-  Paramètres de jeu : <br>
-
-  Police d'écriture : <!--petit moyen gros--><br>
-    <button>Petit</button>
-    <button>Moyen</button>
-    <button>Gros</button>
-
-    <span [ngClass]="{'text-big': true, 'text-small': false}"> My text </span>
   <br>
+
+  Paramètres de jeu : <br><br>
+
+  Police d'écriture : <br>
+  <button class="input-custom" (click)="makeTextSmall()">Moyen</button>
+  <button class="input-custom" (click)="makeTextBig()">Gros</button>
+  
+  <span [ngClass]="{'text-big': isBigText, 'text-small': isSmallText}"> My text </span>
+  <br><br>
 
   Indice :
-    <input type="radio" name="indice" value="oui" > Oui
-    <input type="radio" name="indice" value="non" > Non
-  <br>
+    <input class="input-custom" type="radio" name="indice" value="oui" > Oui
+    <input class="input-custom" type="radio" name="indice" value="non" > Non
+  <br><br>
 
   Synthèse vocale :
-    <input type="radio" name="vocale" value="oui" > Oui 
-    <input type="radio" name="vocale" value="non" > Non
-  <br>
+    <input class="input-custom" type="radio" name="vocale" value="oui" > Oui 
+    <input class="input-custom" type="radio" name="vocale" value="non" > Non
+  <br><br>
 
   <label for="alzheimerStade">
-    Stade Alzheimer : <br>
-    Sélectionez une plage <br>
-    <input type="radio" name="alzheimerStade" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
-    <input type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-    <input type="radio" name="alzheimerStade" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+    Stade Alzheimer :  Sélectionez une plage <br>
+    <input class="input-custom" type="radio" name="alzheimerStade" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
+    <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
+    <input class="input-custom" type="radio" name="alzheimerStade" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
   </label>
+  <br><br>
 
   <label for="photo">
     Photo :<br>
     Cliquer sur l'icone pour ajouter une photo
-    <input type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
-    <br>
+    <input class="input-custom" type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
   </label>
+  <br><br>
 
   <button type="submit" class="button-card" (click)="addUser()" [routerLink]="['/user-list']">Valider</button>
 </form>
