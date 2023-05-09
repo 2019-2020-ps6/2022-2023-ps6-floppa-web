@@ -5,7 +5,12 @@
     </div>
     <div style="display: flex; flex-direction: row; align-items: center;">
         <h2 style="color:black">{{user.firstName}} {{user.lastName}}</h2>
-        <img src="{{user.photo}}" alt="user-img" id="user-img">
+        <div *ngIf="user.photo!==''">
+            <img src="{{user.photo}}" alt="user-img" id="user-img">
+        </div>
+        <div *ngIf="user.photo===''">
+            <img src="/assets/users/user.png" alt="user-img" id="user-img">
+        </div>
     </div>
 </div>
 <hr>

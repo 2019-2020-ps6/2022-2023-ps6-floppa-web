@@ -110,8 +110,11 @@ export class UserFormComponent implements OnInit {
   addUser(): void {
     const userToCreate: User = this.userForm.getRawValue() as User;
     userToCreate.assistance = this.getAssistance(userToCreate);
+    userToCreate.id = String(USER_LIST.length + 1);
+    userToCreate.quizSessions = {};
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
+    console.log(USER_LIST);
   }
 
   goBack():void {
