@@ -1,4 +1,18 @@
-<img id="back" style="margin:20px" src="/assets/back.png" alt="back" (click)="goBack()">
+<div class="top">
+    <div style="display: flex; flex-direction: column;">
+        <img id="back" style="margin:20px" src="/assets/back.png" alt="back" (click)="goBack()">
+        <h2>Retour</h2>
+    </div>
+    <div>
+        <h2>{{user.firstName}} {{user.lastName}}</h2>
+        <div *ngIf="user.photo !==''">
+            <img src="{{user.photo}}" alt="user-img">
+        </div>
+        <div *ngIf="user.photo===''">
+            <img src="/assets/users/user.png" alt="user-img">
+        </div>
+    </div>
+</div>
 
 <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
 <h2 id="quiz-name">{{quiz.name}}</h2>

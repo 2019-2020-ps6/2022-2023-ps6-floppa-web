@@ -229,7 +229,7 @@ export const QUIZ_LIST: Quiz[] = [
         theme: THEME_QUIZ_LIST[0].title,
         questions: [],
         associations: [],
-        users: []
+        users: ["1","3"]
     }
 ];
 

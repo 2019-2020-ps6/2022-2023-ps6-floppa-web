@@ -43,10 +43,8 @@ export class PlayQuestionComponent implements OnInit {
         rdmnb2 = 0;
     }
     let answers = document.getElementsByClassName('answer');
-    let answerText = document.getElementsByClassName('answer-text');
     for (let i = 0; i < answers.length; i++) {
       let img = answers[i] as HTMLImageElement;
-      let txt = answerText[i] as HTMLElement;
 
       if (this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
         rdmnb1++;
@@ -54,7 +52,6 @@ export class PlayQuestionComponent implements OnInit {
       }
       else if (i === rdmnb1 || i === rdmnb2) {
         img.src = "/assets/void.png";
-        txt.textContent = "";
       }
     }
   }

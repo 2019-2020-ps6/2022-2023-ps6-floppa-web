@@ -1,33 +1,38 @@
 @import '../../../styles/card.scss';
 
 #quiz-img {
-    max-width: 166px;
-    max-height: 166px;
-    margin-top: 10px;
-    border-radius: 54px;
-    display: inline-block;
+  max-width: 150px;
+  max-height: 150px;
+  margin-top: 10px;
+  border-radius: 25px;
+  display: inline-block;
 }
 
 #result {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: rgb(7, 211, 7);
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: rgb(7, 211, 7);
 }
 
 #home {
-    height: 148px;
-    width: 190px;
-  }
+  height: 148px;
+  width: 190px;
+}
   
-  #goHome {
-    position: fixed;
-    bottom: 0;
-    right: 0;
-    margin: 50px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
+#goHome {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  margin: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#user-img {
+  max-width: 150px;
+  max-height: 150px;
+}
