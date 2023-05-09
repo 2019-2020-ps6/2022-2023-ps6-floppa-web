@@ -1,53 +1,80 @@
-<img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
-<h2>Nouvel utilisateur</h2>
+<div class="top">
+  <div id="back-div">
+    <img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
+    <h2>Annuler</h2>
+  </div>
+  <h1>Nouvel utilisateur</h1>
+  <div></div>
+</div>
+<hr>
 
-<form class="user-form" [formGroup]="userForm" (ngSubmit) = "addUser()">
-  <label for="firstName">
-    Prénom : 
-    <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
-  </label>
-  <br>
+<form class="user-form" [formGroup]="userForm" (ngSubmit)="ngOnInit()">
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; flex-direction: column; flex-basis: 50%;">
+      <br>
+      <label for="lastName">
+        <span class="form-text">Nom :</span> 
+        <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+      </label>
+      <br>
+      <label for="firstName">
+        <span class="form-text">Prénom :</span>
+        <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+      </label>
+    
+      <br>
+    
+      <span class="form-text">Paramètres de jeu :</span><br>
+    
+      <label for="indice">
+      <span class="form-text">Indice :</span>
+      <input class="input-custom" type="radio" name="indice" value="oui"> Oui
+      <input class="input-custom" type="radio" name="indice" value="non"> Non
+      </label>
+      <br>
+    
+      <label for="vocale">
+      <span class="form-text">Synthèse vocale :</span>
+      <input class="input-custom" type="radio" name="vocale" value="oui"> Oui 
+      <input class="input-custom" type="radio" name="vocale" value="non"> Non
+      </label>
+      <br>
 
-  <label for="lastName">
-    Nom : 
-    <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
-  </label>
-  <br>
-  <br>
+      <label for="visual">
+        <span class="form-text">Aide visuelle :</span>
+        <input class="input-custom" type="radio" name="visual" value="oui"> Oui 
+        <input class="input-custom" type="radio" name="visual" value="non"> Non
+        </label>
+        <br>
+      
+      <label for="alzheimerStade">
+        <span class="form-text">Stade Alzheimer :</span> <br>
+        Sélectionnez une plage <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+      </label>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; align-items: center; flex-basis: 50%;">
+      <br>
+      <label for="photo">
+        <span class="form-text">Photo :</span><br>
+        <span style="color:gray">Cliquer sur l'icone pour ajouter une photo</span>
+        <br>
+        <div style="display: flex; justify-content: center; align-items: center;">
+          <img src="/assets/users/user.png" alt="user-img" id="user-img">
+        </div>
+        <br>
+        <input class="input-custom" type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
+        <br>
+      </label>
+      <button type="submit" class="create-user-button" (click)="addUser()" routerLink="/user-management">Créer utilisateur</button>
+    </div>
+    
 
-  Paramètres de jeu : <br><br>
-
-  Police d'écriture : <br>
-  <button class="input-custom" (click)="makeTextSmall()">Moyen</button>
-  <button class="input-custom" (click)="makeTextBig()">Gros</button>
+  </div>
   
-  <span [ngClass]="{'text-big': isBigText, 'text-small': isSmallText}"> My text </span>
-  <br><br>
-
-  Indice :
-    <input class="input-custom" type="radio" name="indice" value="oui" > Oui
-    <input class="input-custom" type="radio" name="indice" value="non" > Non
-  <br><br>
-
-  Synthèse vocale :
-    <input class="input-custom" type="radio" name="vocale" value="oui" > Oui 
-    <input class="input-custom" type="radio" name="vocale" value="non" > Non
-  <br><br>
-
-  <label for="alzheimerStade">
-    Stade Alzheimer :  Sélectionez une plage <br>
-    <input class="input-custom" type="radio" name="alzheimerStade" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
-    <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-    <input class="input-custom" type="radio" name="alzheimerStade" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
-  </label>
-  <br><br>
-
-  <label for="photo">
-    Photo :<br>
-    Cliquer sur l'icone pour ajouter une photo
-    <input class="input-custom" type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
-  </label>
-  <br><br>
-
-  <button type="submit" class="button-card" (click)="addUser()" [routerLink]="['/user-management']">Valider</button>
 </form>
+
+

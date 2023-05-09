@@ -109,8 +109,8 @@ export class UserFormComponent implements OnInit {
 
   addUser(): void {
     const userToCreate: User = this.userForm.getRawValue() as User;
-    console.log(userToCreate);
     userToCreate.assistance = this.getAssistance(userToCreate);
+    console.log(userToCreate);
     this.userService.addUser(userToCreate);
   }
 
