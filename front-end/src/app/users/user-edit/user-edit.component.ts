@@ -21,7 +21,6 @@ export class UserEditComponent implements OnInit {
   public users: User[];
   public isSmallText = false;
   public isBigText = false;
-  public id = this.route.snapshot.paramMap.get('id');
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute, private location: Location) {
 
@@ -34,20 +33,19 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.user = this.userService.users$.getValue()[parseInt(this.id)-1];
-    console.log(parseInt(this.id)-1);
-
-    console.log(this.user);
+    let id = this.route.snapshot.paramMap.get('id');
+    this.user = this.userService.users$.getValue()[parseInt(id)-1];
 
     this.userEdit = this.formBuilder.group({
       firstName: [this.user.firstName],
       lastName: [this.user.lastName],
       indice: [this.getIndice()],
       vocale: [this.getVocale()],
+      visual: [this.getVisual()],
       alzheimerStade: [this.user.alzheimerStade],
-      photo: [this.user.photo]
+      photo: ['']
     });
-
+    console.log(this.getVisual());
     console.log(this.user.assistance);
   }
 
@@ -59,7 +57,6 @@ export class UserEditComponent implements OnInit {
       return "non";
     }
   }
-
   // indiceOuiChecked(): Boolean {
   //   if (this.getIndice()){
   //     return true;
@@ -105,9 +102,12 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  getPoliceBig(): void {
+  getVisual(): string {
     if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1101" || this.user.assistance == "1100"){
-      this.isBigText = true;
+      return "oui";
+    }
+    else {
+      return "non";
     }
   }
 
@@ -161,22 +161,41 @@ export class UserEditComponent implements OnInit {
     }
   }
 
+  getNewVisual(): boolean {
+    const radioButtons = document.getElementsByName("visual") as NodeListOf<HTMLInputElement>;
+
+    let visualValue = "";
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        visualValue = radioButtons[i].value;
+        break;
+      }
+    }
+
+    if (visualValue == "oui"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   getNewAssistance(user : User) : string {
-    if (this.isBigText && this.getNewIndice() && this.getNewVocale()){
+    if (this.getNewVisual() && this.getNewIndice() && this.getNewVocale()){
       return "1111";
     }
 
-    if (this.isBigText && this.getNewVocale()){
+    if (this.getNewVisual() && this.getNewVocale()){
       return "1110";
     }
-    if (this.isBigText && this.getNewIndice()){
+    if (this.getNewVisual() && this.getNewIndice()){
       return "1101";
     }
     if (this.getNewVocale() && this.getNewIndice()){
       return "1011";
     }
 
-    if (this.isBigText) {
+    if (this.getNewVisual()) {
       return "1100";
     }
     if (this.getNewVocale()){
@@ -191,7 +210,7 @@ export class UserEditComponent implements OnInit {
 
   edit(): void {
     const userToEdit: User = this.userEdit.getRawValue() as User;
-    userToEdit.id = this.id;
+    userToEdit.id = this.user.id;
     userToEdit.assistance = this.getNewAssistance(userToEdit);
     console.log(userToEdit);
     this.userService.edit(userToEdit);
