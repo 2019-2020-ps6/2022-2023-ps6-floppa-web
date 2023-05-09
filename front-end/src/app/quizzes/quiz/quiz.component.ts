@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter} from '@angular/core';
 import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -30,7 +31,7 @@ export class QuizComponent implements OnInit {
   @Output()
   deleteQuiz: EventEmitter<Quiz> = new EventEmitter<Quiz>();
 
-  constructor() {
+  constructor(private router: Router,) {
   }
 
   ngOnInit(): void {
@@ -48,7 +49,7 @@ export class QuizComponent implements OnInit {
   }
 
   start(): void {
-    document.location.href = "/start-quiz/" + this.quiz.id + "/" + this.user.id
+    this.router.navigate(["/start-quiz/" + this.quiz.id + "/" + this.user.id]);
   }
 
   edit(): void {
@@ -60,6 +61,6 @@ export class QuizComponent implements OnInit {
   }
 
   goToQuizStats(): void {
-    document.location.href = "/user-quiz-stats/" + this.user.firstName + "-" + this.user.lastName + "/" + this.quiz.id;
+    this.router.navigate([document.location.href = "/user-quiz-stats/" + this.user.firstName + "-" + this.user.lastName + "/" + this.quiz.id]);
   }
 }

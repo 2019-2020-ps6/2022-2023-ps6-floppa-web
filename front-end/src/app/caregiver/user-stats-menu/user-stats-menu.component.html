@@ -1,11 +1,11 @@
 <div class="top">
-    <div>
-        <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/user-management">
+    <div style="display: flex; flex-direction: row; align-items: center;">
+        <img id="back" src="/assets/back.png" alt="back" routerLink="/user-management">
         <h2>Retour</h2>
     </div>
-    <div>
-        <img src="{{user.photo}}" alt="user-img">
-        <h3>{{user.firstName}} {{user.lastName}}</h3>
+    <div style="display: flex; flex-direction: row; align-items: center;">
+        <h2 style="color:black">{{user.firstName}} {{user.lastName}}</h2>
+        <img src="{{user.photo}}" alt="user-img" id="user-img">
     </div>
 </div>
 <hr>
