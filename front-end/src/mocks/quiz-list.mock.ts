@@ -10,18 +10,22 @@ export const QUESTION_FELINS_1: Question = {
         {
             value: 'Capy',
             isCorrect: false,
+            img:"/assets/quiz-1/question-1/img-1.jpg"
         },
         {
             value: 'Dino',
             isCorrect: false,
+            img:"/assets/quiz-1/question-1/img-2.jpg"
         },
         {
             value: 'Floppa',
             isCorrect: true,
+            img:"/assets/quiz-1/question-1/img-3.jpg"
         },
         {
             value: 'Platypus',
             isCorrect: false,
+            img:"/assets/quiz-1/question-1/img-4.jpg"
         }
     ]
 };
@@ -33,18 +37,22 @@ export const QUESTION_FELINS_2: Question = {
         {
             value: 'Tigre',
             isCorrect: true,
+            img:"/assets/quiz-1/question-2/img-1.jpg"
         },
         {
             value: 'Orvet',
             isCorrect: false,
+            img:"/assets/quiz-1/question-2/img-2.jpg"
         },
         {
             value: "Panda-Roux",
             isCorrect: false,
+            img:"/assets/quiz-1/question-2/img-3.jpg"
         },
         {
             value: 'Crocodile',
             isCorrect: false,
+            img:"/assets/quiz-1/question-2/img-4.jpg"
         }
     ]
 };
@@ -56,14 +64,17 @@ export const QUESTION_FELINS_3: Question = {
         {
             value: 'Lion',
             isCorrect: false,
+            img:"/assets/quiz-1/question-3/img-1.jpg"
         },
         {
             value: 'Guépard',
             isCorrect: true,
+            img:"/assets/quiz-1/question-3/img-2.jpg"
         },
         {
             value: "Chat",
             isCorrect: false,
+            img:"/assets/quiz-1/question-3/img-3.jpg"
         },
     ]
 };
@@ -75,10 +86,12 @@ export const QUESTION_FELINS_4: Question = {
         {
             value: 'Chat',
             isCorrect: false,
+            img:"/assets/quiz-1/question-4/img-1.jpg"
         },
         {
             value: 'Chien',
             isCorrect: true,
+            img:"/assets/quiz-1/question-4/img-2.jpg"
         },
     ]
 };
@@ -90,18 +103,22 @@ export const QUESTION_FELINS_5: Question = {
         {
             value: 'Méduse',
             isCorrect: false,
+            img:"/assets/quiz-1/question-5/img-1.jpg"
         },
         {
             value: 'Taureau',
             isCorrect: false,
+            img:"/assets/quiz-1/question-5/img-2.jpg"
         },
         {
             value: "Dragon",
             isCorrect: false,
+            img:"/assets/quiz-1/question-5/img-3.jpg"
         },
         {
             value: 'Chat',
             isCorrect: true,
+            img:"/assets/quiz-1/question-5/img-4.jpg"
         }
     ]
 };
