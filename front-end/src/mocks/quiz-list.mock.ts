@@ -109,42 +109,58 @@ export const QUESTION_FELINS_5: Question = {
 
 export const CONNECTION_FELIN_1: Connection = {
     valueToConnect: 'Tigre',
-    valueToBeConnected: 'grrrrr'
+    valueToBeConnected: 'grrrrr',
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_2: Connection = {
     valueToConnect: 'Chat',
-    valueToBeConnected: 'meow'
+    valueToBeConnected: 'meow',
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_3: Connection = {
     valueToConnect: 'Lynx',
-    valueToBeConnected: null
+    valueToBeConnected: null,
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_5: Connection = {
     valueToConnect: 'Chien',
-    valueToBeConnected: 'Woaf'
+    valueToBeConnected: 'Woaf',
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_6: Connection = {
     valueToConnect: 'Poussin',
-    valueToBeConnected: 'Pioupiou'
+    valueToBeConnected: 'Pioupiou',
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_7: Connection = {
     valueToConnect: 'Vache',
-    valueToBeConnected: 'Meuuuu'
+    valueToBeConnected: 'Meuuuu',
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_8: Connection = {
     valueToConnect: 'Cheval',
-    valueToBeConnected: null
+    valueToBeConnected: null,
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_4: Connection = {
     valueToConnect: 'A connecter',
-    valueToBeConnected: 'A être connecté'
+    valueToBeConnected: 'A être connecté',
+    imageCoverToConnect: null,
+    imageCoverToBeConnected: null
 }
 
 export const ASSOCIATION_FELINS_2: Association = {

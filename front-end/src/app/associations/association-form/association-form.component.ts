@@ -5,7 +5,6 @@ import { Quiz } from 'src/models/quiz.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Association } from 'src/models/association.model';
-import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-association-form',
@@ -44,6 +43,8 @@ export class AssociationFormComponent implements OnInit {
     return this.formBuilder.group({
       valueToConnect: '',
       valueToBeConnected: '',
+      coverImageToConnect: '',
+      coverImageToBeConnected: ''
     });
   }
 
@@ -64,9 +65,9 @@ export class AssociationFormComponent implements OnInit {
     if (!this.isAssociationFormValid) return;
     const association = this.associationForm.getRawValue() as Association;
     this.quizService.addAssociation(this.quizId, association);
-    //Change for the Back End since the http push doesn't work.
-    THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.associations.push(association);
-    
-    //QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
+    //Change for the Back End since the http push doesn't work
+
+    QUIZ_LIST.find(quiz => quiz.id === this.quizId)?.associations.push(association);
+    console.log(association);
   }
 }
