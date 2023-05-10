@@ -57,21 +57,20 @@
     </div>
     
     <div style="display: flex; flex-direction: column; align-items: center; flex-basis: 50%;">
+      <br>
       <label for="photo">
         <span class="form-text">Photo :</span><br>
         <span style="color:gray">Cliquer sur l'icone pour ajouter une photo</span>
-        <div *ngIf="user.photo!==''" style="display: flex; justify-content: center; align-items: center;">
-          <img src="{{user.photo}}" alt="user-img" id="user-img">
+        <br>
+        <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
+          <img src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" id="user-img">
+          <br>
+          <input class="input-custom" type="string" id="profil" name="profil" [formControlName]="'photo'" placeholder="URL de l'image">
         </div>
-        <div *ngIf="user.photo===''" style="display: flex; justify-content: center; align-items: center;">
-          <img src="/assets/users/user.png" alt="user-img" id="user-img">
-        </div>
-        <input class="input-custom" type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
         <br>
       </label>
       <button type="submit" class="edit-user-button" (click)="edit()" routerLink="/user-stats-menu/{{user.id}}">Modifier utilisateur</button>
     </div>
-    
 
   </div>
   
