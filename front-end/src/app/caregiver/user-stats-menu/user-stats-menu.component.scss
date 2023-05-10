@@ -1,0 +1,27 @@
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top h2 {
+    color: grey;
+}
+
+#back {
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 16px;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+    width: 100%;
+}
+
+#user-img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-left: 16px;
+}

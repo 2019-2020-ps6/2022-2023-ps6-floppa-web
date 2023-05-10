@@ -1,6 +1,8 @@
 export interface Connection {
     valueToConnect: string;
+    imageCoverToConnect?: string;
     valueToBeConnected: string;
+    imageCoverToBeConnected?: string;
 }
 
 export interface Association {

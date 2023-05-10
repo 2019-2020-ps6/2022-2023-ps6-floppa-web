@@ -38,10 +38,7 @@ export class UserService {
   }
 
   retrieveUsers(): void {
-    this.http.get<User[]>(this.userUrl).subscribe((userList) => {
-      this.users = userList;
-      this.users$.next(this.users);
-    });
+    this.users$.next(this.users);
   }
 
   getUser(userId: string): Observable<User> {
@@ -56,9 +53,10 @@ export class UserService {
   }
 
   setSelectedUser(userId: string): void {
-    const urlWithId = this.userUrl + '/' + userId;
-    this.http.get<User>(urlWithId).subscribe((user) => {
+    this.users$.subscribe((users) => {
+      const user = users.filter(user => user.id === userId)[0];
       this.userSelected$.next(user);
+      console.log("user: ", user);
     });
   }
 
@@ -73,8 +71,20 @@ export class UserService {
   }
 
   edit(user: User): void{
-    const urlWithId = this.userUrl + '/' + user.id;
-    this.http.put<User>(urlWithId, user, this.httpOptions).subscribe(() => this.retrieveUsers());
+    console.log(user);
+    console.log(user.id);
+    const index = parseInt(user.id)-1;
+    console.log(index);
+    if (parseInt(user.id)-1 >= 0) {
+      console.log("hello");
+      this.users[index].firstName = user.firstName;
+      this.users[index].lastName = user.lastName;
+      this.users[index].alzheimerStade = user.alzheimerStade;
+      this.users[index].assistance = user.assistance;
+      this.users[index].photo = user.photo;
+
+      console.log(this.users);
+    }
   }
 
 }

@@ -1,31 +1,79 @@
-<img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
-<form class="user-edit" [formGroup]="userEdit" (ngSubmit)="edit(userEdit.value)" method="post" action="#">
-    <label for="firstName">
-      Prénom : 
-      <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
-    </label>
-    <br>
-  
-    <label for="lastName">
-      Nom : 
-      <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
-    </label>
-    <br>
-  
-    <label for="alzheimerStade">
-      Stade Alzheimer : <br>
-      Sélectionez une plage <br>
-      <input type="radio" name="alzheimerStade" value="stade leger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
-      <input type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-      <input type="radio" name="alzheimerStade" value="stade avance" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
-    </label>
-  
-    <label for="photo">
-      Photo :<br>
-      Cliquer sur l'icone pour ajouter une photo
-      <input type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
-      <br>
-    </label>
+<div class="top">
+  <div id="back-div">
+    <img id="back" src="/assets/back.png" alt="back" (click)="goBack()">
+    <h2>Annuler</h2>
+  </div>
+  <h1>Éditer utilisateur</h1>
+  <div></div>
+</div>
+<hr>
 
-    <button type="submit" class="button-card" [routerLink]="['/user-list']">Valider</button>
-  </form>
+<form class="user-edit" [formGroup]="userEdit" (ngSubmit)="ngOnInit()">
+  <div style="display: flex; flex-direction: row;">
+    <div style="display: flex; flex-direction: column; flex-basis: 50%;">
+      <br>
+      <label for="lastName">
+        <span class="form-text">Nom :</span> 
+        <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+      </label>
+      <br>
+      <label for="firstName">
+        <span class="form-text">Prénom :</span>
+        <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+      </label>
+    
+      <br>
+    
+      <span class="form-text">Paramètres de jeu :</span><br>
+    
+      <label for="indice">
+      <span class="form-text">Indice :</span>
+      <input class="input-custom" type="radio" name="indice" value="oui" [formControlName]="'indice'"> Oui
+      <input class="input-custom" type="radio" name="indice" value="non" [formControlName]="'indice'"> Non
+      </label>
+      <br>
+    
+      <label for="vocale">
+      <span class="form-text">Synthèse vocale :</span>
+      <input class="input-custom" type="radio" name="vocale" value="oui" [formControlName]="'vocale'"> Oui 
+      <input class="input-custom" type="radio" name="vocale" value="non" [formControlName]="'vocale'"> Non
+      </label>
+      <br>
+
+      <label for="visual">
+        <span class="form-text">Aide visuelle :</span>
+        <input class="input-custom" type="radio" name="visual" value="oui" [formControlName]="'visual'"> Oui 
+        <input class="input-custom" type="radio" name="visual" value="non" [formControlName]="'visual'"> Non
+        </label>
+        <br>
+      
+      <label for="alzheimerStade">
+        <span class="form-text">Stade Alzheimer :</span> <br>
+        Sélectionnez une plage <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+      </label>
+    </div>
+    
+    <div style="display: flex; flex-direction: column; align-items: center; flex-basis: 50%;">
+      <br>
+      <label for="photo">
+        <span class="form-text">Photo :</span><br>
+        <span style="color:gray">Cliquer sur l'icone pour ajouter une photo</span>
+        <br>
+        <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
+          <img src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" id="user-img">
+          <br>
+          <input class="input-custom" type="string" id="profil" name="profil" [formControlName]="'photo'" placeholder="URL de l'image">
+        </div>
+        <br>
+      </label>
+      <button type="submit" class="edit-user-button" (click)="edit()" routerLink="/user-stats-menu/{{user.id}}">Modifier utilisateur</button>
+    </div>
+
+  </div>
+  
+</form>
+
+

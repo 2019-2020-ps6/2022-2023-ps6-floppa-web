@@ -1,7 +1,12 @@
-<div class="quiz" style="display: flex; flex-direction: column;">
-    <h2 style="display: flex; justify-content:center;">{{quiz.name}}</h2>
-    <img *ngIf="type==='play'" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img" (click)="start()">
-    <img *ngIf="type==='stats'" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img" (click)="goToQuizStats()">
-    <button style= "float: right;" class="button-card" (click)="delete()">Supprimer</button>
-    <button style="float: right;" class="button-card edit" routerLink="/edit-quiz/{{quiz.id}}">Edit</button>
+<div class="quiz">
+    <div style="display:flex">
+        <div style="display: flex ; flex-direction: column;">
+            <img style="border-radius: 44px;" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img" (click)="onQuizClicked()">
+            <h2 style="display: flex; justify-content:center;">{{quiz.name}}</h2>
+        </div>
+        <div style="display: flex ; flex-direction: column;">
+            <img *ngIf="type == null" style="max-width: 100px; max-height: 100px;" src="/assets/editing.png" routerLink="/edit-quiz/{{this.themeIndex}}/{{this.quiz.id}}">
+            <img style="max-width: 100px; max-height: 100px; margin-top: 100px;" *ngIf="type == null" src="/assets/trash.png" alt="trash-img" (click)="delete()">
+        </div>
+    </div>
 </div>

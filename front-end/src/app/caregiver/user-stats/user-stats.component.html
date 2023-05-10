@@ -1,21 +1,33 @@
 <div style="display: flex; flex-direction: column; justify-content: space-between;">
 <div style="display: flex; flex-direction: row; justify-content: space-between;">
-    <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/user-management">
-    <h1 style="display: flex; justify-content: center; align-self: center">Statistiques utilisateur</h1>
+    <div style="display:flex; flex-direction: row; align-items: center;">
+        <img id="back" src="/assets/back.png" alt="back" routerLink="/user-stats-menu/{{user.id}}">
+        <h2 style="color:gray; align-self: center;">Retour</h2>
+    </div>
+    <div style="display: flex; flex-direction: row;">
+        <h1 style="display: flex; justify-content: center; align-self: center; margin-right: 50px;">Statistiques utilisateur</h1>
+        <img src="/assets/stats.png" alt="stats" style="max-width: 169px; max-height: 169px;">
+    </div>
+    <div></div>
 </div>
 <hr>
-<div style="display: flex; flex-direction: column; margin: 0 auto;">
-    <img id="user-img"  alt="user-img" src="{{user.photo}}">
+<div style="display: flex; flex-direction: column; margin: 0 auto; align-items: center;">
+    <img id="user-img"  alt="user-img" src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'">
     <h1>{{user.firstName}} {{user.lastName}}</h1>
 </div>
-<div style="display: flex; flex-direction: column; margin: 0 auto;">
-    <h2>Nombre de parties : {{this.numberPlayed}}</h2>
-    <h2 *ngIf="this.lastGame===0">Dernière partie : Aujourd'hui</h2>
-    <h2 *ngIf="this.lastGame===1">Dernière partie: Il y a 1 jour</h2>
-    <h2 *ngIf="this.lastGame>1">Dernière partie: Il y a {{this.lastGame}} jours</h2>
-    <h2>Quiz Préféré : {{this.favoriteQuiz}}</h2>
-</div>
+<div style="display: flex; flex-direction: column; align-items: center;" *ngIf="this.numberPlayed !== 0">
+    <div style="display: flex; flex-direction: column; margin: 0 auto;">
+        <h2>Nombre de parties : {{this.numberPlayed}}</h2>
+        <h2 *ngIf="this.lastGame===0">Dernière partie : Aujourd'hui</h2>
+        <h2 *ngIf="this.lastGame===1">Dernière partie: Il y a 1 jour</h2>
+        <h2 *ngIf="this.lastGame>1">Dernière partie: Il y a {{this.lastGame}} jours</h2>
+        <h2>Quiz Préféré : {{this.favoriteQuiz}}</h2>
+    </div>
 
-<div style="display: flex; justify-content: center;">
-    <button id="quiz-stats" routerLink="/theme-list/{{this.user.firstName}}-{{this.user.lastName}}/stats">Statistiques par Quiz</button>
+    <div style="display: flex; justify-content: center;">
+        <button id="quiz-stats" routerLink="/theme-list/{{this.user.firstName}}-{{this.user.lastName}}/stats">Statistiques par Quiz</button>
+    </div>
+</div>
+<div *ngIf="this.numberPlayed===0" style="display: flex; align-items: center; justify-content: center;">
+    <h2>Il n'y a pas encore de statistiques pour cet utilisateur...</h2>
 </div>

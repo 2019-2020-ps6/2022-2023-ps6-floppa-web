@@ -8,6 +8,8 @@
   position: relative;
   box-shadow: 0 6px 10px rgba(0, 0, 0, 0.08), 0 0 6px rgba(0, 0, 0, 0.05);
   padding: 0 1em 1em 1em;
+  max-width: 400px;
+  min-width: 400px;
 }
 
 .card:hover {

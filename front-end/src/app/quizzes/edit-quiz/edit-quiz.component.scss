@@ -1,1 +1,44 @@
 @import '../../../styles.scss';
+
+.user-img {
+    width:100px;
+    height:100px;
+}
+
+.top {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  img {
+    max-width: 165px;
+    max-height: 165px;
+  }
+  
+  #back {
+    margin-top: 10px;
+    max-width: 121px;
+    max-height: 121px;
+  }
+
+  .parent-div {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    align-items: center;
+  }
+  
+  .button-container button {
+    text-align: center;
+  }
+  
+  .button-container img {
+    width: 100px; /* Ajustez la taille de l'image en fonction de vos besoins */
+  }

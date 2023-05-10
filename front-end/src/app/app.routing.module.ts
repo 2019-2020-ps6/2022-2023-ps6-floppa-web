@@ -17,29 +17,36 @@ import { ThemeListComponent } from './quizzes/theme-list/theme-list.component';
 import { UserManagementComponent } from './caregiver/user-management/user-management.component';
 import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
+import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
+import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
+import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
+import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
     {path: 'quiz-list/:user/:themeIndex/:type', component: QuizListComponent},
-    {path: 'edit-quiz/:id', component: EditQuizComponent},
+    {path: 'edit-quiz/:themeIndex/:id', component: EditQuizComponent},
     {path: 'play-association/:id', component: PlayAssociationComponent},
-    {path: 'question-form/:id', component: QuestionFormComponent },
-    {path: 'start-quiz/:id/:assistance', component: StartQuizComponent},
-    {path: 'play-quiz/:id/:score/:numQuestion/:assistance', component: PlayQuizComponent},
-    {path: 'final-screen/:id/:score/:assistance', component: FinalScreenComponent},
-    {path: 'question-form/:id', component: QuestionFormComponent },
-    {path: 'association-form/:id', component: AssociationFormComponent },
-    {path: 'answer/:id/:score/:isCorrect/:numQuestion/:assistance', component: AnswerComponent},
+    {path: 'start-quiz/:id/:userid', component: StartQuizComponent},
+    {path: 'play-quiz/:id/:score/:numQuestion/:userid', component: PlayQuizComponent},
+    {path: 'final-screen/:id/:score/:userid', component: FinalScreenComponent},
+    {path: 'question-form/:theme/:id', component: QuestionFormComponent },
+    {path: 'association-form/:theme/:id', component: AssociationFormComponent },
+    {path: 'answer/:id/:score/:isCorrect/:numQuestion/:userid', component: AnswerComponent},
     {path: 'home-profil-choice', component: HomeProfilChoiceComponent},
     {path: 'theme-list/:user/:type', component: ThemeListComponent},
-    {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
-    {path: 'uer-form', component: UserFormComponent},
-    {path: 'user-edit', component: UserEditComponent},
-    {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
+    {path: 'user-edit/:id', component: UserEditComponent},
+    {path: '', redirectTo: '/home', pathMatch: 'full' },
+    {path: 'user-form', component: UserFormComponent},
     {path:'user-management', component: UserManagementComponent},
     {path:'user-stats/:user', component: UserStatsComponent},
-    {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent}
-
+    {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent},
+    {path:'user-stats-menu/:userid', component: UserStatsMenuComponent},
+    {path: 'theme-editor', component: ThemeEditorComponent},
+    {path: 'theme-form', component: ThemeFormComponent },
+    {path: 'quiz-editor/:themeIndex', component: QuizEditorComponent},
+    {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({

@@ -25,7 +25,7 @@ h2 {
 #quiz-img {
     max-width: 166px;
     max-height: 166px;
-    border-radius: 54px;
+    border-radius: 25px;
 }
 
 .positive {
@@ -67,7 +67,7 @@ h2 {
   .content {
     grid-area: content;
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 1fr 1fr;
   }
   
   .info {
@@ -79,7 +79,11 @@ h2 {
   
   .chart {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
   }
   
+  .underline {
+    text-decoration: underline;
+  }

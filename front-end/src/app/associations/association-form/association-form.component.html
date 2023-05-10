@@ -1,24 +1,28 @@
-<button class="back-button" routerLink="/edit-quiz/{{this.quizId}}">Retour</button><br>
-<div class="card">
+<button class="back-button" routerLink="/edit-quiz/{{this.themeId}}/{{this.quizId}}">Retour</button><br>
+<div class="card" style="max-width: fit-content;">
   <h2>Créer nouvelle association</h2>
   <form class="quiz-form" [formGroup]="associationForm">
     <label for="label">
       Intitulé :
-      <input class="input-text" type="text" id="label" [formControlName]="'label'">
+      <input class="input-text" type="text" id="label" [formControlName]="'label'" maxlength="50">
     </label>
-    <button style= "margin: 10px;" class="button-card" (click)="addConnection()">Ajouter connexion</button>
+    <button style= "margin: 10px;" class="button-card" [disabled]="this.associationForm.get('connections').value.length >= 3" (click)="addConnection()">Ajouter connexion</button>
     <div class="answer" formArrayName="connections">
       <div *ngFor="let address of connections.controls; let i=index">
-        <div class="answer-form" [formGroupName]="i">
-          <label>
-            <label style="font-weight: bold;">Connexion {{i + 1}}</label><br>
-            <input class= "input-text" type="text" [formControlName]="'valueToConnect'">
+        <div class="answer-form" [formGroupName]="i" style="display:flex;">
+            <label style="font-weight: bold; margin-right: 10px;">Connexion {{i + 1}}</label>
+            <div style="display:flex; flex-direction: column;">
+              <input placeHolder = "Label" class= "input-text" type="text" [formControlName]="'valueToConnect'" maxlength="20">
+              <input placeHolder = "Lien d'image" class= "input-text" type="text" [formControlName]="'coverImageToConnect'">
+            </div>
             <img style= "padding:5px;" alt="->" width = "30x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
-            <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'">
-          </label>
+            <div style="display:flex; flex-direction: column;">
+              <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'" maxlength="20">
+              <input class= "input-text" type="text" [formControlName]="'coverImageToBeConnected'">
+            </div>
         </div>
       </div>
     </div>
-    <button *ngIf = "this.isAssociationFormValid()" type="submit" class="button-card" (click)="addAssociation()" routerLink="/edit-quiz/{{this.quizId}}">Créer</button>
+    <button *ngIf = "this.isAssociationFormValid()" type="submit" class="button-card" (click)="addAssociation()" routerLink="/edit-quiz/{{this.themeId}}/{{this.quizId}}">Créer</button>
   </form>
 </div>

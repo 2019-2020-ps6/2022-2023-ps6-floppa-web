@@ -38,32 +38,34 @@ export class UserStatsComponent implements OnInit {
 
   getStats(): void {
     this.numberPlayed = Object.keys(this.user.quizSessions).length;
-    const today = new Date().getTime();
-    this.lastGame = Number.MAX_VALUE;
+      if (this.numberPlayed !== 0) {
+      const today = new Date().getTime();
+      this.lastGame = Number.MAX_VALUE;
 
-    const quizIdCount = {};
-    for (const session of Object.values(this.user.quizSessions)) {
-        const diff = Math.abs(today - session.date) / (86400000);
-        if (diff < this.lastGame) {
-            this.lastGame = Math.round(diff);
-        }
-        const quizId = session.quizId;
-        if (quizIdCount[quizId]) {
-            quizIdCount[quizId]++;
-        } else {
-            quizIdCount[quizId] = 1;
-        }
+      const quizIdCount = {};
+      for (const session of Object.values(this.user.quizSessions)) {
+          const diff = Math.abs(today - session.date) / (86400000);
+          if (diff < this.lastGame) {
+              this.lastGame = Math.round(diff);
+          }
+          const quizId = session.quizId;
+          if (quizIdCount[quizId]) {
+              quizIdCount[quizId]++;
+          } else {
+              quizIdCount[quizId] = 1;
+          }
+      }
+
+      let maxCount: number = 0;
+      let mostFrequentQuizId: any;
+      for (const quizId of Object.keys(quizIdCount)) {
+          if (quizIdCount[quizId] > maxCount) {
+              maxCount = quizIdCount[quizId];
+              mostFrequentQuizId = quizId;
+          }
+      }
+
+      this.favoriteQuiz = QUIZ_LIST[mostFrequentQuizId - 1].name;
     }
-
-    let maxCount: number = 0;
-    let mostFrequentQuizId: any;
-    for (const quizId of Object.keys(quizIdCount)) {
-        if (quizIdCount[quizId] > maxCount) {
-            maxCount = quizIdCount[quizId];
-            mostFrequentQuizId = quizId;
-        }
-    }
-
-    this.favoriteQuiz = QUIZ_LIST[mostFrequentQuizId - 1].name;
-}
+  }
 }

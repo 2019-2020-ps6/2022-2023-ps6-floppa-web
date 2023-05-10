@@ -1,15 +1,63 @@
+@import '../../../styles/variables.scss';
+
 .user-img {
     max-width: 175px;
     max-height: 175px;
 }
 
-.user {
-    justify-content: center;
-    margin: 100px;
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
 }
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(19% - 10px);
+    margin: 10px;
+}
+
 
 #back {
     margin-top: 10px;
-    max-width: 121px;
-    max-height: 121px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top h2 {
+    margin-top: 0;
+    color: grey;
+    margin-left: 30px;
+}
+
+#editor-button {
+    display: block;
+    border-radius: 25px;
+    width: 354px;
+    height: 75px;
+    font-size: 24px;
+}
+
+#editor-button:hover {
+    background-color: grey;
+    color: white;
+}
+
+.button-div {
+    display: flex; 
+    flex-direction: row;
+    border: 3px solid black;
+    background-color: rgb(207, 207, 207);
+    border-radius: 22px;
+}
+
+.button-div:hover {
+    background-color: grey;
+    color: white;
 }

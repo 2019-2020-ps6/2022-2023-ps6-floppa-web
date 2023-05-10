@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { QuizComponent } from './quizzes/quiz/quiz.component';
-import { HeaderComponent } from './header/header.component';
 import { QuizFormComponent } from './quizzes/quiz-form/quiz-form.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { AppRoutingModule } from './app.routing.module';
@@ -34,12 +33,16 @@ import { UserManagementComponent } from './caregiver/user-management/user-manage
 import { UserStatsComponent } from './caregiver/user-stats/user-stats.component';
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
 import { ChartsModule } from 'ng2-charts';
+import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
+import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
+import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
+import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
     QuizListComponent,
     QuizComponent,
-    HeaderComponent,
     QuizFormComponent,
     EditQuizComponent,
     QuestionListComponent,
@@ -51,6 +54,7 @@ import { ChartsModule } from 'ng2-charts';
     StartQuizComponent,
     PlayQuizComponent,
     FinalScreenComponent,
+    UserEditComponent,
     PlayAssociationComponent,
     AssociationListComponent,
     AssociationComponent,
@@ -65,7 +69,12 @@ import { ChartsModule } from 'ng2-charts';
     ThemeListComponent,
     UserManagementComponent,
     UserStatsComponent,
-    UserQuizStatsComponent
+    UserQuizStatsComponent,
+    UserStatsMenuComponent,
+    ThemeEditorComponent,
+    ThemeFormComponent,
+    QuizEditorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,

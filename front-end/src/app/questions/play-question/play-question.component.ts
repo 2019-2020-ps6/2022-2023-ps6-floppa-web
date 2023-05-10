@@ -45,6 +45,7 @@ export class PlayQuestionComponent implements OnInit {
     let answers = document.getElementsByClassName('answer');
     for (let i = 0; i < answers.length; i++) {
       let img = answers[i] as HTMLImageElement;
+
       if (this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
         rdmnb1++;
         rdmnb2++;

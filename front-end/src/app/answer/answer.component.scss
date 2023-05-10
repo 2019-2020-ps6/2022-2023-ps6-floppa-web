@@ -1,8 +1,8 @@
 @import '../../styles/card.scss';
 #quiz-img {
-    max-width: 166px;
-    max-height: 166px;
-    border-radius: 54px;
+    max-width: 150px;
+    max-height: 150px;
+    border-radius: 25px;
 }
 
 #next-question-button {
@@ -30,4 +30,9 @@
     text-align: center;
     margin-top: 80px;
     margin-bottom: 80px;
+}
+
+#user-img {
+    max-width: 150px;
+    max-height: 150px;
 }

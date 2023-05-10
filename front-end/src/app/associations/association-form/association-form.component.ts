@@ -15,11 +15,11 @@ export class AssociationFormComponent implements OnInit {
 
   quiz!: Quiz;
   public quizId: string;
+  public themeId: number;
 
   public associationForm: FormGroup;
 
   constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
-    this.initializeAssociationForm();
   }
 
   private initializeAssociationForm(): void {
@@ -30,7 +30,9 @@ export class AssociationFormComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.initializeAssociationForm();
     this.quizId = this.route.snapshot.paramMap.get('id');
+    this.themeId = Number(this.route.snapshot.paramMap.get('theme'));
   }
 
   get connections(): FormArray {
@@ -41,6 +43,8 @@ export class AssociationFormComponent implements OnInit {
     return this.formBuilder.group({
       valueToConnect: '',
       valueToBeConnected: '',
+      coverImageToConnect: '',
+      coverImageToBeConnected: ''
     });
   }
 
@@ -61,8 +65,9 @@ export class AssociationFormComponent implements OnInit {
     if (!this.isAssociationFormValid) return;
     const association = this.associationForm.getRawValue() as Association;
     this.quizService.addAssociation(this.quizId, association);
-    //Change for the Back End since the http push doesn't work.
-    QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
-    this.initializeAssociationForm();
+    //Change for the Back End since the http push doesn't work
+
+    QUIZ_LIST.find(quiz => quiz.id === this.quizId)?.associations.push(association);
+    console.log(association);
   }
 }
