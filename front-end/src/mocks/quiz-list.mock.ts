@@ -141,8 +141,8 @@ export const CONNECTION_FELIN_2: Connection = {
 export const CONNECTION_FELIN_3: Connection = {
     valueToConnect: 'Lynx',
     valueToBeConnected: null,
-    imageCoverToConnect: null,
-    imageCoverToBeConnected: null
+    imageCoverToConnect: "/assets/quiz-img/quiz-1.jpg",
+    imageCoverToBeConnected: "/assets/quiz-img/quiz-1.jpg"
 }
 
 export const CONNECTION_FELIN_5: Connection = {
