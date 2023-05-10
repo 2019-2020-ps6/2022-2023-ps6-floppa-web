@@ -14,16 +14,18 @@
     <img class="user-img" src="/assets/users/add-user.png" alt="add-user-img" (click)="displayUserToAdd()">
     <div *ngFor="let user of this.userList" style="display: flex; flex-direction: column; margin-left: 15px; margin-right: 15px; align-items: center;">
         <img class="user-img" src="{{this.user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" (click)="removeUserToQuiz(user)">
-        <p style="display: flex; justify-content: center; align-self: center; max-width: 100px;">{{user.firstName}} {{user.lastName}}</p>
+        <span style="display: flex; justify-content: center; align-self: center;">{{user.firstName}}</span> 
+        <span style="display: flex; justify-content: center; align-self: center;">{{user.lastName}}</span>
     </div>
 </div>
-<div id="user-to-add" style="display: none; flex-direction: column;">
+<div id="user-to-add" style="display: none; flex-direction: column; margin-bottom: 50px;">
     <p style="color:gray">Cliquez sur les utilisateurs que vous souhaitez ajouter</p>
     <div style="display: flex; flex-direction: row;">
-        <div *ngFor="let user of remainingUsers" style="display: flex; flex-direction: row; align-items: center;">
+        <div *ngFor="let user of remainingUsers" style="display: flex; flex-direction: row; align-items: center; margin-left: 50px; margin-right: 50px;">
             <div style="display: flex; flex-direction: column; align-items: center;">
                 <img class="user-img" src="{{this.user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" (click)="addUserToQuiz(user)">
-                <p style="display: flex; justify-content: center; align-self: center; max-width: 100px;">{{user.firstName}} {{user.lastName}}</p>
+                <span style="display: flex; justify-content: center; align-self: center;">{{user.firstName}}</span> 
+                <span style="display: flex; justify-content: center; align-self: center;">{{user.lastName}}</span>
             </div>
         </div>
     </div>
