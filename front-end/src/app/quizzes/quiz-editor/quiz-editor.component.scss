@@ -12,3 +12,16 @@ img {
   max-width: 121px;
   max-height: 121px;
 }
+
+.theme {
+  margin: 150px;
+  margin-bottom: 100px;
+}
+
+.top {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
