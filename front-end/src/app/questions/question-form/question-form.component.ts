@@ -25,7 +25,7 @@ export class QuestionFormComponent implements OnInit {
   private initializeQuestionForm(): void {
     this.questionForm = this.formBuilder.group({
       label: ['', Validators.required],
-      coverImage:[''],
+      img:'',
       answers: this.formBuilder.array([])
     });
   }
@@ -53,6 +53,7 @@ export class QuestionFormComponent implements OnInit {
   public isQuestionFormValid(): boolean {
     return this.questionForm.valid && 
     this.questionForm.get('answers').value.length > 0 &&
+    this.questionForm.get('img').value.length > 0 &&
     this.questionForm.get('answers').value.some((answer: any) => answer.isCorrect);
   }
 
