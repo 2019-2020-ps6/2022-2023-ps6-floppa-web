@@ -7,12 +7,17 @@
         <img src="/assets/folder.png" alt="add-quiz">
         <h2>Créer Quiz</h2>
     </div> -->
-    <app-quiz-form (click)="refresh()"></app-quiz-form>
+    <!--app-quiz-form (click)="refresh()"></!--app-quiz-form-->
+    <div class="button-div" (click)="createQuiz()" style="display: flex; flex-direction: column; align-items: center;">
+        <img src="/assets/folder.png" alt="add-theme">
+        <h2>Créer Quiz</h2>
+    </div>
     <div>
         <img style="width: 100px; height: 100px;" src="/assets/edit.png" alt="edit">
         <h3>PolyQuiz Editor</h3>
     </div>
 </div>
+<hr>
 <h1 style="display: flex; justify-content: center;">Liste des Quiz</h1>
 <hr style="border:none;height:1px;background-color: black; width:70%">
 <div class="quiz-list" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">

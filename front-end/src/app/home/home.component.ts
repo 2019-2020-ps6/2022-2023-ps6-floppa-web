@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
     styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit, OnDestroy {
-    countdown: number = 60;
+    countdown: number = 120;
     timer: any;
     private routerEventsSubscription: Subscription;
     private countdownInterval: any;
