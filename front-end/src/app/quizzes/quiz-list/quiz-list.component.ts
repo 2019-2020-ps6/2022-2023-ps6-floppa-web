@@ -5,8 +5,7 @@ import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
-import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
 @Component({
   selector: 'app-quiz-list',
@@ -30,9 +29,9 @@ export class QuizListComponent implements OnInit {
     this.userList = USER_LIST;
     this.getUser(this.username);
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    for (let i = 0; i < QUIZ_LIST.length; i++) {
-      if (QUIZ_LIST[i].theme === THEME_QUIZ_LIST[this.themeIndex].title) {
-        this.quizList = THEME_QUIZ_LIST[this.themeIndex].quizList;
+    for (let i=0; i<QUIZ_LIST.length; i++) {
+      if (THEME_QUIZ_LIST[this.themeIndex].title === QUIZ_LIST[i].theme) {
+        this.quizList.push(QUIZ_LIST[i]);
       }
     }
   }

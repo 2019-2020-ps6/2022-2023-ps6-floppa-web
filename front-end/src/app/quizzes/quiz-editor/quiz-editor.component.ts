@@ -26,10 +26,13 @@ export class QuizEditorComponent implements OnInit {
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
     // for (let i = 0; i < QUIZ_LIST.length; i++) {
     //   if (QUIZ_LIST[i].theme === THEME_QUIZ_LIST[this.themeIndex].title) {
-    //     this.quizList = THEME_QUIZ_LIST[this.themeIndex].quizList;
+    //     this.quizList.push(QUIZ_LIST[i]);
     //   }
     // }
-    this.quizList = THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex)?.quizList;
+    // console.log(this.quizList);
+    //this.quizList = THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex)?.quizList;
+    this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
+    console.log(this.quizList);
   }
 
   ngOnInit(): void {
@@ -53,8 +56,13 @@ export class QuizEditorComponent implements OnInit {
       confirmButtonColor: 'rgb(150,255,150)'
     }).then((result) => {
       if (result.isConfirmed) 
-        this.quizService.deleteQuiz(quiz, THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex));
+        this.quizService.deleteQuiz(quiz);
+        this.refresh();
     });
+  }
+
+  refresh(): void {
+    this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
   }
 }
 

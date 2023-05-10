@@ -5,6 +5,7 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import {Location} from '@angular/common';
+import { USER_LIST } from 'src/mocks/user-list.mock';
 
 @Component({
   selector: 'app-user-form',
@@ -108,9 +109,12 @@ export class UserFormComponent implements OnInit {
 
   addUser(): void {
     const userToCreate: User = this.userForm.getRawValue() as User;
-    console.log(userToCreate);
     userToCreate.assistance = this.getAssistance(userToCreate);
+    userToCreate.id = String(USER_LIST.length + 1);
+    userToCreate.quizSessions = {};
+    console.log(userToCreate);
     this.userService.addUser(userToCreate);
+    console.log(USER_LIST);
   }
 
   goBack():void {

@@ -4,15 +4,13 @@
     justify-content: space-between;
 }
 .top h2 {
-    margin-top: 0;
     color: grey;
-    margin-left: 30px;
 }
 
 #back {
-    margin-top: 10px;
-    max-width: 121px;
-    max-height: 121px;
+    max-width: 100px;
+    max-height: 100px;
+    margin-right: 16px;
 }
 
 hr {
@@ -20,4 +18,10 @@ hr {
     height: 3px;
     background-color: black;
     width: 100%;
+}
+
+#user-img {
+    max-width: 150px;
+    max-height: 150px;
+    margin-left: 16px;
 }

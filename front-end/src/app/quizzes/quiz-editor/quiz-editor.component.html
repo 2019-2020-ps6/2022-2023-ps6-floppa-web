@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: row; justify-content: space-between;">
     <img id="back" src="/assets/back.png" alt="back" routerLink="/theme-editor">
 </div>
-<app-quiz-form></app-quiz-form>
+<app-quiz-form (click)="refresh()"></app-quiz-form>
 <div class="quiz-list" style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div class="quiz" *ngFor="let quiz of quizList">
         <app-quiz [themeIndex] = "this.themeIndex" [quiz]="quiz" (deleteQuiz)="deleteQuiz($event)" (editQuiz)="editQuiz($event)"></app-quiz>

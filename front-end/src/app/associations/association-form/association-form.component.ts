@@ -65,8 +65,8 @@ export class AssociationFormComponent implements OnInit {
     const association = this.associationForm.getRawValue() as Association;
     this.quizService.addAssociation(this.quizId, association);
     //Change for the Back End since the http push doesn't work.
-    THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.associations.push(association);
+    //THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.associations.push(association);
     
-    //QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
+    QUIZ_LIST[Number(this.quizId) - 1].associations.push(association);
   }
 }

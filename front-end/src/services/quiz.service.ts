@@ -50,12 +50,10 @@ export class QuizService {
     });
   }
 
-  addQuiz(quiz: Quiz, theme: Theme): void {
+  addQuiz(quiz: Quiz): void {
     this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-    theme.quizList.push(quiz);
-    this.quizzes$.next(theme.quizList);
-    //QUIZ_LIST.push(quiz);
-    //this.quizzes$.next(QUIZ_LIST);
+    QUIZ_LIST.push(quiz);
+    this.quizzes$.next(QUIZ_LIST);
   }
 
   setSelectedQuiz(quizId: string): void {
@@ -65,10 +63,10 @@ export class QuizService {
     });
   }
 
-  deleteQuiz(quiz: Quiz, theme: Theme): void {
+  deleteQuiz(quiz: Quiz): void {
     const urlWithId = this.quizUrl + '/' + quiz.id;
     this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-    let currentQuizList = theme.quizList;
+    let currentQuizList = QUIZ_LIST;
     for (let i = 0; i<currentQuizList.length; i++) {
       if (currentQuizList[i] === quiz) {
         currentQuizList.splice(i, 1);

@@ -61,7 +61,6 @@ export class ThemeEditorComponent implements OnInit {
         id: ThemeEditorComponent.counter,
         title: result.value.title,
         description: result.value.description,
-        quizList: [],
         coverImage: null
       });
       ThemeEditorComponent.counter++
