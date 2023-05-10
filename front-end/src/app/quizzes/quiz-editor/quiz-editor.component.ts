@@ -55,6 +55,7 @@ export class QuizEditorComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) 
         this.quizService.deleteQuiz(quiz);
+        this.refresh();
     });
   }
 
