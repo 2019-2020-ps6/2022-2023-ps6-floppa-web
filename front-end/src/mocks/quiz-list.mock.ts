@@ -191,42 +191,36 @@ export const THEME_QUIZ_LIST: Theme[] = [
         id: 0,
         title: 'Les animaux', 
         description: null, 
-        quizList: null, 
         coverImage: null
     },
     {
         id: 1,
         title: 'Géographie',
         description: null,
-        quizList: null,
         coverImage: null
     },
     {
         id: 2,
         title: 'Histoire',
         description: null,
-        quizList: null,
         coverImage: null
     },
     {
         id: 3,
         title: 'Le sport',
         description: null,
-        quizList: null,
         coverImage: null
     },
     {
         id: 4,
         title: 'Cuisine',
         description: null,
-        quizList: null,
         coverImage: null
     },
     {
         id: 5,
         title: 'Musique',
         description: null,
-        quizList: null,
         coverImage: null
     },
 ]
@@ -247,8 +241,5 @@ export const QUIZ_LIST: Quiz[] = [
         questions: [],
         associations: [],
         users: ["1","3"]
-    }
+    },
 ];
-
-THEME_QUIZ_LIST[0].quizList = QUIZ_LIST;
-THEME_QUIZ_LIST[1].quizList = [];

@@ -46,9 +46,12 @@ export class QuizFormComponent implements OnInit {
     quizToCreate.questions = [];
     quizToCreate.associations = [];
     quizToCreate.id = (QUIZ_LIST.length+1).toString();
+    quizToCreate.users = [];
+    quizToCreate.theme = THEME_QUIZ_LIST[this.themeIndex].title;
     //this.quizService.addQuiz(quizToCreate);
-    THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex)?.quizList.push(quizToCreate);
-    console.log(THEME_QUIZ_LIST);
+    //THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex)?.quizList.push(quizToCreate);
     //THEME_QUIZ_LIST[this.themeIndex].quizList.push(quizToCreate);
+    QUIZ_LIST.push(quizToCreate);
+    console.log(QUIZ_LIST);
   }
 }

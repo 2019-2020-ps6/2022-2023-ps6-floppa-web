@@ -25,14 +25,13 @@ export class EditQuizComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get('id');
     //this.quiz = QUIZ_LIST[Number(id) - 1];
     this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    console.log(id + " & " + this.theme);
-    this.quiz = THEME_QUIZ_LIST.find(theme => theme.id === this.theme)?.quizList.find(quiz => quiz.id === id);
-    console.log(this.quiz);
-    // for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
-    //   if (THEME_QUIZ_LIST[i].title === this.quiz.theme) {
-    //     this.theme = i;
-    //   }
-    // }
+
+    //this.quiz = THEME_QUIZ_LIST.find(theme => theme.id === this.theme)?.quizList.find(quiz => quiz.id === id);
+    for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
+      if (THEME_QUIZ_LIST[i].title === this.quiz.theme) {
+        this.theme = i;
+      }
+    }
   }
 
   selectQuiz(): void {
