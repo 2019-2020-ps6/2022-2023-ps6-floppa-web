@@ -1,3 +1,37 @@
-<h1>FLOPPA WEB</h1>
-<h2>Poly Quiz</h2>
-<p>Cliquez sur le bouton qui vous correspond</p>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FLOPPA WEB</title>
+    <style>
+      .button-container {
+        display: flex;
+        flex-direction: row;
+        padding: 10px;
+        margin: 10px;
+      }
+      .button-container button {
+        margin-right: 10px;
+      }
+      .button-container p {
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>FLOPPA WEB</h1>
+    <h2>Poly Quiz</h2>
+    <p>Cliquez sur le bouton qui vous correspond</p>
+    <div class="button-container">
+      <button routerLink="/resident-connection">Je suis une personne âgée</button>
+      <button (click)="navigateToResidentConnection()">Je suis une personne âgée</button>
+      <button routerLink="/staff-connection">Je suis du personnel</button>
+      <p>Le site changera vers cette page automatiquement dans XX secondes...</p>
+    </div>
+    <div id="myModal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <p>Contenu de la modale...</p>
+      </div>
+    </div>
+  </body>
+</html>
