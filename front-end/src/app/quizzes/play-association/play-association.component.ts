@@ -12,8 +12,8 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
 
     @Input('association')
     public associationToPlay!: Association;
-    public shuffledValuesToConnect: string[] = [];
-    public shuffledValuesToBeConnected: string[] = [];
+    public shuffledValuesToConnect: string[][] = [];
+    public shuffledValuesToBeConnected: string[][] = [];
     public selectedLeft: string = "";
     public selectedRight: string = "";
     public currentLeftButton: number;
@@ -42,16 +42,16 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     ngOnInit(): void {
         let id = this.route.snapshot.paramMap.get('id');
         
-        this.associationToPlay = QUIZ_LIST[Number(id) - 1].associations[this.numAssociation];
+        this.associationToPlay = QUIZ_LIST.find(quiz=> quiz.id === id).associations[this.numAssociation];
         this.associationToPlay.isCorrect = false;
         for(const element of this.associationToPlay.connections){
-            this.shuffledValuesToConnect.push(element.valueToConnect);
-            this.shuffledValuesToBeConnected.push(element.valueToBeConnected);
+            this.shuffledValuesToConnect.push([element.valueToConnect, element.imageCoverToConnect]);
+            this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.imageCoverToBeConnected]);
         }
         
         this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);
         this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
-        
+
         this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
     }
 
@@ -70,7 +70,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     selectLeft(value: string, buttonId: number): void {
         this.selectedLeft = value;
         this.currentLeftButton = buttonId;
-
+        console.log(this.shuffledValuesToConnect);
         if(this.currentConnections.find((connection) => connection[0] === value))
         {
             this.deleteConnection(value, this.currentConnections.find((connection) => connection[0] === value)![1]);
@@ -132,6 +132,11 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     deleteConnection(val1: string, val2: string): void {
         this.currentConnections = this.currentConnections.filter((connection) => connection[0] !== val1 && connection[1] !== val2);
     
+    }
+
+    deleteAllConnections(): void {
+        this.resetAssociation();
+        this.currentLines?.forEach((line) => line.forEach((element) => element?.remove()));
     }
 
     check(): void {
