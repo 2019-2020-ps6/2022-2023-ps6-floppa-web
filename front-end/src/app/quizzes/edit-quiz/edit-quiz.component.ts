@@ -23,8 +23,8 @@ export class EditQuizComponent implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    //this.quiz = QUIZ_LIST[Number(id) - 1];
-    this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
+    this.quiz = QUIZ_LIST[Number(id) - 1];
+    //this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
 
     //this.quiz = THEME_QUIZ_LIST.find(theme => theme.id === this.theme)?.quizList.find(quiz => quiz.id === id);
     for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
