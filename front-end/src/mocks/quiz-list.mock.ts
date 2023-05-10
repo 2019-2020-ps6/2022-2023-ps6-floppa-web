@@ -127,22 +127,22 @@ export const QUESTION_FELINS_5: Question = {
 export const CONNECTION_FELIN_1: Connection = {
     valueToConnect: 'Tigre',
     valueToBeConnected: 'grrrrr',
-    imageCoverToConnect: null,
+    imageCoverToConnect: "/assets/quiz-1/question-2/img-1.jpg",
     imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_2: Connection = {
     valueToConnect: 'Chat',
     valueToBeConnected: 'meow',
-    imageCoverToConnect: null,
+    imageCoverToConnect: "/assets/quiz-1/question-3/img-3.jpg",
     imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_3: Connection = {
-    valueToConnect: 'Lynx',
+    valueToConnect: 'Caracal',
     valueToBeConnected: null,
     imageCoverToConnect: "/assets/quiz-img/quiz-1.jpg",
-    imageCoverToBeConnected: "/assets/quiz-img/quiz-1.jpg"
+    imageCoverToBeConnected: null
 }
 
 export const CONNECTION_FELIN_5: Connection = {
