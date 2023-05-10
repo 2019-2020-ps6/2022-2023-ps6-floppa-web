@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 10px;">
     <div style="display: flex; flex-direction: column; align-items: center;">
-        <img *ngIf="type==='play'" id="back" src="/assets/back.png" alt="back" routerLink="">
+        <img *ngIf="type==='play'" id="back" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
         <img *ngIf="type==='stats'" id="back" src="/assets/back.png" alt="back" routerLink="/user-stats/{{user.firstName}}-{{user.lastName}}">
         <h2 style="color:gray">Retour</h2>
     </div>
@@ -13,8 +13,8 @@
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div *ngFor="let theme of themeList, let i=index">
         <div class="theme">
-            <img class="theme-img" alt="theme-{{i+1}}" src="/assets/theme-img/theme-{{i+1}}.jpg" (click)="goToTheme(i)">
-            <h2 style="display: flex; justify-content: center;">{{theme}}</h2>
+            <img class="theme-img" alt="theme-{{i+1}}" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" (click)="goToTheme(i)">
+            <h2 style="display: flex; justify-content: center;">{{theme.title}}</h2>
         </div>
     </div>
 </div>

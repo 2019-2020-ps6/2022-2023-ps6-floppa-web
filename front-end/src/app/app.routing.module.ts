@@ -21,6 +21,7 @@ import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-m
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
 import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
 import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
     {path: 'user-list', component: UserListComponent},
@@ -36,7 +37,7 @@ const routes: Routes = [
     {path: 'home-profil-choice', component: HomeProfilChoiceComponent},
     {path: 'theme-list/:user/:type', component: ThemeListComponent},
     {path: 'user-edit/:id', component: UserEditComponent},
-    {path: '', redirectTo: '/home-profil-choice', pathMatch: 'full' },
+    {path: '', redirectTo: '/home', pathMatch: 'full' },
     {path: 'user-form', component: UserFormComponent},
     {path:'user-management', component: UserManagementComponent},
     {path:'user-stats/:user', component: UserStatsComponent},
@@ -44,7 +45,8 @@ const routes: Routes = [
     {path:'user-stats-menu/:userid', component: UserStatsMenuComponent},
     {path: 'theme-editor', component: ThemeEditorComponent},
     {path: 'theme-form', component: ThemeFormComponent },
-    {path: 'quiz-editor/:themeIndex', component: QuizEditorComponent}
+    {path: 'quiz-editor/:themeIndex', component: QuizEditorComponent},
+    {path: 'home', component: HomeComponent}
 ];
 
 @NgModule({

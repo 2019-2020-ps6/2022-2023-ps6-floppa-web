@@ -1,0 +1,45 @@
+#title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(67, 67, 187);
+}
+
+#title h1 {
+    font-size: 128px;
+    color: white;
+}
+
+#title h2 {
+    font-size: 100px;
+    color:white;
+}
+
+#button-container {
+    display: flex;
+    flex-direction: row;
+}
+
+#user-side {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    align-items: center;
+}
+
+#caregiver-side {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 50%;
+    align-items: center;
+}
+
+.btn {
+    color: black;
+    background-color: rgb(98, 165, 241);
+    border: 0;
+    border-radius: 25px;
+    width: 567px;
+    height: 181px;
+    font-size: 64px;
+}
