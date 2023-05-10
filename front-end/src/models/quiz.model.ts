@@ -8,4 +8,5 @@ export interface Quiz {
     questions?: Question[];
     associations?: Association[];
     users: string[];
+    coverImage: string;
 }
