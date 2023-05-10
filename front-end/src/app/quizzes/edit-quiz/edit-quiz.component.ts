@@ -89,15 +89,29 @@ export class EditQuizComponent implements OnInit {
   createElement(): void {
     Swal.fire({
       html: `
-        <div style="display:flex;flex-direction:row;align-items:center;">
-          <button id="createQuestionBtn" class="button">Créer question</button>
-          <button class="button">Créer Association</button>
+      <div class="parent-div">
+      <div class="button-container">
+        <div>
+        <button id="createQuestionBtn" class="button" style="margin: 10px;">Créer Question</button>
+          <img src="assets/question_choice.png" style="max-width:200px;">
         </div>
-      `,
+        <div>
+        <button id="createAssociationBtn" class="button">Créer Association</button>
+          <img src="assets/association.png">
+        </div>
+      </div>
+    </div>
+      `,confirmButtonText: 'Fermer',
       didOpen: () => {
         const createQuestionBtn = document.getElementById('createQuestionBtn');
+        const createAssociationBtn = document.getElementById('createAssociationBtn');
         createQuestionBtn.addEventListener('click', () => {
           this.navigateToQuestion(() => {
+            Swal.close();
+          });
+        });
+        createAssociationBtn.addEventListener('click', () => {
+          this.navigateToAssociation(() => {
             Swal.close();
           });
         });
@@ -107,6 +121,13 @@ export class EditQuizComponent implements OnInit {
   
   navigateToQuestion(callback: () => void): void {
     this.router.navigate([`/question-form/${this.theme}/${this.quiz.id}`])
+      .then(() => {
+        callback();
+      });
+  }
+
+  navigateToAssociation(callback: () => void): void {
+    this.router.navigate([`/association-form/${this.theme}/${this.quiz.id}`])
       .then(() => {
         callback();
       });

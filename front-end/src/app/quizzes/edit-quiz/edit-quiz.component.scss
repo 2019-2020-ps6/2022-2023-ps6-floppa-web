@@ -22,3 +22,23 @@
     max-width: 121px;
     max-height: 121px;
   }
+
+  .parent-div {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .button-container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-gap: 10px;
+    align-items: center;
+  }
+  
+  .button-container button {
+    text-align: center;
+  }
+  
+  .button-container img {
+    width: 100px; /* Ajustez la taille de l'image en fonction de vos besoins */
+  }
