@@ -85,4 +85,16 @@ export class EditQuizComponent implements OnInit {
     this.quiz.users.splice(indexToDel,1);
     this.retrieveUsers();
   }
+
+  createElement(): void {
+    // Swal.fire({
+    //   html: `
+    //   <div style="display:flex;flex-direction:row;align-items:center;">
+    //     <button class="button" routerLink = "/question-form/{{this.theme}}/{{this.quiz.id}}" (click)="selectQuiz()">Créer question</button>
+    //     <button class="button">Créer Association</button>
+    //   </div>
+    //   `,
+    //   focusConfirm: false,
+    // });
+  }
 }

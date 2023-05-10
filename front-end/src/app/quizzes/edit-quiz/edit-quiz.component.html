@@ -3,15 +3,32 @@
         <img id="back" src="/assets/back.png" alt="back" routerLink="/quiz-editor/{{this.theme}}">
         <h2 style="color:gray">Retour</h2>
     </div>
+    <div style="display:flex">
+        <img src="{{this.quiz.coverImage}}" style="border-radius: 44px; margin-right:20px">
+        <div>
+        Titre : {{this.quiz.name}}<br>
+        Nombre de questions : {{this.quiz.questions.length}}<br>
+        Nombre d'associations : {{this.quiz.associations.length}}<br>
+        Description : {{this.quiz.description}}<br>
+        Nombre de patients attribués : {{this.quiz.users.length}}<br>
+    </div>
+    </div>
+    <!-- <div>
+        <img style="width: 100px; height: 100px;" src="/assets/folder.png" alt="add-element" (click)="createElement()">
+        <h3>Ajouter élément de Quiz</h3>
+    </div> -->
     <div>
         <img style="width: 100px; height: 100px;" src="/assets/edit.png" alt="edit">
         <h3>PolyQuiz Editor</h3>
     </div>
 </div>
+
 <h1 style="display: flex; justify-content: center;">{{this.quiz.name}}</h1>
 <hr style="border:none;height:1px;background-color: black; width:70%">
+
 <div style="display: flex; flex-direction: row; justify-content: center;">
-    <div style="max-width: 400px; min-width: 400px;">
+
+    <div style="max-width: 500px; min-width: 400px;">
         <h3>Patients attribués :</h3>
         <p style="color:gray">Cliquez sur l'icône pour ajouter un patient</p>
         <div style="display: flex; flex-direction: row;">
@@ -33,14 +50,16 @@
             </div>
         </div>
     </div>
-    <div style="display:flex; flex-direction: column;">
+
+    <div style="display:flex; flex-direction: column; max-width: 500px; min-width: 500px;">
         <div>
             <h3>Questions à choix :</h3>
             <button class="create-button" routerLink = "/question-form/{{this.theme}}/{{this.quiz.id}}" (click)="selectQuiz()">Créer une question à choix +</button>
         </div>
         <app-question-list [quiz]="quiz"></app-question-list>
     </div>
-    <div style="display:flex; flex-direction: column;">
+
+    <div style="display:flex; flex-direction: column; max-width: 500px; min-width: 500px;">
         <div>
             <h3>Associations :</h3>
             <button class= "create-button" routerLink = "/association-form/{{this.theme}}/{{this.quiz.id}}" (click)="selectQuiz()">Créer une association +</button>
