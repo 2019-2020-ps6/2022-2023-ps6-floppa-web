@@ -62,7 +62,7 @@ export class QuizEditorComponent implements OnInit {
   }
 
   refresh(): void {
-    this.quizList = QUIZ_LIST;
+    this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
   }
 }
 
