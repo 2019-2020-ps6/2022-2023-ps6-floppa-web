@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: row; justify-content: space-between; margin-top: 10px;">
     <div style="display: flex; flex-direction: column; align-items: center;">
-        <img *ngIf="type==='play'" id="back" src="/assets/back.png" alt="back" routerLink="">
+        <img *ngIf="type==='play'" id="back" src="/assets/back.png" alt="back" routerLink="/home-profil-choice">
         <img *ngIf="type==='stats'" id="back" src="/assets/back.png" alt="back" routerLink="/user-stats/{{user.firstName}}-{{user.lastName}}">
         <h2 style="color:gray">Retour</h2>
     </div>

@@ -37,6 +37,7 @@ import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-m
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
 import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
 import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
+import { HomeComponent } from './home/home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +73,8 @@ import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component
     UserStatsMenuComponent,
     ThemeEditorComponent,
     ThemeFormComponent,
-    QuizEditorComponent
+    QuizEditorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
