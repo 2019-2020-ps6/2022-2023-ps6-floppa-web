@@ -191,37 +191,37 @@ export const THEME_QUIZ_LIST: Theme[] = [
         id: 0,
         title: 'Les animaux', 
         description: null, 
-        coverImage: null
+        coverImage: "/assets/theme-img/theme-1.jpg"
     },
     {
         id: 1,
         title: 'Géographie',
-        description: null,
-        coverImage: null
+        description: null, 
+        coverImage: "/assets/theme-img/theme-2.jpg"
     },
     {
         id: 2,
         title: 'Histoire',
-        description: null,
-        coverImage: null
+        description: null, 
+        coverImage: "/assets/theme-img/theme-3.jpg"
     },
     {
         id: 3,
         title: 'Le sport',
-        description: null,
-        coverImage: null
+        description: null, 
+        coverImage: "/assets/theme-img/theme-4.jpg"
     },
     {
         id: 4,
         title: 'Cuisine',
-        description: null,
-        coverImage: null
+        description: null, 
+        coverImage: "/assets/theme-img/theme-5.jpg"
     },
     {
         id: 5,
         title: 'Musique',
-        description: null,
-        coverImage: null
+        description: null, 
+        coverImage: "/assets/theme-img/theme-6.jpg"
     },
 ]
 

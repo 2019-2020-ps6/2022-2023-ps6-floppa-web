@@ -45,5 +45,4 @@ export class StartQuizComponent implements OnInit {
       timePerQuestion: []
     };
   }
-
 }
