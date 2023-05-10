@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, NgModule } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
@@ -21,7 +21,7 @@ export class AnswerComponent implements OnInit {
   public assistance: number;
   public user: User;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
     
   }
 
@@ -43,10 +43,10 @@ export class AnswerComponent implements OnInit {
     this.assistance = Number(this.user.assistance);
     setTimeout(() => {
       if (this.numQuestion+1 > this.quiz.questions.length) {
-        document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id;
+        this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
       }
       else {
-        document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id;
+        this.router.navigate(["/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id]);
       }
     }, 2 * 60 * 1000);
   }
@@ -62,11 +62,10 @@ export class AnswerComponent implements OnInit {
 
   nextQuestion(): void {
     if (this.numQuestion+1 > this.quiz.questions.length + this.quiz.associations.length) {
-      document.location.href = '/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id;
+      this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
     }
     else {
-      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id;
-      console.log(this.numQuestion);
+      this.router.navigate(["/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id]);
     }
   }
 }

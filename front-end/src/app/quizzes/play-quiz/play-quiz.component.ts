@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
@@ -33,7 +33,7 @@ export class PlayQuizComponent implements OnInit {
   public startTime: number;
   public currentSessionId: number = 0;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
     
   }
 
@@ -66,7 +66,7 @@ export class PlayQuizComponent implements OnInit {
     const endTime = performance.now();
     const elpasedTime = endTime - this.startTime;
     this.user.quizSessions[this.currentSessionId-1].timePerQuestion.push(Math.round(elpasedTime/1000));
-    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id;
+    this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 
   checkAssociation(): void {
@@ -75,7 +75,7 @@ export class PlayQuizComponent implements OnInit {
     const endTime = performance.now();
     const elpasedTime = endTime - this.startTime;
     this.user.quizSessions[this.currentSessionId-1].timePerQuestion.push(Math.round(elpasedTime/1000));
-    document.location.href = "/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id;
+    this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 
   useHint(): void {
@@ -100,7 +100,7 @@ export class PlayQuizComponent implements OnInit {
   readSentence(): void {
     let utterance = null;
     if(this.quiz.questions.length > this.numQuestion-1) {
-    utterance = new SpeechSynthesisUtterance(this.quiz.questions[this.numQuestion-1].label);
+      utterance = new SpeechSynthesisUtterance(this.quiz.questions[this.numQuestion-1].label);
     }
     else
     {

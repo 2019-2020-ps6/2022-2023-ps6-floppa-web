@@ -61,8 +61,8 @@ export class QuestionFormComponent implements OnInit {
     const question = this.questionForm.getRawValue() as Question;
     this.quizService.addQuestion(this.quizId, question);
     //Change for the Back End since the http push doesn't work.
-    THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.questions.push(question);
-    //QUIZ_LIST[Number(this.quizId) - 1].questions.push(question);  
+    //THEME_QUIZ_LIST.find(theme => theme.id === this.themeId)?.quizList.find(quiz => quiz.id === this.quizId)?.questions.push(question);
+    QUIZ_LIST[Number(this.quizId) - 1].questions.push(question);  
     this.initializeQuestionForm();
   }
 }

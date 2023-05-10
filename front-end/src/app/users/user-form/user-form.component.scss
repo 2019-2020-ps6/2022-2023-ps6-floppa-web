@@ -1,10 +1,40 @@
 @import '../../../styles/card.scss';
 
-
 #back {
     margin-top: 10px;
-    max-width: 121px;
-    max-height: 121px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.top h2 {
+    color:gray;
+}
+
+#back-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+    width: 100%;
+}
+
+input {
+    border-radius: 15px;
+    background-color: rgb(199, 199, 199);
+    border:0;
+    padding: 5px;
 }
 
 .text-big {
@@ -21,4 +51,30 @@
 
 .input-custom {
     font-size: 28px;
+}
+
+.form-text {
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+#user-img {
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.create-user-button {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 50px;
+    border-radius: 25px;
+    width: 354px;
+    height: 75px;
+    font-size: 24px;
+}
+
+.create-user-button:hover {
+    background-color: grey;
+    color: white;
 }

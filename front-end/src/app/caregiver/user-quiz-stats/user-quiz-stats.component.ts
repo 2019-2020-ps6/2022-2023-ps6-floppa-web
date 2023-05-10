@@ -271,7 +271,7 @@ export class UserQuizStatsComponent implements OnInit {
         break;
       case 'error':
         title = "Similitude d'erreur";
-        text = this.errorSimilarity + '% des erreurs ont déjà été faites par ' + this.user.firstName + ' ' + this.user.lastName;
+        text = this.errorSimilarity + '% des erreurs ont déjà été faites par ' + this.user.firstName + ' ' + this.user.lastName + ' ce jour là';
         break;
       default:
         title = "Temps moyen par question"
