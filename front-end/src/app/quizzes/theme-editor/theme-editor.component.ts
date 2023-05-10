@@ -82,7 +82,7 @@ export class ThemeEditorComponent implements OnInit {
       focusConfirm: false,
       confirmButtonColor: 'rgb(150,255,150)'
     }).then((result) => {
-      if (result.isConfirmed) 
+      if (result.isConfirmed) {
         this.themeList = this.themeList.filter(theme => theme !== themeToDelete);
         for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
           if (themeToDelete === THEME_QUIZ_LIST[i]) {
@@ -90,6 +90,7 @@ export class ThemeEditorComponent implements OnInit {
             this.themeList = THEME_QUIZ_LIST;
           }
         }
+      }
     });
   }
 }
