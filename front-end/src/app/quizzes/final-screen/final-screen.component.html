@@ -1,6 +1,6 @@
 <div style="display: flex; flex-direction: row; margin-top: 20px; justify-content: space-between;">
     <div style="display:flex; flex-direction: row;">
-        <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+        <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
         <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: center;">
             <h4>{{quiz.name}}</h4>
         </div>

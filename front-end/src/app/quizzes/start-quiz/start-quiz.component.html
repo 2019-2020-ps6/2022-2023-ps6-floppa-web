@@ -14,7 +14,7 @@
     </div>
 </div>
 
-<img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+<img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
 <h2 id="quiz-name">{{quiz.name}}</h2>
 <span id="nb-of-question">{{quiz.questions.length+ quiz.associations.length}} questions</span>
 <button id="start-quiz-button" routerLink="/play-quiz/{{quiz.id}}/{{0}}/{{1}}/{{user.id}}" (click)="createSession()">Démarrer le quiz</button>

@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
@@ -20,7 +20,7 @@ export class EditQuizComponent implements OnInit {
   public userList: User[];
   public remainingUsers: User[];
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private router: Router) {
     
     this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
     
@@ -84,5 +84,52 @@ export class EditQuizComponent implements OnInit {
     }
     this.quiz.users.splice(indexToDel,1);
     this.retrieveUsers();
+  }
+
+  createElement(): void {
+    Swal.fire({
+      html: `
+      <div class="parent-div">
+      <div class="button-container">
+        <div>
+        <button id="createQuestionBtn" class="button" style="margin: 10px;">Créer Question</button>
+          <img src="assets/question_choice.png" style="max-width:200px;">
+        </div>
+        <div>
+        <button id="createAssociationBtn" class="button">Créer Association</button>
+          <img src="assets/association.png">
+        </div>
+      </div>
+    </div>
+      `,confirmButtonText: 'Fermer',
+      didOpen: () => {
+        const createQuestionBtn = document.getElementById('createQuestionBtn');
+        const createAssociationBtn = document.getElementById('createAssociationBtn');
+        createQuestionBtn.addEventListener('click', () => {
+          this.navigateToQuestion(() => {
+            Swal.close();
+          });
+        });
+        createAssociationBtn.addEventListener('click', () => {
+          this.navigateToAssociation(() => {
+            Swal.close();
+          });
+        });
+      }
+    });
+  }
+  
+  navigateToQuestion(callback: () => void): void {
+    this.router.navigate([`/question-form/${this.theme}/${this.quiz.id}`])
+      .then(() => {
+        callback();
+      });
+  }
+
+  navigateToAssociation(callback: () => void): void {
+    this.router.navigate([`/association-form/${this.theme}/${this.quiz.id}`])
+      .then(() => {
+        callback();
+      });
   }
 }

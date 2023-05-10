@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: column; height: 100vh;">
     <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 16px">
         <div style="display:flex; align-items: center; flex-basis: 25%;">
-            <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+            <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
             <div style="display: flex; flex-direction: column; margin-left: 16px;">
                 <h4 style="margin:0">{{quiz.name}}</h4>
                 <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{quiz.questions.length + quiz.associations.length}}</span>
