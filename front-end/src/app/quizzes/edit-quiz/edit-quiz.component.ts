@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
@@ -20,7 +20,7 @@ export class EditQuizComponent implements OnInit {
   public userList: User[];
   public remainingUsers: User[];
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private router: Router) {
     
     this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
     
@@ -87,14 +87,28 @@ export class EditQuizComponent implements OnInit {
   }
 
   createElement(): void {
-    // Swal.fire({
-    //   html: `
-    //   <div style="display:flex;flex-direction:row;align-items:center;">
-    //     <button class="button" routerLink = "/question-form/{{this.theme}}/{{this.quiz.id}}" (click)="selectQuiz()">Créer question</button>
-    //     <button class="button">Créer Association</button>
-    //   </div>
-    //   `,
-    //   focusConfirm: false,
-    // });
+    Swal.fire({
+      html: `
+        <div style="display:flex;flex-direction:row;align-items:center;">
+          <button id="createQuestionBtn" class="button">Créer question</button>
+          <button class="button">Créer Association</button>
+        </div>
+      `,
+      didOpen: () => {
+        const createQuestionBtn = document.getElementById('createQuestionBtn');
+        createQuestionBtn.addEventListener('click', () => {
+          this.navigateToQuestion(() => {
+            Swal.close();
+          });
+        });
+      }
+    });
+  }
+  
+  navigateToQuestion(callback: () => void): void {
+    this.router.navigate([`/question-form/${this.theme}/${this.quiz.id}`])
+      .then(() => {
+        callback();
+      });
   }
 }
