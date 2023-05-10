@@ -4,20 +4,20 @@
   <form class="quiz-form" [formGroup]="associationForm">
     <label for="label">
       Intitulé :
-      <input class="input-text" type="text" id="label" [formControlName]="'label'">
+      <input class="input-text" type="text" id="label" [formControlName]="'label'" maxlength="50">
     </label>
-    <button style= "margin: 10px;" class="button-card" (click)="addConnection()">Ajouter connexion</button>
+    <button style= "margin: 10px;" class="button-card" [disabled]="this.associationForm.get('connections').value.length >= 3" (click)="addConnection()">Ajouter connexion</button>
     <div class="answer" formArrayName="connections">
       <div *ngFor="let address of connections.controls; let i=index">
         <div class="answer-form" [formGroupName]="i" style="display:flex;">
             <label style="font-weight: bold; margin-right: 10px;">Connexion {{i + 1}}</label>
             <div style="display:flex; flex-direction: column;">
-              <input placeHolder = "Label" class= "input-text" type="text" [formControlName]="'valueToConnect'">
+              <input placeHolder = "Label" class= "input-text" type="text" [formControlName]="'valueToConnect'" maxlength="20">
               <input placeHolder = "Lien d'image" class= "input-text" type="text" [formControlName]="'coverImageToConnect'">
             </div>
             <img style= "padding:5px;" alt="->" width = "30x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
             <div style="display:flex; flex-direction: column;">
-              <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'">
+              <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'" maxlength="20">
               <input class= "input-text" type="text" [formControlName]="'coverImageToBeConnected'">
             </div>
         </div>
