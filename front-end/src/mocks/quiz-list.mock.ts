@@ -232,7 +232,8 @@ export const QUIZ_LIST: Quiz[] = [
         theme: THEME_QUIZ_LIST[0].title,
         questions: [QUESTION_FELINS_1, QUESTION_FELINS_2, QUESTION_FELINS_3, QUESTION_FELINS_4, QUESTION_FELINS_5],
         associations: [ASSOCIATION_FELINS_1, ASSOCIATION_FELINS_2, ASSOCIATION_FELINS_3],
-        users: []
+        users: [],
+        coverImage: '/assets/quiz-img/quiz-1.jpg'
     },
     {
         id: '2',
@@ -240,6 +241,7 @@ export const QUIZ_LIST: Quiz[] = [
         theme: THEME_QUIZ_LIST[0].title,
         questions: [],
         associations: [],
-        users: ["1","3"]
+        users: ["1","3"],
+        coverImage: '/assets/quiz-img/quiz-2.jpg'
     },
 ];
