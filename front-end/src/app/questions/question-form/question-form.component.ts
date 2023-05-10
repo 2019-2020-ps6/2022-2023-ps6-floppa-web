@@ -25,7 +25,6 @@ export class QuestionFormComponent implements OnInit {
   private initializeQuestionForm(): void {
     this.questionForm = this.formBuilder.group({
       label: ['', Validators.required],
-      img:'',
       answers: this.formBuilder.array([])
     });
   }
@@ -42,6 +41,7 @@ export class QuestionFormComponent implements OnInit {
   private createAnswer(): FormGroup {
     return this.formBuilder.group({
       value: '',
+      img:['', Validators.required],
       isCorrect: false,
     });
   }
@@ -53,8 +53,21 @@ export class QuestionFormComponent implements OnInit {
   public isQuestionFormValid(): boolean {
     return this.questionForm.valid && 
     this.questionForm.get('answers').value.length > 0 &&
-    this.questionForm.get('img').value.length > 0 &&
     this.questionForm.get('answers').value.some((answer: any) => answer.isCorrect);
+  }
+
+  public answerDuplicated(): boolean {
+    console.log(this.questionForm.get('answers').value);
+    let answers = this.questionForm.get('answers').value;
+    for(let i = 0; i < answers.length; i++) {
+      for(let j = 0; j < answers.length; j++) {
+        if(i !== j && answers[i].value === answers[j].value) {
+          return true;
+        }
+      }
+    }
+
+    return false;
   }
 
   addQuestion(): void {
