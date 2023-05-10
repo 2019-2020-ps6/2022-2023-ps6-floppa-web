@@ -6,6 +6,7 @@
 .user-list {
     display: flex;
     flex-wrap: wrap;
+    margin-top: 50px;
 }
 
 .user {
@@ -14,4 +15,19 @@
     align-items: center;
     width: calc(19% - 10px);
     margin: 10px;
+}
+
+#back {
+    margin-top: 20px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+#top {
+    display: flex;
+    flex-direction: row;
+}
+
+#top h2 {
+    color: gray;
 }

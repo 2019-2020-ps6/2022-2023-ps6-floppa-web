@@ -58,23 +58,24 @@ export class PlayQuizComponent implements OnInit {
     for (let id in this.user.quizSessions) {
       if (Number(id) > this.currentSessionId) this.currentSessionId = Number(id);
     }
+    console.log(this.user.quizSessions);
   }
 
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
-    this.user.quizSessions[this.currentSessionId-1].answers.push(isCorrect);
+    this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
     const endTime = performance.now();
     const elpasedTime = endTime - this.startTime;
-    this.user.quizSessions[this.currentSessionId-1].timePerQuestion.push(Math.round(elpasedTime/1000));
+    this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 
   checkAssociation(): void {
     let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
-    this.user.quizSessions[this.currentSessionId-1].answers.push(isCorrect);
+    this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
     const endTime = performance.now();
     const elpasedTime = endTime - this.startTime;
-    this.user.quizSessions[this.currentSessionId-1].timePerQuestion.push(Math.round(elpasedTime/1000));
+    this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 

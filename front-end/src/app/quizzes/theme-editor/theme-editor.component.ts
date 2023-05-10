@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { Theme } from 'src/models/theme.model';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -10,7 +11,7 @@ import Swal from 'sweetalert2';
   styleUrls: ['./theme-editor.component.scss']
 })
 export class ThemeEditorComponent implements OnInit {
-  public themeList: string[];
+  public themeList: Theme[];
   public static counter: number = THEME_QUIZ_LIST.length;
 
   constructor(private router: Router, private route: ActivatedRoute) {
@@ -18,7 +19,7 @@ export class ThemeEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeList = THEME_QUIZ_LIST.map(theme => theme.title)
+    this.themeList = THEME_QUIZ_LIST
   }
 
   goToTheme(themeIndex: number): void {
@@ -64,8 +65,33 @@ export class ThemeEditorComponent implements OnInit {
         coverImage: null
       });
       ThemeEditorComponent.counter++
-      this.themeList = THEME_QUIZ_LIST.map(theme => theme.title)
+      this.themeList = THEME_QUIZ_LIST
     })
+  }
+
+  deleteTheme(themeToDelete: Theme): void {
+    Swal.fire({
+      html: `
+        <h2 style="color:white">Êtes-vous sûr de<br>supprimer le Thème<br>"`+themeToDelete.title+`" ?</h2>
+        <img src="/assets/trash.png" alt="trash">
+      `,
+      background: 'rgb(131,104,96)',
+      showCancelButton: true,
+      confirmButtonText: 'Oui',
+      cancelButtonText: 'Non',
+      focusConfirm: false,
+      confirmButtonColor: 'rgb(150,255,150)'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.themeList = this.themeList.filter(theme => theme !== themeToDelete);
+        for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
+          if (themeToDelete === THEME_QUIZ_LIST[i]) {
+            THEME_QUIZ_LIST.splice(i,1);
+            this.themeList = THEME_QUIZ_LIST;
+          }
+        }
+      }
+    });
   }
 }
 

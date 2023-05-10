@@ -4,9 +4,8 @@
 }
 
 #back {
-    margin-top: 10px;
-    max-width: 121px;
-    max-height: 121px;
+    max-width: 100px;
+    max-height: 100px;
 }
 
 .theme-img {
@@ -14,12 +13,20 @@
 }
 
 .theme {
-    margin: 150px;
+    margin: 130px;
     margin-bottom: 100px;
 }
 
 .top {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+hr {
+    border: none;
+    height: 3px;
+    background-color: black;
+    width: 100%;
 }

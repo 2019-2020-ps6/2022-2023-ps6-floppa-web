@@ -38,12 +38,11 @@ export class StartQuizComponent implements OnInit {
     for (let id in this.user.quizSessions) {
       if (Number(id) > newId) newId = Number(id);
     }
-    this.user.quizSessions[newId] = {
+    this.user.quizSessions[newId+1] = {
       date: new Date().getTime(),
       quizId: this.quiz.id,
       answers: [],
       timePerQuestion: []
     };
   }
-
 }
