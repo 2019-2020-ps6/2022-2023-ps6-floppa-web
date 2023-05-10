@@ -4,3 +4,21 @@
     width:100px;
     height:100px;
 }
+
+.top {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  img {
+    max-width: 165px;
+    max-height: 165px;
+  }
+  
+  #back {
+    margin-top: 10px;
+    max-width: 121px;
+    max-height: 121px;
+  }
