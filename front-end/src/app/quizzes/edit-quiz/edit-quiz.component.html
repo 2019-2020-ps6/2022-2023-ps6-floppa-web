@@ -4,7 +4,7 @@
         <h2 style="color:gray">Retour</h2>
     </div>
     <div style="display:flex">
-        <img src="{{this.quiz.coverImage}}" style="border-radius: 44px; margin-right:20px">
+        <img src="{{this.quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" style="border-radius: 44px; margin-right:20px">
         <div>
         Titre : {{this.quiz.name}}<br>
         Nombre de questions : {{this.quiz.questions.length}}<br>
