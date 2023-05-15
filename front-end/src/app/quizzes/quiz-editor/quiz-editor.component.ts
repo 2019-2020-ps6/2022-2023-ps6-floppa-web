@@ -24,6 +24,7 @@ export class QuizEditorComponent implements OnInit {
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
     this.userList = USER_LIST;
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
+    console.log(this.themeIndex);
     this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
     console.log(this.quizList);
   }
