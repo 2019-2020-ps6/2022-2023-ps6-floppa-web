@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
@@ -17,7 +17,7 @@ declare const speechSynthesis: any;
   templateUrl: './play-quiz.component.html',
   styleUrls: ['./play-quiz.component.scss']
 })
-export class PlayQuizComponent implements OnInit {
+export class PlayQuizComponent implements OnInit, OnDestroy {
 
   @ViewChild(PlayQuestionComponent) questionChoice: PlayQuestionComponent;
 
@@ -32,6 +32,8 @@ export class PlayQuizComponent implements OnInit {
   public user: User;
   public startTime: number;
   public currentSessionId: number = 0;
+  timerHint: any;
+  timerSound: any;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
     
@@ -46,12 +48,12 @@ export class PlayQuizComponent implements OnInit {
     this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
     this.assistance = Number(this.user.assistance);
     if (this.assistance % 10 >= 1) {
-      setTimeout(() => {
+      this.timerHint = setTimeout(() => {
         this.useHint();
       }, 2 * 60 * 1000)
     }
     if (this.assistance % 100 >= 10) {
-      setTimeout(() => {
+      this.timerSound = setTimeout(() => {
         this.useSound();
       }, 60 * 1000)
     }
@@ -59,6 +61,11 @@ export class PlayQuizComponent implements OnInit {
       if (Number(id) > this.currentSessionId) this.currentSessionId = Number(id);
     }
     console.log(this.user.quizSessions);
+  }
+
+  ngOnDestroy(): void {
+      clearInterval(this.timerHint);
+      clearInterval(this.timerSound);
   }
 
   check(indexAnswer: number): void {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
@@ -11,11 +11,13 @@ import { USER_LIST } from 'src/mocks/user-list.mock';
   templateUrl: './final-screen.component.html',
   styleUrls: ['./final-screen.component.scss']
 })
-export class FinalScreenComponent implements OnInit {
+export class FinalScreenComponent implements OnInit, OnDestroy {
 
   public quiz: Quiz;
   public score: number;
   public user: User;
+  timer: any;
+
 
   constructor(private route: ActivatedRoute) {
   }
@@ -26,9 +28,13 @@ export class FinalScreenComponent implements OnInit {
     this.quiz = QUIZ_LIST[Number(id)-1]
     let userid = this.route.snapshot.paramMap.get('userid');
     this.user = USER_LIST[Number(userid)-1];
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       this.goHome();
     }, 2*60*1000);
+  }
+
+  ngOnDestroy(): void {
+      clearInterval(this.timer);
   }
 
   goHome(): void {

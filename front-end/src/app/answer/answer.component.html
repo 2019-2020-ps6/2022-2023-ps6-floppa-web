@@ -8,12 +8,7 @@
     </div>
     <div style="display: flex;  align-items: center; justify-content: flex-end;">
         <h2 style="display:flex; align-self: center; float: right; margin-right: 16px;">{{user.firstName}} {{user.lastName}}</h2>
-        <div *ngIf="user.photo!==''">
-            <img src="{{user.photo}}" alt="user-img" id="user-img">
-        </div>
-        <div *ngIf="user.photo===''">
-            <img src="/assets/users/user.png" alt="user-img">
-        </div>
+        <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="quiz-img">
     </div>
 </div>
 <div *ngIf="assistance === 1000">

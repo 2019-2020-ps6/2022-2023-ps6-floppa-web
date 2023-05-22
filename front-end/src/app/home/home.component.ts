@@ -11,7 +11,6 @@ import Swal from 'sweetalert2';
 export class HomeComponent implements OnInit, OnDestroy {
     countdown: number = 120;
     timer: any;
-    private routerEventsSubscription: Subscription;
     private countdownInterval: any;
 
     constructor(private router: Router) {
