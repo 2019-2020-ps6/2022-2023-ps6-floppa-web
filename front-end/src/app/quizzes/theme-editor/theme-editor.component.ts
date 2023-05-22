@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Theme } from 'src/models/theme.model';
 import Swal from 'sweetalert2';
+import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { Quiz } from 'src/models/quiz.model';
 
 @Component({
   selector: 'app-theme-editor',
@@ -19,7 +21,7 @@ export class ThemeEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.themeList = THEME_QUIZ_LIST
+    this.themeList = THEME_QUIZ_LIST;
   }
 
   goToTheme(themeIndex: number): void {
@@ -78,9 +80,11 @@ export class ThemeEditorComponent implements OnInit {
   }
 
   deleteTheme(themeToDelete: Theme): void {
+    let quizList = QUIZ_LIST.filter(quiz => quiz.theme === themeToDelete.title);
     Swal.fire({
       html: `
         <h2 style="color:white">Êtes-vous sûr de<br>supprimer le Thème<br>"`+themeToDelete.title+`" ?</h2>
+        <h3 style="color:white">(`+String(quizList.length)+` quizs vont être supprimés...)</h3>
         <img src="/assets/trash.png" alt="trash">
       `,
       background: 'rgb(131,104,96)',
@@ -97,6 +101,16 @@ export class ThemeEditorComponent implements OnInit {
             THEME_QUIZ_LIST.splice(i,1);
             this.themeList = THEME_QUIZ_LIST;
           }
+        }
+        let indexToDelete: number[] = [];
+        for (let i = 0; i < QUIZ_LIST.length; i++) {
+          if (QUIZ_LIST[i].theme === themeToDelete.title) {
+            indexToDelete.push(i);
+          }
+        }
+        indexToDelete = indexToDelete.reverse();
+        for (let index of indexToDelete) {
+          QUIZ_LIST.splice(index,1);
         }
       }
     });
