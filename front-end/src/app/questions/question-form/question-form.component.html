@@ -1,20 +1,22 @@
 <button class="back-button" routerLink="/edit-quiz/{{this.themeId}}/{{this.quizId}}">Retour</button><br>
-<div class="card">
+<div class="card" style="max-width: fit-content;">
   <h2>Créer nouvelle question</h2>
   <form class="quiz-form" [formGroup]="questionForm">
     <label for="label">
       Question :
-      <input class="input-text" type="text" id="label" [formControlName]="'label'">
+      <input class="input-text" type="text" id="label" [formControlName]="'label'" maxlength="50">
     </label>
-    <button style= "margin: 10px;" class="button-card" (click)="addAnswer()">Ajouter réponse</button>
+    <button style= "margin: 10px;" class="button-card" [disabled]="this.questionForm.get('answers').value.length >= 4" (click)="addAnswer()">Ajouter réponse</button>
     <div class="answer" formArrayName="answers">
       <div *ngFor="let address of answers.controls; let i=index">
         <div class="answer-form" [formGroupName]="i">
           <label>
             Réponse {{i + 1}} :
-            <input class = "input-text" type="text" [formControlName]="'value'"><br>
+            <input class = "input-text" type="text" [formControlName]="'value'" maxlength="25"><br>
             Bonne réponse :
             <input style="margin: 10px; width: 20px; height: 20px;" class = "input" type="checkbox" [formControlName]="'isCorrect'">
+            Lien d'image :
+            <input class = "input-text" type="text" [formControlName]="'img'">
           </label>
         </div>
       </div>

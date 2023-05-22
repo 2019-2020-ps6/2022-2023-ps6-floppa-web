@@ -62,11 +62,11 @@
         <span class="form-text">Photo :</span><br>
         <span style="color:gray">Cliquer sur l'icone pour ajouter une photo</span>
         <br>
-        <div style="display: flex; justify-content: center; align-items: center;">
+        <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
           <img src="/assets/users/user.png" alt="user-img" id="user-img">
+          <br>
+          <input class="input-custom" type="string" id="profil" name="profil" [formControlName]="'photo'" placeholder="URL de l'image">
         </div>
-        <br>
-        <input class="input-custom" type="file" id="profil" name="profil" accept="image/png, image/jpeg" [formControlName]="'photo'">
         <br>
       </label>
       <button type="submit" class="create-user-button" (click)="addUser()" routerLink="/user-management">Créer utilisateur</button>

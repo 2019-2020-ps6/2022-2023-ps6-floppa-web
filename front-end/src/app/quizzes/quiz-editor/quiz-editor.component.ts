@@ -24,13 +24,7 @@ export class QuizEditorComponent implements OnInit {
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
     this.userList = USER_LIST;
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    // for (let i = 0; i < QUIZ_LIST.length; i++) {
-    //   if (QUIZ_LIST[i].theme === THEME_QUIZ_LIST[this.themeIndex].title) {
-    //     this.quizList.push(QUIZ_LIST[i]);
-    //   }
-    // }
-    // console.log(this.quizList);
-    //this.quizList = THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex)?.quizList;
+    console.log(this.themeIndex);
     this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
     console.log(this.quizList);
   }
@@ -63,6 +57,59 @@ export class QuizEditorComponent implements OnInit {
 
   refresh(): void {
     this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
+  }
+
+  createQuiz(): void {
+    Swal.fire({
+      html: `
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <label for="title">
+          <div style="display:flex;flex-direction:row;align-items:center;">
+            <h3 style="margin-right:10px; font-size:30px">Titre :</h3>
+            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="title" placeholder="ex: Les félins">
+          </div>
+        </label>
+        <label for="img">
+          <div style="display:flex;flex-direction:row;align-items:center;">
+            <h3 style="margin-right:10px; font-size:30px">Image :</h3>
+            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="image" placeholder="URL de l'image">
+          </div>
+        </label>
+      </div>
+      `,
+      confirmButtonText: 'Valider',
+      focusConfirm: false,
+      preConfirm: () => {
+        const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
+        const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
+        const title = titleInput.value;
+        const image = imageInput.value;
+        if (!title) {
+          Swal.showValidationMessage("Veuillez saisir un titre pour le quiz")
+        }
+        return { title: title, image: image}
+      }
+    }).then((result) => {
+      let newQuizId = 0;
+      for (let quiz of QUIZ_LIST) {
+        if (newQuizId < Number(quiz.id)) {
+          newQuizId = Number(quiz.id);
+        }
+      }
+      let quizToCreate: Quiz = {
+        id : (newQuizId+1) + "",
+        name : result.value.title,
+        theme : THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title,
+        questions : [],
+        associations : [],
+        users : [],
+        coverImage : result.value.image,
+      };
+      
+      QUIZ_LIST.push(quizToCreate);
+      this.refresh();
+      console.log(QUIZ_LIST);
+    })
   }
 }
 

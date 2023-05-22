@@ -33,36 +33,44 @@ export class ThemeEditorComponent implements OnInit {
 
   createTheme(): void {
     Swal.fire({
-      html: `<label for="title">
-        Thème :
-        <input class="input-text" type="text" id="title" placeholder="ex: géographie ">
-      </label>
-      <br>
-      <label for="description">
-        Description :
-        <input class="input-text" type="text" id="description">
-      </label>`,
+      html: `
+      <div style="display:flex;flex-direction:column;align-items:center;">
+        <label for="title">
+          <div style="display:flex;flex-direction:row;align-items:center;">
+            <h3 style="margin-right:10px; font-size:30px">Thème :</h3>
+            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="title" placeholder="ex: géographie ">
+          </div>
+        </label>
+        <label for="img">
+          <div style="display:flex;flex-direction:row;align-items:center;">
+            <h3 style="margin-right:10px; font-size:30px">Image :</h3>
+            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="image" placeholder="URL de l'image">
+          </div>
+        </label>
+      </div>
+      `,
       confirmButtonText: 'Valider',
       focusConfirm: false,
       preConfirm: () => {
         const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
-        const descriptionInput = Swal.getPopup().querySelector('#description') as HTMLInputElement;
+        const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
         const title = titleInput.value;
-        const description = descriptionInput.value;
+        const image = imageInput.value;
         if (!title) {
           Swal.showValidationMessage("Veuillez saisir un titre pour le thème")
         }
         else if (this.themeNotExists(title)) {
           Swal.showValidationMessage("Ce thème existe déjà")
         }
-        return { title: title, description: description}
+        return { title: title, image: image}
       }
     }).then((result) => {
+      console.log(result);
       THEME_QUIZ_LIST.splice(THEME_QUIZ_LIST.length, 0, {
         id: ThemeEditorComponent.counter,
         title: result.value.title,
-        description: result.value.description,
-        coverImage: null
+        description: null,
+        coverImage: result.value.image
       });
       ThemeEditorComponent.counter++
       this.themeList = THEME_QUIZ_LIST

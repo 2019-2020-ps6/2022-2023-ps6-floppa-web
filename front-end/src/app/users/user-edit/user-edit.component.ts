@@ -43,7 +43,7 @@ export class UserEditComponent implements OnInit {
       vocale: [this.getVocale()],
       visual: [this.getVisual()],
       alzheimerStade: [this.user.alzheimerStade],
-      photo: ['']
+      photo: [this.user.photo]
     });
     console.log(this.getVisual());
     console.log(this.user.assistance);
