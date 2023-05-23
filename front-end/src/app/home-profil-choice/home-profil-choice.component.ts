@@ -16,6 +16,7 @@ export class HomeProfilChoiceComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
   }
 }
 

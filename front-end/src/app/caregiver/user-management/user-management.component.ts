@@ -16,5 +16,15 @@ export class UserManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+  }
+
+  updateUserList(selectedSort: string): void {
+    if (selectedSort === "firstName") {
+      this.userList.sort((a,b) => a.firstName.localeCompare(b.firstName));
+    }
+    if (selectedSort === "lastName") {
+      this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+    }
   }
 }

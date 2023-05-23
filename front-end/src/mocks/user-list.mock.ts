@@ -9,9 +9,6 @@ export const USER_LIST: User[] = [
         alzheimerStade: "stade léger",
         assistance : "1000",
         photo: "/assets/users/Madeleine.png",
-        /*numberPlayed: 12,
-        lastGame: 0,
-        favoriteQuiz: "Les félins",*/
         quizSessions: {
             "1": {
                 date: 1682453600000,

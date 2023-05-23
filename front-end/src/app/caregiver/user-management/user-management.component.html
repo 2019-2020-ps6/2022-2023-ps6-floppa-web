@@ -12,7 +12,11 @@
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Accéder à l'éditeur de Quiz</h3>
     </div>
 </div>
-<h1 style="text-align: center;">Sélectionner un patient</h1>
+<h1 style="text-align: center; align-items: center;">Sélectionner un patient <span style="font-size: 30px; font-weight: normal;">(Trier par :
+    <select (change)="updateUserList($event.target.value)" style="border-radius: 5px; padding: 5px; align-self: center; font-size: 25px; font-weight: normal;">
+        <option value="lastName">Nom</option>
+        <option value="firstName">Prénom</option>
+    </select> )</span> </h1>
 <div class="user-list">
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
