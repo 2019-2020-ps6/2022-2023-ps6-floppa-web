@@ -10,12 +10,15 @@ import { User } from 'src/models/user.model';
 })
 export class HomeProfilChoiceComponent implements OnInit {
 
-  public userList: User[] = USER_LIST;
+  public userList: User[] = [];
 
   constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+    for (let user of USER_LIST) {
+      this.userList.push(user);
+    }
     this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
   }
 }
