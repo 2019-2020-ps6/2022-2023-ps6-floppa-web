@@ -13,13 +13,13 @@ export const USER_LIST: User[] = [
             "1": {
                 date: 1682453600000,
                 quizId: "1",
-                answers: [true, true, false,false,false,true],
+                answers: [true, true, false,false,false,true, true, false],
                 timePerQuestion: [10,12,14,13,22,39]
             },
             "2": {
                 date: 1682453600000,
                 quizId: "1",
-                answers: [true, true, false,false,false,true],
+                answers: [true, true, false,false,false,true, true, false],
                 timePerQuestion: [10,12,14,13,22,39]
             },
             "3": {
@@ -31,13 +31,13 @@ export const USER_LIST: User[] = [
             "4": {
                 date: 1682553600000,
                 quizId: "1",
-                answers: [true, true, true,true,false,true],
+                answers: [true, true, false,true,false,true, true, false],
                 timePerQuestion: [10,12,14,13,22,39]
             },
             "5": {
                 date: 1682640000000,
                 quizId: "1",
-                answers: [true, true, true,true,false,false],
+                answers: [true, true, true,true,false,false, true, false],
                 timePerQuestion: [10,12,14,13,22,70]
             }
         }
