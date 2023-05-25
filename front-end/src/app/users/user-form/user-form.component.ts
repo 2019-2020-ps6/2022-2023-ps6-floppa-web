@@ -17,12 +17,18 @@ export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
   public isSmallText = false;
   public isBigText = false;
+  public indice = "non";
+  public vocal = "non";
+  public visual = "non";
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private location: Location) {
     this.userForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
       alzheimerStade: [''],
+      indice: [''],
+      vocal: [''],
+      visual: [''],
       photo: ['']
     });
   }
@@ -40,7 +46,7 @@ export class UserFormComponent implements OnInit {
     this.isBigText = true;
   }
 
-  updateChecked(): void {
+  setAssistanceValue(): void {
     const radioButtons = document.getElementsByName("alzheimerStade") as NodeListOf<HTMLInputElement>;
     
     let alzheimerStadeValue = ""; 
@@ -52,30 +58,40 @@ export class UserFormComponent implements OnInit {
     }
     console.log(alzheimerStadeValue);
 
-
     if (alzheimerStadeValue == "stade léger") {
-      this.userForm = this.formBuilder.group({
-        indice: ["non"],
-        vocale: ["non"],
-        visual: ["non"],
-      });
+      console.log("oui");
+      this.indice = "non";
+      this.vocal = "non";
+      this.visual = "non";
     }
 
     if (alzheimerStadeValue == "stade intermédiaire") {
-      this.userForm = this.formBuilder.group({
-        indice: ["oui"],
-        vocale: ["non"],
-        visual: ["non"],
-      });
+      this.indice = "oui";
+      this.vocal = "non";
+      this.visual = "non";
     }
 
     if (alzheimerStadeValue == "stade avancé") {
-      this.userForm = this.formBuilder.group({
-        indice: ["oui"],
-        vocale: ["oui"],
-        visual: ["oui"],
-      });
+      this.indice = "oui";
+      this.vocal = "oui";
+      this.visual = "oui";
     }
+
+    console.log("indice: " + this.indice);
+    console.log("vocale: " + this.vocal);
+    console.log("visuel: " + this.visual);
+
+    const newUser: User = this.userForm.getRawValue() as User;
+
+    this.userForm = this.formBuilder.group({
+      firstName: [newUser.firstName],
+      lastName: [newUser.lastName],
+      alzheimerStade: [alzheimerStadeValue],
+      indice: [this.indice],
+      vocal: [this.vocal],
+      visual: [this.visual],
+      photo: [newUser.photo]
+    })
   }
 
 
