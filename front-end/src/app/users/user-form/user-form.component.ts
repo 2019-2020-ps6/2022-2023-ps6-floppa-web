@@ -17,9 +17,6 @@ export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
   public isSmallText = false;
   public isBigText = false;
-  public indice = "non";
-  public vocal = "non";
-  public visual = "non";
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private location: Location) {
     this.userForm = this.formBuilder.group({
@@ -27,7 +24,7 @@ export class UserFormComponent implements OnInit {
       lastName: [''],
       alzheimerStade: [''],
       indice: [''],
-      vocal: [''],
+      vocale: [''],
       visual: [''],
       photo: ['']
     });
@@ -58,38 +55,43 @@ export class UserFormComponent implements OnInit {
     }
     console.log(alzheimerStadeValue);
 
+    let indice:string;
+    let vocale:string;
+    let visual:string;
+
     if (alzheimerStadeValue == "stade léger") {
       console.log("oui");
-      this.indice = "non";
-      this.vocal = "non";
-      this.visual = "non";
+      indice = "non";
+      vocale = "non";
+      visual = "non";
     }
 
     if (alzheimerStadeValue == "stade intermédiaire") {
-      this.indice = "oui";
-      this.vocal = "non";
-      this.visual = "non";
+      indice = "oui";
+      vocale = "non";
+      visual = "non";
     }
 
     if (alzheimerStadeValue == "stade avancé") {
-      this.indice = "oui";
-      this.vocal = "oui";
-      this.visual = "oui";
+      indice = "oui";
+      vocale = "oui";
+      visual = "oui";
     }
 
-    console.log("indice: " + this.indice);
-    console.log("vocale: " + this.vocal);
-    console.log("visuel: " + this.visual);
+    console.log("indice: " + indice);
+    console.log("vocale: " + vocale);
+    console.log("visuel: " + visual);
 
     const newUser: User = this.userForm.getRawValue() as User;
+
 
     this.userForm = this.formBuilder.group({
       firstName: [newUser.firstName],
       lastName: [newUser.lastName],
       alzheimerStade: [alzheimerStadeValue],
-      indice: [this.indice],
-      vocal: [this.vocal],
-      visual: [this.visual],
+      indice: [indice],
+      vocale: [vocale],
+      visual: [visual],
       photo: [newUser.photo]
     })
   }

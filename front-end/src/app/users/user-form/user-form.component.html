@@ -37,22 +37,22 @@
       <span class="form-text">Paramètres de jeu :</span><br>
       <label for="indice">
         <span class="form-text">Indice :</span>
-        <input class="input-custom" type="radio" name="indice" value="oui"> Oui
-        <input class="input-custom" type="radio" name="indice" value="non"> Non
+        <input class="input-custom" type="radio" name="indice" value="oui" [formControlName]="'indice'"> Oui
+        <input class="input-custom" type="radio" name="indice" value="non" [formControlName]="'indice'"> Non
       </label>
       <br>
     
       <label for="vocale">
         <span class="form-text">Synthèse vocale :</span>
-        <input class="input-custom" type="radio" name="vocale" value="oui"> Oui 
-        <input class="input-custom" type="radio" name="vocale" value="non"> Non
+        <input class="input-custom" type="radio" name="vocale" value="oui" [formControlName]="'vocale'"> Oui 
+        <input class="input-custom" type="radio" name="vocale" value="non" [formControlName]="'vocale'"> Non
       </label>
       <br>
 
       <label for="visual">
         <span class="form-text">Aide visuelle :</span>
-        <input class="input-custom" type="radio" name="visual" value="oui"> Oui 
-        <input class="input-custom" type="radio" name="visual" value="non"> Non
+        <input class="input-custom" type="radio" name="visual" value="oui" [formControlName]="'visual'"> Oui 
+        <input class="input-custom" type="radio" name="visual" value="non" [formControlName]="'visual'"> Non
       </label>
       <br>
     </div>
