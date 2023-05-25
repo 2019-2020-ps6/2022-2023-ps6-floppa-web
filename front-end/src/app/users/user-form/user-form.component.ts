@@ -40,6 +40,46 @@ export class UserFormComponent implements OnInit {
     this.isBigText = true;
   }
 
+  updateChecked(): void {
+    const radioButtons = document.getElementsByName("alzheimerStade") as NodeListOf<HTMLInputElement>;
+    
+    let alzheimerStadeValue = ""; 
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        alzheimerStadeValue = radioButtons[i].value;
+        break;
+      }
+    }
+    console.log(alzheimerStadeValue);
+
+
+    if (alzheimerStadeValue == "stade léger") {
+      this.userForm = this.formBuilder.group({
+        indice: ["non"],
+        vocale: ["non"],
+        visual: ["non"],
+      });
+    }
+
+    if (alzheimerStadeValue == "stade intermédiaire") {
+      this.userForm = this.formBuilder.group({
+        indice: ["oui"],
+        vocale: ["non"],
+        visual: ["non"],
+      });
+    }
+
+    if (alzheimerStadeValue == "stade avancé") {
+      this.userForm = this.formBuilder.group({
+        indice: ["oui"],
+        vocale: ["oui"],
+        visual: ["oui"],
+      });
+    }
+  }
+
+
+
   getIndice(): Boolean {
 
     const radioButtons = document.getElementsByName("indice") as NodeListOf<HTMLInputElement>;

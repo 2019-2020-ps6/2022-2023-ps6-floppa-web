@@ -23,9 +23,18 @@
       </label>
     
       <br>
-    
+
+      <label for="alzheimerStade">
+        <span class="form-text">Stade Alzheimer :</span> <br>
+        Sélectionnez une plage <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'" (click)="updateChecked()"> Stade léger (stade 1 à 2) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'" (click)="updateChecked()"> Stade intermédiaire (stade 3 à 5) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'" (click)="updateChecked()"> Stade avancé (stade 6 à 7) <br>
+      </label>
+
+      <br>
+
       <span class="form-text">Paramètres de jeu :</span><br>
-    
       <label for="indice">
       <span class="form-text">Indice :</span>
       <input class="input-custom" type="radio" name="indice" value="oui"> Oui
@@ -46,14 +55,6 @@
         <input class="input-custom" type="radio" name="visual" value="non"> Non
         </label>
         <br>
-      
-      <label for="alzheimerStade">
-        <span class="form-text">Stade Alzheimer :</span> <br>
-        Sélectionnez une plage <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
-      </label>
     </div>
     
     <div style="display: flex; flex-direction: column; align-items: center; flex-basis: 50%;">
