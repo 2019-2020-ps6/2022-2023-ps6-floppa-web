@@ -17,6 +17,9 @@ export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
   public isSmallText = false;
   public isBigText = false;
+  public indice:string;
+  public vocale:string;
+  public visual:string;
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private location: Location) {
     this.userForm = this.formBuilder.group({
@@ -53,49 +56,44 @@ export class UserFormComponent implements OnInit {
         break;
       }
     }
-    console.log(alzheimerStadeValue);
-
-    let indice:string;
-    let vocale:string;
-    let visual:string;
 
     if (alzheimerStadeValue == "stade léger") {
       console.log("oui");
-      indice = "non";
-      vocale = "non";
-      visual = "non";
+      this.indice = "non";
+      this.vocale = "non";
+      this.visual = "non";
     }
 
     if (alzheimerStadeValue == "stade intermédiaire") {
-      indice = "oui";
-      vocale = "non";
-      visual = "non";
+      this.indice = "oui";
+      this.vocale = "non";
+      this.visual = "non";
     }
 
     if (alzheimerStadeValue == "stade avancé") {
-      indice = "oui";
-      vocale = "oui";
-      visual = "oui";
+      this.indice = "oui";
+      this.vocale = "oui";
+      this.visual = "oui";
     }
 
-    console.log("indice: " + indice);
-    console.log("vocale: " + vocale);
-    console.log("visuel: " + visual);
+    this.updateAssistanceChecked(alzheimerStadeValue);
+  }
 
+
+  updateAssistanceChecked(alzheimerStadeValue:string): void {
     const newUser: User = this.userForm.getRawValue() as User;
-
 
     this.userForm = this.formBuilder.group({
       firstName: [newUser.firstName],
       lastName: [newUser.lastName],
       alzheimerStade: [alzheimerStadeValue],
-      indice: [indice],
-      vocale: [vocale],
-      visual: [visual],
+      indice: [this.indice],
+      vocale: [this.vocale],
+      visual: [this.visual],
       photo: [newUser.photo]
     })
-  }
 
+  }
 
 
   getIndice(): Boolean {
@@ -138,22 +136,42 @@ export class UserFormComponent implements OnInit {
     }
   }
 
+  getVisual(): Boolean {
+
+    const radioButtons = document.getElementsByName("visual") as NodeListOf<HTMLInputElement>;
+
+    let visualValue = "";
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        visualValue = radioButtons[i].value;
+        break;
+      }
+    }
+
+    if (visualValue == "oui"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   getAssistance(user: User): string {
-    if (this.isBigText && this.getIndice() && this.getVocale()){
+    if (this.getVisual() && this.getIndice() && this.getVocale()){
       return "1111";
     }
 
-    if (this.isBigText && this.getVocale()){
+    if (this.getVisual() && this.getVocale()){
       return "1110";
     }
-    if (this.isBigText && this.getIndice()){
+    if (this.getVisual() && this.getIndice()){
       return "1101";
     }
     if (this.getVocale() && this.getIndice()){
       return "1011";
     }
 
-    if (this.isBigText) {
+    if (this.getVisual()) {
       return "1100";
     }
     if (this.getVocale()){
