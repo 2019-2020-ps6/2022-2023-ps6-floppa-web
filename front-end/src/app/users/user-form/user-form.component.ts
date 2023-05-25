@@ -108,12 +108,7 @@ export class UserFormComponent implements OnInit {
       }
     }
 
-    if (indiceValue == "oui"){
-      return true;
-    }
-    else {
-      return false;
-    }
+    return (indiceValue == "oui");
   }
 
   getVocale(): Boolean {
@@ -128,12 +123,7 @@ export class UserFormComponent implements OnInit {
       }
     }
 
-    if (vocaleValue == "oui"){
-      return true;
-    }
-    else {
-      return false;
-    }
+    return (vocaleValue == "oui");
   }
 
   getVisual(): Boolean {
@@ -148,12 +138,7 @@ export class UserFormComponent implements OnInit {
       }
     }
 
-    if (visualValue == "oui"){
-      return true;
-    }
-    else {
-      return false;
-    }
+    return (visualValue == "oui");
   }
 
   getAssistance(user: User): string {
