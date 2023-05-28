@@ -17,12 +17,18 @@ export class UserFormComponent implements OnInit {
   public userForm: FormGroup;
   public isSmallText = false;
   public isBigText = false;
+  public indice:string;
+  public vocale:string;
+  public visual:string;
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private location: Location) {
     this.userForm = this.formBuilder.group({
       firstName: [''],
       lastName: [''],
       alzheimerStade: [''],
+      indice: [''],
+      vocale: [''],
+      visual: [''],
       photo: ['']
     });
   }
@@ -39,6 +45,56 @@ export class UserFormComponent implements OnInit {
     this.isSmallText = false;
     this.isBigText = true;
   }
+
+  setAssistanceValue(): void {
+    const radioButtons = document.getElementsByName("alzheimerStade") as NodeListOf<HTMLInputElement>;
+    
+    let alzheimerStadeValue = ""; 
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        alzheimerStadeValue = radioButtons[i].value;
+        break;
+      }
+    }
+
+    if (alzheimerStadeValue == "stade léger") {
+      console.log("oui");
+      this.indice = "non";
+      this.vocale = "non";
+      this.visual = "non";
+    }
+
+    if (alzheimerStadeValue == "stade intermédiaire") {
+      this.indice = "oui";
+      this.vocale = "non";
+      this.visual = "non";
+    }
+
+    if (alzheimerStadeValue == "stade avancé") {
+      this.indice = "oui";
+      this.vocale = "oui";
+      this.visual = "oui";
+    }
+
+    this.updateAssistanceChecked(alzheimerStadeValue);
+  }
+
+
+  updateAssistanceChecked(alzheimerStadeValue:string): void {
+    const newUser: User = this.userForm.getRawValue() as User;
+
+    this.userForm = this.formBuilder.group({
+      firstName: [newUser.firstName],
+      lastName: [newUser.lastName],
+      alzheimerStade: [alzheimerStadeValue],
+      indice: [this.indice],
+      vocale: [this.vocale],
+      visual: [this.visual],
+      photo: [newUser.photo]
+    })
+
+  }
+
 
   getIndice(): Boolean {
 
@@ -80,22 +136,42 @@ export class UserFormComponent implements OnInit {
     }
   }
 
+  getVisual(): Boolean {
+
+    const radioButtons = document.getElementsByName("visual") as NodeListOf<HTMLInputElement>;
+
+    let visualValue = "";
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        visualValue = radioButtons[i].value;
+        break;
+      }
+    }
+
+    if (visualValue == "oui"){
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+
   getAssistance(user: User): string {
-    if (this.isBigText && this.getIndice() && this.getVocale()){
+    if (this.getVisual() && this.getIndice() && this.getVocale()){
       return "1111";
     }
 
-    if (this.isBigText && this.getVocale()){
+    if (this.getVisual() && this.getVocale()){
       return "1110";
     }
-    if (this.isBigText && this.getIndice()){
+    if (this.getVisual() && this.getIndice()){
       return "1101";
     }
     if (this.getVocale() && this.getIndice()){
       return "1011";
     }
 
-    if (this.isBigText) {
+    if (this.getVisual()) {
       return "1100";
     }
     if (this.getVocale()){
