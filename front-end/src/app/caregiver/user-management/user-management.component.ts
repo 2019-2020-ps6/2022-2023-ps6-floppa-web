@@ -10,11 +10,25 @@ import { User } from 'src/models/user.model';
 })
 export class UserManagementComponent implements OnInit {
 
-  public userList: User[] = USER_LIST;
+  public userList: User[] = [];
 
   constructor(private router: Router) {
   }
 
   ngOnInit(): void {
+    for (let user of USER_LIST) {
+      this.userList.push(user);
+    }
+    this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+    this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+  }
+
+  updateUserList(selectedSort: string): void {
+    if (selectedSort === "firstName") {
+      this.userList.sort((a,b) => a.firstName.localeCompare(b.firstName));
+    }
+    if (selectedSort === "lastName") {
+      this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+    }
   }
 }

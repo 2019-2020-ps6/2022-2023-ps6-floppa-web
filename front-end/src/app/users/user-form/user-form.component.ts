@@ -29,7 +29,9 @@ export class UserFormComponent implements OnInit {
       indice: [''],
       vocale: [''],
       visual: [''],
-      photo: ['']
+      photo: [''],
+      timerMinute: [1],
+      timerSeconds: [0],
     });
   }
 
@@ -82,6 +84,13 @@ export class UserFormComponent implements OnInit {
 
   updateAssistanceChecked(alzheimerStadeValue:string): void {
     const newUser: User = this.userForm.getRawValue() as User;
+    const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
 
     this.userForm = this.formBuilder.group({
       firstName: [newUser.firstName],
@@ -90,7 +99,9 @@ export class UserFormComponent implements OnInit {
       indice: [this.indice],
       vocale: [this.vocale],
       visual: [this.visual],
-      photo: [newUser.photo]
+      photo: [newUser.photo],
+      timerMinute: [timers.timerMinute],
+      timerSeconds: [timers.timerSeconds],
     })
 
   }
@@ -180,17 +191,23 @@ export class UserFormComponent implements OnInit {
     if (this.getIndice()){
       return "1001";
     }
-
   }
 
   addUser(): void {
     const userToCreate: User = this.userForm.getRawValue() as User;
+    const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
+    userToCreate.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
     userToCreate.assistance = this.getAssistance(userToCreate);
     userToCreate.id = String(USER_LIST.length + 1);
     userToCreate.quizSessions = {};
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
-    console.log(USER_LIST);
   }
 
   goBack():void {

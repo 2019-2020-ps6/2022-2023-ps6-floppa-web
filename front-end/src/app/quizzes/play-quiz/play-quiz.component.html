@@ -9,7 +9,7 @@
         </div>
         <div *ngIf="numQuestion <= quiz.questions.length && assistance % 10 >= 1" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">
             <img id="hint" src="/assets/hint.png" alt="hint" (click)="useHint()">
-            <h2 id="hint-text">Indice</h2>
+            <h2 id="hint-text">Aide</h2>
         </div>
         <div *ngIf="numQuestion <= quiz.questions.length && assistance % 100 >= 10" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">
             <img id="sound-img" src="/assets/sound.png" alt="sound" (click)="useSound()">

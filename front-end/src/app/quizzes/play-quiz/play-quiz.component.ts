@@ -50,17 +50,16 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
     if (this.assistance % 10 >= 1) {
       this.timerHint = setTimeout(() => {
         this.useHint();
-      }, 2 * 60 * 1000)
+      }, 2 * 60 * 1000 * this.user.timer)
     }
     if (this.assistance % 100 >= 10) {
       this.timerSound = setTimeout(() => {
         this.useSound();
-      }, 60 * 1000)
+      }, 60 * 1000 * this.user.timer)
     }
     for (let id in this.user.quizSessions) {
       if (Number(id) > this.currentSessionId) this.currentSessionId = Number(id);
     }
-    console.log(this.user.quizSessions);
   }
 
   ngOnDestroy(): void {

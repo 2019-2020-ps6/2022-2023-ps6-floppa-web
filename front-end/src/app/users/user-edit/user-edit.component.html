@@ -56,7 +56,14 @@
         <input class="input-custom" type="radio" name="visual" value="non" [formControlName]="'visual'"> Non
       </label>
       <br>
-
+      
+      <label for="timer">
+        <span class="form-text">Temps d'attente :</span>
+        <input class="input-custom" type="number" name="minute" min="0" max="60" value="1" [formControlName]="'timerMinute'">
+        <span> min </span>
+        <input class="input-custom" type="number" name="secondes" min="0" max="60" value="0" [formControlName]="'timerSeconds'">
+        <span> s </span>
+      </label>
     </div>
     
     <div style="display: flex; flex-direction: column; align-items: center; flex-basis: 50%;">

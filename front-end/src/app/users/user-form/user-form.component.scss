@@ -30,11 +30,12 @@ hr {
     width: 100%;
 }
 
-input {
+.input-custom {
     border-radius: 15px;
     background-color: rgb(199, 199, 199);
     border:0;
     padding: 5px;
+    font-size: 28px;
 }
 
 .text-big {
@@ -49,9 +50,6 @@ input {
     font-size: 28px;
 }
 
-.input-custom {
-    font-size: 28px;
-}
 
 .form-text {
     font-weight: bold;
@@ -77,4 +75,8 @@ input {
 .create-user-button:hover {
     background-color: grey;
     color: white;
+}
+
+input[type="number"] {
+    width: 50px;
 }
