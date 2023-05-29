@@ -31,13 +31,18 @@ export class UserEditComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       alzheimerStade: [''],
-      photo: ['']
+      photo: [''],
+      timerMinute: [],
+      timerSeconds: [],
     });
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     this.user = this.userService.users$.getValue()[parseInt(id)-1];
+    console.log(this.user.timer)
+    let tm: number = Math.trunc(this.user.timer);
+    let ts: number = Math.round((this.user.timer - tm) * 60);
 
     this.userEdit = this.formBuilder.group({
       firstName: [this.user.firstName],
@@ -46,7 +51,9 @@ export class UserEditComponent implements OnInit {
       vocale: [this.getVocale()],
       visual: [this.getVisual()],
       alzheimerStade: [this.user.alzheimerStade],
-      photo: [this.user.photo]
+      photo: [this.user.photo],
+      timerMinute: [tm],
+      timerSeconds: [ts],
     });
     console.log(this.getVisual());
     console.log(this.user.assistance);
@@ -97,6 +104,14 @@ export class UserEditComponent implements OnInit {
 
   updateAssistanceChecked(alzheimerStadeValue:string): void {
     const newUser: User = this.userEdit.getRawValue() as User;
+    
+    const timers: {timerMinute:number, timerSeconds: number} = this.userEdit.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
 
     this.userEdit = this.formBuilder.group({
       firstName: [newUser.firstName],
@@ -105,7 +120,9 @@ export class UserEditComponent implements OnInit {
       indice: [this.indice],
       vocale: [this.vocale],
       visual: [this.visual],
-      photo: [newUser.photo]
+      photo: [newUser.photo],
+      timerMinute: [timers.timerMinute],
+      timerSeconds: [timers.timerSeconds],
     })
 
   }
@@ -227,6 +244,14 @@ export class UserEditComponent implements OnInit {
 
   edit(): void {
     const userToEdit: User = this.userEdit.getRawValue() as User;
+    const timers: {timerMinute:number, timerSeconds: number} = this.userEdit.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
+    userToEdit.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
     userToEdit.id = this.user.id;
     userToEdit.assistance = this.getNewAssistance(userToEdit);
     console.log(userToEdit);

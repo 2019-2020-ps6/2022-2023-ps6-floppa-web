@@ -6,6 +6,7 @@ export interface User {
     assistance: string;
     photo: string;
     quizSessions: { [idQuiz: string]: QuizSession };
+    timer: number;
 }
 
 export interface QuizSession {

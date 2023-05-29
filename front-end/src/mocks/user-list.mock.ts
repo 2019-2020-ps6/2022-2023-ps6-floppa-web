@@ -40,7 +40,8 @@ export const USER_LIST: User[] = [
                 answers: [true, true, true,true,false,false, true, false],
                 timePerQuestion: [10,12,14,13,22,70]
             }
-        }
+        },
+        timer: 1
     },
     {
         id: "2",
@@ -68,7 +69,8 @@ export const USER_LIST: User[] = [
                 answers: [true, true, false,false,false,true],
                 timePerQuestion: [10,12,14,13,22,39]
             }
-        }
+        },
+        timer: 1
     },
     {
         id: "3",
@@ -96,6 +98,7 @@ export const USER_LIST: User[] = [
                 answers: [true, true, false,false,false,true],
                 timePerQuestion: [10,12,14,13,22,39]
             }
-        }
+        },
+        timer: 1
     }
 ]

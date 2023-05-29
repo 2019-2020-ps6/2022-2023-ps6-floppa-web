@@ -47,6 +47,7 @@ export class UserService {
   }
 
   addUser(user: User): void {
+    console.log(user);
     this.http.post<User>(this.userUrl, user, this.httpOptions).subscribe(() => this.retrieveUsers());
     this.users.push(user);
     this.users$.next(this.users);
@@ -82,6 +83,7 @@ export class UserService {
       this.users[index].alzheimerStade = user.alzheimerStade;
       this.users[index].assistance = user.assistance;
       this.users[index].photo = user.photo;
+      this.users[index].timer = user.timer;
 
       console.log(this.users);
     }
