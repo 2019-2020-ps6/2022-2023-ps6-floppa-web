@@ -7,5 +7,13 @@ module.exports = new BaseModel('User', {
   alzheimerStade: Joi.string(),
   assistance: Joi.string().required(),
   photo: Joi.string(),
+  quizSessions: Joi.array(Joi.quizSessions()),
   timer: Joi.number(),
+})
+
+module.exports = new BaseModel('QuizSession', {
+  date: Joi.number().required(),
+  quizId: Joi.string().required(),
+  answers: Joi.array(Joi.Answer()),
+  timePerQuestion: Joi.array(Joi.number()),
 })
