@@ -35,7 +35,7 @@ router.get('/:answerId', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const question = getQuestionFromQuiz(req.params.quizId, req.params.questionId)
+    const question = getQuestionFromQuiz(req.params.value, req.params.isCorrect )
     const answer = Answer.create({ ...req.body, questionId: question.id })
     res.status(201).json(answer)
   } catch (err) {
