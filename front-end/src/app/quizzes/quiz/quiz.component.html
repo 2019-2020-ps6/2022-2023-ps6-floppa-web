@@ -5,8 +5,8 @@
             <h2 style="display: flex; justify-content:center;">{{quiz.name}}</h2>
         </div>
         <div style="display: flex ; flex-direction: column;">
-            <img *ngIf="type == null" style="max-width: 100px; max-height: 100px;" src="/assets/editing.png" routerLink="/edit-quiz/{{this.themeIndex}}/{{this.quiz.id}}">
-            <img style="max-width: 100px; max-height: 100px; margin-top: 100px;" *ngIf="type == null" src="/assets/trash.png" alt="trash-img" (click)="delete()">
+            <img class = "edit-img" *ngIf="type == null" src="/assets/editing.png" routerLink="/edit-quiz/{{this.themeIndex}}/{{this.quiz.id}}">
+            <img class = "trash-img" *ngIf="type == null" src="/assets/trash.png" alt="trash-img" (click)="delete()">
         </div>
     </div>
 </div>
