@@ -3,7 +3,7 @@ const BaseModel = require('../utils/base-model.js')
 
 module.exports = new BaseModel('Association', {
     label: Joi.string(),
-    connections: Joi.array().items(Joi.Connection()),
+    connections: Joi.array(),
     isCorrect: Joi.boolean(),
 })
 
