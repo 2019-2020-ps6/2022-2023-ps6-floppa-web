@@ -56,5 +56,8 @@ export class HomeComponent implements OnInit, OnDestroy {
                 this.router.navigate(["/user-management"]);
             }
           })
+          setTimeout(() => {
+            Swal.close()
+          }, 30 * 1000);
     }
 }
