@@ -2,13 +2,13 @@ const { Quiz, Association } = require('../../../models')
 const NotFoundError = require('../../../utils/errors/not-found-error.js')
 
 /**
- * Questions Manager.
- * This file contains all the logic needed to by the question routes.
+ * Association Manager.
+ * This file contains all the logic needed to by the association routes.
  */
 
 /**
- * filterQuestionsFromQuizz.
- * This function filters among the questions to return only the question linked with the given quizId.
+ * filterAssociationsFromQuizz.
+ * This function filters among the associations to return only the association linked with the given quizId.
  * @param quizId
  */
 const filterAssociationsFromQuizz = (quizId) => {
@@ -18,10 +18,10 @@ const filterAssociationsFromQuizz = (quizId) => {
 }
 
 /**
- * getQuestionFromQuiz.
- * This function retrieves a question from a quiz. It will throw a not found exception if the quizId in the question is different from the one provided in parameter.
+ * getAssociationFromQuiz.
+ * This function retrieves a association from a quiz. It will throw a not found exception if the quizId in the association is different from the one provided in parameter.
  * @param quizId
- * @param questionId
+ * @param associationId
  */
 const getAssociationFromQuiz = (quizId, associationId) => {
   // Check if quizId exists, if not it will throw a NotFoundError
