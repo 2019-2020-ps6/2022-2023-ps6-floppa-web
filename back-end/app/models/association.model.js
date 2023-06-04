@@ -12,5 +12,5 @@ module.exports = new BaseModel('Connection', {
     imageCoverToConnect: Joi.string(),
     valueToBeConnected: Joi.string(),
     imageCoverToBeConnected: Joi.string(),
-    associationId: Joi.numbers().required()
+    associationId: Joi.number().required()
 })
