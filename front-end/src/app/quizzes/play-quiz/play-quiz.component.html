@@ -4,25 +4,25 @@
             <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
             <div style="display: flex; flex-direction: column; margin-left: 16px;">
                 <h4 style="margin:0">{{quiz.name}}</h4>
-                <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{quiz.questions.length + quiz.associations.length}}</span>
+                <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{this.quizQuestions.length}}</span>
             </div>
         </div>
-        <div *ngIf="numQuestion <= quiz.questions.length && assistance % 10 >= 1" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">
+        <div *ngIf="numQuestion <= this.quizQuestions.length && assistance % 10 >= 1" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">
             <img id="hint" src="/assets/hint.png" alt="hint" (click)="useHint()">
             <h2 id="hint-text">Aide</h2>
         </div>
-        <div *ngIf="numQuestion <= quiz.questions.length && assistance % 100 >= 10" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">
+        <div *ngIf="numQuestion <= this.quizQuestions.length && assistance % 100 >= 10" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">
             <img id="sound-img" src="/assets/sound.png" alt="sound" (click)="useSound()">
             <h2 id="sound-text">Écouter la question</h2>
         </div>
         <div style="display: flex; align-items: center; justify-content: flex-end; flex-basis: 25%;">
             <div style="display: flex; flex-direction: row; align-items: center;">
                 <h2>{{user.firstName}} {{user.lastName}}</h2>
-                <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="quiz-img">
+                <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'">
             </div>
         </div>
     </div>
-    <app-play-association *ngIf="numQuestion > quiz.questions.length" (answer)="checkAssociation()" [numAssociation] = "numQuestion - quiz.questions.length - 1"></app-play-association>
-    <app-play-question *ngIf="numQuestion <= quiz.questions.length" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance"></app-play-question>
+    <app-play-association *ngIf="numQuestion > this.quizQuestions.length" (answer)="checkAssociation()" [numAssociation] = "numQuestion - this.quizQuestions.length - 1"></app-play-association>
+    <app-play-question *ngIf="numQuestion <= this.quizQuestions.length" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance"></app-play-question>
 </div>
   

@@ -7,6 +7,9 @@ import { Location } from '@angular/common';
 import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
 import { User } from 'src/models/user.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
+import { QuestionService } from 'src/services/question.service';
+import { Answer, Question } from 'src/models/question.model';
+import { AnswerService } from 'src/services/answer.service';
 
 const performance = window.performance;
 declare const SpeechSynthesisUtterance: any;
@@ -26,6 +29,8 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   public assistance: number;
 
   public quiz: Quiz;
+  public quizQuestions: Question[];
+  public answers: Answer[];
   public numQuestion: number;
   public answered = false;
   public isHintUsed = false;
@@ -35,15 +40,27 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   timerHint: any;
   timerSound: any;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router, private questionService: QuestionService, private answerService: AnswerService) {
     
   }
 
   ngOnInit(): void {
     this.startTime = performance.now();
     let id = this.route.snapshot.paramMap.get('id');
-    this.quiz = QUIZ_LIST[Number(id)-1];
-    this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
+    this.quizService.getQuizData().subscribe((quizData) => {
+      for (let quiz of quizData) {
+        if (Number(quiz.id) === Number(id)) {
+          this.quiz = quiz;
+        }
+      }
+    })
+    this.questionService.getQuestions(Number(id)).subscribe((questions) => {
+      this.quizQuestions = questions;this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
+      this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
+        this.answers = answers;
+      })
+    })
+    
     this.score = Number(this.route.snapshot.paramMap.get('score'));
     this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
     this.assistance = Number(this.user.assistance);
