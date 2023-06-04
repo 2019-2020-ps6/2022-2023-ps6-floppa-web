@@ -10,10 +10,3 @@ module.exports = new BaseModel('User', {
   quizSessions: Joi.array(),
   timer: Joi.number(),
 })
-
-module.exports = new BaseModel('QuizSession', {
-  date: Joi.date().required(),
-  quizId: Joi.string().required(),
-  answers: Joi.array(),
-  timePerQuestion: Joi.array(),
-})
