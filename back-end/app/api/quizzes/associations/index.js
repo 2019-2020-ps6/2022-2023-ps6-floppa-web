@@ -1,8 +1,8 @@
 const { Router } = require('express')
 
-const { Quiz, Association, Connection } = require('../../models')
+const { Quiz, Association, Connection } = require('../../../models')
 const manageAllErrors = require('../../../utils/routes/error-management')
-const ConnectionRouter = require('./assoctiations')
+const ConnectionsRouter = require('./connections')
 const { filterAssociationsFromQuizz, getAssociationFromQuiz } = require('./manager')
 
 const router = new Router({ mergeParams: true })
@@ -64,6 +64,6 @@ router.delete('/:associationId', (req, res) => {
   }
 })
 
-router.use('/:associationId/connections', ConnectionRouter)
+router.use('/:associationId/connections', ConnectionsRouter)
 
 module.exports = router

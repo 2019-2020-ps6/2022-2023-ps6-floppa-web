@@ -6,11 +6,3 @@ module.exports = new BaseModel('Association', {
     connections: Joi.array().required(),
     isCorrect: Joi.boolean(),
 })
-
-module.exports = new BaseModel('Connection', {
-    valueToConnect: Joi.string(),
-    imageCoverToConnect: Joi.string(),
-    valueToBeConnected: Joi.string(),
-    imageCoverToBeConnected: Joi.string(),
-    associationId: Joi.number().required()
-})
