@@ -17,11 +17,12 @@ export class ThemeEditorComponent implements OnInit {
   public static counter: number = THEME_QUIZ_LIST.length;
 
   constructor(private router: Router, private route: ActivatedRoute) {
-    
+
   }
 
   ngOnInit(): void {
     this.themeList = THEME_QUIZ_LIST;
+    this.themeList.sort((a,b) => a.title.localeCompare(b.title));
   }
 
   goToTheme(themeIndex: number): void {
@@ -76,6 +77,7 @@ export class ThemeEditorComponent implements OnInit {
       });
       ThemeEditorComponent.counter++
       this.themeList = THEME_QUIZ_LIST
+      this.themeList.sort((a,b) => a.title.localeCompare(b.title));
     })
   }
 
@@ -100,6 +102,7 @@ export class ThemeEditorComponent implements OnInit {
           if (themeToDelete === THEME_QUIZ_LIST[i]) {
             THEME_QUIZ_LIST.splice(i,1);
             this.themeList = THEME_QUIZ_LIST;
+            this.themeList.sort((a,b) => a.title.localeCompare(b.title));
           }
         }
         let indexToDelete: number[] = [];

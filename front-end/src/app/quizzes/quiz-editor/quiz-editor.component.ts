@@ -30,6 +30,7 @@ export class QuizEditorComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.quizList.sort((a,b) => a.name.localeCompare(b.name));
   }
 
   editQuiz(quiz: Quiz): void {
@@ -57,6 +58,7 @@ export class QuizEditorComponent implements OnInit {
 
   refresh(): void {
     this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
+    this.quizList.sort((a,b) => a.name.localeCompare(b.name));
   }
 
   createQuiz(): void {
