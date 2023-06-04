@@ -4,6 +4,7 @@ import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { Theme } from 'src/models/theme.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 
@@ -22,6 +23,7 @@ export class QuizListComponent implements OnInit {
   public quizList: Quiz[] = [];
   public themeIndex: number;
   public type: string;
+  public theme: Theme;
 
   constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
@@ -29,6 +31,19 @@ export class QuizListComponent implements OnInit {
     this.userList = USER_LIST;
     this.getUser(this.username);
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
+    for (let theme of THEME_QUIZ_LIST) {
+      if (theme.id === this.themeIndex) {
+        this.theme = theme;
+      }
+    }
+    this.quizService.getQuizData().subscribe((quizData) => {
+      for (let quiz of quizData) {
+        if (quiz.theme === this.theme.title) {
+          this.quizList.push(quiz);
+        }
+      }
+      console.log(this.quizList);
+    })
     /*for (let i=0; i<QUIZ_LIST.length; i++) {
       if (THEME_QUIZ_LIST[this.themeIndex].title === QUIZ_LIST[i].theme) {
         this.quizList.push(QUIZ_LIST[i]);
@@ -37,11 +52,7 @@ export class QuizListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.quizService.getQuizData().subscribe((quizData) => {
-      console.log(quizData);
-      this.quizList = quizData;
-      console.log(this.quizList.length);
-    })
+    
   }
 
   getUser(username: string): void {
