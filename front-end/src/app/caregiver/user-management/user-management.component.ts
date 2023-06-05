@@ -19,8 +19,9 @@ export class UserManagementComponent implements OnInit {
   ngOnInit(): void {
     this.userService.getUsers().subscribe((users) => {
       this.userList = users;
+      this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+      console.log(this.userList)
     })
-    this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
   }
 
   updateUserList(selectedSort: string): void {

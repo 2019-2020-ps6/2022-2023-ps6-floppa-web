@@ -8,6 +8,7 @@ import { User } from 'src/models/user.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import Swal from 'sweetalert2';
 import { UserService } from 'src/services/user.service';
+
 @Component({
   selector: 'app-edit-quiz',
   templateUrl: './edit-quiz.component.html',
@@ -28,9 +29,6 @@ export class EditQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe((users) => {
-      this.userList = users;
-    })
     const id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST.find(quiz => quiz.id === id);
     this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
@@ -41,10 +39,9 @@ export class EditQuizComponent implements OnInit {
     this.users = this.quiz.users;
     this.userList = [];
     for (let userid of this.users) {
-      this.userService.getUsers().subscribe((users) => {
-        this.getUser(this.username);
+      this.userService.getUser(userid).subscribe((user) =>{
+        this.userList.push(user)
       })
-      this.userList.push(USER_LIST[Number(userid)-1])
     }
     
     this.remainingUsers = USER_LIST.slice();

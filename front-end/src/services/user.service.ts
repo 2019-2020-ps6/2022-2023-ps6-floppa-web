@@ -42,7 +42,7 @@ export class UserService {
 
   getUser(userId: string): Observable<User> {
     const urlWithId = this.userUrl + '/' + userId;
-    return this.http.get<User>(urlWithId, this.httpOptions);
+    return this.http.get<User>("http://localhost:9428/api/users");
   }
 
   addUser(user: User): void {
