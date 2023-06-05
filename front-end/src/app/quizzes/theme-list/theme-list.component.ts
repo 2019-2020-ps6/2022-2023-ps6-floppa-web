@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Theme } from 'src/models/theme.model';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-theme-list',
@@ -21,11 +22,13 @@ export class ThemeListComponent implements OnInit {
   public themeList: Theme[];
   public type: string;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, public userService: UserService) {
     this.username = this.route.snapshot.paramMap.get("user");
     this.type = this.route.snapshot.paramMap.get("type");
-    this.userList = USER_LIST;
-    this.getUser(this.username);
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+      this.getUser(this.username);
+    })
 
     this.themeList = THEME_QUIZ_LIST;
   }
