@@ -10,6 +10,7 @@ import { USER_LIST } from 'src/mocks/user-list.mock';
 import { QuestionService } from 'src/services/question.service';
 import { Answer, Question } from 'src/models/question.model';
 import { AnswerService } from 'src/services/answer.service';
+import { UserService } from 'src/services/user.service';
 
 const performance = window.performance;
 declare const SpeechSynthesisUtterance: any;
@@ -40,7 +41,7 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   timerHint: any;
   timerSound: any;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router, private questionService: QuestionService, private answerService: AnswerService) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router, private questionService: QuestionService, private answerService: AnswerService, public userService: UserService) {
     
   }
 
@@ -62,7 +63,12 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
     })
     
     this.score = Number(this.route.snapshot.paramMap.get('score'));
-    this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
+    let userid = this.route.snapshot.paramMap.get('userid');
+    this.userService.getUsers().subscribe((users) => {
+      for (let userInList of users) {
+        if (Number(userInList.id) === Number(userid)) this.setUser(userInList);
+      }
+    })
     this.assistance = Number(this.user.assistance);
     if (this.assistance % 10 >= 1) {
       this.timerHint = setTimeout(() => {
@@ -84,6 +90,11 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
       clearInterval(this.timerSound);
   }
 
+  setUser(userToSet: User) {
+    this.user = userToSet;
+    this.assistance = Number(this.user.assistance);
+  }
+  
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
     this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);

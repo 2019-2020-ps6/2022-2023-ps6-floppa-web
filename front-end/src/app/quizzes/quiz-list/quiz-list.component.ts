@@ -33,7 +33,6 @@ export class QuizListComponent implements OnInit {
       this.userList = users;
       this.getUser(this.username);
     })
-    
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
     for (let theme of THEME_QUIZ_LIST) {
       if (theme.id === this.themeIndex) {
