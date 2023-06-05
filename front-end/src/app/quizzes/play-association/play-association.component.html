@@ -4,6 +4,16 @@
         <Button class="validate-button" style= "position:relative; width:120px; height:80px; margin: 10px; font-size: 25px;" (click)="check()">Valider</Button>
         <Button class="validate-button" style= "position:relative; width:170px; height:80px; margin: 10px; font-size: 23px;" (click)="deleteAllConnections()">Réinitialiser</Button>
     </div>
+    <div style="display:flex; flex-direction: row; justify-content: space-between; width:100%">
+        <div style="display:flex;flex-direction: row; align-items: center; justify-content: flex-start;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+            <img src="/assets/home.png" alt="home-img" id="home">
+            <h2 style="align-self: center;">Accueil</h2>
+        </div>
+        <div style="display:flex;flex-direction: row; align-items: center; justify-content: flex-start;" (click)="goToNextQuestion()">
+            <h2 style="align-self: center;">Question Suivante</h2>
+            <img src="/assets/next.png" alt="next-img" id="next">
+        </div>
+    </div>
     <div class = "association-game" style="margin-top: 50px;">
         <div class= "connectors-left">
             <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >

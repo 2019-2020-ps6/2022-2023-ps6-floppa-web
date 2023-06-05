@@ -76,6 +76,15 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 
+  goToNextQuestion(): void {
+    if (this.numQuestion >= this.quiz.questions.length + this.quiz.associations.length) {
+      this.router.navigate(["/final-screen/"+this.quiz.id+"/"+this.score+"/"+this.user.id]);
+    }
+    else {
+      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion + 1) + "/" + this.user.id;
+    }
+  }
+
   checkAssociation(): void {
     let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
     this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
