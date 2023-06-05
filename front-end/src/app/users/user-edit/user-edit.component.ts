@@ -21,6 +21,9 @@ export class UserEditComponent implements OnInit {
   public users: User[];
   public isSmallText = false;
   public isBigText = false;
+  public indice:string;
+  public vocale:string;
+  public visual:string;
 
   constructor(public formBuilder: FormBuilder, public userService: UserService, private route: ActivatedRoute, private location: Location) {
 
@@ -28,13 +31,18 @@ export class UserEditComponent implements OnInit {
       firstName: [''],
       lastName: [''],
       alzheimerStade: [''],
-      photo: ['']
+      photo: [''],
+      timerMinute: [],
+      timerSeconds: [],
     });
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
     this.user = this.userService.users$.getValue()[parseInt(id)-1];
+    console.log(this.user.timer)
+    let tm: number = Math.trunc(this.user.timer);
+    let ts: number = Math.round((this.user.timer - tm) * 60);
 
     this.userEdit = this.formBuilder.group({
       firstName: [this.user.firstName],
@@ -43,7 +51,9 @@ export class UserEditComponent implements OnInit {
       vocale: [this.getVocale()],
       visual: [this.getVisual()],
       alzheimerStade: [this.user.alzheimerStade],
-      photo: [this.user.photo]
+      photo: [this.user.photo],
+      timerMinute: [tm],
+      timerSeconds: [ts],
     });
     console.log(this.getVisual());
     console.log(this.user.assistance);
@@ -57,41 +67,65 @@ export class UserEditComponent implements OnInit {
       return "non";
     }
   }
-  // indiceOuiChecked(): Boolean {
-  //   if (this.getIndice()){
-  //     return true;
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // }
+  
+  setAssistanceValue(): void {
+    const radioButtons = document.getElementsByName("alzheimerStade") as NodeListOf<HTMLInputElement>;
+    
+    let alzheimerStadeValue = ""; 
+    for (let i = 0; i < radioButtons.length; i++) {
+      if (radioButtons[i].checked) {
+        alzheimerStadeValue = radioButtons[i].value;
+        break;
+      }
+    }
 
-  // indiceNonChecked(): Boolean {
-  //   if (this.getIndice()){
-  //     return false;
-  //   }
-  //   else {
-  //     return true;
-  //   }
-  // }
+    if (alzheimerStadeValue == "stade léger") {
+      console.log("oui");
+      this.indice = "non";
+      this.vocale = "non";
+      this.visual = "non";
+    }
 
-  // vocaleOuiChecked(): Boolean {
-  //   if (this.getVocale()){
-  //     return true;
-  //   }
-  //   else {
-  //     return false;
-  //   }
-  // }
+    if (alzheimerStadeValue == "stade intermédiaire") {
+      this.indice = "oui";
+      this.vocale = "non";
+      this.visual = "non";
+    }
 
-  // vocaleNonChecked(): Boolean {
-  //   if (this.getVocale()){
-  //     return false;
-  //   }
-  //   else {
-  //     return true;
-  //   }
-  // }
+    if (alzheimerStadeValue == "stade avancé") {
+      this.indice = "oui";
+      this.vocale = "oui";
+      this.visual = "oui";
+    }
+
+    this.updateAssistanceChecked(alzheimerStadeValue);
+  }
+
+
+  updateAssistanceChecked(alzheimerStadeValue:string): void {
+    const newUser: User = this.userEdit.getRawValue() as User;
+    
+    const timers: {timerMinute:number, timerSeconds: number} = this.userEdit.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
+
+    this.userEdit = this.formBuilder.group({
+      firstName: [newUser.firstName],
+      lastName: [newUser.lastName],
+      alzheimerStade: [alzheimerStadeValue],
+      indice: [this.indice],
+      vocale: [this.vocale],
+      visual: [this.visual],
+      photo: [newUser.photo],
+      timerMinute: [timers.timerMinute],
+      timerSeconds: [timers.timerSeconds],
+    })
+
+  }
 
   getVocale(): string {
     if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1011" || this.user.assistance == "1010"){
@@ -210,6 +244,14 @@ export class UserEditComponent implements OnInit {
 
   edit(): void {
     const userToEdit: User = this.userEdit.getRawValue() as User;
+    const timers: {timerMinute:number, timerSeconds: number} = this.userEdit.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
+    userToEdit.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
     userToEdit.id = this.user.id;
     userToEdit.assistance = this.getNewAssistance(userToEdit);
     console.log(userToEdit);

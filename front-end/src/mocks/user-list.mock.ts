@@ -9,20 +9,17 @@ export const USER_LIST: User[] = [
         alzheimerStade: "stade léger",
         assistance : "1000",
         photo: "/assets/users/Madeleine.png",
-        /*numberPlayed: 12,
-        lastGame: 0,
-        favoriteQuiz: "Les félins",*/
         quizSessions: {
             "1": {
                 date: 1682453600000,
                 quizId: "1",
-                answers: [true, true, false,false,false,true],
+                answers: [true, true, false,false,false,true, true, false],
                 timePerQuestion: [10,12,14,13,22,39]
             },
             "2": {
                 date: 1682453600000,
                 quizId: "1",
-                answers: [true, true, false,false,false,true],
+                answers: [true, true, false,false,false,true, true, false],
                 timePerQuestion: [10,12,14,13,22,39]
             },
             "3": {
@@ -34,16 +31,17 @@ export const USER_LIST: User[] = [
             "4": {
                 date: 1682553600000,
                 quizId: "1",
-                answers: [true, true, true,true,false,true],
+                answers: [true, true, false,true,false,true, true, false],
                 timePerQuestion: [10,12,14,13,22,39]
             },
             "5": {
                 date: 1682640000000,
                 quizId: "1",
-                answers: [true, true, true,true,false,false],
+                answers: [true, true, true,true,false,false, true, false],
                 timePerQuestion: [10,12,14,13,22,70]
             }
-        }
+        },
+        timer: 1
     },
     {
         id: "2",
@@ -71,7 +69,8 @@ export const USER_LIST: User[] = [
                 answers: [true, true, false,false,false,true],
                 timePerQuestion: [10,12,14,13,22,39]
             }
-        }
+        },
+        timer: 1
     },
     {
         id: "3",
@@ -99,6 +98,7 @@ export const USER_LIST: User[] = [
                 answers: [true, true, false,false,false,true],
                 timePerQuestion: [10,12,14,13,22,39]
             }
-        }
+        },
+        timer: 1
     }
 ]

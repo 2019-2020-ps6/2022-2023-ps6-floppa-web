@@ -23,36 +23,45 @@
       </label>
     
       <br>
-    
+
+      <label for="alzheimerStade">
+        <span class="form-text">Stade Alzheimer :</span> <br>
+        Sélectionnez une plage <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade léger (stade 1 à 2) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade intermédiaire (stade 3 à 5) <br>
+        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade avancé (stade 6 à 7) <br>
+      </label>
+
+      <br>
+
       <span class="form-text">Paramètres de jeu :</span><br>
-    
       <label for="indice">
-      <span class="form-text">Indice :</span>
-      <input class="input-custom" type="radio" name="indice" value="oui"> Oui
-      <input class="input-custom" type="radio" name="indice" value="non"> Non
+        <span class="form-text">Indice :</span>
+        <input class="input-custom" type="radio" name="indice" value="oui" [formControlName]="'indice'"> Oui
+        <input class="input-custom" type="radio" name="indice" value="non" [formControlName]="'indice'"> Non
       </label>
       <br>
     
       <label for="vocale">
-      <span class="form-text">Synthèse vocale :</span>
-      <input class="input-custom" type="radio" name="vocale" value="oui"> Oui 
-      <input class="input-custom" type="radio" name="vocale" value="non"> Non
+        <span class="form-text">Synthèse vocale :</span>
+        <input class="input-custom" type="radio" name="vocale" value="oui" [formControlName]="'vocale'"> Oui 
+        <input class="input-custom" type="radio" name="vocale" value="non" [formControlName]="'vocale'"> Non
       </label>
       <br>
 
       <label for="visual">
         <span class="form-text">Aide visuelle :</span>
-        <input class="input-custom" type="radio" name="visual" value="oui"> Oui 
-        <input class="input-custom" type="radio" name="visual" value="non"> Non
-        </label>
-        <br>
-      
-      <label for="alzheimerStade">
-        <span class="form-text">Stade Alzheimer :</span> <br>
-        Sélectionnez une plage <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'"> Stade léger (stade 1 à 2) <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'"> Stade intermédiaire (stade 3 à 5) <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'"> Stade avancé (stade 6 à 7) <br>
+        <input class="input-custom" type="radio" name="visual" value="oui" [formControlName]="'visual'"> Oui 
+        <input class="input-custom" type="radio" name="visual" value="non" [formControlName]="'visual'"> Non
+      </label>
+      <br>
+
+      <label for="timer">
+        <span class="form-text">Temps d'attente :</span>
+        <input class="input-custom" type="number" name="minute" min="0" max="60" value="1" [formControlName]="'timerMinute'">
+        <span> min </span>
+        <input class="input-custom" type="number" name="secondes" min="0" max="60" value="0" [formControlName]="'timerSeconds'">
+        <span> s </span>
       </label>
     </div>
     

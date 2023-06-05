@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild, NgModule } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, NgModule, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
@@ -12,7 +12,7 @@ import { User } from 'src/models/user.model';
   templateUrl: './answer.component.html',
   styleUrls: ['./answer.component.scss']
 })
-export class AnswerComponent implements OnInit {
+export class AnswerComponent implements OnInit, OnDestroy {
   public quiz: Quiz;
   public isCorrect: boolean;
   public score: number;
@@ -20,6 +20,7 @@ export class AnswerComponent implements OnInit {
   public correctAnswer: number;
   public assistance: number;
   public user: User;
+  timer: any;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
     
@@ -41,14 +42,18 @@ export class AnswerComponent implements OnInit {
       this.correctAnswer = this.getCorrectAnswer();
     this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
     this.assistance = Number(this.user.assistance);
-    setTimeout(() => {
+    this.timer = setTimeout(() => {
       if (this.numQuestion+1 > this.quiz.questions.length) {
         this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
       }
       else {
         this.router.navigate(["/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id]);
       }
-    }, 2 * 60 * 1000);
+    }, 2 * 60 * 1000 * this.user.timer);
+  }
+
+  ngOnDestroy(): void {
+      clearInterval(this.timer);
   }
 
   getCorrectAnswer(): number {

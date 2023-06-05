@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
@@ -17,7 +17,7 @@ declare const speechSynthesis: any;
   templateUrl: './play-quiz.component.html',
   styleUrls: ['./play-quiz.component.scss']
 })
-export class PlayQuizComponent implements OnInit {
+export class PlayQuizComponent implements OnInit, OnDestroy {
 
   @ViewChild(PlayQuestionComponent) questionChoice: PlayQuestionComponent;
 
@@ -32,6 +32,8 @@ export class PlayQuizComponent implements OnInit {
   public user: User;
   public startTime: number;
   public currentSessionId: number = 0;
+  timerHint: any;
+  timerSound: any;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
     
@@ -46,19 +48,23 @@ export class PlayQuizComponent implements OnInit {
     this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
     this.assistance = Number(this.user.assistance);
     if (this.assistance % 10 >= 1) {
-      setTimeout(() => {
+      this.timerHint = setTimeout(() => {
         this.useHint();
-      }, 2 * 60 * 1000)
+      }, 2 * 60 * 1000 * this.user.timer)
     }
     if (this.assistance % 100 >= 10) {
-      setTimeout(() => {
+      this.timerSound = setTimeout(() => {
         this.useSound();
-      }, 60 * 1000)
+      }, 60 * 1000 * this.user.timer)
     }
     for (let id in this.user.quizSessions) {
       if (Number(id) > this.currentSessionId) this.currentSessionId = Number(id);
     }
-    console.log(this.user.quizSessions);
+  }
+
+  ngOnDestroy(): void {
+      clearInterval(this.timerHint);
+      clearInterval(this.timerSound);
   }
 
   check(indexAnswer: number): void {
@@ -68,6 +74,15 @@ export class PlayQuizComponent implements OnInit {
     const elpasedTime = endTime - this.startTime;
     this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
+  }
+
+  goToNextQuestion(): void {
+    if (this.numQuestion >= this.quiz.questions.length + this.quiz.associations.length) {
+      this.router.navigate(["/final-screen/"+this.quiz.id+"/"+this.score+"/"+this.user.id]);
+    }
+    else {
+      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion + 1) + "/" + this.user.id;
+    }
   }
 
   checkAssociation(): void {

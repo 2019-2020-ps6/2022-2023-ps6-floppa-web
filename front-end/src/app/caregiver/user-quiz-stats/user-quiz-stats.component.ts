@@ -59,9 +59,11 @@ export class UserQuizStatsComponent implements OnInit {
     public timeByDay: Record<number, number[]> = {};
     public type: string = "global";
     public errorSimilarity: number;
+    public globalErrorSimilarity: number;
     public timePerQuestionByDayObj = {};
     public meanTime: number = 0;
     public timeProgression: number = 0;
+    public problematicQuestions: number[] = [];
 
   constructor(private router: Router, private route: ActivatedRoute) {
     this.username = this.route.snapshot.paramMap.get("user");
@@ -132,6 +134,7 @@ export class UserQuizStatsComponent implements OnInit {
     })
     this.progression = this.computeProgression(this.scoresByDayObj);
     this.timeProgression = this.computeTimeProgression(this.timePerQuestionByDayObj);
+    this.globalErrorSimilarity = Math.round(this.computeGlobalErrorSimilarity());
   }
 
   meanArray(array: number[]): number {
@@ -261,7 +264,38 @@ export class UserQuizStatsComponent implements OnInit {
     return (similarityTotal / numberError) * 100;
   }
 
+  computeGlobalErrorSimilarity(): number {
+    let sessionsAnswers = [];
+    for (const session of Object.values(this.user.quizSessions)) {
+      if (session.quizId === this.id) {
+        sessionsAnswers.push(session.answers);
+      }
+    }
+    if (sessionsAnswers.length <= 1) return 0;
+    let numberError = 0;
+    let similarityTotal = 0;
+    
+    for (let i = 0; i < sessionsAnswers[0].length; i++) {
+      let errorDone = false;
+      let similarity = 0;
+      for (let j = 0; j < sessionsAnswers.length; j++) {
+        if (!sessionsAnswers[j][i]) {
+          if (!errorDone) errorDone = true;
+          else if (similarity===0) similarity+=2;
+          else similarity++;
+          numberError++;
+        }
+      }
+      similarityTotal += similarity;
+      if (similarity >= 3) {
+        this.problematicQuestions.push(i);
+      }
+    }
+    return (similarityTotal / numberError) * 100;
+  }
+
   showHelp(help: string): void {
+    console.log(help);
     let title: string;
     let text: string;
     switch(help) {
@@ -273,6 +307,10 @@ export class UserQuizStatsComponent implements OnInit {
         title = "Similitude d'erreur";
         text = this.errorSimilarity + '% des erreurs ont déjà été faites par ' + this.user.firstName + ' ' + this.user.lastName + ' ce jour là';
         break;
+      case 'globalError':
+        title = "Similitude d'erreur";
+        text = this.globalErrorSimilarity + '% des erreurs ont déjà été faites par ' + this.user.firstName + ' ' + this.user.lastName + ' ce jour là';
+        break;
       default:
         title = "Temps moyen par question"
         if (this.timeProgression > 0) 
@@ -282,5 +320,14 @@ export class UserQuizStatsComponent implements OnInit {
         break;
     }
     Swal.fire(title, text, 'info');
+  }
+
+  showProblematicQuestions(): void {
+    let title = "Questions Problématiques";
+    let text: string = "";
+    for (let index of this.problematicQuestions) {
+      text += "Question " + (index+1) + ": " + (index<this.quiz.questions.length?this.quiz.questions[index].label:this.quiz.associations[index-this.quiz.questions.length].label) + "; ";
+    }
+    Swal.fire(title, text);
   }
 }

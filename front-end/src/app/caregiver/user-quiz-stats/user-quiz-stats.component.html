@@ -21,6 +21,7 @@
         <h2 *ngIf="this.lastGame>1 && type==='global'">Dernière partie: Il y a {{this.lastGame}} jours</h2>
         <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('progression')">Progression</span>: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
         <h2 *ngIf="type==='date'"><span class="underline" (click)="showHelp('error')">Similitude d'erreur</span>: <span [ngClass]="{'positive': errorSimilarity < 50, 'negative': errorSimilarity > 50}">{{errorSimilarity}}%</span></h2>
+        <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('globalError')">Similitude d'erreur</span>: <span [ngClass]="{'positive': globalErrorSimilarity < 50, 'negative': globalErrorSimilarity > 50}">{{globalErrorSimilarity}}%</span> (<span (click)="showProblematicQuestions()" class="underline">voir questions problématiques</span>)</h2>
         <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('time')">Temps moyen par question</span>: {{meanTime}}s (<span [ngClass]="{'positive':timeProgression < 0, 'negative':timeProgression > 0}">{{timeProgression}}s</span>)</h2>
       </div>
       <div class="chart">
