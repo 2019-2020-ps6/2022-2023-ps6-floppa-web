@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
@@ -11,7 +12,7 @@ import { USER_LIST } from 'src/mocks/user-list.mock';
 })
 export class UserListComponent implements OnInit {
 
-  public userList: User[] = [];
+  public userList: User[];
 
   constructor(private userService: UserService) {
   }
