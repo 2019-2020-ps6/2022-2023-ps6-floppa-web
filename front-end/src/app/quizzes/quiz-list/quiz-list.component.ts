@@ -7,6 +7,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Theme } from 'src/models/theme.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-quiz-list',
@@ -25,11 +26,13 @@ export class QuizListComponent implements OnInit {
   public type: string;
   public theme: Theme;
 
-  constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
+  constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute, public userService: UserService) {
     this.username = this.route.snapshot.paramMap.get("user");
     this.type = this.route.snapshot.paramMap.get("type");
-    this.userList = USER_LIST;
-    this.getUser(this.username);
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+      this.getUser(this.username);
+    })
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
     for (let theme of THEME_QUIZ_LIST) {
       if (theme.id === this.themeIndex) {
