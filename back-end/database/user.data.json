@@ -1,0 +1,32 @@
+[
+  {
+    "firstName": "Madeleine",
+    "lastName": "Duo",
+    "alzheimerStade": "stade léger",
+    "assistance": "1000",
+    "quizSessions": [],
+    "id": 1685885719423,
+    "photo": "https://cdn.icon-icons.com/icons2/1736/PNG/512/4043254-avatar-elderly-grandma-nanny_113280.png",
+    "timer": 60
+  },
+  {
+    "firstName": "Valerie",
+    "lastName": "Pentacle",
+    "alzheimerStade": "stade avancé",
+    "assistance": "1111",
+    "quizSessions": [],
+    "photo": "https://cdn-icons-png.flaticon.com/512/374/374995.png",
+    "timer": 60,
+    "id": 1685946978359
+  },
+  {
+    "firstName": "Jacques",
+    "lastName": "Quatro",
+    "alzheimerStade": "stade intermédiaire",
+    "assistance": "1001",
+    "quizSessions": [],
+    "photo": "../../../../front-end/src/assets/users/Jacques.png",
+    "timer": 60,
+    "id": 1685947238439
+  }
+]
