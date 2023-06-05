@@ -12,6 +12,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     countdown: number = 120;
     timer: any;
     private countdownInterval: any;
+    private password: string = 'test';
 
     constructor(private router: Router) {
     }
@@ -50,7 +51,7 @@ export class HomeComponent implements OnInit, OnDestroy {
               return {code: code}
             }
           }).then((result) => {
-            if (result.value.code==='test') {
+            if (result.value.code===this.password) {
                 clearInterval(this.timer);
                 clearInterval(this.countdownInterval);
                 this.router.navigate(["/user-management"]);
