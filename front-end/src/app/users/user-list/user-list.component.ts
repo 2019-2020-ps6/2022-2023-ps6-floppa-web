@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
@@ -11,12 +12,12 @@ import { USER_LIST } from 'src/mocks/user-list.mock';
 })
 export class UserListComponent implements OnInit {
 
-  public userList: User[] = [];
+  public userList: User[];
 
   constructor(private userService: UserService) {
-    this.userService.users$.subscribe((users: User[]) => {
-      this.userList = userService.getUsers();
-    });
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+    })
   }
 
   ngOnInit(): void {

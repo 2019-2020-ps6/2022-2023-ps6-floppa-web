@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-user-management',
@@ -10,16 +11,15 @@ import { User } from 'src/models/user.model';
 })
 export class UserManagementComponent implements OnInit {
 
-  public userList: User[] = [];
+  public userList: User[];
 
-  constructor(private router: Router) {
+  constructor(private router: Router, public userService: UserService) {
   }
 
   ngOnInit(): void {
-    for (let user of USER_LIST) {
-      this.userList.push(user);
-    }
-    this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+    })
     this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
   }
 
