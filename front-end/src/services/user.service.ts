@@ -32,9 +32,8 @@ export class UserService {
     this.retrieveUsers();
   }
 
-  getUsers(): User[] {
-    console.log(this.users)
-    return this.users;
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>("http://localhost:9428/api/users");
   }
 
   retrieveUsers(): void {
