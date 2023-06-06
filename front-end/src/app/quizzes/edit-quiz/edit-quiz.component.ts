@@ -6,8 +6,8 @@ import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import {THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { User } from 'src/models/user.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
-import Swal from 'sweetalert2';
 import { UserService } from 'src/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -29,6 +29,7 @@ export class EditQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(USER_LIST);
     const id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST.find(quiz => quiz.id === id);
     this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
@@ -37,18 +38,22 @@ export class EditQuizComponent implements OnInit {
 
   retrieveUsers(): void {
     this.users = this.quiz.users;
-    this.userList = [];
+    let userListQuiz = [];
     for (let userid of this.users) {
-      this.userService.getUser(userid).subscribe((user) =>{
-        this.userList.push(user)
+      this.userService.getUser(userid).subscribe((user) => {
+        userListQuiz.push(user)
       })
     }
     
-    this.remainingUsers = USER_LIST.slice();
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+      this.remainingUsers = this.userList.slice();
+    })
+    
     let indexToDel: number[] = []
     for (let i = 0; i < this.remainingUsers.length; i++) {
-      for (let j = 0; j < this.userList.length; j++) {
-        if (this.remainingUsers[i]===this.userList[j]) {
+      for (let j = 0; j < userListQuiz.length; j++) {
+        if (this.remainingUsers[i]===userListQuiz[j]) {
           indexToDel.unshift(i);
         }
       }
