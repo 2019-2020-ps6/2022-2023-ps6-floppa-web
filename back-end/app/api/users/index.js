@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const { User } = require('../../models')
+const { User, QuizSession } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 
 const router = new Router()
@@ -42,6 +42,25 @@ router.delete('/:userId', (req, res) => {
   try {
     User.delete(req.params.userId)
     res.status(204).end()
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+router.get('/:userId/quizSession', (req, res) => {
+  try {
+    const user = User.getById(req.params.userId)
+    const quizSessions = user.quizSessions
+    res.status(200).json(quizSessions)
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+router.post('/:userId/quizSession', (req, res) => {
+  try {
+    const quizSession = QuizSession.create({ ...req.body })
+    res.status(201).json(quizSession)
   } catch (err) {
     manageAllErrors(res, err)
   }
