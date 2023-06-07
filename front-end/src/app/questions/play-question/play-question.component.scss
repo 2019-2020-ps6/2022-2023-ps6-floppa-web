@@ -3,8 +3,8 @@ h1 {
 }
 
 .answer {
-    max-width: 60%;
-    max-height: 60%;
+    max-width: 400px;
+    max-height: 400px;
     margin: 10px;
     object-fit: cover;
     margin-left: 100px;
@@ -15,4 +15,16 @@ h1 {
 .correct-answer {
     box-shadow: 0px 0px 10px green;
     border-radius: 5%;
+}
+
+#home {
+    max-height: 100px;
+    max-width: 100px;
+    margin-right: 10px;
+}
+
+#next {
+    max-height: 100px;
+    max-width: 100px;
+    margin-left: 10px;
 }
