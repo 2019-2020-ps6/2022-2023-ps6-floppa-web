@@ -59,7 +59,9 @@ router.get('/:userId/quizSession', (req, res) => {
 
 router.post('/:userId/quizSession', (req, res) => {
   try {
-    const quizSession = QuizSession.create({ ...req.body })
+    const user = User.getById(req.params.userId);
+    const quizSession = {...req.body};
+    user.quizSessions.push(quizSession);
     res.status(201).json(quizSession)
   } catch (err) {
     manageAllErrors(res, err)

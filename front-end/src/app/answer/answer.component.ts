@@ -2,11 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, NgModule, On
 import { ActivatedRoute, Router } from '@angular/router';
 import { Quiz } from 'src/models/quiz.model';
 import { QuizService } from 'src/services/quiz.service';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Location, CommonModule } from '@angular/common';
-import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
+import { UserService } from 'src/services/user.service';
+import { QuestionService } from 'src/services/question.service';
+import { Answer, Question } from 'src/models/question.model';
+import { AnswerService } from 'src/services/answer.service';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -20,15 +21,31 @@ export class AnswerComponent implements OnInit, OnDestroy {
   public correctAnswer: number;
   public assistance: number;
   public user: User;
+  public quizQuestions: Question[];
+  public answers: Answer[];
   timer: any;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router, public userService: UserService, public questionService: QuestionService, public answerService: AnswerService) {
     
   }
 
   ngOnInit(): void {
     let id = this.route.snapshot.paramMap.get('id');
-    this.quiz = QUIZ_LIST[Number(id)-1];
+    this.quizService.getQuizData().subscribe((quizData) => {
+      for (let quiz of quizData) {
+        if (Number(quiz.id) === Number(id)) {
+          this.quiz = quiz;
+        }
+      }
+    })
+    this.questionService.getQuestions(Number(id)).subscribe((questions) => {
+      this.quizQuestions = questions;this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
+      this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
+        this.answers = answers;
+        this.correctAnswer = this.getCorrectAnswer();
+        console.log(this.correctAnswer);
+      })
+    })
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
     if (this.route.snapshot.paramMap.get('isCorrect') === 'true') {
@@ -38,10 +55,16 @@ export class AnswerComponent implements OnInit, OnDestroy {
     else {
         this.isCorrect = false;
     }
+    let userid = this.route.snapshot.paramMap.get('userid');
+    this.userService.getUsers().subscribe((users) => {
+      for (let userInList of users) {
+        if (Number(userInList.id) === Number(userid)) {
+          this.user = userInList;
+          this.assistance = Number(this.user.assistance);
+        }
+      }
+    })
     if(this.numQuestion <= this.quiz.questions.length)
-      this.correctAnswer = this.getCorrectAnswer();
-    this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
-    this.assistance = Number(this.user.assistance);
     this.timer = setTimeout(() => {
       if (this.numQuestion+1 > this.quiz.questions.length) {
         this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
@@ -58,7 +81,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
 
   getCorrectAnswer(): number {
     for (let i = 0; i < this.quiz.questions[this.numQuestion-1].answers.length; i++) {
-      if (this.quiz.questions[this.numQuestion-1].answers[i].isCorrect) {
+      if (this.answers[i].isCorrect) {
         return i;
       }
     }
@@ -66,7 +89,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   nextQuestion(): void {
-    if (this.numQuestion+1 > this.quiz.questions.length + this.quiz.associations.length) {
+    if (this.numQuestion+1 > this.quiz.questions.length) {
       this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
     }
     else {
