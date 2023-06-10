@@ -29,7 +29,6 @@ export class EditQuizComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(USER_LIST);
     const id = this.route.snapshot.paramMap.get('id');
     this.quiz = QUIZ_LIST.find(quiz => quiz.id === id);
     this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
@@ -37,6 +36,8 @@ export class EditQuizComponent implements OnInit {
   }
 
   retrieveUsers(): void {
+    console.log(this.users)
+    console.log(this.quiz.users)
     this.users = this.quiz.users;
     let userListQuiz = [];
     for (let userid of this.users) {

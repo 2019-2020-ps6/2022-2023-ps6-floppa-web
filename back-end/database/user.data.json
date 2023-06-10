@@ -25,8 +25,18 @@
     "alzheimerStade": "stade intermédiaire",
     "assistance": "1001",
     "quizSessions": [],
-    "photo": "../../../../front-end/src/assets/users/Jacques.png",
+    "photo": "https://cdn-icons-png.flaticon.com/512/5255/5255937.png",
     "timer": 60,
     "id": 1685947238439
+  },
+  {
+    "firstName": "Jose",
+    "lastName": "Dupont",
+    "alzheimerStade": "stade léger",
+    "photo": "https://thumbs.dreamstime.com/b/vieux-vieil-homme-24922472.jpg",
+    "timer": 1,
+    "assistance": "1000",
+    "quizSessions": [],
+    "id": 1686408270584
   }
 ]

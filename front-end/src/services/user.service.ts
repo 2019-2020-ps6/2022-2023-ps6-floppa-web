@@ -47,9 +47,16 @@ export class UserService {
 
   addUser(user: User): void {
     console.log(user);
-    this.http.post<User>(this.userUrl, user, this.httpOptions).subscribe(() => this.retrieveUsers());
-    this.users.push(user);
-    this.users$.next(this.users);
+    this.http.post<User>("http://localhost:9428/api/users", user).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Error occured:' , err);
+      }
+    );
+    // this.users.push(user);
+    // this.users$.next(this.users);
   }
 
   setSelectedUser(userId: string): void {
