@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { User } from '../models/user.model';
+import { QuizSession, User } from '../models/user.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { ThisReceiver } from '@angular/compiler';
 import { UserEditComponent } from 'src/app/users/user-edit/user-edit.component';
 import { USER_LIST } from 'src/mocks/user-list.mock';
+import { Quiz } from 'src/models/quiz.model';
 
 @Injectable({
   providedIn: 'root'
@@ -86,6 +87,26 @@ export class UserService {
 
       console.log(this.users);
     }
+  }
+
+  createQuizSession(user: User, quiz: Quiz): void {
+    const quizSession: QuizSession = {
+      date: new Date().getTime(),
+      answers: [],
+      quizId: quiz.id,
+      timePerQuestion: [],
+      userId: user.id
+    }
+
+    this.http.post<QuizSession>("http://localhost:9428/api/users/" + user.id + '/quizSession', quizSession)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      )
   }
 
 }

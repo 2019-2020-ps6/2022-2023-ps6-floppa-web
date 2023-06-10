@@ -97,6 +97,7 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
+    console.log(this.user.quizSessions);
     this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
     const endTime = performance.now();
     const elpasedTime = endTime - this.startTime;

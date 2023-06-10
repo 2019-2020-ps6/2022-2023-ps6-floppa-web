@@ -68,4 +68,26 @@ router.post('/:userId/quizSession', (req, res) => {
   }
 })
 
+//réponses
+router.post('/:userId/quizSession/:quizSessionId', (req, res) => {
+  try {
+    const quizSession = quizSession.getById(req.params.quizSessionId);
+    quizSession.answers.push({...req.body});
+    res.status(201).json(quizSession);
+  } catch (err) {
+    manageAllErrors(res, err);
+  }
+})
+
+//temps
+router.post('/:userId/quizSession/:quizSessionId', (req, res) => {
+  try {
+    const quizSession = quizSession.getById(req.params.quizSessionId);
+    quizSession.timePerQuestion.push({...req.body});
+    res.status(201).json(quizSession);
+  } catch (err) {
+    manageAllErrors(res, err);
+  }
+})
+
 module.exports = router

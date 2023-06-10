@@ -14,4 +14,5 @@ export interface QuizSession {
     quizId: string;
     answers: boolean[];
     timePerQuestion: number[];
+    userId: string,
 }

@@ -44,6 +44,7 @@ export class StartQuizComponent implements OnInit {
     this.questionService.getQuestions(Number(id)).subscribe((questions) => {
       this.quizQuestions = questions;
     })
+    this.createSession();
   }
 
   setQuiz(quizToSet: Quiz) {
@@ -61,15 +62,6 @@ export class StartQuizComponent implements OnInit {
   }
 
   createSession():void {
-    let newId = 0;
-    for (let id in this.user.quizSessions) {
-      if (Number(id) > newId) newId = Number(id);
-    }
-    this.user.quizSessions[newId+1] = {
-      date: new Date().getTime(),
-      quizId: this.quiz.id,
-      answers: [],
-      timePerQuestion: []
-    };
+    this.userService.createQuizSession(this.user,this.quiz);
   }
 }
