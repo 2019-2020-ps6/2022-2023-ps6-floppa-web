@@ -87,19 +87,30 @@ export class UserService {
   edit(user: User): void{
     console.log(user);
     console.log(user.id);
-    const index = parseInt(user.id)-1;
-    console.log(index);
-    if (parseInt(user.id)-1 >= 0) {
-      console.log("hello");
-      this.users[index].firstName = user.firstName;
-      this.users[index].lastName = user.lastName;
-      this.users[index].alzheimerStade = user.alzheimerStade;
-      this.users[index].assistance = user.assistance;
-      this.users[index].photo = user.photo;
-      this.users[index].timer = user.timer;
 
-      console.log(this.users);
-    }
+    const userId = user.id;
+    this.http.put<User>("http://localhost:9428/api/users/"+userId, user).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Error occured:' , err);
+      }
+    );
+
+  //   const index = parseInt(user.id)-1;
+  //   console.log(index);
+  //   if (parseInt(user.id)-1 >= 0) {
+  //     console.log("hello");
+  //     this.users[index].firstName = user.firstName;
+  //     this.users[index].lastName = user.lastName;
+  //     this.users[index].alzheimerStade = user.alzheimerStade;
+  //     this.users[index].assistance = user.assistance;
+  //     this.users[index].photo = user.photo;
+  //     this.users[index].timer = user.timer;
+
+  //     console.log(this.users);
+  //   }
   }
 
 }
