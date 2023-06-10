@@ -68,13 +68,20 @@ export class UserService {
   }
 
   deleteUser(user: User): void {
-    const urlWithId = this.userUrl + '/' + user.id;
-    this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
-    for (let i=0; i<this.users.length; i++){
-      if (this.users[i] == user){
-        this.users.splice(i, 1);
+    const userId = user.id;
+    this.http.delete<User>("http://localhost:9428/api/users/"+userId).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Error occured:' , err);
       }
-    }
+    );
+    // for (let i=0; i<this.users.length; i++){
+    //   if (this.users[i] == user){
+    //     this.users.splice(i, 1);
+    //   }
+    // }
   }
 
   edit(user: User): void{

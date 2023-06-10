@@ -24,6 +24,11 @@ export class UserManagementComponent implements OnInit {
     })
   }
 
+  delete(userToDelete: User) {
+    this.userService.deleteUser(userToDelete);
+    this.ngOnInit();
+  }
+
   updateUserList(selectedSort: string): void {
     if (selectedSort === "firstName") {
       this.userList.sort((a,b) => a.firstName.localeCompare(b.firstName));
