@@ -214,7 +214,8 @@ export class UserFormComponent implements OnInit {
       photo: userInfo.photo,
       timer: Number(timers.timerMinute) + Number(timers.timerSeconds)/60,
       assistance: this.getAssistance(userInfo),
-      quizSessions: []
+      quizSessions: [],
+      id:""
     };
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
