@@ -3,12 +3,12 @@
         <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
         <div style="display: flex; flex-direction: column; margin-left: 16px;">
             <h4 style="margin:0">{{quiz.name}}</h4>
-            <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{quiz.questions.length + quiz.associations.length}}</span>
+            <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{this.quizQuestions.length}}</span>
         </div>
     </div>
     <div style="display: flex;  align-items: center; justify-content: flex-end;">
         <h2 style="display:flex; align-self: center; float: right; margin-right: 16px;">{{user.firstName}} {{user.lastName}}</h2>
-        <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="quiz-img">
+        <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img">
     </div>
 </div>
 <div *ngIf="assistance === 1000">

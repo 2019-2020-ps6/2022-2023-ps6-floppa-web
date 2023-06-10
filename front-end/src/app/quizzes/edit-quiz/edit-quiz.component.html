@@ -9,7 +9,12 @@
         Titre : {{this.quiz.name}}<br>
         Nombre de questions : {{this.quiz.questions.length}}<br>
         Nombre d'associations : {{this.quiz.associations.length}}<br>
-        Nombre de patients attribués : {{this.quiz.users.length}}<br>
+        <div *ngIf="this.quiz.users.length > 0">
+            Nombre de patients attribués : {{this.quiz.users.length}}<br>
+        </div>
+        <div *ngIf="this.quiz.users.length == 0">
+            Nombre de patients attribués : tous<br>
+        </div>
     </div>
     </div>
     <div>

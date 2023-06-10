@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef,A
 import { Association } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { User } from 'src/models/user.model';
 @Component({
   selector: 'app-play-association',
   templateUrl: './play-association.component.html',
@@ -28,8 +29,14 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     @Input()
     public numAssociation: number;
 
+    @Input()
+    public user: User;
+
     @Output()
     answer = new EventEmitter<number>();
+
+    @Output()
+  nextQuestion = new EventEmitter<void>();
 
     constructor(private route: ActivatedRoute) {
     }
@@ -53,6 +60,10 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
 
         this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
+    }
+
+    goToNextQuestion(): void {
+        this.nextQuestion.emit();
     }
 
     shuffle: any = (array: any[]) => {

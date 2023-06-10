@@ -56,12 +56,12 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
       }
     })
     this.questionService.getQuestions(Number(id)).subscribe((questions) => {
-      this.quizQuestions = questions;this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
+      this.quizQuestions = questions;
       this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
         this.answers = answers;
       })
     })
-    
+    this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
     let userid = this.route.snapshot.paramMap.get('userid');
     this.userService.getUsers().subscribe((users) => {
@@ -102,6 +102,15 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
     const elpasedTime = endTime - this.startTime;
     this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
+  }
+
+  goToNextQuestion(): void {
+    if (this.numQuestion >= this.quiz.questions.length + this.quiz.associations.length) {
+      this.router.navigate(["/final-screen/"+this.quiz.id+"/"+this.score+"/"+this.user.id]);
+    }
+    else {
+      document.location.href = "/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion + 1) + "/" + this.user.id;
+    }
   }
 
   checkAssociation(): void {

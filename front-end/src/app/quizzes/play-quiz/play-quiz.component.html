@@ -22,7 +22,7 @@
             </div>
         </div>
     </div>
-    <app-play-association *ngIf="numQuestion > this.quizQuestions.length" (answer)="checkAssociation()" [numAssociation] = "numQuestion - this.quizQuestions.length - 1"></app-play-association>
-    <app-play-question *ngIf="numQuestion <= this.quizQuestions.length" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance"></app-play-question>
+    <app-play-association *ngIf="numQuestion > quiz.questions.length" (nextQuestion)="goToNextQuestion()" (answer)="checkAssociation()" [numAssociation] = "numQuestion - quiz.questions.length - 1" [user]="user"></app-play-association>
+    <app-play-question *ngIf="numQuestion <= quiz.questions.length" (nextQuestion)="goToNextQuestion()" (answer)="check($event)" [quiz]="quiz" [numQuestion]="numQuestion" [assistance]="assistance" [user]="user"></app-play-question>
 </div>
   
