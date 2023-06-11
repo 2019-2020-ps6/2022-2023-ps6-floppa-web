@@ -5,6 +5,7 @@ const QuestionRouter = require('./quizzes/questions')
 const AnswerRouter = require('./quizzes/questions/answers')
 const AssociationRouter = require('./quizzes/associations')
 const ConnectionRouter = require('./quizzes/associations/connections')
+const ThemeRouter = require('./themes')
 
 const router = new Router()
 router.get('/status', (req, res) => res.status(200).json('ok'))
@@ -14,5 +15,6 @@ router.use('/questions', QuestionRouter)
 router.use('/answers', AnswerRouter)
 router.use('/associations', AssociationRouter)
 router.use('/connections', ConnectionRouter)
+router.use('/themes', ThemeRouter)
 
 module.exports = router
