@@ -7,10 +7,15 @@
         <img src="/assets/add.png" alt="add">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Ajouter un utilisateur dans la liste</h3>
     </div>
+    <div class="button-div" (click)="inputNewPassword()">
+        <img src="/assets/edit.png" alt="edit">
+        <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Modifier mot de passe</h3>
+    </div>
     <div class="button-div" routerLink="/theme-editor">
         <img src="/assets/edit.png" alt="edit">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Accéder à l'éditeur de Quiz</h3>
     </div>
+
 </div>
 <h1 style="text-align: center; align-items: center;">Sélectionner un patient <span style="font-size: 30px; font-weight: normal;">(Trier par :
     <select (change)="updateUserList($event.target.value)" style="border-radius: 5px; padding: 5px; align-self: center; font-size: 25px; font-weight: normal;">
