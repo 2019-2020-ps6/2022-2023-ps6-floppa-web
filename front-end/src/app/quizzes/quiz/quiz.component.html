@@ -1,7 +1,7 @@
 <div class="quiz">
     <div style="display:flex">
         <div style="display: flex ; flex-direction: column;">
-            <img style="border-radius: 44px;" src="{{quiz.coverImage}}" routerLink="/edit-quiz/{{this.themeIndex}}/{{this.quiz.id}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img" (click)="onQuizClicked()">
+            <img style="border-radius: 44px;" src="{{quiz.coverImage}}" routerLink="/edit-quiz/{{this.themeIndex}}/{{this.quiz.id}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img-{{quiz.name}}" (click)="onQuizClicked()">
             <h2 style="display: flex; justify-content:center;">{{quiz.name}}</h2>
         </div>
         <div style="display: flex ; flex-direction: column;">

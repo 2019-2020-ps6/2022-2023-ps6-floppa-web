@@ -6,7 +6,7 @@
     </div>
     <div style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center;">
         <h2 style="display: flex; justify-content: flex-end; margin-right: 16px;">{{user.firstName}} {{user.lastName}}</h2>
-        <img id="user-img" alt="user-img" src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'">
+        <img id="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'">
     </div>
 </div>
 <h1 style="display: flex; justify-content: center;">Choisissez un thème</h1>
