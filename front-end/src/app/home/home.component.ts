@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { password } from 'src/mocks/quiz-list.mock';
 
 @Component({
     selector: 'app-home-profiles',
@@ -12,9 +13,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     countdown: number = 120;
     timer: any;
     private countdownInterval: any;
-    private password: string = 'test';
+    private password: string;
 
     constructor(private router: Router) {
+      this.password = password.password;
     }
 
     ngOnInit(): void {
@@ -45,7 +47,7 @@ export class HomeComponent implements OnInit, OnDestroy {
             preConfirm: () => {
               const codeInput = Swal.getPopup().querySelector('#code') as HTMLInputElement;
               const code = codeInput.value;
-              if (!code || code!=='test') {
+              if (!code || code!==password.password) {
                 Swal.showValidationMessage("Veuillez saisir le bon code")
               }
               return {code: code}
