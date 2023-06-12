@@ -1,5 +1,15 @@
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 32px;">
-    <h1>{{quiz.questions[numQuestion-1].label}}</h1>
+    <div style="display:flex; flex-direction: row; justify-content: space-between; width:100%">
+        <div style="display:flex;flex-direction: row; align-items: center; justify-content: flex-start;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+            <img src="/assets/home.png" alt="home-img" id="home">
+            <h2 style="align-self: center;">Accueil</h2>
+        </div>
+        <h1>{{quiz.questions[numQuestion-1].label}}</h1>
+        <div style="display:flex;flex-direction: row; align-items: center; justify-content: flex-start;" (click)="goToNextQuestion()">
+            <h2 style="align-self: center;">Question Suivante</h2>
+            <img src="/assets/next.png" alt="next-img" id="next">
+        </div>
+    </div>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:80%;">
         <div *ngFor="let answer of question.answers; let i=index">
             <div style="display:flex; flex-direction:column; align-items: center;">

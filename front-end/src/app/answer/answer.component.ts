@@ -49,7 +49,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
       else {
         this.router.navigate(["/play-quiz/" + this.quiz.id + "/" + this.score + "/" + (this.numQuestion+1) + "/" + this.user.id]);
       }
-    }, 2 * 60 * 1000);
+    }, 2 * 60 * 1000 * this.user.timer);
   }
 
   ngOnDestroy(): void {

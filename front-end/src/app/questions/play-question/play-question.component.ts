@@ -2,6 +2,8 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Question } from '../../../models/question.model';
 import { Quiz } from '../../../models/quiz.model';
 import { QuizService } from '../../../services/quiz.service';
+import { User } from 'src/models/user.model';
+import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-play-question',
   templateUrl: './play-question.component.html',
@@ -18,10 +20,16 @@ export class PlayQuestionComponent implements OnInit {
   @Input()
   assistance: number;
 
+  @Input()
+  user: User;
+
   public question : Question;
 
   @Output()
   answer = new EventEmitter<number>();
+
+  @Output()
+  nextQuestion = new EventEmitter<void>();
 
   constructor(private quizService: QuizService) { }
 
@@ -31,6 +39,10 @@ export class PlayQuestionComponent implements OnInit {
 
   check(indexAnswer: number): void {
     this.answer.emit(indexAnswer);
+  }
+
+  goToNextQuestion(): void {
+    this.nextQuestion.emit();
   }
 
   remove2Images(): void {
