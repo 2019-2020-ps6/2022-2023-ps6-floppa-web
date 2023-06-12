@@ -80,9 +80,7 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
         this.useSound();
       }, 60 * 1000 * this.user.timer)
     }
-    for (let id in this.user.quizSessions) {
-      if (Number(id) > this.currentSessionId) this.currentSessionId = Number(id);
-    }
+    
   }
 
   ngOnDestroy(): void {
@@ -93,15 +91,17 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   setUser(userToSet: User) {
     this.user = userToSet;
     this.assistance = Number(this.user.assistance);
+    for (let quizsession of this.user.quizSessions) {
+      if (Number(quizsession.id) > this.currentSessionId) this.currentSessionId = quizsession.id;
+    }
+    console.log(this.currentSessionId);
   }
   
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
-    console.log(this.user.quizSessions);
-    this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
     const endTime = performance.now();
-    const elpasedTime = endTime - this.startTime;
-    this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
+    const elapsedTime = endTime - this.startTime;
+    this.userService.updateQuizSession(this.user, isCorrect, elapsedTime, this.currentSessionId);
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 

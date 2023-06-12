@@ -5,11 +5,12 @@ export interface User {
     alzheimerStade: string;
     assistance: string;
     photo: string;
-    quizSessions: { [idQuiz: string]: QuizSession };
+    quizSessions: QuizSession[];
     timer: number;
 }
 
 export interface QuizSession {
+    id?: number;
     date: number;
     quizId: string;
     answers: boolean[];

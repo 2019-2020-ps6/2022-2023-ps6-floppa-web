@@ -57,34 +57,25 @@ router.get('/:userId/quizSession', (req, res) => {
   }
 })
 
-router.post('/:userId/quizSession', (req, res) => {
+router.put('/:userId/quizSession', (req, res) => {
   try {
     const user = User.getById(req.params.userId);
-    const quizSession = {...req.body};
+    const quizSession = {...req.body,id: Date.now()};
     user.quizSessions.push(quizSession);
-    res.status(201).json(quizSession)
+    res.status(201).json(User.update(req.params.userId, user))
   } catch (err) {
     manageAllErrors(res, err)
   }
 })
 
-//réponses
-router.post('/:userId/quizSession/:quizSessionId', (req, res) => {
+router.put('/:userId/quizSession/:quizSessionId', (req, res) => {
   try {
-    const quizSession = quizSession.getById(req.params.quizSessionId);
-    quizSession.answers.push({...req.body});
-    res.status(201).json(quizSession);
-  } catch (err) {
-    manageAllErrors(res, err);
-  }
-})
-
-//temps
-router.post('/:userId/quizSession/:quizSessionId', (req, res) => {
-  try {
-    const quizSession = quizSession.getById(req.params.quizSessionId);
-    quizSession.timePerQuestion.push({...req.body});
-    res.status(201).json(quizSession);
+    const user = User.getById(req.params.userId);
+    const quizSession = user.quizSessions.find(session => Number(session.id) === Number(req.params.quizSessionId));
+    const request = {...req.body};
+    quizSession.answers.push(request.answer);
+    quizSession.timePerQuestion.push(request.time);
+    res.status(201).json(User.update(req.params.userId, user));
   } catch (err) {
     manageAllErrors(res, err);
   }
