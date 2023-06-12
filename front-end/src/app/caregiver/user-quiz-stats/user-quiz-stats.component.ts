@@ -8,6 +8,8 @@ import { ChartOptions, ChartDataSets, ChartType, Chart } from 'chart.js';
 import { Label } from 'ng2-charts/lib/base-chart.directive';
 import { BaseChartDirective } from 'ng2-charts';
 import Swal from 'sweetalert2'
+import { QuizService } from 'src/services/quiz.service';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-user-stats',
@@ -64,17 +66,27 @@ export class UserQuizStatsComponent implements OnInit {
     public meanTime: number = 0;
     public timeProgression: number = 0;
     public problematicQuestions: number[] = [];
+    public quizList: Quiz[];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.username = this.route.snapshot.paramMap.get("user");
-    this.id = this.route.snapshot.paramMap.get("id");
-    this.quiz = QUIZ_LIST[Number(this.id)-1];
-    this.userList = USER_LIST;
-    this.getUser(this.username);
-    this.getStats();
+  constructor(private router: Router, private route: ActivatedRoute, public quizService: QuizService, public userService: UserService) {
   }
   
   ngOnInit(): void {
+    this.username = this.route.snapshot.paramMap.get("user");
+    this.id = this.route.snapshot.paramMap.get("id");
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+      this.getUser(this.username);
+      this.quizService.getQuizData().subscribe((quizData) => {
+        this.quizList = quizData;
+        for (let quiz of this.quizList) {
+          if (Number(quiz.id) === Number(this.id)) {
+            this.quiz = quiz;
+          }
+        }
+        this.getStats();
+      })
+    })
   }
 
   getUser(username: string): void {
@@ -90,16 +102,13 @@ export class UserQuizStatsComponent implements OnInit {
     let score = 0;
     let timePerQuetion = 0;
 
-    const sortedQuizSessions = Object.keys(this.user.quizSessions) //croissant => date + récente en dernier
-      .sort((a,b) => this.user.quizSessions[a].date - this.user.quizSessions[b].date)
-      .reduce((acc,key) => {
-        acc[key] = this.user.quizSessions[key];
-        return acc;
-      },{});
-    this.user.quizSessions = sortedQuizSessions;
+    const sortedQuizSessions = this.user.quizSessions //croissant => date + récente en dernier
+      .sort((a,b) => a.date -b.date);
+    console.log(sortedQuizSessions);
     this.lastGame = Number.MAX_VALUE;
-    for (const session of Object.values(this.user.quizSessions)) {
-      if (session.quizId === this.id) {
+    for (const session of sortedQuizSessions) {
+      if (Number(session.quizId) === Number(this.id)) {
+        console.log("caca");
         this.meanTime += this.meanArray(session.timePerQuestion);
         score += this.computeScore(session.answers);
         const diff = Math.round(Math.abs(today - session.date) / (86400000));
@@ -123,6 +132,8 @@ export class UserQuizStatsComponent implements OnInit {
     }
     this.meanScore = score/this.numberTry;
     this.meanTime = Math.round(this.meanTime/this.numberTry);
+
+    console.log(this.scoreByDay);
 
     Object.keys(this.scoreByDay).forEach((diff) => {
       const meanScore = this.scoreByDay[diff].reduce((acc, val) => acc + val, 0) / this.scoreByDay[diff].length;
@@ -322,12 +333,12 @@ export class UserQuizStatsComponent implements OnInit {
     Swal.fire(title, text, 'info');
   }
 
-  showProblematicQuestions(): void {
+  showProblematicQuestions(): void {/*
     let title = "Questions Problématiques";
     let text: string = "";
     for (let index of this.problematicQuestions) {
       text += "Question " + (index+1) + ": " + (index<this.quiz.questions.length?this.quiz.questions[index].label:this.quiz.associations[index-this.quiz.questions.length].label) + "; ";
     }
-    Swal.fire(title, text);
+    Swal.fire(title, text);*/
   }
 }

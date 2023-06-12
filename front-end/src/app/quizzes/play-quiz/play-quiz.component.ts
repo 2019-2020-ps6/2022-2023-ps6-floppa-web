@@ -106,7 +106,10 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   }
 
   goToNextQuestion(): void {
-    if (this.numQuestion >= this.quiz.questions.length + this.quiz.associations.length) {
+    const endTime = performance.now();
+    const elapsedTime = endTime - this.startTime;
+    this.userService.updateQuizSession(this.user, false, elapsedTime, this.currentSessionId);
+    if (this.numQuestion >= this.quiz.questions.length) {
       this.router.navigate(["/final-screen/"+this.quiz.id+"/"+this.score+"/"+this.user.id]);
     }
     else {
