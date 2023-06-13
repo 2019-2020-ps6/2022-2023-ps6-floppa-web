@@ -21,6 +21,7 @@
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
             <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
+            <img class="trash" src="/assets/trash.png" alt="trash-img" (click)="delete(user)">
         </div>
         <div *ngIf="user.photo===''">
             <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/user-stats-menu/{{user.id}}">

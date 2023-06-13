@@ -43,14 +43,21 @@ export class UserService {
 
   getUser(userId: string): Observable<User> {
     const urlWithId = this.userUrl + '/' + userId;
-    return this.http.get<User>("http://localhost:9428/api/users");
+    return this.http.get<User>("http://localhost:9428/api/users/"+userId);
   }
 
   addUser(user: User): void {
     console.log(user);
-    this.http.post<User>(this.userUrl, user, this.httpOptions).subscribe(() => this.retrieveUsers());
-    this.users.push(user);
-    this.users$.next(this.users);
+    this.http.post<User>("http://localhost:9428/api/users", user).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Error occured:' , err);
+      }
+    );
+    // this.users.push(user);
+    // this.users$.next(this.users);
   }
 
   setSelectedUser(userId: string): void {
@@ -62,31 +69,49 @@ export class UserService {
   }
 
   deleteUser(user: User): void {
-    const urlWithId = this.userUrl + '/' + user.id;
-    this.http.delete<User>(urlWithId, this.httpOptions).subscribe(() => this.retrieveUsers());
-    for (let i=0; i<this.users.length; i++){
-      if (this.users[i] == user){
-        this.users.splice(i, 1);
+    const userId = user.id;
+    this.http.delete<User>("http://localhost:9428/api/users/"+userId).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Error occured:' , err);
       }
-    }
+    );
+    // for (let i=0; i<this.users.length; i++){
+    //   if (this.users[i] == user){
+    //     this.users.splice(i, 1);
+    //   }
+    // }
   }
 
   edit(user: User): void{
     console.log(user);
     console.log(user.id);
-    const index = parseInt(user.id)-1;
-    console.log(index);
-    if (parseInt(user.id)-1 >= 0) {
-      console.log("hello");
-      this.users[index].firstName = user.firstName;
-      this.users[index].lastName = user.lastName;
-      this.users[index].alzheimerStade = user.alzheimerStade;
-      this.users[index].assistance = user.assistance;
-      this.users[index].photo = user.photo;
-      this.users[index].timer = user.timer;
 
-      console.log(this.users);
-    }
+    const userId = user.id;
+    this.http.put<User>("http://localhost:9428/api/users/"+userId, user).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log('Error occured:' , err);
+      }
+    );
+
+  //   const index = parseInt(user.id)-1;
+  //   console.log(index);
+  //   if (parseInt(user.id)-1 >= 0) {
+  //     console.log("hello");
+  //     this.users[index].firstName = user.firstName;
+  //     this.users[index].lastName = user.lastName;
+  //     this.users[index].alzheimerStade = user.alzheimerStade;
+  //     this.users[index].assistance = user.assistance;
+  //     this.users[index].photo = user.photo;
+  //     this.users[index].timer = user.timer;
+
+  //     console.log(this.users);
+  //   }
   }
 
   createQuizSession(user: User, quiz: Quiz): void {

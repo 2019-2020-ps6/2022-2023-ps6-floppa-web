@@ -110,6 +110,18 @@
         ],
         "userId": 1685946978359,
         "id": 1686648481336
+      },
+      {
+        "date": 1686649162825,
+        "answers": [
+          false
+        ],
+        "quizId": 1685874627516,
+        "timePerQuestion": [
+          2
+        ],
+        "userId": 1685946978359,
+        "id": 1686649162849
       }
     ],
     "photo": "https://cdn-icons-png.flaticon.com/512/374/374995.png",
@@ -122,8 +134,28 @@
     "alzheimerStade": "stade intermédiaire",
     "assistance": "1001",
     "quizSessions": [],
-    "photo": "../../../../front-end/src/assets/users/Jacques.png",
+    "photo": "https://cdn-icons-png.flaticon.com/512/5255/5255937.png",
     "timer": 60,
     "id": 1685947238439
+  },
+  {
+    "firstName": "Jose",
+    "lastName": "Dupont",
+    "alzheimerStade": "stade intermédiaire",
+    "photo": "https://thumbs.dreamstime.com/b/vieux-vieil-homme-24922472.jpg",
+    "timer": 1,
+    "assistance": "1001",
+    "quizSessions": [],
+    "id": 1686418420311
+  },
+  {
+    "firstName": "Marie",
+    "lastName": "Dupont",
+    "alzheimerStade": "stade léger",
+    "photo": "https://www.mamizette.com/wp-content/uploads/2022/08/grand-mere-souriante-1-1024x1024.jpg",
+    "timer": 1,
+    "assistance": "1000",
+    "quizSessions": [],
+    "id": 1686418566072
   }
 ]
