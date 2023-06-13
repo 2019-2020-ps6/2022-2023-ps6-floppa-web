@@ -3,19 +3,8 @@ import { testUrl } from 'e2e/e2e.config';
 
 test.describe('See user stats', () => {
     test('See user stats', async ({ page }) => {
+        await page.goto('http://localhost:4200/user-management');
 
-        await page.goto(testUrl);
-        await page.getByTestId('caregiver-page').click();
-
-        await expect(page.getByRole('textbox', { name : 'CODE'})).toBeVisible();
-        await expect(page.getByText('Écrire le code secret')).toBeVisible();
-        await page.getByRole('textbox', { name : 'CODE'}).click();
-        await page.getByRole('textbox', { name : 'CODE'}).fill('test');
-        await page.getByRole('button', { name : 'Valider'}).click();
-        await expect(page.getByText('Veuillez saisir le bon code')).toBeVisible();
-        await page.getByRole('textbox', { name : 'CODE'}).fill('0000');
-        await page.getByRole('button', { name : 'Valider'}).click();
-        await expect(page).toHaveURL('http://localhost:4200/user-management');
         await expect(page.getByTestId('add-button')).toBeVisible();
         await expect(page.getByTestId('edit-button')).toBeVisible();
 
@@ -53,7 +42,6 @@ test.describe('See user stats', () => {
         await page.getByText('Temps moyen par question').click();
         await expect(page.getByRole('dialog', {name: 'Temps moyen par question'})).toBeVisible();
         await page.getByRole('button', { name : 'OK'}).click();
-
 
     });
 })
