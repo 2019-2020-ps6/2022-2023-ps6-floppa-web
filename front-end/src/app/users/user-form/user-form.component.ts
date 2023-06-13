@@ -205,7 +205,7 @@ export class UserFormComponent implements OnInit {
     userToCreate.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
     userToCreate.assistance = this.getAssistance(userToCreate);
     userToCreate.id = String(USER_LIST.length + 1);
-    userToCreate.quizSessions = {};
+    userToCreate.quizSessions = [];
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
   }

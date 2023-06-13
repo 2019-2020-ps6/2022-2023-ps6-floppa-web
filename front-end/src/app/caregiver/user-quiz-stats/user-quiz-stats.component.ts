@@ -108,7 +108,6 @@ export class UserQuizStatsComponent implements OnInit {
     this.lastGame = Number.MAX_VALUE;
     for (const session of sortedQuizSessions) {
       if (Number(session.quizId) === Number(this.id)) {
-        console.log("caca");
         this.meanTime += this.meanArray(session.timePerQuestion);
         score += this.computeScore(session.answers);
         const diff = Math.round(Math.abs(today - session.date) / (86400000));
@@ -247,8 +246,11 @@ export class UserQuizStatsComponent implements OnInit {
   computeErrorSimilarity(diff: number): number {
     let sessionsAnswers = [];
     const today = new Date().getTime();
-    for (const session of Object.values(this.user.quizSessions)) {
-      if (session.quizId === this.id) {
+    console.log("------------------");
+    console.log(this.user.quizSessions);
+    console.log("------------------");
+    for (const session of this.user.quizSessions) {
+      if (Number(session.quizId) === Number(this.id)) {
         const newDiff = Math.round(Math.abs(today - session.date) / (86400000));
         if (diff === newDiff) {
           sessionsAnswers.push(session.answers);
@@ -277,8 +279,8 @@ export class UserQuizStatsComponent implements OnInit {
 
   computeGlobalErrorSimilarity(): number {
     let sessionsAnswers = [];
-    for (const session of Object.values(this.user.quizSessions)) {
-      if (session.quizId === this.id) {
+    for (const session of this.user.quizSessions) {
+      if (Number(session.quizId) === Number(this.id)) {
         sessionsAnswers.push(session.answers);
       }
     }
@@ -333,12 +335,12 @@ export class UserQuizStatsComponent implements OnInit {
     Swal.fire(title, text, 'info');
   }
 
-  showProblematicQuestions(): void {/*
+  showProblematicQuestions(): void {
     let title = "Questions Problématiques";
     let text: string = "";
     for (let index of this.problematicQuestions) {
       text += "Question " + (index+1) + ": " + (index<this.quiz.questions.length?this.quiz.questions[index].label:this.quiz.associations[index-this.quiz.questions.length].label) + "; ";
     }
-    Swal.fire(title, text);*/
+    Swal.fire(title, text);
   }
 }
