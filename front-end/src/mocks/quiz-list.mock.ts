@@ -13,22 +13,23 @@ export const QUESTION_FELINS_1: Question = {
     label: 'Qui est le caracal ?',
     answers: [
         {
-            value: 'Capy',
+            value: 'Photo N°1',
             isCorrect: false,
             img:"/assets/quiz-1/question-1/img-1.jpg"
         },
         {
-            value: 'Dino',
+            value: 'Photo N°2',
             isCorrect: false,
             img:"/assets/quiz-1/question-1/img-2.jpg"
         },
         {
-            value: 'Floppa',
+            value: 'Photo N°3',
             isCorrect: true,
             img:"/assets/quiz-1/question-1/img-3.jpg"
+            
         },
         {
-            value: 'Platypus',
+            value: 'Photo N°4',
             isCorrect: false,
             img:"/assets/quiz-1/question-1/img-4.jpg"
         }
@@ -40,22 +41,22 @@ export const QUESTION_FELINS_2: Question = {
     label: 'Qui est le tigre blanc ?',
     answers: [
         {
-            value: 'Tigre',
+            value: 'Photo N°1',
             isCorrect: true,
             img:"/assets/quiz-1/question-2/img-1.jpg"
         },
         {
-            value: 'Orvet',
+            value: 'Photo N°2',
             isCorrect: false,
             img:"/assets/quiz-1/question-2/img-2.jpg"
         },
         {
-            value: "Panda-Roux",
+            value: "Photo N°3",
             isCorrect: false,
             img:"/assets/quiz-1/question-2/img-3.jpg"
         },
         {
-            value: 'Crocodile',
+            value: 'Photo N°4',
             isCorrect: false,
             img:"/assets/quiz-1/question-2/img-4.jpg"
         }
@@ -121,7 +122,7 @@ export const QUESTION_FELINS_5: Question = {
             img:"/assets/quiz-1/question-5/img-3.jpg"
         },
         {
-            value: 'Chat',
+            value: 'Chat de Schrödinger',
             isCorrect: true,
             img:"/assets/quiz-1/question-5/img-4.jpg"
         }
