@@ -27,6 +27,7 @@ router.get('/:associationId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log(req);
   try {
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
