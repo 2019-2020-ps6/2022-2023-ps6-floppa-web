@@ -19,14 +19,13 @@ body {
   padding: 0.5em 1em;
 }
 
-.back-button {
-  background-color: $white;
-  border: solid 1px $blue;
-  border-radius: 10px;
-  color: $blue;
-  font-weight: bold;
-  padding: 1em 1em;
-  margin: 10px;
+#back:hover{
+  cursor:pointer;
+}
+
+button:hover{
+  cursor:pointer;
+  filter: brightness(50%);
 }
 
 .create-button {
@@ -69,4 +68,9 @@ body {
 }
 
 .checkbox {
+}
+
+#selectable:hover{
+  cursor:pointer;
+  filter: brightness(50%);
 }

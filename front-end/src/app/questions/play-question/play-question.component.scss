@@ -1,3 +1,4 @@
+@import "../../../styles.scss";
 h1 {
     margin-top: 40px;
 }
@@ -12,6 +13,8 @@ h1 {
     margin-top: 50px;
 }
 
+
+
 .correct-answer {
     box-shadow: 0px 0px 10px green;
     border-radius: 5%;
@@ -23,8 +26,15 @@ h1 {
     margin-right: 10px;
 }
 
+#home:hover{
+    cursor: pointer;
+}
+
 #next {
     max-height: 100px;
     max-width: 100px;
     margin-left: 10px;
+}
+#next:hover{
+    cursor: pointer;
 }

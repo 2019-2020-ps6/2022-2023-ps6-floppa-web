@@ -1,4 +1,5 @@
 @import '../../../styles/card.scss';
+@import '../../../styles.scss';
 
 * {
     margin-left: 0.3em;
@@ -13,8 +14,8 @@ img {
 .quiz {
     margin-right: 150px;
     margin-left: 150px;
-    margin: 130px;
-    margin-bottom: 100px;
+    margin: 50px;
+    margin-bottom: 20px;
 }
 
 .edit-img {

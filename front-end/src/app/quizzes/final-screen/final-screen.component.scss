@@ -13,7 +13,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  color: rgb(7, 211, 7);
+  color: rgb(4, 210, 114);
 }
 
 #home {
@@ -21,6 +21,11 @@
   max-width: 190px;
 }
   
+#home:hover {
+  cursor: pointer;
+  opacity: 0.5;
+}
+
 #goHome {
   position: fixed;
   bottom: 0;
@@ -35,4 +40,32 @@
 #user-img {
   max-width: 150px;
   max-height: 150px;
+}
+
+.title {
+  text-transform: uppercase;
+  background-image: linear-gradient(
+    -225deg, 
+    #00f690 0%, 
+    #81e877 29%, 
+    #13a9ff 67%, 
+    #39ff85 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  display: inline-block;
+  animation: textclip 4s linear infinite;
+  white-space: nowrap; /* Prevent line breaks */
+  overflow: hidden; /* Hide overflowing text */
+  padding: 0.2em 0; /* Adjust padding as needed */
+}
+
+@keyframes textclip {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
 }
