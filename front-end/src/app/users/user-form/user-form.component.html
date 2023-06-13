@@ -14,12 +14,11 @@
       <br>
       <label for="lastName">
         <span class="form-text">Nom :</span> 
-        <input class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+        <input maxlength="20" class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
       </label>
-      <br>
       <label for="firstName">
         <span class="form-text">Prénom :</span>
-        <input class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+        <input maxlength="20" class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
       </label>
     
       <br>
@@ -27,9 +26,9 @@
       <label for="alzheimerStade">
         <span class="form-text">Stade Alzheimer :</span> <br>
         Sélectionnez une plage <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade léger (stade 1 à 2) <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade intermédiaire (stade 3 à 5) <br>
-        <input class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade avancé (stade 6 à 7) <br>
+        <input id="selectable" class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade léger (stade 1 à 2) <br>
+        <input id="selectable" class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade intermédiaire (stade 3 à 5) <br>
+        <input id="selectable" class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade avancé (stade 6 à 7) <br>
       </label>
 
       <br>
@@ -37,30 +36,27 @@
       <span class="form-text">Paramètres de jeu :</span><br>
       <label for="indice">
         <span class="form-text">Indice :</span>
-        <input class="input-custom" type="radio" name="indice" value="oui" [formControlName]="'indice'"> Oui
-        <input class="input-custom" type="radio" name="indice" value="non" [formControlName]="'indice'"> Non
+        <input id="selectable" class="input-custom" type="radio" name="indice" value="oui" [formControlName]="'indice'"> Oui
+        <input id="selectable" class="input-custom" type="radio" name="indice" value="non" [formControlName]="'indice'"> Non
       </label>
-      <br>
     
       <label for="vocale">
         <span class="form-text">Synthèse vocale :</span>
-        <input class="input-custom" type="radio" name="vocale" value="oui" [formControlName]="'vocale'"> Oui 
-        <input class="input-custom" type="radio" name="vocale" value="non" [formControlName]="'vocale'"> Non
+        <input id="selectable" class="input-custom" type="radio" name="vocale" value="oui" [formControlName]="'vocale'"> Oui 
+        <input id="selectable" class="input-custom" type="radio" name="vocale" value="non" [formControlName]="'vocale'"> Non
       </label>
-      <br>
 
       <label for="visual">
         <span class="form-text">Aide visuelle :</span>
-        <input class="input-custom" type="radio" name="visual" value="oui" [formControlName]="'visual'"> Oui 
-        <input class="input-custom" type="radio" name="visual" value="non" [formControlName]="'visual'"> Non
+        <input id="selectable" class="input-custom" type="radio" name="visual" value="oui" [formControlName]="'visual'"> Oui 
+        <input id="selectable" class="input-custom" type="radio" name="visual" value="non" [formControlName]="'visual'"> Non
       </label>
-      <br>
 
       <label for="timer">
         <span class="form-text">Temps d'attente :</span>
-        <input class="input-custom" type="number" name="minute" min="0" max="60" value="1" [formControlName]="'timerMinute'">
+        <input class="input-custom" type="number" name="minute" min="0" max="59" value="1" [formControlName]="'timerMinute'">
         <span> min </span>
-        <input class="input-custom" type="number" name="secondes" min="0" max="60" value="0" [formControlName]="'timerSeconds'">
+        <input class="input-custom" type="number" name="secondes" min="0" max="59" value="0" [formControlName]="'timerSeconds'">
         <span> s </span>
       </label>
     </div>
@@ -69,7 +65,7 @@
       <br>
       <label for="photo">
         <span class="form-text">Photo :</span><br>
-        <span style="color:gray">Cliquer sur l'icone pour ajouter une photo</span>
+        <span style="color:gray">Ajouter le lien d'une image</span>
         <br>
         <div style="display: flex; flex-direction:column; justify-content: center; align-items: center;">
           <img src="/assets/users/user.png" alt="user-img" id="user-img">

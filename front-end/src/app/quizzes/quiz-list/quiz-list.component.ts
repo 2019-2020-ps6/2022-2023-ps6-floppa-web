@@ -37,6 +37,7 @@ export class QuizListComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log(this.quizList);
   }
 
   getUser(username: string): void {
