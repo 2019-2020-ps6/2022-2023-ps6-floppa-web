@@ -3,29 +3,29 @@
         <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home">
         <h2>Retour</h2>
     </div>
-    <div class="button-div" routerLink="/user-form">
+    <div id="selectable" class="button-div" routerLink="/user-form">
         <img src="/assets/add.png" alt="add">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Ajouter un utilisateur dans la liste</h3>
     </div>
-    <div class="button-div" (click)="inputNewPassword()">
+    <div id="selectable" class="button-div" (click)="inputNewPassword()">
         <img src="/assets/edit.png" alt="edit">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Modifier mot de passe</h3>
     </div>
-    <div class="button-div" routerLink="/theme-editor">
+    <div id="selectable" class="button-div" routerLink="/theme-editor">
         <img src="/assets/edit.png" alt="edit">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Accéder à l'éditeur de Quiz</h3>
     </div>
 
 </div>
 <h1 style="text-align: center; align-items: center;">Sélectionner un patient <span style="font-size: 30px; font-weight: normal;">(Trier par :
-    <select (change)="updateUserList($event.target.value)" style="border-radius: 5px; padding: 5px; align-self: center; font-size: 25px; font-weight: normal;">
+    <select id="selectable"(change)="updateUserList($event.target.value)" style="border-radius: 5px; padding: 5px; align-self: center; font-size: 25px; font-weight: normal;">
         <option value="lastName">Nom</option>
         <option value="firstName">Prénom</option>
     </select> )</span> </h1>
 <div class="user-list">
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
-            <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
+            <img id="selectable" class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
         </div>
         <div *ngIf="user.photo===''">
             <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/user-stats-menu/{{user.id}}">

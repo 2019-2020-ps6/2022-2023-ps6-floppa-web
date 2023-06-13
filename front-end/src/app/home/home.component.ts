@@ -39,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         Swal.fire({
             html: `<label for="title">
                 <h3 style="color:black;">Écrire le code secret</h3>
-                <input style="width:502px; height:50px; border-radius: 25px; padding: 10px; font-size: 30;" type="text" id="code" placeholder="CODE">
+                <input type="password" style="width:502px; height:50px; border-radius: 25px; padding: 10px; font-size: 30;" type="text" id="code" placeholder="CODE">
             </label>`,
             background: 'rgb(130, 165, 241)',
             confirmButtonText: 'Valider',

@@ -52,13 +52,13 @@ export class UserManagementComponent implements OnInit {
         <label for="oldMdp">
           <div style="display:flex;flex-direction:row;align-items:center;">
             <h3 style="margin-right:10px; font-size:30px">Ancien mot de passe :</h3>
-            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="oldMdp">
+            <input type="password" style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="oldMdp">
           </div>
         </label>
         <label for="newMdp">
           <div style="display:flex;flex-direction:row;align-items:center;">
             <h3 style="margin-right:10px; font-size:30px">Nouveau mot de passe :</h3>
-            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="newMdp">
+            <input type="password" style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="newMdp">
           </div>
         </label>
       </div>

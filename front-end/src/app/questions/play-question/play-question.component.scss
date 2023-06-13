@@ -26,15 +26,19 @@ h1 {
     margin-right: 10px;
 }
 
-#home:hover{
-    cursor: pointer;
-}
-
 #next {
     max-height: 100px;
     max-width: 100px;
     margin-left: 10px;
 }
-#next:hover{
+
+#home:hover {
     cursor: pointer;
+    opacity: 0.5;
 }
+
+#next:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
