@@ -15,8 +15,8 @@ test.describe('Play Game Test Madeleine Duo', () => {
         await expect(page.getByText('Choisissez un thème')).toBeVisible();
         await expect(page.getByAltText('user-img-Madeleine-Duo')).toBeVisible();
         await expect(page.getByText('Madeleine Duo')).toBeVisible();
-        await expect(page.getByAltText('theme-1')).toBeVisible();
-        await page.getByAltText('theme-1').click();
+        await expect(page.getByAltText('theme-Les animaux')).toBeVisible();
+        await page.getByAltText('theme-Les animaux').click();
         await expect(page).toHaveURL('http://localhost:4200/quiz-list/Madeleine-Duo/0/play');
 
         await expect(page.getByText('Choisissez un quiz')).toBeVisible();

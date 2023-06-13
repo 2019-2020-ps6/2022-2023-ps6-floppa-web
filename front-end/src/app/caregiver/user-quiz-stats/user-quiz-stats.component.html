@@ -4,12 +4,12 @@
         <img id="back" src="/assets/back.png" alt="back" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/stats">
         <h2 style="align-self: center;">Retour</h2>
       </div>
-      <div>
-        <img id="user-img" alt="user-img" src="{{user.photo}}">
+      <div data-testid="user-{{user.firstName}}-{{user.lastName}}">
+        <img id="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src="{{user.photo}}">
         <h1>{{user.firstName}} {{user.lastName}}</h1>
       </div>
-      <div>
-        <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img">
+      <div data-testid="quiz-{{quiz.name}}">
+        <img id="quiz-img" src="/assets/quiz-img/quiz-{{quiz.id}}.jpg" alt="quiz-img-{{quiz.name}}">
         <h4 style="align-self:center; margin-right: 10px;">{{quiz.name}}</h4>
       </div>
     </div>
