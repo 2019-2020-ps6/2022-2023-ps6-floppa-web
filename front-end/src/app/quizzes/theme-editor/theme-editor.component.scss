@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 #user-img {
     max-width: 165px;
     max-height: 165px;
@@ -15,8 +17,7 @@
 }
 
 .theme {
-    margin: 130px;
-    margin-bottom: 100px;
+    margin: 40px;
 }
 
 .top {
@@ -31,4 +32,8 @@ hr {
     height: 3px;
     background-color: black;
     width: 100%;
+}
+
+.add-theme {
+    width: 130px;
 }

@@ -2,6 +2,11 @@ import { Quiz } from '../models/quiz.model';
 import { Question } from '../models/question.model';
 import { Association, Connection } from '../models/association.model';
 import { Theme } from '../models/theme.model';
+import { Password } from '../models/password.model';
+
+export const password: Password = {
+    password: '0000'
+}
 
 export const QUESTION_FELINS_1: Question = {
     id: '1',

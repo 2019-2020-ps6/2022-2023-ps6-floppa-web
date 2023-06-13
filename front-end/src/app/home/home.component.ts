@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
+import { password } from 'src/mocks/quiz-list.mock';
 
 @Component({
     selector: 'app-home-profiles',
@@ -12,8 +13,10 @@ export class HomeComponent implements OnInit, OnDestroy {
     countdown: number = 120;
     timer: any;
     private countdownInterval: any;
+    private password: string;
 
     constructor(private router: Router) {
+      this.password = password.password;
     }
 
     ngOnInit(): void {
@@ -36,7 +39,7 @@ export class HomeComponent implements OnInit, OnDestroy {
         Swal.fire({
             html: `<label for="title">
                 <h3 style="color:black;">Écrire le code secret</h3>
-                <input style="width:502px; height:50px; border-radius: 25px; padding: 10px; font-size: 30;" type="text" id="code" placeholder="CODE">
+                <input type="password" style="width:502px; height:50px; border-radius: 25px; padding: 10px; font-size: 30;" type="text" id="code" placeholder="CODE">
             </label>`,
             background: 'rgb(130, 165, 241)',
             confirmButtonText: 'Valider',
@@ -44,13 +47,13 @@ export class HomeComponent implements OnInit, OnDestroy {
             preConfirm: () => {
               const codeInput = Swal.getPopup().querySelector('#code') as HTMLInputElement;
               const code = codeInput.value;
-              if (!code || code!=='test') {
+              if (!code || code!==password.password) {
                 Swal.showValidationMessage("Veuillez saisir le bon code")
               }
               return {code: code}
             }
           }).then((result) => {
-            if (result.value.code==='test') {
+            if (result.value.code===this.password) {
                 clearInterval(this.timer);
                 clearInterval(this.countdownInterval);
                 this.router.navigate(["/user-management"]);
