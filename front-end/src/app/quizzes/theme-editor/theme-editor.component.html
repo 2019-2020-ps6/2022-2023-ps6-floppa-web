@@ -4,7 +4,7 @@
         <h2 style="color:gray">Retour</h2>
     </div>
     <div class="button-div" (click)="createTheme()" style="display: flex; flex-direction: column; align-items: center;">
-        <img src="/assets/folder.png" alt="add-theme">
+        <img id="selectable" src="/assets/folder.png" class="add-theme">
         <h2>Créer thème</h2>
     </div>
     <div>
@@ -19,8 +19,8 @@
     <div *ngFor="let theme of themeList, let i=index">
         <div class="theme">
             <div>
-                <img class="theme-img" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="theme-{{theme.id}}" (click)="goToTheme(theme.id)">
-                <img src="/assets/trash.png" alt="trash-img" (click)="deleteTheme(theme)">
+                <img id="selectable" class="theme-img" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="theme-{{theme.id}}" (click)="goToTheme(theme.id)">
+                <img id="selectable" src="/assets/trash.png" alt="trash-img" (click)="deleteTheme(theme)">
             </div>
             <h2 style="display: flex; justify-content: center; margin-right: 80px;">{{theme.title}}</h2>
         </div>

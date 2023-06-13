@@ -1,3 +1,4 @@
+@import "../../../styles.scss";
 h1 {
     margin-top: 40px;
 }
@@ -11,6 +12,8 @@ h1 {
     margin-right: 100px;
     margin-top: 50px;
 }
+
+
 
 .correct-answer {
     box-shadow: 0px 0px 10px green;
@@ -28,3 +31,14 @@ h1 {
     max-width: 100px;
     margin-left: 10px;
 }
+
+#home:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+#next:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
