@@ -57,9 +57,15 @@ export class QuizService {
   }
 
   addQuiz(quiz: Quiz): void {
-    this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-    QUIZ_LIST.push(quiz);
-    this.quizzes$.next(QUIZ_LIST);
+    this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   setSelectedQuiz(quizId: string): void {
@@ -71,13 +77,15 @@ export class QuizService {
 
   deleteQuiz(quiz: Quiz): void {
     const urlWithId = this.quizUrl + '/' + quiz.id;
-    this.http.delete<Quiz>(urlWithId, this.httpOptions).subscribe(() => this.retrieveQuizzes());
-    let currentQuizList = QUIZ_LIST;
-    for (let i = 0; i<currentQuizList.length; i++) {
-      if (currentQuizList[i] === quiz) {
-        currentQuizList.splice(i, 1);
-      }
-    }
+    this.http.delete<Quiz>(urlWithId, this.httpOptions)
+      .subscribe(
+        (res) => {
+          console.log(res);
+        },
+        (err) => {
+          console.log(err);
+        }
+      );
   }
 
   addQuestion(quizId: string, question: Question): void {
