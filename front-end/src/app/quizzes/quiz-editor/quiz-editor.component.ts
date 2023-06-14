@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
-import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import Swal from 'sweetalert2';
+import { UserService } from 'src/services/user.service';
+import { Theme } from 'src/models/theme.model';
 
 @Component({
   selector: 'app-quiz-editor',
@@ -17,20 +17,30 @@ import Swal from 'sweetalert2';
 
 export class QuizEditorComponent implements OnInit {
 
-  public userList: User[];
   public quizList: Quiz[] = [];
   public themeIndex: number;
+  public theme: Theme;
 
-  constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute) {
-    this.userList = USER_LIST;
-    this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    console.log(this.themeIndex);
-    this.quizList = QUIZ_LIST.filter(quiz => quiz.theme === THEME_QUIZ_LIST.find(theme => theme.id === this.themeIndex).title);
-    console.log(this.quizList);
+  constructor(private router: Router, public quizService: QuizService, private route: ActivatedRoute, public userService: UserService) {
   }
 
   ngOnInit(): void {
-    this.quizList.sort((a,b) => a.name.localeCompare(b.name));
+    this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
+    console.log(this.themeIndex);
+    this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
+    for (let theme of THEME_QUIZ_LIST) {
+      if (theme.id === this.themeIndex) {
+        this.theme = theme;
+      }
+    }
+    this.quizService.getQuizData().subscribe((quizData) => {
+      for (let quiz of quizData) {
+        if (quiz.theme === this.theme.title) {
+          this.quizList.push(quiz);
+        }
+      }
+      this.quizList.sort((a,b) => a.name.localeCompare(b.name));
+    })
   }
 
   editQuiz(quiz: Quiz): void {

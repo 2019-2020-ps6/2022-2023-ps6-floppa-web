@@ -8,6 +8,9 @@ import { User } from 'src/models/user.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { UserService } from 'src/services/user.service';
 import Swal from 'sweetalert2';
+import { QuestionService } from 'src/services/question.service';
+import { Question } from 'src/models/question.model';
+import { Association } from 'src/models/association.model';
 
 @Component({
   selector: 'app-edit-quiz',
@@ -17,53 +20,92 @@ import Swal from 'sweetalert2';
 export class EditQuizComponent implements OnInit {
 
   public quiz: Quiz;
+  public quizQuestions: Question[];
+  public quizAssociations: Association[];
   public theme: number;
   public users: string[];
   public userList: User[];
+  public userListQuiz: User[] = [];
   public remainingUsers: User[];
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private router: Router, public userService: UserService) {
-    
-    this.quizService.quizSelected$.subscribe((quiz) => this.quiz = quiz);
-    
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private router: Router, public userService: UserService, public questionService: QuestionService) {
   }
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    this.quiz = QUIZ_LIST.find(quiz => quiz.id === id);
+    this.quizService.getQuizData().subscribe((quizData) => {
+      for (let quiz of quizData) {
+        if (Number(quiz.id) === Number(id)) {
+          this.quiz = quiz;
+          this.userService.getUsers().subscribe((users) => {
+            this.userList = users;
+            this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
+            this.retrieveUsers();
+          })
+        }
+      }
+    })
+    this.questionService.getQuestions(Number(id)).subscribe((questions) => {
+      this.quizQuestions = questions;
+    })
+    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+      this.quizAssociations = associations;
+    })
     this.theme = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    this.retrieveUsers();
+  }
+
+  getUserWithId(userId: number): User {
+    for (let user of this.userList) {
+      if (Number(user.id) === userId) return user;
+    }
   }
 
   retrieveUsers(): void {
-    console.log(this.users)
-    console.log(this.quiz.users)
     this.users = this.quiz.users;
-    let userListQuiz = [];
+    console.log(this.users);
     for (let userid of this.users) {
-      this.userService.getUser(userid).subscribe((user) => {
-        userListQuiz.push(user)
-      })
+      this.userListQuiz.push(this.getUserWithId(Number(userid)));
     }
     
     this.userService.getUsers().subscribe((users) => {
-      this.userList = users;
-      this.remainingUsers = this.userList.slice();
+      this.remainingUsers = users;
+      let indexToDel: number[] = [];
+      for (let i = 0; i < this.remainingUsers.length; i++) {
+        for (let j = 0; j < this.userListQuiz.length; j++) {
+          if (this.areObjectsEqual(this.remainingUsers[i],this.userListQuiz[j])) {
+            indexToDel.unshift(i);
+          }
+        }
+      }
+      for (let i of indexToDel) {
+        this.remainingUsers.splice(i,1);
+      }
     })
-    
-    let indexToDel: number[] = []
-    for (let i = 0; i < this.remainingUsers.length; i++) {
-      for (let j = 0; j < userListQuiz.length; j++) {
-        if (this.remainingUsers[i]===userListQuiz[j]) {
-          indexToDel.unshift(i);
+  }
+
+  areObjectsEqual(obj1: any, obj2: any): boolean {
+    const keys1 = Object.keys(obj1);
+    const keys2 = Object.keys(obj2);
+    if (keys1.length !== keys2.length) {
+      return false;
+    }
+    for (let key of keys1) {
+      if (Array.isArray(obj1[key]) && Array.isArray(obj2[key])) {
+        const arr1 = JSON.stringify(obj1[key]);
+        const arr2 = JSON.stringify(obj2[key]);
+        if (arr1 !== arr2) {
+          return false;
+        }
+      } else {
+        if (obj1[key] !== obj2[key]) {
+          return false;
         }
       }
     }
-    for (let i of indexToDel) {
-      this.remainingUsers.splice(i,1);
-    }
+    return true;
   }
-
+  
+  
   selectQuiz(): void {
     this.quizService.setSelectedQuiz(this.quiz.id);
     //this.quizService.quizSelected$.emit(this.quiz.id);
@@ -80,7 +122,7 @@ export class EditQuizComponent implements OnInit {
   }
 
   addUserToQuiz(user: User): void {
-    this.quiz.users.push(user.id);
+    this.quizService.addUserToQuiz(this.quiz, user);
     this.retrieveUsers();
   }
 
@@ -92,6 +134,7 @@ export class EditQuizComponent implements OnInit {
       }
     }
     this.quiz.users.splice(indexToDel,1);
+    this.quizService.removeUserToQuiz(this.quiz);
     this.retrieveUsers();
   }
 

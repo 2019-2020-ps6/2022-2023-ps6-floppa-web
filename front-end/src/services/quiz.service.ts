@@ -8,6 +8,7 @@ import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Association } from '../models/association.model';
 import { THEME_QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Theme } from '../models/theme.model';
+import { User } from 'src/models/user.model';
 @Injectable({
   providedIn: 'root'
 })
@@ -120,6 +121,31 @@ export class QuizService {
   resetScore(): void {
     this.score = 0;
   }
+
+  addUserToQuiz(quiz: Quiz, user: User): void {
+    quiz.users.push(user.id);
+    console.log('http://localhost:9428/api/quizzes/'+quiz.id);
+    this.http.put<Quiz>('http://localhost:9428/api/quizzes/'+quiz.id,quiz).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
+  removeUserToQuiz(quiz: Quiz): void {
+    this.http.put<Quiz>('http://localhost:9428/api/quizzes/'+quiz.id,quiz).subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    )
+  }
+
   /*
   Note: The functions below don't interact with the server. It's an example of implementation for the exercice 10.
   addQuestion(quiz: Quiz, question: Question) {
