@@ -9,7 +9,8 @@
         <img id="user-img" alt="user-img" src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'">
     </div>
 </div>
-<h1 style="display: flex; justify-content: center;">Choisissez un quiz</h1>
+<h1 *ngIf="quizList.length > 0" style="display: flex; justify-content: center;">Choisissez un quiz</h1>
+<h1 *ngIf="quizList.length == 0" style="display: flex; justify-content: center;">Il n'y a pas encore de Quiz pour ce thème.</h1>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div *ngFor="let quiz of quizList, let i=index">
         <div *ngIf="quiz.users.length===0 || quiz.users.includes(user.id)" class="quiz">

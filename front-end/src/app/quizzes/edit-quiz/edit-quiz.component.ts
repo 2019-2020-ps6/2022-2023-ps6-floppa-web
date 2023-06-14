@@ -93,10 +93,10 @@ export class EditQuizComponent implements OnInit {
       <div class="button-container" style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
         <div style="display: flex; flex-direction: row;">
           <button id="createQuestionBtn" class="button" style="margin: 10px; font-size:20px;">Créer Question</button>
-          <img src="assets/question_choice.png" style="max-width: 200px;">
+          <img src="assets/question_choice.png" style="max-width: 200px;margin-left: 50px;">
         </div>
         <div style="display: flex; flex-direction: row; margin-top: 20px;">
-          <button id="createAssociationBtn" class="button" style="font-size:20px;">Créer Association</button>
+          <button id="createAssociationBtn" class="button" style="margin-right: 50px; font-size:20px;">Créer Association</button>
           <img src="assets/association.png">
         </div>
       </div>
