@@ -88,14 +88,14 @@ export class QuizService {
       );
   }
 
-  addQuestion(quizId: string, question: Question): void {
+  addQuestion(quizId: string, question: any): void {
     const questionUrl = this.quizUrl + '/' + quizId + '/' + this.questionsPath;
     this.http.post<Question>(questionUrl, question, this.httpOptions).subscribe(() => this.setSelectedQuiz(quizId));
   }
 
   deleteQuestion(quiz: Quiz, question: Question): void {
     const questionUrl = this.quizUrl + '/' + quiz.id + '/' + this.questionsPath + '/' + question.id;
-    this.http.delete<Question>(questionUrl, this.httpOptions).subscribe(() => this.setSelectedQuiz(quiz.id));
+    this.http.delete<Question>(questionUrl, this.httpOptions).subscribe();
   }
 
   addAssociation(quizId: string, association: Association): void {
