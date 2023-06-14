@@ -136,9 +136,6 @@ export class UserService {
 
   updateQuizSession(user: User, isCorrect: boolean, elapsedTime: number, quizSessionId: number): void {
     const req = {answer: isCorrect, time: Math.round(elapsedTime/1000)};
-    console.log("---------------");
-    console.log(quizSessionId);
-    console.log("---------------");
     console.log(req);
     this.http.put<User>("http://localhost:9428/api/users/" + user.id + '/quizSession/' + String(quizSessionId), req)
       .subscribe(

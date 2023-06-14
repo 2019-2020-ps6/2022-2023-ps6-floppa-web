@@ -6,7 +6,6 @@ import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import {Location} from '@angular/common';
 import { USER_LIST } from 'src/mocks/user-list.mock';
-import { assert } from 'console';
 
 @Component({
   selector: 'app-user-form',

@@ -4,7 +4,7 @@
             <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
             <div style="display: flex; flex-direction: column; margin-left: 16px;">
                 <h4 style="margin:0">{{quiz.name}}</h4>
-                <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{this.quizQuestions.length}}</span>
+                <span style="margin: 0; font-size: 20px;">Question {{numQuestion}}/{{this.quizQuestions.length + this.quizAssociations.length}}</span>
             </div>
         </div>
         <div *ngIf="numQuestion <= this.quizQuestions.length && assistance % 10 >= 1" style="display: flex; flex-direction: column; align-items: center; flex-basis: 20%;">

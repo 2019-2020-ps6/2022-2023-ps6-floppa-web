@@ -8,6 +8,7 @@ import { UserService } from 'src/services/user.service';
 import { QuestionService } from 'src/services/question.service';
 import { Answer, Question } from 'src/models/question.model';
 import { AnswerService } from 'src/services/answer.service';
+import { Association, Connection } from 'src/models/association.model';
 @Component({
   selector: 'app-answer',
   templateUrl: './answer.component.html',
@@ -22,7 +23,9 @@ export class AnswerComponent implements OnInit, OnDestroy {
   public assistance: number;
   public user: User;
   public quizQuestions: Question[];
+  public quizAssociations: Association[];
   public answers: Answer[];
+  public connections: Connection[];
   timer: any;
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router, public userService: UserService, public questionService: QuestionService, public answerService: AnswerService) {
@@ -39,13 +42,25 @@ export class AnswerComponent implements OnInit, OnDestroy {
       }
     })
     this.questionService.getQuestions(Number(id)).subscribe((questions) => {
-      this.quizQuestions = questions;this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
-      this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
-        this.answers = answers;
-        this.correctAnswer = this.getCorrectAnswer();
-        console.log(this.correctAnswer);
+      this.quizQuestions = questions;
+      this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
+      if (this.numQuestion <= this.quizQuestions.length) {
+        this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
+          this.answers = answers;
+          this.correctAnswer = this.getCorrectAnswer(answers);
+        })
+      }
+      this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+        this.quizAssociations = associations;
+        if (this.numQuestion > this.quizQuestions.length) {
+          let association = this.quizAssociations[this.numQuestion - this.quizQuestions.length - 1]
+          this.questionService.getConnections(Number(id),Number(association.id)).subscribe((connections) => {
+            this.connections = connections;
+          })
+        }
       })
     })
+    
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
     if (this.route.snapshot.paramMap.get('isCorrect') === 'true') {
@@ -64,7 +79,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
         }
       }
     })
-    if(this.numQuestion <= this.quiz.questions.length)
+    if(this.numQuestion <= this.quizQuestions.length + this.quizAssociations.length)
     this.timer = setTimeout(() => {
       if (this.numQuestion+1 > this.quiz.questions.length) {
         this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
@@ -76,12 +91,12 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-      clearInterval(this.timer);
+    clearInterval(this.timer);
   }
 
-  getCorrectAnswer(): number {
-    for (let i = 0; i < this.quiz.questions[this.numQuestion-1].answers.length; i++) {
-      if (this.answers[i].isCorrect) {
+  getCorrectAnswer(answers: Answer[]): number {
+    for (let i = 0; i < answers.length; i++) {
+      if (answers[i].isCorrect) {
         return i;
       }
     }
@@ -89,7 +104,7 @@ export class AnswerComponent implements OnInit, OnDestroy {
   }
 
   nextQuestion(): void {
-    if (this.numQuestion+1 > this.quiz.questions.length) {
+    if (this.numQuestion+1 > this.quizQuestions.length + this.quizAssociations.length) {
       this.router.navigate(['/final-screen/' + this.quiz.id + '/' + this.score + "/" + this.user.id]);
     }
     else {

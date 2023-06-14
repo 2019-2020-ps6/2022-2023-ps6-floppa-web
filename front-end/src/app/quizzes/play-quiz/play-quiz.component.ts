@@ -11,6 +11,7 @@ import { QuestionService } from 'src/services/question.service';
 import { Answer, Question } from 'src/models/question.model';
 import { AnswerService } from 'src/services/answer.service';
 import { UserService } from 'src/services/user.service';
+import { Association } from 'src/models/association.model';
 
 const performance = window.performance;
 declare const SpeechSynthesisUtterance: any;
@@ -31,6 +32,7 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
 
   public quiz: Quiz;
   public quizQuestions: Question[];
+  public quizAssociations: Association[];
   public answers: Answer[];
   public numQuestion: number;
   public answered = false;
@@ -60,6 +62,9 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
       this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
         this.answers = answers;
       })
+    })
+    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+      this.quizAssociations = associations;
     })
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
@@ -109,7 +114,7 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
     const endTime = performance.now();
     const elapsedTime = endTime - this.startTime;
     this.userService.updateQuizSession(this.user, false, elapsedTime, this.currentSessionId);
-    if (this.numQuestion >= this.quiz.questions.length) {
+    if (this.numQuestion >= this.quizQuestions.length + this.quizAssociations.length) {
       this.router.navigate(["/final-screen/"+this.quiz.id+"/"+this.score+"/"+this.user.id]);
     }
     else {
@@ -118,12 +123,18 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   }
 
   checkAssociation(): void {
-    let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
-    this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
-    const endTime = performance.now();
-    const elpasedTime = endTime - this.startTime;
-    this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
-    this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
+    let id = this.route.snapshot.paramMap.get('id');
+    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+      this.quizAssociations = associations;
+      let isCorrect = this.quizAssociations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
+      console.log("-----------")
+      console.log(isCorrect);
+      console.log("-----------")
+      const endTime = performance.now();
+      const elapsedTime = endTime - this.startTime;
+      this.userService.updateQuizSession(this.user, isCorrect, elapsedTime, this.currentSessionId);
+      this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
+    })
   }
 
   useHint(): void {

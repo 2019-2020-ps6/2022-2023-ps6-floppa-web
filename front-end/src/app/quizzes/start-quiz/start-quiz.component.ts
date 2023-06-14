@@ -9,6 +9,7 @@ import { User } from 'src/models/user.model';
 import { Question } from 'src/models/question.model';
 import { QuestionService } from 'src/services/question.service';
 import { UserService } from 'src/services/user.service';
+import { Association } from 'src/models/association.model';
 
 @Component({
   selector: 'app-start-quiz',
@@ -21,6 +22,7 @@ export class StartQuizComponent implements OnInit {
   public assistance: number;
   public user: User;
   public quizQuestions: Question[];
+  public quizAssociations: Association[];
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private questionService: QuestionService, public userService: UserService) {
   }
@@ -43,6 +45,9 @@ export class StartQuizComponent implements OnInit {
     })
     this.questionService.getQuestions(Number(id)).subscribe((questions) => {
       this.quizQuestions = questions;
+    })
+    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+      this.quizAssociations = associations;
     })
     this.createSession();
   }

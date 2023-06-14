@@ -1,14 +1,17 @@
 const { Router } = require('express')
-const { Connection } = require('../../../../models')
+const { Connection, Quiz } = require('../../../../models')
 
 const { getAssociationFromQuiz } = require('../manager')
 const { filterConnectionFromAssociation, getConnectionFromAssociation } = require('./manager')
+const connectionModel = require('../../../../models/connection.model')
 
 const router = new Router({ mergeParams: true })
 
 router.get('/', (req, res) => {
+  console.log("slt")
   try {
     const association = getAssociationFromQuiz(req.params.quizId, req.params.associationId)
+    console.log(association)
     const connections = filterConnectionFromAssociation(association.id)
     res.status(200).json(connections)
   } catch (err) {
@@ -34,8 +37,14 @@ router.get('/:connectionId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
+  console.log("caca")
+  Quiz.getById(req.params.quizId)
+  const quizId = parseInt(req.params.quizId, 10)
+  const associationId = parseInt(req.params.associationId, 10)
+  console.log(req.body)
   try {
-    const connection = Connection.create({ ...req.body })
+    //const connection = Connection.create({ ...req.body, quizId: quizId})
+    const connection = connectionModel.create({ ...req.body, associationId: associationId})
     res.status(201).json(connection)
   } catch (err) {
     if (err.name === 'NotFoundError') {

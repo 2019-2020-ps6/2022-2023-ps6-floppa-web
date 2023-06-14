@@ -27,12 +27,11 @@ router.get('/:associationId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log(req);
   try {
     Quiz.getById(req.params.quizId)
     const quizId = parseInt(req.params.quizId, 10)
     
-    const association = Association.create({ label: req.body.label, connections: req.body.connections})
+    const association = Association.create({ label: req.body.label, connections: req.body.connections, quizId: quizId})
 
     if (req.body.connections && req.body.connections.length > 0) {
       const connections = req.body.connections.map((connection) => Connection.create({ ...connection, associationId: association.id }))
