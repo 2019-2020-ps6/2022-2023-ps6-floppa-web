@@ -4,6 +4,7 @@ import { Quiz } from '../../../models/quiz.model';
 import { QuizService } from '../../../services/quiz.service';
 import { User } from 'src/models/user.model';
 import { RouterLink } from '@angular/router';
+import { newArray } from '@angular/compiler/src/util';
 @Component({
   selector: 'app-play-question',
   templateUrl: './play-question.component.html',
@@ -31,10 +32,15 @@ export class PlayQuestionComponent implements OnInit {
   @Output()
   nextQuestion = new EventEmitter<void>();
 
+  private hiddenAnswers: boolean[];
+
   constructor(private quizService: QuizService) { }
 
   ngOnInit(): void {
     this.question = this.quiz.questions[this.numQuestion-1];
+    this.hiddenAnswers = new Array(this.question.answers.length);
+    for(let i = 0; i < this.hiddenAnswers.length; i++)
+      this.hiddenAnswers[i] = false;
   }
 
   check(indexAnswer: number): void {
@@ -63,7 +69,7 @@ export class PlayQuestionComponent implements OnInit {
         rdmnb2++;
       }
       else if (i === rdmnb1 || i === rdmnb2) {
-        img.src = "/assets/void.png";
+        img.style.display = "none";
       }
     }
   }
