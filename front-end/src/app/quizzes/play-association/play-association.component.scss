@@ -1,25 +1,23 @@
 @import "../../../styles/variables.scss";
+@import "../../../styles.scss";
 
 .association-game{
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    max-height: 60%;
+    max-width: 50%;
+    top:35%;
     position: absolute;
-    top: 60%;
-    left: 55%;
-    transform: translate(-50%, -50%);
 
 }
 
 .connectors-left{
-    width: 50%;
-    //padding: 20px;
-    // margin-right: 100px;
+    width: 30%;
 }
 
 .connectors-right{
-    width: 50%;
-    //padding: 20px;
-    // margin-left: 100px;
+    width: 30%;
 }
 
 svg {
@@ -42,8 +40,19 @@ svg {
     margin-right: 10px;
 }
 
+#home:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
+#next:hover {
+    cursor: pointer;
+    opacity: 0.5;
+}
+
 #next {
     max-height: 100px;
     max-width: 100px;
     margin-left: 10px;
 }
+

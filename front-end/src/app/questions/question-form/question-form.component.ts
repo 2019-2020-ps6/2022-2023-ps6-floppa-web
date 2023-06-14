@@ -42,8 +42,8 @@ export class QuestionFormComponent implements OnInit {
 
   private createAnswer(): FormGroup {
     return this.formBuilder.group({
-      value: '',
-      img:['', Validators.required],
+      value:['', Validators.required],
+      img:'',
       isCorrect: false,
     });
   }

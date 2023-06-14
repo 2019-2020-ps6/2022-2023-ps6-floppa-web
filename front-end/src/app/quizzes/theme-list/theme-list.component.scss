@@ -1,6 +1,9 @@
+@import "../../../styles.scss";
+
 #user-img {
     max-width: 150px;
     max-height: 150px;
+    border-radius: 50%;
 }
 
 #back {
@@ -16,6 +19,5 @@
 }
 
 .theme {
-    margin: 150px;
-    margin-bottom: 100px;
+    margin: 30px;
 }

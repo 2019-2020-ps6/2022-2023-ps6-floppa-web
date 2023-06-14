@@ -1,8 +1,10 @@
 @import '../../../styles/variables.scss';
+@import '../../../styles.scss';
 
 .user-img {
     max-width: 175px;
     max-height: 175px;
+    border-radius: 50%;
 }
 
 .user-list {
@@ -17,7 +19,6 @@
     width: calc(19% - 10px);
     margin: 10px;
 }
-
 
 #back {
     margin-top: 10px;
@@ -50,6 +51,7 @@
 }
 
 .button-div {
+    margin:30px;
     display: flex; 
     flex-direction: row;
     border: 3px solid black;

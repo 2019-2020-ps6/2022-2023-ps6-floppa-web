@@ -24,7 +24,10 @@
     <h1 class="answer-text">La bonne réponse est :</h1>
 </div>
 <div style="display:flex; justify-content: center;">
-    <img *ngIf = "numQuestion <= this.quizQuestions.length" id="answer-img" alt="answer-{{correctAnswer+1}}" src="{{this.answers[correctAnswer].img}}">
+    <div *ngIf = "numQuestion <= this.quizQuestions.length">
+        <img onerror="this.style.display='none'" id="answer-img" alt="answer-{{correctAnswer+1}}" src="{{this.answers[correctAnswer].img}}">
+        <h2 style="text-align: center;">{{answers[correctAnswer].value}}</h2>
+    </div>
     <div *ngIf="numQuestion > this.quizQuestions.length" class="answer-text">
         <div style="display: inline-block; margin: 20px;" *ngFor = "let connection of this.connections; let i=index;">
             <div class="card" style="margin: 10px;" *ngIf="connection.valueToConnect && connection.valueToBeConnected">

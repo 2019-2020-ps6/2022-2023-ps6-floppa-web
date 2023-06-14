@@ -59,7 +59,6 @@ export class QuizListComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   getUser(username: string): void {

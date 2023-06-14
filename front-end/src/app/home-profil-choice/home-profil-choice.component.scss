@@ -1,6 +1,9 @@
+@import '../../styles.scss';
+
 .user-img {
     max-width: 175px;
     max-height: 175px;
+    border-radius: 50%;
 }
 
 .user-list {
