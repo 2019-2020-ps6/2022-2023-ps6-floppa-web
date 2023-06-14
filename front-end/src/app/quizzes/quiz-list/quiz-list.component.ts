@@ -8,6 +8,7 @@ import { Theme } from 'src/models/theme.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
 import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { UserService } from 'src/services/user.service';
+import { ThemeService } from 'src/services/theme.service';
 
 @Component({
   selector: 'app-quiz-list',
@@ -25,8 +26,9 @@ export class QuizListComponent implements OnInit {
   public themeIndex: number;
   public type: string;
   public theme: Theme;
+  public themeList: Theme[];
 
-  constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute, public userService: UserService) {
+  constructor(private router: Router, public quizService: QuizService,private route: ActivatedRoute, public userService: UserService, public themeService: ThemeService) {
     this.username = this.route.snapshot.paramMap.get("user");
     this.type = this.route.snapshot.paramMap.get("type");
     this.userService.getUsers().subscribe((users) => {
@@ -34,19 +36,21 @@ export class QuizListComponent implements OnInit {
       this.getUser(this.username);
     })
     this.themeIndex = Number(this.route.snapshot.paramMap.get("themeIndex"));
-    for (let theme of THEME_QUIZ_LIST) {
-      if (theme.id === this.themeIndex) {
-        this.theme = theme;
-      }
-    }
-    this.quizService.getQuizData().subscribe((quizData) => {
-      for (let quiz of quizData) {
-        if (quiz.theme === this.theme.title) {
-          this.quizList.push(quiz);
+    this.themeService.getThemes().subscribe((themes) => {
+      this.themeList = themes;
+      for (let theme of this.themeList) {
+        if (Number(theme.id) === Number(this.themeIndex)) {
+          this.theme = theme;
         }
       }
-      console.log(this.quizList);
-    })
+      this.quizService.getQuizData().subscribe((quizData) => {
+        for (let quiz of quizData) {
+          if (quiz.theme === this.theme.title) {
+            this.quizList.push(quiz);
+          }
+        }
+      })
+    });
     /*for (let i=0; i<QUIZ_LIST.length; i++) {
       if (THEME_QUIZ_LIST[this.themeIndex].title === QUIZ_LIST[i].theme) {
         this.quizList.push(QUIZ_LIST[i]);

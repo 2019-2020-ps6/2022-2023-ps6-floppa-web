@@ -4,8 +4,6 @@ import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
-import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Theme } from 'src/models/theme.model';
 import { UserService } from 'src/services/user.service';
 import { ThemeService } from 'src/services/theme.service';
