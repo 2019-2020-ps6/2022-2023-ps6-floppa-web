@@ -74,11 +74,9 @@ export class QuestionFormComponent implements OnInit {
 
   addQuestion(): void {
     if (!this.isQuestionFormValid) return;
-    let question = this.questionForm.getRawValue() as Question;
-    console.log(question.answers);
+    const question = this.questionForm.getRawValue() as Question;
     this.questionService.addQuestion({label: question.label, quizId: Number(this.quizId)}, Number(this.quizId)).subscribe((newQuestion) => {
       for (let answer of question.answers) {
-        console.log(answer);
         this.answerService.addAnswer({...answer, questionId: Number(newQuestion.id)}, Number(this.quizId), Number(newQuestion.id)).subscribe();
       }
     });

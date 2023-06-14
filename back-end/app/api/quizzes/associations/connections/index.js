@@ -8,7 +8,6 @@ const connectionModel = require('../../../../models/connection.model')
 const router = new Router({ mergeParams: true })
 
 router.get('/', (req, res) => {
-  console.log("slt")
   try {
     const association = getAssociationFromQuiz(req.params.quizId, req.params.associationId)
     console.log(association)
@@ -37,7 +36,8 @@ router.get('/:connectionId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log("caca")
+  console.log("gros caca");
+  console.log(req.body);
   Quiz.getById(req.params.quizId)
   const quizId = parseInt(req.params.quizId, 10)
   const associationId = parseInt(req.params.associationId, 10)

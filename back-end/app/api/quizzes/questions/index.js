@@ -27,7 +27,6 @@ router.get('/:questionId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log("JE SUIS LA");
   try {
     // Check if quizId exists, if not it will throw a NotFoundError
     Quiz.getById(req.params.quizId)

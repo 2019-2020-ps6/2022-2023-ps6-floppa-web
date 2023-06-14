@@ -98,9 +98,9 @@ export class QuizService {
     this.http.delete<Question>(questionUrl, this.httpOptions).subscribe();
   }
 
-  addAssociation(quizId: string, association: Association): void {
+  addAssociation(quizId: string, association: Association): Observable<Association> {
     const associationUrl = this.quizUrl + '/' + quizId + '/' + this.associationsPath;
-    this.http.post<Association>(associationUrl, association, this.httpOptions).subscribe(() => this.setSelectedQuiz(quizId));
+    return this.http.post<Association>(associationUrl, association, this.httpOptions);
   }
   //temporaire, à changer pour le back end
   deleteQuestionFromQuiz(quiz: Quiz, question: Question): void {

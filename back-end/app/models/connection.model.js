@@ -5,9 +5,9 @@ class ConnectionModel {
   constructor() {
     this.baseModel = new BaseModel('Connection', {
       valueToConnect: Joi.string(),
-      imageCoverToConnect: Joi.string(),
+      coverImageToConnect: Joi.string().allow(''),
       valueToBeConnected: Joi.string(),
-      imageCoverToBeConnected: Joi.string(),
+      coverImageToBeConnected: Joi.string().allow(''),
       associationId: Joi.number().required()
     });
   }
