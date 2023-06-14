@@ -18,8 +18,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/:associationId', (req, res) => {
+  console.log("zedfqsdf")
   try {
-    const association = getAssociationFromQuiz(req.params.quizId)
+    const association = getAssociationFromQuiz(req.params.quizId, req.params.associationId)
     res.status(200).json(association)
   } catch (err) {
     manageAllErrors(res, err)
@@ -54,6 +55,7 @@ router.put('/:associationId', (req, res) => {
 })
 
 router.delete('/:associationId', (req, res) => {
+  console.log("slt");
   try {
     // Check if the question id exists & if the question has the same quizId as the one provided in the url.
     getAssociationFromQuiz(req.params.quizId, req.params.associationId)

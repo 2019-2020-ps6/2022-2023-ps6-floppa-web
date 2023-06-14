@@ -27,6 +27,7 @@ export class EditQuizComponent implements OnInit {
   public userList: User[];
   public userListQuiz: User[] = [];
   public remainingUsers: User[];
+  public associations: Association[];
 
   constructor(private route: ActivatedRoute, private quizService: QuizService, private router: Router, public userService: UserService, public questionService: QuestionService) {
   }
@@ -37,6 +38,9 @@ export class EditQuizComponent implements OnInit {
       for (let quiz of quizData) {
         if (Number(quiz.id) === Number(id)) {
           this.quiz = quiz;
+          this.questionService.getAssociations(Number(this.quiz.id)).subscribe((associations) => {
+            this.associations = associations;
+          })
           this.userService.getUsers().subscribe((users) => {
             this.userList = users;
             this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));

@@ -9,6 +9,7 @@ import { Association } from '../models/association.model';
 import { THEME_QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Theme } from '../models/theme.model';
 import { User } from 'src/models/user.model';
+import { QuestionService } from './question.service';
 @Injectable({
   providedIn: 'root'
 })
@@ -95,19 +96,28 @@ export class QuizService {
   }
   //temporaire, à changer pour le back end
   deleteQuestionFromQuiz(quiz: Quiz, question: Question): void {
-    const index = quiz.questions.findIndex((q) => q.label === question.label);
-    if (index !== -1) {
-      quiz.questions.splice(index, 1);
-    }
+    this.http.delete<Question>("http://localhost:9428/api/quizzes/"+quiz.id+"/questions/"+question.id)
+    .subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
+      }
+    );
   }
 
-    //temporaire, à changer pour le back end
-    deleteAssociationFromQuiz(quiz: Quiz, association: Association): void {
-      const index = quiz.associations.findIndex((q) => q.label === association.label);
-      if (index !== -1) {
-        quiz.associations.splice(index, 1);
+  deleteAssociationFromQuiz(quiz: Quiz, association: Association): void {
+    this.http.delete<Association>("http://localhost:9428/api/quizzes/"+quiz.id+"/associations/"+association.id)
+    .subscribe(
+      (res) => {
+        console.log(res);
+      },
+      (err) => {
+        console.log(err);
       }
-    }
+    );
+  }
 
   getScore(): number {
     return this.score;
