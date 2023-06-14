@@ -24,8 +24,8 @@
     <h1 class="answer-text">La bonne réponse est :</h1>
 </div>
 <div style="display:flex; justify-content: center;">
-    <div>
-        <img *ngIf = "numQuestion <= quiz.questions.length" onerror="this.style.display='none'" id="answer-img" alt="answer-{{correctAnswer+1}}" src="{{quiz.questions[numQuestion-1].answers[correctAnswer].img}}">
+    <div *ngIf = "numQuestion <= quiz.questions.length">
+        <img onerror="this.style.display='none'" id="answer-img" alt="answer-{{correctAnswer+1}}" src="{{quiz.questions[numQuestion-1].answers[correctAnswer].img}}">
         <h2 style="text-align: center;">{{quiz.questions[numQuestion-1].answers[correctAnswer].value}}</h2>
     </div>
     <div *ngIf="numQuestion > quiz.questions.length" class="answer-text">
