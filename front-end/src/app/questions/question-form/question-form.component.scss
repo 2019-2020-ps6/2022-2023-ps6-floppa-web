@@ -5,3 +5,17 @@
     margin-top: 0.3em;
     margin-bottom: 0.3em;
 }
+
+.top {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  #back {
+    margin-top: 10px;
+    max-width: 121px;
+    max-height: 121px;
+  }
