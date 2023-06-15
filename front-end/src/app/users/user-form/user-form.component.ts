@@ -191,10 +191,13 @@ export class UserFormComponent implements OnInit {
     if (this.getIndice()){
       return "1001";
     }
+    else {
+      return "1000";
+    }
   }
 
   addUser(): void {
-    const userToCreate: User = this.userForm.getRawValue() as User;
+    const userInfo: User = this.userForm.getRawValue() as User;
     const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
     if (timers.timerMinute === null) {
       timers.timerMinute = 0;
@@ -202,10 +205,17 @@ export class UserFormComponent implements OnInit {
     if (timers.timerSeconds === null) {
       timers.timerSeconds = 0;
     }
-    userToCreate.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
-    userToCreate.assistance = this.getAssistance(userToCreate);
-    userToCreate.id = String(USER_LIST.length + 1);
-    userToCreate.quizSessions = {};
+
+    let userToCreate: User = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      alzheimerStade: userInfo.alzheimerStade,
+      photo: userInfo.photo,
+      timer: Number(timers.timerMinute) + Number(timers.timerSeconds)/60,
+      assistance: this.getAssistance(userInfo),
+      quizSessions: [],
+      id:""
+    };
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
   }

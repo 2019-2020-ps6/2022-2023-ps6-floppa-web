@@ -6,6 +6,8 @@ import { Theme } from 'src/models/theme.model';
 import Swal from 'sweetalert2';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
+import { ThemeService } from 'src/services/theme.service';
+import { QuizService } from 'src/services/quiz.service';
 
 @Component({
   selector: 'app-theme-editor',
@@ -16,13 +18,15 @@ export class ThemeEditorComponent implements OnInit {
   public themeList: Theme[];
   public static counter: number = THEME_QUIZ_LIST.length;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
+  constructor(private router: Router, private route: ActivatedRoute, public themeService: ThemeService, public quizService: QuizService) {
 
   }
 
   ngOnInit(): void {
-    this.themeList = THEME_QUIZ_LIST;
-    this.themeList.sort((a,b) => a.title.localeCompare(b.title));
+    this.themeService.getThemes().subscribe((themes) => {
+      this.themeList = themes;
+      this.themeList.sort((a,b) => a.title.localeCompare(b.title));
+    });
   }
 
   goToTheme(themeIndex: number): void {
@@ -69,54 +73,59 @@ export class ThemeEditorComponent implements OnInit {
       }
     }).then((result) => {
       console.log(result);
-      THEME_QUIZ_LIST.splice(THEME_QUIZ_LIST.length, 0, {
-        id: ThemeEditorComponent.counter,
+      let themeToPush: any = {
         title: result.value.title,
-        description: null,
         coverImage: result.value.image
+      };
+      this.themeService.addTheme(themeToPush);
+      this.themeService.getThemes().subscribe((themes) => {
+        this.themeList = themes;
+        this.themeList.sort((a,b) => a.title.localeCompare(b.title));
       });
-      ThemeEditorComponent.counter++
-      this.themeList = THEME_QUIZ_LIST
-      this.themeList.sort((a,b) => a.title.localeCompare(b.title));
     })
   }
 
   deleteTheme(themeToDelete: Theme): void {
-    let quizList = QUIZ_LIST.filter(quiz => quiz.theme === themeToDelete.title);
-    Swal.fire({
-      html: `
-        <h2 style="color:white">Êtes-vous sûr de<br>supprimer le Thème<br>"`+themeToDelete.title+`" ?</h2>
-        <h3 style="color:white">(`+String(quizList.length)+` quizs vont être supprimés...)</h3>
-        <img src="/assets/trash.png" alt="trash">
-      `,
-      background: 'rgb(131,104,96)',
-      showCancelButton: true,
-      confirmButtonText: 'Oui',
-      cancelButtonText: 'Non',
-      focusConfirm: false,
-      confirmButtonColor: 'rgb(150,255,150)'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        this.themeList = this.themeList.filter(theme => theme !== themeToDelete);
-        for (let i = 0; i < THEME_QUIZ_LIST.length; i++) {
-          if (themeToDelete === THEME_QUIZ_LIST[i]) {
-            THEME_QUIZ_LIST.splice(i,1);
-            this.themeList = THEME_QUIZ_LIST;
-            this.themeList.sort((a,b) => a.title.localeCompare(b.title));
-          }
-        }
-        let indexToDelete: number[] = [];
-        for (let i = 0; i < QUIZ_LIST.length; i++) {
-          if (QUIZ_LIST[i].theme === themeToDelete.title) {
-            indexToDelete.push(i);
-          }
-        }
-        indexToDelete = indexToDelete.reverse();
-        for (let index of indexToDelete) {
-          QUIZ_LIST.splice(index,1);
+    this.quizService.getQuizData().subscribe((quizzes) => {
+      let quizList: Quiz[] = [];
+      for (let quiz of quizzes) {
+        console.log(quiz.theme);
+        console.log(themeToDelete.title);
+        console.log(quiz.theme === themeToDelete.title);
+        if (quiz.theme === themeToDelete.title) {
+          quizList.push(quiz);
         }
       }
-    });
+      //let quizList = quizzes.filter(quiz => quiz.theme === themeToDelete.title);
+      console.log(quizList);
+      Swal.fire({
+        html: `
+          <h2 style="color:white">Êtes-vous sûr de<br>supprimer le Thème<br>"`+themeToDelete.title+`" ?</h2>
+          <h3 style="color:white">(`+String(quizList.length)+` quizs vont être supprimés...)</h3>
+          <img src="/assets/trash.png" alt="trash">
+        `,
+        background: 'rgb(131,104,96)',
+        showCancelButton: true,
+        confirmButtonText: 'Oui',
+        cancelButtonText: 'Non',
+        focusConfirm: false,
+        confirmButtonColor: 'rgb(150,255,150)'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          this.themeService.deleteTheme(themeToDelete);
+          this.themeService.getThemes().subscribe((themes) => {
+            this.themeList = themes;
+            this.themeList.sort((a,b) => a.title.localeCompare(b.title));
+          });
+          for (let i = 0; i < quizzes.length; i++) {
+            if (quizzes[i].theme === themeToDelete.title) {
+              this.quizService.deleteQuiz(quizzes[i]);
+            }
+          }
+        }
+      });
+    })
+    
   }
 }
 
