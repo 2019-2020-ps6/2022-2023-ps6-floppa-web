@@ -3,21 +3,23 @@ import { HttpClient } from '@angular/common/http';
 import { Answer } from 'src/models/question.model';
 import { Observable } from 'rxjs';
 import { Theme } from 'src/models/theme.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ThemeService {
+
+  private themeUrl = environment.apiUrl+"/themes";
+
   constructor(private http: HttpClient) { }
 
   getThemes(): Observable<Theme[]> {
-    const url = `http://localhost:9428/api/themes`;
-    return this.http.get<Theme[]>(url);
+    return this.http.get<Theme[]>(this.themeUrl);
   }
 
   addTheme(theme: Theme): void {
-    const url = `http://localhost:9428/api/themes`;
-    this.http.post<Theme>(url, theme)
+    this.http.post<Theme>(this.themeUrl, theme)
     .subscribe(
         (res) => {
           console.log(res);
@@ -29,8 +31,7 @@ export class ThemeService {
   }
 
   deleteTheme(theme: Theme): void {
-    const url = `http://localhost:9428/api/themes/`+theme.id;
-    this.http.delete<Theme>(url)
+    this.http.delete<Theme>(this.themeUrl+"/"+theme.id)
     .subscribe(
         (res) => {
           console.log(res);
