@@ -31,7 +31,7 @@ router.get('/:quizId', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const quiz = Quiz.create({name: req.body.name, theme: req.body.theme, coverImage: req.body.coverImage})
+    const quiz = Quiz.create({name: req.body.name, theme: req.body.theme, coverImage: req.body.coverImage, users: req.body.users})
     
     if (req.body.questions && req.body.questions.length > 0) {
       const questions = req.body.questions.map((question) => Question.create({ ...question, quizId: quiz.id }))
