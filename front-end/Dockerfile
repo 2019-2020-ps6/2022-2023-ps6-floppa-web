@@ -1,16 +1,21 @@
-FROM node:16.16.0-alpine AS build
+FROM node:16.16.0-alpine AS build-stage
 
-USER node
-WORKDIR /front-end
+WORKDIR /usr/local/app
 
+COPY .editorconfig angular.json default.conf package*.json tsconfig*.json ./
 COPY ./src src/
-COPY angular.json package-lock.json package.json tsconfig.app.json tsconfig.json tsconfig.spec.json tslint.json .
+
 RUN npm install
+RUN npm run build
 
-FROM nginx:1.21.1-alpine
-COPY --from=node . /usr/share/nginx/html
+# Prod
+FROM nginxinc/nginx-unprivileged:latest
 
-EXPOSE 8080
+USER nginx
+
+COPY --from=build-stage /usr/local/app/dist/front-end /usr/share/nginx/html/
+COPY --from=build-stage /usr/local/app/default.conf /etc/nginx/conf.d/
+
+EXPOSE 4200
 
 CMD ["nginx", "-g", "daemon off;"]
-CMD ["npm", "start"]
