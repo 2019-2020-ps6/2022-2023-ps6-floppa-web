@@ -1,3 +1,5 @@
+@import '../../../styles.scss';
+
 .top {
     display: flex;
     align-items: center;
@@ -25,4 +27,8 @@ hr {
     max-height: 150px;
     margin-left: 16px;
     border-radius: 50%;
+}
+
+#selectable:hover{
+    opacity: .5;
 }
