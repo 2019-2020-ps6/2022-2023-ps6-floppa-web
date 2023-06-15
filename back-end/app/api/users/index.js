@@ -1,6 +1,6 @@
 const { Router } = require('express')
 
-const { User } = require('../../models')
+const { User, QuizSession } = require('../../models')
 const manageAllErrors = require('../../utils/routes/error-management')
 
 const router = new Router()
@@ -44,6 +44,40 @@ router.delete('/:userId', (req, res) => {
     res.status(204).end()
   } catch (err) {
     manageAllErrors(res, err)
+  }
+})
+
+router.get('/:userId/quizSession', (req, res) => {
+  try {
+    const user = User.getById(req.params.userId)
+    const quizSessions = user.quizSessions
+    res.status(200).json(quizSessions)
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+router.put('/:userId/quizSession', (req, res) => {
+  try {
+    const user = User.getById(req.params.userId);
+    const quizSession = {...req.body,id: Date.now()};
+    user.quizSessions.push(quizSession);
+    res.status(201).json(User.update(req.params.userId, user))
+  } catch (err) {
+    manageAllErrors(res, err)
+  }
+})
+
+router.put('/:userId/quizSession/:quizSessionId', (req, res) => {
+  try {
+    const user = User.getById(req.params.userId);
+    const quizSession = user.quizSessions.find(session => Number(session.id) === Number(req.params.quizSessionId));
+    const request = {...req.body};
+    quizSession.answers.push(request.answer);
+    quizSession.timePerQuestion.push(request.time);
+    res.status(201).json(User.update(req.params.userId, user));
+  } catch (err) {
+    manageAllErrors(res, err);
   }
 })
 

@@ -6,8 +6,8 @@ export interface Connection {
 }
 
 export interface Association {
-    id: string;
+    id?: string;
     label: string;
-    connections: Connection[];
-    isCorrect: boolean;
+    connections?: Connection[];
+    isCorrect?: boolean;
 }

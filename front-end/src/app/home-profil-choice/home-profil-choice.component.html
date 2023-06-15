@@ -10,15 +10,13 @@
     <div style="display: flex; flex-basis: 5%;"></div>
 </div>
 
-
-
 <div class="user-list">
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
-            <img class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+            <img id="selectable" class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
         </div>
         <div *ngIf="user.photo===''">
-            <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+            <img id="selectable" class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
         </div>
         <h1>{{user.firstName}} {{user.lastName}}</h1>
     </div>

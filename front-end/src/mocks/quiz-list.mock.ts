@@ -11,26 +11,33 @@ export const password: Password = {
 export const QUESTION_FELINS_1: Question = {
     id: '1',
     label: 'Qui est le caracal ?',
+    quizId:1,
     answers: [
         {
-            value: 'Capy',
+            value: 'Photo N°1',
             isCorrect: false,
-            img:"/assets/quiz-1/question-1/img-1.jpg"
+            img:"/assets/quiz-1/question-1/img-1.jpg",
+            questionId:1
+            
         },
         {
-            value: 'Dino',
+            value: 'Photo N°2',
             isCorrect: false,
-            img:"/assets/quiz-1/question-1/img-2.jpg"
+            img:"/assets/quiz-1/question-1/img-2.jpg",
+            questionId:1
         },
         {
-            value: 'Floppa',
+            value: 'Photo N°3',
             isCorrect: true,
-            img:"/assets/quiz-1/question-1/img-3.jpg"
+            img:"/assets/quiz-1/question-1/img-3.jpg",
+            questionId:1
+            
         },
         {
-            value: 'Platypus',
+            value: 'Photo N°4',
             isCorrect: false,
-            img:"/assets/quiz-1/question-1/img-4.jpg"
+            img:"/assets/quiz-1/question-1/img-4.jpg",
+            questionId:1
         }
     ]
 };
@@ -38,26 +45,31 @@ export const QUESTION_FELINS_1: Question = {
 export const QUESTION_FELINS_2: Question = {
     id: '2',
     label: 'Qui est le tigre blanc ?',
+    quizId:1,
     answers: [
         {
-            value: 'Tigre',
+            value: 'Photo N°1',
             isCorrect: true,
-            img:"/assets/quiz-1/question-2/img-1.jpg"
+            img:"/assets/quiz-1/question-2/img-1.jpg",
+            questionId:2
         },
         {
-            value: 'Orvet',
+            value: 'Photo N°2',
             isCorrect: false,
-            img:"/assets/quiz-1/question-2/img-2.jpg"
+            img:"/assets/quiz-1/question-2/img-2.jpg",
+            questionId:2
         },
         {
-            value: "Panda-Roux",
+            value: "Photo N°3",
             isCorrect: false,
-            img:"/assets/quiz-1/question-2/img-3.jpg"
+            img:"/assets/quiz-1/question-2/img-3.jpg",
+            questionId:2
         },
         {
-            value: 'Crocodile',
+            value: 'Photo N°4',
             isCorrect: false,
-            img:"/assets/quiz-1/question-2/img-4.jpg"
+            img:"/assets/quiz-1/question-2/img-4.jpg",
+            questionId:2
         }
     ]
 };
@@ -65,21 +77,25 @@ export const QUESTION_FELINS_2: Question = {
 export const QUESTION_FELINS_3: Question = {
     id: '3',
     label: 'Qui est le plus rapide ?',
+    quizId:1,
     answers: [
         {
             value: 'Lion',
             isCorrect: false,
-            img:"/assets/quiz-1/question-3/img-1.jpg"
+            img:"/assets/quiz-1/question-3/img-1.jpg",
+            questionId:3
         },
         {
             value: 'Guépard',
             isCorrect: true,
-            img:"/assets/quiz-1/question-3/img-2.jpg"
+            img:"/assets/quiz-1/question-3/img-2.jpg",
+            questionId:3
         },
         {
             value: "Chat",
             isCorrect: false,
-            img:"/assets/quiz-1/question-3/img-3.jpg"
+            img:"/assets/quiz-1/question-3/img-3.jpg",
+            questionId:3
         },
     ]
 };
@@ -87,16 +103,19 @@ export const QUESTION_FELINS_3: Question = {
 export const QUESTION_FELINS_4: Question = {
     id: '4',
     label: "Lequel n'est pas un félin ?",
+    quizId:1,
     answers: [
         {
             value: 'Chat',
             isCorrect: false,
-            img:"/assets/quiz-1/question-4/img-1.jpg"
+            img:"/assets/quiz-1/question-4/img-1.jpg",
+            questionId:4
         },
         {
             value: 'Chien',
             isCorrect: true,
-            img:"/assets/quiz-1/question-4/img-2.jpg"
+            img:"/assets/quiz-1/question-4/img-2.jpg",
+            questionId:4
         },
     ]
 };
@@ -104,26 +123,31 @@ export const QUESTION_FELINS_4: Question = {
 export const QUESTION_FELINS_5: Question = {
     id: '5',
     label: 'Qui est à la fois vivant et mort ?',
+    quizId:1,
     answers: [
         {
             value: 'Méduse',
             isCorrect: false,
-            img:"/assets/quiz-1/question-5/img-1.jpg"
+            img:"/assets/quiz-1/question-5/img-1.jpg",
+            questionId:5
         },
         {
             value: 'Taureau',
             isCorrect: false,
-            img:"/assets/quiz-1/question-5/img-2.jpg"
+            img:"/assets/quiz-1/question-5/img-2.jpg",
+            questionId:5
         },
         {
             value: "Dragon",
             isCorrect: false,
-            img:"/assets/quiz-1/question-5/img-3.jpg"
+            img:"/assets/quiz-1/question-5/img-3.jpg",
+            questionId:5
         },
         {
-            value: 'Chat',
+            value: 'Chat de Schrödinger',
             isCorrect: true,
-            img:"/assets/quiz-1/question-5/img-4.jpg"
+            img:"/assets/quiz-1/question-5/img-4.jpg",
+            questionId:5
         }
     ]
 };
