@@ -3,7 +3,7 @@
         <i class="fab fa-leanpub"></i>
         {{association.label}}
     </h2>
-    <div class="connection" *ngFor="let connection of association.connections; let i = index">
+    <div class="connection" *ngFor="let connection of this.connections; let i = index">
         {{i}} - {{connection.valueToConnect}}
         <img alt="->" width = "20x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
         {{connection.valueToBeConnected}}

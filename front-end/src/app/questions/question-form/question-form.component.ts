@@ -5,6 +5,8 @@ import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { QuestionService } from 'src/services/question.service';
+import { AnswerService } from 'src/services/answer.service';
 
 @Component({
   selector: 'app-question-form',
@@ -18,7 +20,7 @@ export class QuestionFormComponent implements OnInit {
   public questionForm: FormGroup;
   public quizId: string;
   public themeId: number;
-  constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
+  constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone, public questionService: QuestionService, public answerService: AnswerService) {
     this.initializeQuestionForm();
   }
 
@@ -73,9 +75,11 @@ export class QuestionFormComponent implements OnInit {
   addQuestion(): void {
     if (!this.isQuestionFormValid) return;
     const question = this.questionForm.getRawValue() as Question;
-    this.quizService.addQuestion(this.quizId, question);
-    //Change for the Back End since the http push doesn't work.
-    QUIZ_LIST.find(quiz => quiz.id === this.quizId).questions.push(question);  
+    this.questionService.addQuestion({label: question.label, quizId: Number(this.quizId)}, Number(this.quizId)).subscribe((newQuestion) => {
+      for (let answer of question.answers) {
+        this.answerService.addAnswer({...answer, questionId: Number(newQuestion.id)}, Number(this.quizId), Number(newQuestion.id)).subscribe();
+      }
+    });
     this.initializeQuestionForm();
   }
 }

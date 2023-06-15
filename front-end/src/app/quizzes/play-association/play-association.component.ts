@@ -1,8 +1,10 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
-import { Association } from 'src/models/association.model';
+import { Association, Connection } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
 import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { User } from 'src/models/user.model';
+import { QuizService } from 'src/services/quiz.service';
+import { QuestionService } from 'src/services/question.service';
 @Component({
   selector: 'app-play-association',
   templateUrl: './play-association.component.html',
@@ -13,6 +15,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
 
     @Input('association')
     public associationToPlay!: Association;
+    public connections: Connection[];
     public shuffledValuesToConnect: string[][] = [];
     public shuffledValuesToBeConnected: string[][] = [];
     public selectedLeft: string = "";
@@ -38,7 +41,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     @Output()
   nextQuestion = new EventEmitter<void>();
 
-    constructor(private route: ActivatedRoute) {
+    constructor(private route: ActivatedRoute, public quizService: QuizService, public questionService: QuestionService) {
     }
 
     ngAfterViewInit() {
@@ -47,19 +50,24 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
       }
 
     ngOnInit(): void {
+        console.log("CACA")
         let id = this.route.snapshot.paramMap.get('id');
+        this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+            this.associationToPlay = associations[this.numAssociation];
+            this.associationToPlay.isCorrect = false;
+            this.questionService.getConnections(Number(id),Number(this.associationToPlay.id)).subscribe((connections) => {
+                this.connections = connections;
+                for(const element of connections){
+                    this.shuffledValuesToConnect.push([element.valueToConnect, element.imageCoverToConnect]);
+                    this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.imageCoverToBeConnected]);
+                }
+                
+                this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);
+                this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
         
-        this.associationToPlay = QUIZ_LIST.find(quiz=> quiz.id === id).associations[this.numAssociation];
-        this.associationToPlay.isCorrect = false;
-        for(const element of this.associationToPlay.connections){
-            this.shuffledValuesToConnect.push([element.valueToConnect, element.imageCoverToConnect]);
-            this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.imageCoverToBeConnected]);
-        }
-        
-        this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);
-        this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
-
-        this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
+                this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
+            })
+        })
     }
 
     goToNextQuestion(): void {
@@ -152,13 +160,15 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
 
     check(): void {
         this.associationToPlay.isCorrect = false;
+        let id = this.route.snapshot.paramMap.get('id');
+        this.questionService.updateAssociation(Number(id),Number(this.associationToPlay.id),this.associationToPlay);
         if(this.currentConnections.length == 0)
         {
             console.log("Select at least one connection");
             return;
         }
 
-        if(this.currentConnections.length != this.associationToPlay.connections.filter((connection) => connection.valueToConnect && connection.valueToBeConnected).length){
+        if(this.currentConnections.length != this.connections.filter((connection) => connection.valueToConnect && connection.valueToBeConnected).length){
             console.log("Incorrect");
             this.answer.emit();
             this.resetAssociation();
@@ -166,7 +176,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         }
 
         for(const connection of this.currentConnections){
-            let connectionToCheck = this.associationToPlay.connections.find((connectionToCheck) => connectionToCheck.valueToConnect === connection[0] && connectionToCheck.valueToBeConnected === connection[1]);
+            let connectionToCheck = this.connections.find((connectionToCheck) => connectionToCheck.valueToConnect === connection[0] && connectionToCheck.valueToBeConnected === connection[1]);
 
             if(!connectionToCheck){
                 console.log("Incorrect");
@@ -178,12 +188,15 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         
         console.log("Correct");
         this.associationToPlay.isCorrect = true;
+        this.questionService.updateAssociation(Number(id),Number(this.associationToPlay.id),this.associationToPlay);
         this.answer.emit();
-        this.resetAssociation();
+        //this.resetAssociation();
     }
 
     resetAssociation(): void {
         this.associationToPlay.isCorrect = false;
+        let id = this.route.snapshot.paramMap.get('id');
+        this.questionService.updateAssociation(Number(id),Number(this.associationToPlay.id),this.associationToPlay);
         this.selectedLeft = "";
         this.selectedRight = "";
         this.currentLeftButton = -1;
