@@ -5,11 +5,12 @@
         <h2 style="align-self: center;">Retour</h2>
       </div>
       <div>
-        <img id="user-img" alt="user-img" src="{{user.photo}}">
+        <img id="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src="{{user.photo}}">
         <h1>{{user.firstName}} {{user.lastName}}</h1>
       </div>
       <div>
-        <img id="quiz-img" src={{this.quiz.coverImage}} alt="quiz-img">
+
+        <img id="quiz-img" src={{this.quiz.coverImage}} alt="quiz-img-{{quiz.name}}">
         <h4 style="align-self:center; margin-right: 10px;">{{quiz.name}}</h4>
       </div>
     </div>

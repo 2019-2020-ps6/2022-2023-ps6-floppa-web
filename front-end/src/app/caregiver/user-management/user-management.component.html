@@ -3,7 +3,8 @@
         <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home">
         <h2>Retour</h2>
     </div>
-    <div id="selectable" class="button-div" routerLink="/user-form">
+
+    <div id="selectable" class="button-div" data-testid="add-button" routerLink="/user-form">
         <img style="width:100px; height:100px" src="/assets/add.png" alt="add">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Ajouter un utilisateur dans la liste</h3>
     </div>
@@ -11,7 +12,8 @@
         <img style="width:100px; height:100px" src="/assets/edit.png" alt="edit">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Modifier mot de passe</h3>
     </div>
-    <div id="selectable" class="button-div" routerLink="/theme-editor">
+
+    <div id="selectable" class="button-div" data-testid="edit-button" routerLink="/theme-editor">
         <img style="width:100px; height:100px" src="/assets/edit.png" alt="edit">
         <h3 style="margin-top: 45px; margin-left: 20px; margin-right: 5px;">Accéder à l'éditeur de Quiz</h3>
     </div>
@@ -22,11 +24,12 @@
         <option value="lastName">Nom</option>
         <option value="firstName">Prénom</option>
     </select> )</span> </h1>
-<div class="user-list">
+<div class="user-list" data-testid="user-list">
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
-            <img id="selectable" class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
-            <img class="trash" src="/assets/trash.png" alt="trash-img" (click)="delete(user)">d0814d6be04717c96a33e5738b4c1fb
+
+            <img id="selectable" class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
+            <img class="trash" src="/assets/trash.png" alt="trash-img" (click)="delete(user)">
         </div>
         <div *ngIf="user.photo===''">
             <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/user-stats-menu/{{user.id}}">
