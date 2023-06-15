@@ -39,6 +39,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
   nextQuestion = new EventEmitter<void>();
 
     constructor(private route: ActivatedRoute) {
+        
     }
 
     ngAfterViewInit() {
@@ -58,7 +59,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         
         this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);
         this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
-
+        
         this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
     }
 
