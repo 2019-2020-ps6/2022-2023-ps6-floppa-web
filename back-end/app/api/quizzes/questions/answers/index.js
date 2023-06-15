@@ -35,12 +35,11 @@ router.get('/:answerId', (req, res) => {
 
 router.post('/', (req, res) => {
   try {
-    const question = getQuestionFromQuiz(req.params.quizId, req.params.questionId)
-    const answer = Answer.create({ ...req.body, questionId: question.id })
+    const answer = Answer.create({ ...req.body })
     res.status(201).json(answer)
   } catch (err) {
     if (err.name === 'NotFoundError') {
-      res.status(404).end()
+      res.status(404).json(err)
     } else if (err.name === 'ValidationError') {
       res.status(400).json(err.extra)
     } else {

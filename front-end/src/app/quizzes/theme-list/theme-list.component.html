@@ -13,7 +13,7 @@
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div *ngFor="let theme of themeList, let i=index">
         <div class="theme">
-            <img id="selectable" class="theme-img" alt="theme-{{theme.title}}" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" (click)="goToTheme(i)">
+            <img id="selectable" class="theme-img" alt="theme-{{theme.title}}" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" (click)="goToTheme(theme.id)">
             <h2 style="display: flex; justify-content: center;">{{theme.title}}</h2>
         </div>
     </div>

@@ -4,6 +4,7 @@ import { Quiz } from '../../../models/quiz.model';
 import { QuizService } from '../../../services/quiz.service';
 import { User } from 'src/models/user.model';
 import { RouterLink } from '@angular/router';
+import { newArray } from '@angular/compiler/src/util';
 @Component({
   selector: 'app-play-question',
   templateUrl: './play-question.component.html',
@@ -63,7 +64,7 @@ export class PlayQuestionComponent implements OnInit {
         rdmnb2++;
       }
       else if (i === rdmnb1 || i === rdmnb2) {
-        img.src = "/assets/void.png";
+        img.style.display = "none";
       }
     }
   }

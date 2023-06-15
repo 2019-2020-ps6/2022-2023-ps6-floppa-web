@@ -7,6 +7,11 @@ import { Location } from '@angular/common';
 import { PlayQuestionComponent } from 'src/app/questions/play-question/play-question.component';
 import { User } from 'src/models/user.model';
 import { USER_LIST } from 'src/mocks/user-list.mock';
+import { QuestionService } from 'src/services/question.service';
+import { Answer, Question } from 'src/models/question.model';
+import { AnswerService } from 'src/services/answer.service';
+import { UserService } from 'src/services/user.service';
+import { Association } from 'src/models/association.model';
 
 const performance = window.performance;
 declare const SpeechSynthesisUtterance: any;
@@ -26,6 +31,9 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   public assistance: number;
 
   public quiz: Quiz;
+  public quizQuestions: Question[];
+  public quizAssociations: Association[];
+  public answers: Answer[];
   public numQuestion: number;
   public answered = false;
   public isHintUsed = false;
@@ -35,17 +43,37 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   timerHint: any;
   timerSound: any;
 
-  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router) {
+  constructor(private route: ActivatedRoute, private quizService: QuizService, private location: Location, private router: Router, private questionService: QuestionService, private answerService: AnswerService, public userService: UserService) {
     
   }
 
   ngOnInit(): void {
     this.startTime = performance.now();
     let id = this.route.snapshot.paramMap.get('id');
-    this.quiz = QUIZ_LIST[Number(id)-1];
+    this.quizService.getQuizData().subscribe((quizData) => {
+      for (let quiz of quizData) {
+        if (Number(quiz.id) === Number(id)) {
+          this.quiz = quiz;
+        }
+      }
+    })
+    this.questionService.getQuestions(Number(id)).subscribe((questions) => {
+      this.quizQuestions = questions;
+      this.answerService.getAnswers(Number(id), Number(this.quizQuestions[this.numQuestion-1].id)).subscribe((answers) => {
+        this.answers = answers;
+      })
+    })
+    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+      this.quizAssociations = associations;
+    })
     this.numQuestion = Number(this.route.snapshot.paramMap.get('numQuestion'));
     this.score = Number(this.route.snapshot.paramMap.get('score'));
-    this.user = USER_LIST[Number(this.route.snapshot.paramMap.get('userid'))-1]
+    let userid = this.route.snapshot.paramMap.get('userid');
+    this.userService.getUsers().subscribe((users) => {
+      for (let userInList of users) {
+        if (Number(userInList.id) === Number(userid)) this.setUser(userInList);
+      }
+    })
     this.assistance = Number(this.user.assistance);
     if (this.assistance % 10 >= 1) {
       this.timerHint = setTimeout(() => {
@@ -57,9 +85,7 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
         this.useSound();
       }, 60 * 1000 * this.user.timer)
     }
-    for (let id in this.user.quizSessions) {
-      if (Number(id) > this.currentSessionId) this.currentSessionId = Number(id);
-    }
+    
   }
 
   ngOnDestroy(): void {
@@ -67,17 +93,28 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
       clearInterval(this.timerSound);
   }
 
+  setUser(userToSet: User) {
+    this.user = userToSet;
+    this.assistance = Number(this.user.assistance);
+    for (let quizsession of this.user.quizSessions) {
+      if (Number(quizsession.id) > this.currentSessionId) this.currentSessionId = quizsession.id;
+    }
+    console.log(this.currentSessionId);
+  }
+  
   check(indexAnswer: number): void {
     let isCorrect = this.quiz.questions[this.numQuestion-1].answers[indexAnswer-1].isCorrect;
-    this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
     const endTime = performance.now();
-    const elpasedTime = endTime - this.startTime;
-    this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
+    const elapsedTime = endTime - this.startTime;
+    this.userService.updateQuizSession(this.user, isCorrect, elapsedTime, this.currentSessionId);
     this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
   }
 
   goToNextQuestion(): void {
-    if (this.numQuestion >= this.quiz.questions.length + this.quiz.associations.length) {
+    const endTime = performance.now();
+    const elapsedTime = endTime - this.startTime;
+    this.userService.updateQuizSession(this.user, false, elapsedTime, this.currentSessionId);
+    if (this.numQuestion >= this.quizQuestions.length + this.quizAssociations.length) {
       this.router.navigate(["/final-screen/"+this.quiz.id+"/"+this.score+"/"+this.user.id]);
     }
     else {
@@ -86,12 +123,18 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
   }
 
   checkAssociation(): void {
-    let isCorrect = this.quiz.associations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
-    this.user.quizSessions[this.currentSessionId].answers.push(isCorrect);
-    const endTime = performance.now();
-    const elpasedTime = endTime - this.startTime;
-    this.user.quizSessions[this.currentSessionId].timePerQuestion.push(Math.round(elpasedTime/1000));
-    this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
+    let id = this.route.snapshot.paramMap.get('id');
+    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
+      this.quizAssociations = associations;
+      let isCorrect = this.quizAssociations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
+      console.log("-----------")
+      console.log(isCorrect);
+      console.log("-----------")
+      const endTime = performance.now();
+      const elapsedTime = endTime - this.startTime;
+      this.userService.updateQuizSession(this.user, isCorrect, elapsedTime, this.currentSessionId);
+      this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
+    })
   }
 
   useHint(): void {

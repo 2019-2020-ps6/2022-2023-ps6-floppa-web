@@ -2,7 +2,7 @@ import { User } from '../models/user.model';
 
 
 export const USER_LIST: User[] = [
-    {
+    /*{
         id: "1",
         firstName: "Madeleine",
         lastName: "Duo",
@@ -100,5 +100,5 @@ export const USER_LIST: User[] = [
             }
         },
         timer: 1
-    }
+    }*/
 ]
