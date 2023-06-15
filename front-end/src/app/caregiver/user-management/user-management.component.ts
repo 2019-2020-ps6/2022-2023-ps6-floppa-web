@@ -5,7 +5,7 @@ import { User } from 'src/models/user.model';
 import { UserService } from 'src/services/user.service';
 import { Location } from '@angular/common';
 import { HomeService } from 'src/services/home.service';
-import { password } from 'src/mocks/quiz-list.mock';
+import { login } from 'src/mocks/quiz-list.mock';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -21,12 +21,9 @@ export class UserManagementComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getCurrentPassword();
-    console.log(this.getCurrentPassword());
     this.userService.getUsers().subscribe((users) => {
       this.userList = users;
       this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
-      console.log(this.userList)
     })
   }
 
@@ -56,7 +53,6 @@ export class UserManagementComponent implements OnInit {
     this.userService.getUsers().subscribe((users) => {
       this.userList = users;
       this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
-      console.log(this.userList)
     })
     this.userList.sort((a,b) => a.firstName.localeCompare(b.firstName));
   }
@@ -64,10 +60,7 @@ export class UserManagementComponent implements OnInit {
   updateUserList(selectedSort: string): void {
     this.userService.getUsers().subscribe((users) => {
       this.userList = users;
-      console.log(users);
-      console.log(this.userList);
       this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
-      console.log(this.userList)
       if (selectedSort === "firstName") {
         this.userList.sort((a,b) => a.firstName.localeCompare(b.firstName));
       }
@@ -78,51 +71,60 @@ export class UserManagementComponent implements OnInit {
   }
   
   changePassword(newPassword: string): void {
-    this.homeService.edit(newPassword);
+    this.homeService.editLogin(newPassword);
   }
   
   getCurrentPassword(): string {
-    return this.homeService.getPassword();//.subscribe( (password) => {this.password = password; } );
+    let psw: string;
+    this.homeService.getLogin().subscribe((login) => {
+      psw = login.password;
+      return psw;
+      });
+      return psw;
   }
-  public inputNewPassword(): void {
-    Swal.fire({
-      html: `
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        <label for="oldMdp">
-          <div style="display:flex;flex-direction:row;align-items:center;">
-            <h3 style="margin-right:10px; font-size:30px">Ancien mot de passe :</h3>
-            <input type="password" style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="oldMdp">
-          </div>
-        </label>
-        <label for="newMdp">
-          <div style="display:flex;flex-direction:row;align-items:center;">
-            <h3 style="margin-right:10px; font-size:30px">Nouveau mot de passe :</h3>
-            <input type="password" style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="newMdp">
-          </div>
-        </label>
-      </div>
-      `,
-      confirmButtonText: 'Valider nouveau mot de passe',
-      focusConfirm: false,
-      preConfirm: () => {
-        let oldMdpInput = Swal.getPopup().querySelector('#oldMdp') as HTMLInputElement;
-        let newMdpInput = Swal.getPopup().querySelector('#newMdp') as HTMLInputElement;
-        let oldMdp = oldMdpInput.value;
-        let newMdp = newMdpInput.value;
-        console.log(password);
-        if (oldMdp != password.password){
-          Swal.showValidationMessage("Veuillez saisir le bon mot de passe actuel.")
-        }
 
-        if(oldMdp === newMdp) {
-          Swal.showValidationMessage("Vous venez de saisir le même mot de passe actuel. Veuillez saisir un nouveau mot de passe.")
+  public inputNewPassword(): void {
+    this.homeService.getLogin().subscribe((login) => {
+      let oldLoginPassword = login.password;
+      console.log(oldLoginPassword);
+      Swal.fire({
+        html: `
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <label for="oldMdp">
+            <div style="display:flex;flex-direction:row;align-items:center;">
+              <h3 style="margin-right:10px; font-size:30px">Ancien mot de passe :</h3>
+              <input type="password" style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="oldMdp">
+            </div>
+          </label>
+          <label for="newMdp">
+            <div style="display:flex;flex-direction:row;align-items:center;">
+              <h3 style="margin-right:10px; font-size:30px">Nouveau mot de passe :</h3>
+              <input type="password" style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="newMdp">
+            </div>
+          </label>
+        </div>
+        `,
+        confirmButtonText: 'Valider nouveau mot de passe',
+        focusConfirm: false,
+        preConfirm: () => {
+          let oldMdpInput = Swal.getPopup().querySelector('#oldMdp') as HTMLInputElement;
+          let newMdpInput = Swal.getPopup().querySelector('#newMdp') as HTMLInputElement;
+          let oldMdp = oldMdpInput.value;
+          let newMdp = newMdpInput.value;
+          if (oldMdp != oldLoginPassword){
+            Swal.showValidationMessage("Veuillez saisir le bon mot de passe actuel.")
+          }
+  
+          if(oldMdp === newMdp) {
+            Swal.showValidationMessage("Vous venez de saisir le même mot de passe actuel. Veuillez saisir un nouveau mot de passe.")
+          }
+          return { oldMdp: oldMdp, newMdp: newMdp}
         }
-        return { oldMdp: oldMdp, newMdp: newMdp}
-      }
-    }).then((result) => {
-      let newMdp = result.value.newMdp;
-      this.changePassword(newMdp);
-    })
+      }).then((result) => {
+        let newMdp = result.value.newMdp;
+        this.changePassword(newMdp);
+      })
+      });
   }
 
 }
