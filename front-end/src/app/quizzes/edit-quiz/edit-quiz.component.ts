@@ -20,7 +20,7 @@ export class EditQuizComponent implements OnInit {
   public quizQuestions: Question[];
   public quizAssociations: Association[];
   public theme: number;
-  public users: string[];
+  public users: string[] = [];
   public userList: User[];
   public userListQuiz: User[] = [];
   public remainingUsers: User[];
@@ -37,7 +37,7 @@ export class EditQuizComponent implements OnInit {
           this.quiz = quiz;
           this.questionService.getAssociations(Number(this.quiz.id)).subscribe((associations) => {
             this.associations = associations;
-          })
+          });
           this.userService.getUsers().subscribe((users) => {
             this.userList = users;
             this.userList.sort((a,b) => a.lastName.localeCompare(b.lastName));
@@ -46,6 +46,7 @@ export class EditQuizComponent implements OnInit {
         }
       }
     })
+    console.log(this.quiz);
     this.questionService.getQuestions(Number(id)).subscribe((questions) => {
       this.quizQuestions = questions;
     })
@@ -63,7 +64,6 @@ export class EditQuizComponent implements OnInit {
 
   retrieveUsers(): void {
     this.users = this.quiz.users;
-    console.log(this.users);
     for (let userid of this.users) {
       this.userListQuiz.push(this.getUserWithId(Number(userid)));
     }

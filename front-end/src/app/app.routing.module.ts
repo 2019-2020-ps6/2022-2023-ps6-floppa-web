@@ -19,7 +19,6 @@ import { UserStatsComponent } from './caregiver/user-stats/user-stats.component'
 import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-stats.component';
 import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
-import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
 import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
 import { HomeComponent } from './home/home.component';
 
@@ -44,7 +43,6 @@ const routes: Routes = [
     {path:'user-quiz-stats/:user/:id', component: UserQuizStatsComponent},
     {path:'user-stats-menu/:userid', component: UserStatsMenuComponent},
     {path: 'theme-editor', component: ThemeEditorComponent},
-    {path: 'theme-form', component: ThemeFormComponent },
     {path: 'quiz-editor/:themeIndex', component: QuizEditorComponent},
     {path: 'home', component: HomeComponent}
 ];

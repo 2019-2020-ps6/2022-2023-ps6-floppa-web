@@ -3,7 +3,6 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Association } from 'src/models/association.model';
 import { QuestionService } from 'src/services/question.service';
 

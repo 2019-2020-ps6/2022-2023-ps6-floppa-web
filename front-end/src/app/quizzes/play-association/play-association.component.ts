@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { Association, Connection } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { User } from 'src/models/user.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QuestionService } from 'src/services/question.service';

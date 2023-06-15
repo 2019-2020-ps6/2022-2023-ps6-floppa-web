@@ -2,11 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
-import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Association } from '../models/association.model';
-import { THEME_QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Theme } from '../models/theme.model';
 import { User } from 'src/models/user.model';
 import { QuestionService } from './question.service';
@@ -23,7 +21,7 @@ export class QuizService {
    The list of quiz.
    The list is retrieved from the mock.
    */
-  private quizzes: Quiz[] = QUIZ_LIST;
+  private quizzes: Quiz[]= [];
 
   private score: number = 0;
   /*

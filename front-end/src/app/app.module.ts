@@ -6,7 +6,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { QuizListComponent } from './quizzes/quiz-list/quiz-list.component';
 import { QuizComponent } from './quizzes/quiz/quiz.component';
-import { QuizFormComponent } from './quizzes/quiz-form/quiz-form.component';
 import { EditQuizComponent } from './quizzes/edit-quiz/edit-quiz.component';
 import { AppRoutingModule } from './app.routing.module';
 import { QuestionListComponent } from './questions/question-list/question-list.component';
@@ -35,7 +34,6 @@ import { UserQuizStatsComponent } from './caregiver/user-quiz-stats/user-quiz-st
 import { ChartsModule } from 'ng2-charts';
 import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-menu.component';
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
-import { ThemeFormComponent } from './questions/theme-form/theme-form.component';
 import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
 import { HomeComponent } from './home/home.component';
 @NgModule({
@@ -43,7 +41,6 @@ import { HomeComponent } from './home/home.component';
     AppComponent,
     QuizListComponent,
     QuizComponent,
-    QuizFormComponent,
     EditQuizComponent,
     QuestionListComponent,
     QuestionFormComponent,
@@ -72,7 +69,6 @@ import { HomeComponent } from './home/home.component';
     UserQuizStatsComponent,
     UserStatsMenuComponent,
     ThemeEditorComponent,
-    ThemeFormComponent,
     QuizEditorComponent,
     HomeComponent
   ],

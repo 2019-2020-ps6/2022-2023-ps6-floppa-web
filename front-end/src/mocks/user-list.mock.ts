@@ -1,7 +1,7 @@
 import { User } from '../models/user.model';
 
 
-export const USER_LIST: User[] = [
+//export const USER_LIST: User[] = [
     /*{
         id: "1",
         firstName: "Madeleine",
@@ -101,4 +101,4 @@ export const USER_LIST: User[] = [
         },
         timer: 1
     }*/
-]
+//]

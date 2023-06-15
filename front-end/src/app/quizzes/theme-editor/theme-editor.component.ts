@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Theme } from 'src/models/theme.model';
 import Swal from 'sweetalert2';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
 import { ThemeService } from 'src/services/theme.service';
 import { QuizService } from 'src/services/quiz.service';
@@ -16,7 +14,7 @@ import { QuizService } from 'src/services/quiz.service';
 })
 export class ThemeEditorComponent implements OnInit {
   public themeList: Theme[];
-  public static counter: number = THEME_QUIZ_LIST.length;
+  //public static counter: number = THEME_QUIZ_LIST.length;
 
   constructor(private router: Router, private route: ActivatedRoute, public themeService: ThemeService, public quizService: QuizService) {
 
@@ -34,54 +32,65 @@ export class ThemeEditorComponent implements OnInit {
   }
 
   themeNotExists(themeTitle: string): boolean {
-    return THEME_QUIZ_LIST.map(theme => theme.title).find(title => title === themeTitle) !== undefined;
+    let themeList: Theme[]
+    this.themeService.getThemes().subscribe((themes) => {
+      themeList = themes;
+      return themeList.map(theme => themeTitle).find(title => title === themeTitle) !== undefined;
+    })
+    return themeList.map(theme => themeTitle).find(title => title === themeTitle) !== undefined;
   }
   
 
   createTheme(): void {
-    Swal.fire({
-      html: `
-      <div style="display:flex;flex-direction:column;align-items:center;">
-        <label for="title">
-          <div style="display:flex;flex-direction:row;align-items:center;">
-            <h3 style="margin-right:10px; font-size:30px">Thème :</h3>
-            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="title" placeholder="ex: géographie ">
-          </div>
-        </label>
-        <label for="img">
-          <div style="display:flex;flex-direction:row;align-items:center;">
-            <h3 style="margin-right:10px; font-size:30px">Image :</h3>
-            <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="image" placeholder="URL de l'image">
-          </div>
-        </label>
-      </div>
-      `,
-      confirmButtonText: 'Valider',
-      focusConfirm: false,
-      preConfirm: () => {
-        const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
-        const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
-        const title = titleInput.value;
-        const image = imageInput.value;
-        if (!title) {
-          Swal.showValidationMessage("Veuillez saisir un titre pour le thème")
+    let themeList: Theme[]
+    this.themeService.getThemes().subscribe((themes) => {
+      themeList = themes;
+      Swal.fire({
+        html: `
+        <div style="display:flex;flex-direction:column;align-items:center;">
+          <label for="title">
+            <div style="display:flex;flex-direction:row;align-items:center;">
+              <h3 style="margin-right:10px; font-size:30px">Thème :</h3>
+              <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="title" placeholder="ex: géographie ">
+            </div>
+          </label>
+          <label for="img">
+            <div style="display:flex;flex-direction:row;align-items:center;">
+              <h3 style="margin-right:10px; font-size:30px">Image :</h3>
+              <input style="height:60px;width:400; border-radius:25px;font-size:25px;padding:10px" type="text" id="image" placeholder="URL de l'image">
+            </div>
+          </label>
+        </div>
+        `,
+        confirmButtonText: 'Valider',
+        focusConfirm: false,
+        preConfirm: () => {
+          const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
+          const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
+          const title = titleInput.value;
+          const image = imageInput.value;
+          if (!title) {
+            Swal.showValidationMessage("Veuillez saisir un titre pour le thème")
+          }
+          else if (themeList.map(theme => title).find(tlt => tlt === title) !== undefined) {
+            console.log(themeList);
+            Swal.showValidationMessage("Ce thème existe déjà")
+          }
+          return { title: title, image: image}
         }
-        else if (this.themeNotExists(title)) {
-          Swal.showValidationMessage("Ce thème existe déjà")
-        }
-        return { title: title, image: image}
-      }
-    }).then((result) => {
-      console.log(result);
-      let themeToPush: any = {
-        title: result.value.title,
-        coverImage: result.value.image
-      };
-      this.themeService.addTheme(themeToPush);
-      this.themeService.getThemes().subscribe((themes) => {
-        this.themeList = themes;
-        this.themeList.sort((a,b) => a.title.localeCompare(b.title));
-      });
+      }).then((result) => {
+        console.log(result);
+        let themeToPush: any = {
+          title: result.value.title,
+          coverImage: result.value.image
+        };
+        this.themeService.addTheme(themeToPush);
+        this.themeService.getThemes().subscribe((themes) => {
+          this.themeList = themes;
+          this.themeList.sort((a,b) => a.title.localeCompare(b.title));
+        });
+      })
+      
     })
   }
 
@@ -128,4 +137,3 @@ export class ThemeEditorComponent implements OnInit {
     
   }
 }
-
