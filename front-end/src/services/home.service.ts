@@ -2,32 +2,44 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Observable } from 'rxjs';
-import { password } from 'src/mocks/quiz-list.mock';
+import { login } from 'src/mocks/quiz-list.mock';
+import { Login } from 'src/models/login.model';
+import { newArray } from '@angular/compiler/src/util';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
-  //private password: string;
-  private httpOptions = httpOptionsBase;
-  private passwordUrl = serverUrl + '/password';
 
   constructor(private http: HttpClient) {
   }
 
-  addPassword(password: string): Observable<string> {
-    return this.http.post<string>(this.passwordUrl, password, this.httpOptions);
+  editLogin(newPassword: string): void {
+    let psw: string;
+    let pswId: string;
+    this.getLogin().subscribe((login) => {
+      psw = login.password;
+      pswId = login.id;
+      console.log(pswId);
+      console.log(newPassword);
+      let newLogin: Login = {
+        id: pswId,
+        password: newPassword
+      };
+      return this.http.put<Login>("http://localhost:9428/api/login/"+pswId, newLogin).subscribe(
+        res => {
+          console.log(res);
+        },
+        err => {
+          console.log('Error occured:' , err);
+        }
+    )});
   }
 
-  edit(newPassword: string): Observable<any> {
-    password.password = newPassword;
-    return this.http.put<any>(this.passwordUrl, newPassword, this.httpOptions);
-  }
-
-  getPassword(): string {
-    const headers = new HttpHeaders().set('Authorization', 'Bearer your_token_here');
-    const urlWithId = this.passwordUrl + '/' + encodeURIComponent(password.password);
-    return password.password;
+  getLogin(): Observable<Login> {
+    // const headers = new HttpHeaders().set('Authorization', 'Bearer your_token_here');
+    // const urlWithId = this.passwordUrl + '/' + encodeURIComponent(password.password);
+    return this.http.get<Login>("http://localhost:9428/api/login/1686835438071");
     //return this.http.get<string>(urlWithId, { ...this.httpOptions, headers });
   }
 }

@@ -555,7 +555,16 @@
     "photo": "https://thumbs.dreamstime.com/b/vieux-vieil-homme-24922472.jpg",
     "timer": 1,
     "assistance": "1000",
-    "quizSessions": [],
+    "quizSessions": [
+      {
+        "date": 1686919538950,
+        "answers": [],
+        "quizId": 1686908663119,
+        "timePerQuestion": [],
+        "userId": 1686418420311,
+        "id": 1686919538966
+      }
+    ],
     "id": 1686418420311
   },
   {
