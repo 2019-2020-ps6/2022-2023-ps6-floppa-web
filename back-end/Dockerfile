@@ -1,6 +1,9 @@
 FROM node:16.16.0-alpine AS build
 
+RUN apk add curl
+
 USER node
+
 WORKDIR /back-end
 
 COPY ./app app/
