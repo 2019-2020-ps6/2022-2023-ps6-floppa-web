@@ -31,10 +31,6 @@ export class ThemeEditorComponent implements OnInit {
   goToTheme(themeIndex: number): void {
     this.router.navigate(["/quiz-editor/" + themeIndex]);
   }
-
-  themeNotExists(themeTitle: string): boolean {
-    return true;//THEME_QUIZ_LIST.map(theme => theme.title).find(title => title === themeTitle) !== undefined;
-  }
   
 
   createTheme(): void {
@@ -62,10 +58,11 @@ export class ThemeEditorComponent implements OnInit {
         const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
         const title = titleInput.value;
         const image = imageInput.value;
+        let themeExists = this.themeList.map(theme => theme.title).find(otherTitle => otherTitle === title) === undefined;
         if (!title) {
           Swal.showValidationMessage("Veuillez saisir un titre pour le thème")
         }
-        else if (this.themeNotExists(title)) {
+        else if (!themeExists) {
           Swal.showValidationMessage("Ce thème existe déjà")
         }
         return { title: title, image: image}
