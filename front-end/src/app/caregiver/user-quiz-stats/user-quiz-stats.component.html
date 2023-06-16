@@ -9,7 +9,7 @@
         <h1>{{user.firstName}} {{user.lastName}}</h1>
       </div>
       <div>
-        <img id="quiz-img" src={{this.quiz.coverImage}} alt="quiz-img">
+        <img id="quiz-img" src={{this.quiz.coverImage}} onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
         <h4 style="align-self:center; margin-right: 10px;">{{quiz.name}}</h4>
       </div>
     </div>
