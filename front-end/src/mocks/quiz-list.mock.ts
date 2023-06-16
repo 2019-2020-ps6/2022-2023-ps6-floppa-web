@@ -208,7 +208,7 @@ export const password: Password = {
 // };
 
 
-export const THEME_QUIZ_LIST: Theme[] = [
+//export const THEME_QUIZ_LIST: Theme[] = [
 //     {
 //         id: 0,
 //         title: 'Les animaux', 
@@ -245,9 +245,9 @@ export const THEME_QUIZ_LIST: Theme[] = [
 //         description: null, 
 //         coverImage: "/assets/theme-img/theme-6.jpg"
 //     },
-]
+//]
 
-export const QUIZ_LIST: Quiz[] = [
+//export const QUIZ_LIST: Quiz[] = [
     // {
     //     id: '1',
     //     name: 'Les félins',
@@ -266,4 +266,4 @@ export const QUIZ_LIST: Quiz[] = [
     //     users: ["1","3"],
     //     coverImage: '/assets/quiz-img/quiz-2.jpg'
     // },
-];
+//];

@@ -5,7 +5,6 @@ import { QuizSession, User } from '../models/user.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { ThisReceiver } from '@angular/compiler';
 import { UserEditComponent } from 'src/app/users/user-edit/user-edit.component';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { Quiz } from 'src/models/quiz.model';
 
 @Injectable({
@@ -15,7 +14,7 @@ export class UserService {
   /*
    The list of user.
    */
-  private users: User[] = USER_LIST;
+  private users: User[];
 
   /*
    Observable which contains the list of the user.

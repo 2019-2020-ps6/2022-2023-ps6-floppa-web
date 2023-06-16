@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+//import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Theme } from 'src/models/theme.model';
 import Swal from 'sweetalert2';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
 import { ThemeService } from 'src/services/theme.service';
 import { QuizService } from 'src/services/quiz.service';
@@ -16,7 +15,7 @@ import { QuizService } from 'src/services/quiz.service';
 })
 export class ThemeEditorComponent implements OnInit {
   public themeList: Theme[];
-  public static counter: number = THEME_QUIZ_LIST.length;
+  //public static counter: number = THEME_QUIZ_LIST.length;
 
   constructor(private router: Router, private route: ActivatedRoute, public themeService: ThemeService, public quizService: QuizService) {
 
@@ -34,7 +33,7 @@ export class ThemeEditorComponent implements OnInit {
   }
 
   themeNotExists(themeTitle: string): boolean {
-    return THEME_QUIZ_LIST.map(theme => theme.title).find(title => title === themeTitle) !== undefined;
+    return true;//THEME_QUIZ_LIST.map(theme => theme.title).find(title => title === themeTitle) !== undefined;
   }
   
 

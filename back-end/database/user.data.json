@@ -554,7 +554,7 @@
     "alzheimerStade": "stade intermédiaire",
     "photo": "https://thumbs.dreamstime.com/b/vieux-vieil-homme-24922472.jpg",
     "timer": 1,
-    "assistance": "1001",
+    "assistance": "1000",
     "quizSessions": [],
     "id": 1686418420311
   },
@@ -743,6 +743,34 @@
         ],
         "userId": 1686911869708,
         "id": 1686917836940
+      },
+      {
+        "date": 1686919250556,
+        "answers": [
+          false,
+          false,
+          false
+        ],
+        "quizId": 1686908663119,
+        "timePerQuestion": [
+          1,
+          1,
+          0
+        ],
+        "userId": 1686911869708,
+        "id": 1686919250567
+      },
+      {
+        "date": 1686919260731,
+        "answers": [
+          null
+        ],
+        "quizId": 1686914554315,
+        "timePerQuestion": [
+          1
+        ],
+        "userId": 1686911869708,
+        "id": 1686919260746
       }
     ],
     "id": 1686911869708

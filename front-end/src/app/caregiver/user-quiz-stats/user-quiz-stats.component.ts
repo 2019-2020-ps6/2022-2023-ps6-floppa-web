@@ -1,8 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
 import { ChartOptions, ChartDataSets, ChartType, Chart } from 'chart.js';
 import { Label } from 'ng2-charts/lib/base-chart.directive';

@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { UserService } from 'src/services/user.service';
 import { QuizService } from 'src/services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
