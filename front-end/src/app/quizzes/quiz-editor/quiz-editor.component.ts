@@ -64,6 +64,7 @@ export class QuizEditorComponent implements OnInit {
       if (result.isConfirmed) 
         this.quizService.deleteQuiz(quiz);
         this.refresh();
+        window.location.reload();
     });
   }
 
@@ -120,6 +121,7 @@ export class QuizEditorComponent implements OnInit {
       
       this.quizService.addQuiz(quizToCreate);
       this.refresh();
+      window.location.reload();
     })
   }
 }

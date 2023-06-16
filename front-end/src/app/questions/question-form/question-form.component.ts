@@ -42,7 +42,7 @@ export class QuestionFormComponent implements OnInit {
   private createAnswer(): FormGroup {
     return this.formBuilder.group({
       value:['', Validators.required],
-      img:'',
+      img:['', Validators.required],
       isCorrect: false,
     });
   }
@@ -79,6 +79,6 @@ export class QuestionFormComponent implements OnInit {
         this.answerService.addAnswer({...answer, questionId: Number(newQuestion.id)}, Number(this.quizId), Number(newQuestion.id)).subscribe();
       }
     });
-    this.initializeQuestionForm();
+    //this.initializeQuestionForm();
   }
 }

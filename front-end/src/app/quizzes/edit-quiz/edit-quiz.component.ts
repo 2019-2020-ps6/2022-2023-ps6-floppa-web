@@ -125,6 +125,7 @@ export class EditQuizComponent implements OnInit {
   addUserToQuiz(user: User): void {
     this.quizService.addUserToQuiz(this.quiz, user);
     this.retrieveUsers();
+    window.location.reload();
   }
 
   removeUserToQuiz(user: User): void {
@@ -136,7 +137,8 @@ export class EditQuizComponent implements OnInit {
     }
     this.quiz.users.splice(indexToDel,1);
     this.quizService.removeUserToQuiz(this.quiz);
-    this.retrieveUsers();
+    this.retrieveUsers()
+    window.location.reload();
   }
 
   createElement(): void {
