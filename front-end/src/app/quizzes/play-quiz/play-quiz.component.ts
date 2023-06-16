@@ -120,19 +120,11 @@ export class PlayQuizComponent implements OnInit, OnDestroy {
     }
   }
 
-  checkAssociation(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.questionService.getAssociations(Number(id)).subscribe((associations) => {
-      this.quizAssociations = associations;
-      let isCorrect = this.quizAssociations[this.numQuestion-1 - this.quiz.questions.length].isCorrect;
-      console.log("-----------")
-      console.log(isCorrect);
-      console.log("-----------")
-      const endTime = performance.now();
-      const elapsedTime = endTime - this.startTime;
-      this.userService.updateQuizSession(this.user, isCorrect, elapsedTime, this.currentSessionId);
-      this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + isCorrect + "/" + this.numQuestion + "/" + this.user.id]);
-    })
+  checkAssociation(correct: boolean): void {
+    const endTime = performance.now();
+    const elapsedTime = endTime - this.startTime;
+    this.userService.updateQuizSession(this.user, correct, elapsedTime, this.currentSessionId);
+    this.router.navigate(["/answer/" + this.quiz.id + "/" + this.score + "/" + correct + "/" + this.numQuestion + "/" + this.user.id]);
   }
 
   useHint(): void {

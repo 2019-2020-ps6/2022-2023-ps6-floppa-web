@@ -35,10 +35,10 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     public user: User;
 
     @Output()
-    answer = new EventEmitter<number>();
+    answer = new EventEmitter<boolean>();
 
     @Output()
-  nextQuestion = new EventEmitter<void>();
+    nextQuestion = new EventEmitter<void>();
 
     constructor(private route: ActivatedRoute, public quizService: QuizService, public questionService: QuestionService) {
     }
@@ -180,7 +180,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
             let connectionToCheck = this.connections.find((connectionToCheck) => connectionToCheck.valueToConnect === connection[0] && connectionToCheck.valueToBeConnected === connection[1]);
 
             if(!connectionToCheck){
-                console.log("Incorrect");
+                console.log(false);
                 this.answer.emit();
                 this.resetAssociation();
                 return;
@@ -190,7 +190,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         console.log("Correct");
         this.associationToPlay.isCorrect = true;
         this.questionService.updateAssociation(Number(id),Number(this.associationToPlay.id),this.associationToPlay);
-        this.answer.emit();
+        this.answer.emit(true);
         this.resetAssociation();
     }
 
