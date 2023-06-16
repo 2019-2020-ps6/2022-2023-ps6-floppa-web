@@ -2,7 +2,6 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-import { login } from 'src/mocks/quiz-list.mock';
 import { HomeService } from 'src/services/home.service';
 
 @Component({

@@ -14,11 +14,11 @@
       <br>
       <label for="lastName">
         <span class="form-text">Nom :</span> 
-        <input maxlength="20" class="input-custom" type="text" id="lastName" [formControlName]="'lastName'">
+        <input maxlength="20" class="input-custom" type="text" data-testid="lastName" id="lastName" [formControlName]="'lastName'">
       </label>
       <label for="firstName">
         <span class="form-text">Prénom :</span>
-        <input maxlength="20" class="input-custom" type="text" id="firstName" [formControlName]="'firstName'">
+        <input maxlength="20" class="input-custom" type="text" data-testid="firstName" id="firstName" [formControlName]="'firstName'">
       </label>
     
       <br>
@@ -26,7 +26,7 @@
       <label for="alzheimerStade">
         <span class="form-text">Stade Alzheimer :</span> <br>
         Sélectionnez une plage <br>
-        <input id="selectable" class="input-custom" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade léger (stade 1 à 2) <br>
+        <input id="selectable" class="input-custom" data-testid="alzheimerStade-1-2" type="radio" name="alzheimerStade" value="stade léger" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade léger (stade 1 à 2) <br>
         <input id="selectable" class="input-custom" type="radio" name="alzheimerStade" value="stade intermédiaire" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade intermédiaire (stade 3 à 5) <br>
         <input id="selectable" class="input-custom" type="radio" name="alzheimerStade" value="stade avancé" [formControlName]="'alzheimerStade'" (click)="setAssistanceValue()"> Stade avancé (stade 6 à 7) <br>
       </label>

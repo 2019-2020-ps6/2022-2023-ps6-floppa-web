@@ -4,7 +4,6 @@ import { User } from 'src/models/user.model';
 import { UserService } from 'src/services/user.service';
 import { Location } from '@angular/common';
 import { HomeService } from 'src/services/home.service';
-import { login } from 'src/mocks/quiz-list.mock';
 import Swal from 'sweetalert2';
 
 @Component({

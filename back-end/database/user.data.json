@@ -198,6 +198,18 @@
         "timePerQuestion": [],
         "userId": 1685885719423,
         "id": 1686922832529
+      },
+      {
+        "date": 1686929443484,
+        "answers": [
+          true
+        ],
+        "quizId": 1686908663119,
+        "timePerQuestion": [
+          3
+        ],
+        "userId": 1685885719423,
+        "id": 1686929443506
       }
     ],
     "id": 1685885719423,
@@ -593,6 +605,34 @@
         ],
         "userId": 1685946978359,
         "id": 1686925688543
+      },
+      {
+        "date": 1686928598220,
+        "answers": [
+          true,
+          false
+        ],
+        "quizId": 1686908663119,
+        "timePerQuestion": [
+          4,
+          3
+        ],
+        "userId": 1685946978359,
+        "id": 1686928598235
+      },
+      {
+        "date": 1686930440843,
+        "answers": [
+          true,
+          null
+        ],
+        "quizId": 1686908663119,
+        "timePerQuestion": [
+          1,
+          5
+        ],
+        "userId": 1685946978359,
+        "id": 1686930440857
       }
     ],
     "photo": "https://cdn-icons-png.flaticon.com/512/374/374995.png",

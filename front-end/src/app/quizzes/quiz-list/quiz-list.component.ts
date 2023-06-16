@@ -49,11 +49,6 @@ export class QuizListComponent implements OnInit {
         }
       })
     });
-    /*for (let i=0; i<QUIZ_LIST.length; i++) {
-      if (THEME_QUIZ_LIST[this.themeIndex].title === QUIZ_LIST[i].theme) {
-        this.quizList.push(QUIZ_LIST[i]);
-      }
-    }*/
   }
 
   ngOnInit(): void {

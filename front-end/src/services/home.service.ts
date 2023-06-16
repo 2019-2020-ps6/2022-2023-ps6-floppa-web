@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Observable } from 'rxjs';
-import { login } from 'src/mocks/quiz-list.mock';
 import { Login } from 'src/models/login.model';
 import { newArray } from '@angular/compiler/src/util';
 
