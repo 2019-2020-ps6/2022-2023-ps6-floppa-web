@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class QuestionService {
   
-  private quizUrl = environment.apiUrl+"quizzes/";
+  private quizUrl = environment.apiUrl+"/quizzes/";
 
   constructor(private http: HttpClient) { }
 

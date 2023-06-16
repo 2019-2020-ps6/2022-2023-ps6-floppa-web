@@ -7,7 +7,10 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "test:e2e": "npx playwright test"
+    "test:e2e": "npx playwright test",
+    "build:production": "ng build --configuration production",
+    "build:e2e": "ng build --configuration e2e",
+    "build:proxy": "ng build --configuration proxy --base-href /front/ --deploy-url /front/"
   },
   "private": true,
   "dependencies": {
