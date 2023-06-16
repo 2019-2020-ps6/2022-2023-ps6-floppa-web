@@ -55,9 +55,10 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
             this.associationToPlay.isCorrect = false;
             this.questionService.getConnections(Number(id),Number(this.associationToPlay.id)).subscribe((connections) => {
                 this.connections = connections;
+                console.log(connections);
                 for(const element of connections){
-                    this.shuffledValuesToConnect.push([element.valueToConnect, element.imageCoverToConnect]);
-                    this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.imageCoverToBeConnected]);
+                    this.shuffledValuesToConnect.push([element.valueToConnect, element.coverImageToConnect]);
+                    this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.coverImageToBeConnected]);
                 }
                 
                 this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);

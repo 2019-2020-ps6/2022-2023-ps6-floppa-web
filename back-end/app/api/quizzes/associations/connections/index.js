@@ -36,8 +36,7 @@ router.get('/:connectionId', (req, res) => {
 })
 
 router.post('/', (req, res) => {
-  console.log("gros caca");
-  console.log(req.body);
+  console.log("CACA POURRI")
   Quiz.getById(req.params.quizId)
   const quizId = parseInt(req.params.quizId, 10)
   const associationId = parseInt(req.params.associationId, 10)
@@ -45,6 +44,7 @@ router.post('/', (req, res) => {
   try {
     //const connection = Connection.create({ ...req.body, quizId: quizId})
     const connection = connectionModel.create({ ...req.body, associationId: associationId})
+    console.log(connection)
     res.status(201).json(connection)
   } catch (err) {
     if (err.name === 'NotFoundError') {
