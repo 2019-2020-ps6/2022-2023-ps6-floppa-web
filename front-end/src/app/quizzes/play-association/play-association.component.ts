@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { Association, Connection } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { User } from 'src/models/user.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QuestionService } from 'src/services/question.service';
@@ -50,7 +49,6 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
       }
 
     ngOnInit(): void {
-        console.log("CACA")
         let id = this.route.snapshot.paramMap.get('id');
         this.questionService.getAssociations(Number(id)).subscribe((associations) => {
             this.associationToPlay = associations[this.numAssociation];
@@ -66,6 +64,8 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
                 this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
         
                 this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
+                console.log(this.shuffledValuesToConnect);
+                console.log(this.shuffledValuesToBeConnected);
             })
         })
     }
@@ -190,7 +190,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         this.associationToPlay.isCorrect = true;
         this.questionService.updateAssociation(Number(id),Number(this.associationToPlay.id),this.associationToPlay);
         this.answer.emit();
-        //this.resetAssociation();
+        this.resetAssociation();
     }
 
     resetAssociation(): void {
