@@ -4,7 +4,38 @@
     "lastName": "Duo",
     "alzheimerStade": "stade léger",
     "assistance": "1000",
-    "quizSessions": [],
+    "quizSessions": [
+      {
+        "date": 1687040224718,
+        "answers": [
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          2
+        ],
+        "userId": 1685885719423,
+        "id": 1687040224722
+      },
+      {
+        "date": 1687040442797,
+        "answers": [
+          true,
+          true,
+          null,
+          true
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          2,
+          15,
+          3,
+          6
+        ],
+        "userId": 1685885719423,
+        "id": 1687040442802
+      }
+    ],
     "id": 1685885719423,
     "photo": "https://cdn.icon-icons.com/icons2/1736/PNG/512/4043254-avatar-elderly-grandma-nanny_113280.png",
     "timer": 1
@@ -78,6 +109,14 @@
         ],
         "userId": 1685946978359,
         "id": 1687024286388
+      },
+      {
+        "date": 1687040195743,
+        "answers": [],
+        "quizId": 1687040010856,
+        "timePerQuestion": [],
+        "userId": 1685946978359,
+        "id": 1687040195755
       }
     ],
     "photo": "https://cdn-icons-png.flaticon.com/512/374/374995.png",
@@ -89,7 +128,22 @@
     "lastName": "Quatro",
     "alzheimerStade": "stade intermédiaire",
     "assistance": "1000",
-    "quizSessions": [],
+    "quizSessions": [
+      {
+        "date": 1687041556737,
+        "answers": [
+          true,
+          null
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          2,
+          8
+        ],
+        "userId": 1685947238439,
+        "id": 1687041556741
+      }
+    ],
     "photo": "https://cdn-icons-png.flaticon.com/512/5255/5255937.png",
     "timer": 1,
     "id": 1685947238439

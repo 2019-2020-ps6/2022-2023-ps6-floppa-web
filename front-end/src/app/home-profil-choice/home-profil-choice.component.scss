@@ -3,7 +3,12 @@
 .user-img {
     max-width: 175px;
     max-height: 175px;
+    min-width: 175px;
+    min-height: 175px;
+    width: 100%;
     border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
 }
 
 .user-list {

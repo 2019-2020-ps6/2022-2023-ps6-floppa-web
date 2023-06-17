@@ -26,12 +26,12 @@
     </select> )</span> </h1>
 <div class="user-list" data-testid="user-list">
     <div *ngFor="let user of userList" class="user">
-        <div *ngIf="user.photo!==''">
-            <img id="selectable" class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
-            <img id="selectable" class="trash" src="/assets/trash.png" alt="trash-img-{{user.firstName}}-{{user.lastName}}" (click)="delete(user)">
-        </div>
         <div *ngIf="user.photo===''">
             <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/user-stats-menu/{{user.id}}">
+        </div>
+        <div *ngIf="user.photo!==''">
+            <img onerror="this.onerror=null; this.src='/assets/users/user.png'" id="selectable" class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
+            <img id="selectable" class="trash" src="/assets/trash.png" alt="trash-img-{{user.firstName}}-{{user.lastName}}" (click)="delete(user)">
         </div>
         <h2>{{user.firstName}} {{user.lastName}}</h2>
     </div>
