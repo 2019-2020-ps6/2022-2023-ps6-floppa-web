@@ -37,14 +37,10 @@ export class QuestionService {
 
   addConnection(quizId: number, associationId: number, connection: Connection): void {
     const url = `http://localhost:9428/api/quizzes/${quizId}/associations/${associationId}/connections`;
-    console.log("GROS CACA")
-    console.log(connection);
     this.http.post<Connection>(url,connection).subscribe();
   }
 
   updateAssociation(quizId: number, associationId: number, updatedAssociation): void {
-    console.log("SALUTSALUTLSAUTLSAJFZEA");
-    console.log(updatedAssociation.isCorrect);
     this.http.put<Association>(`http://localhost:9428/api/quizzes/${quizId}/associations/${associationId}`, updatedAssociation);
   }
 }
