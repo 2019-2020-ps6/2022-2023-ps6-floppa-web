@@ -18,9 +18,9 @@ services:
     ports:
       - "8080:4200"
     volumes:
-      - db:/back-end/database:rw
+      - database:/back-end/database:rw
     healthcheck:
-      test: curl -f http://localhost:4200/api/status | grep 'ok' || exit 1
+      test: curl -f http://localhost:4200 || exit 1
       interval: 30s
       timeout: 5s
       retries: 3
@@ -29,4 +29,4 @@ services:
         condition: service_healthy
 
 volumes:
-  db:
+  database:

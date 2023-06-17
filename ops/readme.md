@@ -1,23 +1,35 @@
-Statut lors de la livraison:
+# FLOPPA WEB - Projet PS6
+## Statut lors de la livraison :
 
-Étape 1 : Fait
-Étape 2 : Presque fait
-Étape 3 : Pas fait
-Étape 4 : Pas fait
+- Étape 1 : Done
+- Étape 2 : Done
+- Étape 3 : Pas commencé
+- Étape 4 : Pas commencé
 
-Healthchecks:
+## Healthchecks utilisées dans chaque service :
 
 Les healthchecks utilisés sont situés dans les services back-end et front-end dans le docker-compose.yml.
-Ils servent à vérifier si le back-end et le front-end répondent toujours en appelant la requète : api/status qui renvoie "ok" si tout va bien.
-Pour le healthcheck du back-end, on appelle la commande :
-    "curl -f http://localhost:9428/api/status | grep 'ok' || exit 1"
+Ils servent à vérifier si le back-end et le front-end répondent toujours en appelant la commande curl.
+
+Pour le healthcheck du back-end, on appelle la commande :  
+&ensp;&ensp;&ensp;&ensp;```"curl -f http://localhost:9428/api/status | grep 'ok' || exit 1"```  
     on utilise ici l'url http://localhost:9428/api/status car on appelle le healthcheck depuis l'interieur du service.
-De même pour le healthcheck du front-end :
-    "curl -f http://localhost:4200/api/status | grep 'ok' || exit 1"
-    on utilise l'url http://localhost:4200/api/status pour la même raison.
+    api/status renvoie "ok" si tout va bien dans le conteneur.
 
-Les utilisateurs:
+De même pour le healthcheck du front-end :  
+&ensp;&ensp;&ensp;&ensp;```"curl -f http://localhost:4200 || exit 1"```  
+    on utilise l'url http://localhost:4200 pour la même raison que pour le back-end.
+    Cette commande vérifie que le lien du front-end fonctionne bien.
 
-Pour le service du back-end, l'utilisateur est node, comme indiqué dans le Dockerfile.
-Pour le service du frot-end, l'utilisateur est nginx.
+## Les utilisateurs dans les services :
 
+Pour le back-end comme pour le front-end, l'utilisateur est celui indiqué dans le Dockerfile.  
+Pour le service du back-end, l'utilisateur est donc node.   
+Pour le service du front-end, il s'agit de nginx.
+
+## Une explication sur les services accessibles et les urls/ports :
+
+- Back-end : on accède au back-end avec le domaine localhost et le port 8000
+- Front-end : on accède au front-end avec le domaine localhost également et le port 8080.
+
+En effet les ports 8000 et 8080 sont les ports auxquels nous avons accès depuis l'extérieur des conteneurs. A l'intérieur des conteneurs, les ports sont 9428 pour le back-end et 4200 pour le front-end mais nous n'avons donc pas accès à ces ports depuis l'extérieur des conteneurs.
