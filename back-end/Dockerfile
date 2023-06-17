@@ -8,7 +8,7 @@ WORKDIR /back-end
 
 COPY ./app app/
 COPY ./database database/
-COPY package-lock.json package.json .
+COPY package-lock.json package.json ./
 RUN npm install
 
 EXPOSE 9428
