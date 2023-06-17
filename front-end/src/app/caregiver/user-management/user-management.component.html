@@ -27,8 +27,8 @@
 <div class="user-list" data-testid="user-list">
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
-            <img id="selectable" class="user-img" alt="user-img" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
-            <img id="selectable" class="trash" src="/assets/trash.png" alt="trash-img" (click)="delete(user)">
+            <img id="selectable" class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/user-stats-menu/{{user.id}}">
+            <img id="selectable" class="trash" src="/assets/trash.png" alt="trash-img-{{user.firstName}}-{{user.lastName}}" (click)="delete(user)">
         </div>
         <div *ngIf="user.photo===''">
             <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/user-stats-menu/{{user.id}}">
