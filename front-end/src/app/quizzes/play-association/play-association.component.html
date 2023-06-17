@@ -18,7 +18,7 @@
         <div class= "connectors-left">
             <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >
                 <div id="selectable" style="display: flex; margin-top:50px;  flex-basis: 0;">
-                    <img style="margin-right: 50px; transform: scale(1.5); display: block; max-width:500px; max-height:100px; border-radius: 20px;"alt = "left-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != null && value[0] != null" (click)="selectLeft(value[0], i)">
+                    <img style="margin-right: 50px; transform: scale(1.5); display: block; max-width:500px; max-height:100px; border-radius: 20px;"alt = "left-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != '' && value[0] != null" (click)="selectLeft(value[0], i)">
                     <Button attr.id = "left-button{{i}}" style="width: 500px; height:100px; font-size: 25px;" class = "button" *ngIf = "value[0] != null" (click)="selectLeft(value[0], i)">
                         {{value[0]}}
                     </Button>
@@ -31,7 +31,7 @@
                     <Button attr.id = "right-button{{i}}" style="width: 500px; height:100px; font-size: 25px;" class = "button" *ngIf = "value[0] != null" (click)="selectRight(value[0], i)">
                         {{value[0]}}
                     </Button>
-                    <img style="transform: scale(1.5); display: block; max-width:500px;  margin-left: 50px; max-height:100px; border-radius: 20px;" alt = "right-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != null && value[0] != null" (click)="selectRight(value[0], i)">
+                    <img style="transform: scale(1.5); display: block; max-width:500px;  margin-left: 50px; max-height:100px; border-radius: 20px;" alt = "right-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != '' && value[0] != null" (click)="selectRight(value[0], i)">
                 </div>
             </div>
         </div>
