@@ -1,9 +1,10 @@
 @import "../../../styles.scss";
 
 #quiz-img {
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
     border-radius: 30px;
+    object-fit: cover;
 }
   
 h4 {
@@ -39,8 +40,9 @@ app-question-choice {
 }
 
 #user-img {
-    max-width: 150px;
-    max-height: 150px;
+    width: 150px;
+    height: 150px;
     margin-left: 10px;
     border-radius: 50%;
+    object-fit: cover;
 }

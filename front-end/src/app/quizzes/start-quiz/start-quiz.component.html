@@ -6,7 +6,7 @@
     <div>
         <h2>{{user.firstName}} {{user.lastName}}</h2>
         <div *ngIf="user.photo !==''">
-            <img src="{{user.photo}}" alt="user-img">
+            <img class="user-img" src="{{user.photo}}" alt="user-img">
         </div>
         <div *ngIf="user.photo===''">
             <img src="/assets/users/user.png" alt="user-img">
