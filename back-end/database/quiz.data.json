@@ -1,0 +1,60 @@
+[
+  {
+    "name": "Les félins",
+    "theme": "Les Animaux",
+    "coverImage": "https://costarica-decouverte.com/wp-content/uploads/2018/08/felins-margay-costa-rica-decouverte.jpg",
+    "users": [],
+    "id": 1686949041685,
+    "questions": [
+      {
+        "label": "Lequel est un léopard ?",
+        "quizId": 1686949041685,
+        "id": 1686949292335,
+        "answers": [
+          {
+            "value": "Photo 1",
+            "img": "https://cdn.pixabay.com/photo/2018/06/10/12/52/black-panther-3466399_1280.jpg",
+            "isCorrect": false,
+            "questionId": 1686949292335,
+            "id": 1686949292422
+          },
+          {
+            "value": "Photo 2",
+            "img": "https://t1.ea.ltmcdn.com/fr/razas/8/8/0/leopard-de-l-amour_1088_0_600.jpg",
+            "isCorrect": true,
+            "questionId": 1686949292335,
+            "id": 1686949292431
+          },
+          {
+            "value": "Photo 3",
+            "img": "https://fac.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Ffac.2F2021.2F11.2F09.2F6d896ed9-f659-4909-a31c-9d59ba6ddc14.2Ejpeg/750x562/quality/80/crop-from/center/cr/wqkgwqkgR2V0dHkgSW1hZ2VzL2lTdG9ja3Bob3RvIC8gRmVtbWUgQWN0dWVsbGU%3D/tout-savoir-sur-le-lion.jpeg",
+            "isCorrect": false,
+            "questionId": 1686949292335,
+            "id": 1686949292481
+          }
+        ]
+      },
+      {
+        "label": "Quel animal miaule ?",
+        "quizId": 1686949041685,
+        "id": 1686949364153,
+        "answers": [
+          {
+            "value": "Chat",
+            "img": "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg",
+            "isCorrect": true,
+            "questionId": 1686949364153,
+            "id": 1686949364250
+          },
+          {
+            "value": "Chien",
+            "img": "https://www.sciencesetavenir.fr/assets/img/2022/05/25/cover-r4x3w1200-628e2f6688732-particularites-chien-border-collie.jpg",
+            "isCorrect": false,
+            "questionId": 1686949364153,
+            "id": 1686949364259
+          }
+        ]
+      }
+    ]
+  }
+]

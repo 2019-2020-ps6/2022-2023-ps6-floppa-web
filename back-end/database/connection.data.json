@@ -1,0 +1,18 @@
+[
+  {
+    "valueToConnect": "Chat",
+    "valueToBeConnected": "Maison",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "",
+    "associationId": 1686949438933,
+    "id": 1686949439010
+  },
+  {
+    "valueToConnect": "Lion",
+    "valueToBeConnected": "Savane",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "",
+    "associationId": 1686949438933,
+    "id": 1686949439019
+  }
+]

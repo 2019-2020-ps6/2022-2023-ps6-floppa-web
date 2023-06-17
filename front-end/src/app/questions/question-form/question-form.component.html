@@ -18,14 +18,18 @@
     <button style= "margin: 10px;" class="button-card" [disabled]="this.questionForm.get('answers').value.length >= 4" (click)="addAnswer()">Ajouter réponse</button>
     <div class="answer" formArrayName="answers">
       <div *ngFor="let address of answers.controls; let i=index">
-        <div class="answer-form" [formGroupName]="i">
+        <div class="answer-form" name="form-{{i+1}}" [formGroupName]="i">
           <label>
             Réponse {{i + 1}} :
-            <input class = "input-text" type="text" [formControlName]="'value'" maxlength="20"><br>
-            Bonne réponse :
-            <input style="margin: 10px; width: 20px; height: 20px;" class = "input" type="checkbox" [formControlName]="'isCorrect'">
-            Lien d'image :
-            <input class = "input-text" type="text" [formControlName]="'img'">
+            <input class = "input-text" aria-label="rep-{{i+1}}" data-testid="réponse-{{i+1}}" type="text" [formControlName]="'value'" maxlength="20"><br>
+          </label>
+          <label>
+            Bonne réponse {{i + 1}} :
+            <input style="margin: 10px; width: 20px; height: 20px;" data-testid="bonne-réponse-{{i+1}}" class = "input" type="checkbox" [formControlName]="'isCorrect'">
+          </label>
+          <label>
+            Lien d'image {{i + 1}} :
+            <input class = "input-text" name="image" data-testid="image-{{i+1}}" type="text" [formControlName]="'img'">
           </label>
         </div>
       </div>

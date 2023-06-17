@@ -18,14 +18,14 @@ test.describe('See user stats', () => {
         await page.getByRole('button', { name : 'Statistiques par quiz'}).click();
         await expect(page).toHaveURL('http://localhost:4200/theme-list/Madeleine-Duo/stats');
         await expect(page.getByText('Choisissez un thème')).toBeVisible();
-        await page.getByAltText('theme-Les animaux').click();
+        await page.getByAltText('theme-Les Animaux').click();
         await expect(page.getByText('Madeleine Duo')).toBeVisible();
         await expect(page.getByAltText('user-img-Madeleine-Duo')).toBeVisible();
         await expect(page.getByText('Choisissez un quiz')).toBeVisible();
         await page.getByAltText('quiz-img-Les félins').click();
 
         await expect(page.getByAltText('user-img-Madeleine-Duo')).toBeVisible();
-        await expect(page.getByAltText('quiz-img-Les félins')).toBeVisible();
+        await expect(page.getByAltText('quiz-img')).toBeVisible();
 
         await page.getByText('Progression').click();
         await expect(page.getByRole('dialog', {name: 'Progression'})).toBeVisible();
