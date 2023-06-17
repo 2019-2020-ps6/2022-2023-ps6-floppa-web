@@ -6,7 +6,7 @@ services:
       - "8000:9428"
     healthcheck:
       test: curl -f http://localhost:9428/api/status | grep 'ok' || exit 1
-      interval: 30s
+      interval: 15s
       timeout: 5s
       retries: 3
   
@@ -21,7 +21,7 @@ services:
       - database:/back-end/database:rw
     healthcheck:
       test: curl -f http://localhost:4200 || exit 1
-      interval: 30s
+      interval: 15s
       timeout: 5s
       retries: 3
     depends_on:
