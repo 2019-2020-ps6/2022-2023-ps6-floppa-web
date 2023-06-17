@@ -1,8 +1,8 @@
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <div style="display: inline-block;">
-        <label style="font-weight: bold; font-size: 40px;">{{associationToPlay.label}}</label>
-        <Button class="validate-button" style= "position:relative; width:120px; height:80px; margin: 10px; font-size: 25px;" (click)="check()">Valider</Button>
-        <Button class="validate-button" style= "position:relative; width:170px; height:80px; margin: 10px; font-size: 23px;" (click)="deleteAllConnections()">Réinitialiser</Button>
+        <label style="font-weight: bold; font-size: 35px;">{{associationToPlay.label}}</label>
+        <Button class="validate-button" style= "position:relative; width:100px; height:60px; margin: 5px; font-size: 20px;" (click)="check()">Valider</Button>
+        <Button class="validate-button" style= "position:relative; width:150px; height:60px; margin: 10px; font-size: 20px;" (click)="deleteAllConnections()">Réinitialiser</Button>
     </div>
     <div style="display:flex; flex-direction: row; justify-content: space-between; width:100%">
         <div style="display:flex;flex-direction: column; align-items: center; justify-content: flex-start;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">

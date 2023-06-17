@@ -112,7 +112,6 @@ export class UserManagementComponent implements OnInit {
           if (oldMdp != oldLoginPassword){
             Swal.showValidationMessage("Veuillez saisir le bon mot de passe actuel.")
           }
-
           if(oldMdp === newMdp) {
             Swal.showValidationMessage("Vous venez de saisir le même mot de passe actuel. Veuillez saisir un nouveau mot de passe.")
           }

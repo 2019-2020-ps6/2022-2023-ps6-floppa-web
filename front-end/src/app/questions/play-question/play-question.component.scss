@@ -6,8 +6,8 @@ h1{
 }
 
 .img-answer {
-    max-width: 275px;
-    max-height: 275px;
+    max-width: 250px;
+    max-height: 250px;
     object-fit: contain;
     margin-left: 80px;
     margin-right: 80px;
@@ -21,16 +21,25 @@ h1{
     border-radius:10%;
 }
 
+#button-card{
+    background-color: $white;
+    border: solid 1px $blue;
+    border-radius: 10px;
+    font-weight: bold;
+    padding: 0.5em 1em;
+}
+
+
 #home {
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 75px;
+    max-width: 75px;
     margin-right: 10px;
     margin-top:20px;
 }
 
 #next {
-    max-height: 100px;
-    max-width: 100px;
+    max-height: 75px;
+    max-width: 75px;
     margin-left: 10px;
 }
 
