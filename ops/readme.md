@@ -19,4 +19,5 @@ De même pour le healthcheck du front-end :
 Les utilisateurs:
 
 Pour le service du back-end, l'utilisateur est node, comme indiqué dans le Dockerfile.
-Pour le service du frot-end, 
+Pour le service du frot-end, l'utilisateur est nginx.
+
