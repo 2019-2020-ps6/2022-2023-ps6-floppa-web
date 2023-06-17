@@ -24,11 +24,11 @@
             <input class = "input-text" aria-label="rep-{{i+1}}" data-testid="réponse-{{i+1}}" type="text" [formControlName]="'value'" maxlength="20"><br>
           </label>
           <label>
-            Bonne réponse {{i + 1}} :
+            Bonne réponse :
             <input style="margin: 10px; width: 20px; height: 20px;" data-testid="bonne-réponse-{{i+1}}" class = "input" type="checkbox" [formControlName]="'isCorrect'">
           </label>
           <label>
-            Lien d'image {{i + 1}} :
+            Lien d'image :
             <input class = "input-text" name="image" data-testid="image-{{i+1}}" type="text" [formControlName]="'img'">
           </label>
         </div>

@@ -3,7 +3,7 @@
 
 - Étape 1 : Done
 - Étape 2 : Done
-- Étape 3 : Pas commencé
+- Étape 3 : Commencé mais pas fini
 - Étape 4 : Pas commencé
 
 ## Healthchecks utilisées dans chaque service :
@@ -33,3 +33,11 @@ Pour le service du front-end, il s'agit de nginx.
 - Front-end : on accède au front-end avec le domaine localhost également et le port 8080.
 
 En effet les ports 8000 et 8080 sont les ports auxquels nous avons accès depuis l'extérieur des conteneurs. A l'intérieur des conteneurs, les ports sont 9428 pour le back-end et 4200 pour le front-end mais nous n'avons donc pas accès à ces ports depuis l'extérieur des conteneurs.
+
+## Lancements des dockers :
+- docker-compose : lancer le run.sh qui contient la commande pour lancer le compose.
+- tests : modifier la valeur environment dans front-end/src/environments car le docker ne fonctionne pas.  
+Les tests utilisent les ports 4200 pour le front-end et 9428 pour le back-end. Il faut donc que l'url de l'environment soit :
+&ensp;&ensp;&ensp;&ensp;```"http://localhost:9428/api"```
+Il faut également lancer le front-end avec la commande : ```npm run start``` et le back-end avec la commande : ```npm run dev```.
+Enfin, il faut lancer la commande : ```npm run test:e2e``` pour faire tourner les tests
