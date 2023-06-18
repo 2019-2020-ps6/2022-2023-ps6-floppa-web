@@ -1,11 +1,10 @@
 import { test, expect } from '@playwright/test';
-import { testUrl } from 'e2e/e2e.config';
+import { userManagementUrl } from 'e2e/e2e.config';
 
 
 test.describe('Create/delete new patient', () => {
     test('Create new patient', async ({ page }) => {
-        await page.goto('http://localhost:4200/user-management');
-
+        await page.goto(userManagementUrl);
         await page.getByAltText('add').click();
 
         await page.getByTestId('lastName').fill('Dupont');
@@ -19,7 +18,7 @@ test.describe('Create/delete new patient', () => {
     });
 
     test('Delete patient', async ({ page }) => {
-        await page.goto('http://localhost:4200/user-management');
+        await page.goto(userManagementUrl);
         await page.getByRole('img', {name: 'trash-img-Robert-Dupont'}).click();
         await page.getByRole('button', {name: 'Oui'}).click();
 
