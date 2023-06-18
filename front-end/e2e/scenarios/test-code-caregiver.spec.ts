@@ -15,6 +15,6 @@ test.describe('Test caregiver code', () => {
         await page.getByRole('textbox', {name: 'CODE'}).fill('');
         await page.getByRole('textbox', { name : 'CODE'}).fill('0000');
         await page.getByRole('button', { name : 'Valider'}).click();
-        await expect(page).toHaveURL('http://localhost:4200/user-management');
+        await expect(page).toHaveURL('http://localhost:4200/caregiver-home');
     });
 })

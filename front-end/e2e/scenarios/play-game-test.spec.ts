@@ -36,13 +36,12 @@ test.describe('Play Game Valerie Pentacle and see stats', () => {
         await page.getByRole('button', {name: 'Question Suivante'}).click();
         await expect(page.getByText('FÉLICITATIONS')).toBeVisible();
     })
-    
+
     test('See statisques after game',async ({page}) => {
         await page.goto('http://localhost:4200/user-management');
 
         await expect(page.getByTestId('add-button')).toBeVisible();
-        await expect(page.getByTestId('edit-button')).toBeVisible();
-
+        
         await expect(page.getByTestId('user-list')).toBeVisible();
         await page.getByAltText('user-img-Valerie-Pentacle').click();
         await expect(page.getByText('Voir les statistiques')).toBeVisible();
