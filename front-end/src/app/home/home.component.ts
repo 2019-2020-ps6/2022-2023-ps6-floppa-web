@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           if (result.value.code===psw) {
               clearInterval(this.timer);
               clearInterval(this.countdownInterval);
-              this.router.navigate(["/user-management"]);
+              this.router.navigate(["/caregiver-home"]);
           }
         })
         setTimeout(() => {

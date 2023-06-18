@@ -36,6 +36,7 @@ import { UserStatsMenuComponent } from './caregiver/user-stats-menu/user-stats-m
 import { ThemeEditorComponent } from './quizzes/theme-editor/theme-editor.component';
 import { QuizEditorComponent } from './quizzes/quiz-editor/quiz-editor.component';
 import { HomeComponent } from './home/home.component';
+import { CaregiverHomeComponent } from './caregiver/caregiver-home/caregiver-home.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -70,7 +71,8 @@ import { HomeComponent } from './home/home.component';
     UserStatsMenuComponent,
     ThemeEditorComponent,
     QuizEditorComponent,
-    HomeComponent
+    HomeComponent,
+    CaregiverHomeComponent
   ],
   imports: [
     BrowserModule,
