@@ -5,7 +5,7 @@ WORKDIR /playwright
 RUN apk add sed
 ARG PORT
 
-COPY playwright.config.ts package.json package-lock.json ./
+COPY playwright.config.ts package.json package-lock ./
 COPY ./e2e e2e/
 
 RUN npm install --save-dev playwright @playwright/test
