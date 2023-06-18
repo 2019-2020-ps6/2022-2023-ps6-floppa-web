@@ -60,8 +60,10 @@
     font-size: 42px;
     cursor: pointer;
     transition: all 0.3s ease-in-out;
+
   }
   
   .button-grow:hover {
     transform: scale(1.1);
+    box-shadow: 0px 5px 5px  rgb(38, 38, 112);
   }

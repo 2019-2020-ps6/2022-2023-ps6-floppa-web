@@ -71,7 +71,12 @@ button:hover{
 .checkbox {
 }
 
+#selectable{
+  transition: all 0.3s ease-in-out;
+}
+
 #selectable:hover{
   cursor:pointer;
-  filter: brightness(50%);
+  //filter: brightness(50%);
+  transform: scale(1.1);
 }

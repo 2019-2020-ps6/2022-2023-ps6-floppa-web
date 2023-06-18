@@ -93,6 +93,43 @@
     "theme": "Les Animaux",
     "coverImage": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Big_Floppa.jpg/1200px-Big_Floppa.jpg",
     "users": [],
-    "id": 1687040010856
+    "id": 1687040010856,
+    "questions": [
+      {
+        "label": "Qui est le caracal ?",
+        "quizId": 1687040010856,
+        "id": 1687040178111,
+        "answers": [
+          {
+            "value": "Photo N°1",
+            "img": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e1/Big_Floppa.jpg/1200px-Big_Floppa.jpg",
+            "isCorrect": true,
+            "questionId": 1687040178111,
+            "id": 1687040178130
+          },
+          {
+            "value": "Photo N°3",
+            "img": "https://www.sciencesetavenir.fr/assets/img/2023/01/30/cover-r4x3w1200-63d7a64fc6fcf-pallas.jpg",
+            "isCorrect": false,
+            "questionId": 1687040178111,
+            "id": 1687040178134
+          },
+          {
+            "value": "Photo N°4",
+            "img": "https://lemagdesanimaux.ouest-france.fr/images/dossiers/2019-10/lynx-1-092808.jpg",
+            "isCorrect": false,
+            "questionId": 1687040178111,
+            "id": 1687040178136
+          },
+          {
+            "value": "Photo N°2",
+            "img": "https://www.zooplus.fr/magazine/wp-content/uploads/2019/06/comprendre-le-langage-des-chats.jpg",
+            "isCorrect": false,
+            "questionId": 1687040178111,
+            "id": 1687040178138
+          }
+        ]
+      }
+    ]
   }
 ]
