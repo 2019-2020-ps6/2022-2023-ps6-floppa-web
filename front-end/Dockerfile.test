@@ -1,0 +1,18 @@
+FROM node:16.16.0-alpine AS build
+
+WORKDIR /playwright
+
+RUN apk add sed
+ARG PORT
+
+COPY playwright.config.ts package.json package-lock ./
+COPY ./e2e e2e/
+
+RUN npm install --save-dev playwright @playwright/test
+
+# Prod
+FROM mcr.microsoft.com/playwright:v1.34.0-jammy
+
+USER pwuser
+
+CMD ["npm", "run", "test:e2e;"]

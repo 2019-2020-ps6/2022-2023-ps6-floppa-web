@@ -2,8 +2,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { Subscription } from 'rxjs';
 import Swal from 'sweetalert2';
-import { login } from 'src/mocks/quiz-list.mock';
 import { HomeService } from 'src/services/home.service';
+
 @Component({
     selector: 'app-home-profiles',
     templateUrl: './home.component.html',
@@ -60,7 +60,7 @@ export class HomeComponent implements OnInit, OnDestroy {
           if (result.value.code===psw) {
               clearInterval(this.timer);
               clearInterval(this.countdownInterval);
-              this.router.navigate(["/user-management"]);
+              this.router.navigate(["/caregiver-home"]);
           }
         })
         setTimeout(() => {

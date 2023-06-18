@@ -9,24 +9,23 @@
         <h1>{{user.firstName}} {{user.lastName}}</h1>
       </div>
       <div>
-
-        <img id="quiz-img" src={{this.quiz.coverImage}} alt="quiz-img-{{quiz.name}}">
+        <img id="quiz-img" src={{this.quiz.coverImage}} onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
         <h4 style="align-self:center; margin-right: 10px;">{{quiz.name}}</h4>
       </div>
     </div>
     <div class="content">
       <div class="info">
         <h2 *ngIf="type==='global'">Nombre de tentatives : {{this.numberTry}}</h2>
-        <h2 *ngIf="this.lastGame===0 && type==='global'">Dernière partie : Aujourd'hui</h2>
-        <h2 *ngIf="this.lastGame===1 && type==='global'">Dernière partie: Il y a 1 jour</h2>
-        <h2 *ngIf="this.lastGame>1 && type==='global'">Dernière partie: Il y a {{this.lastGame}} jours</h2>
-        <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('progression')">Progression</span>: <span [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
-        <h2 *ngIf="type==='date'"><span class="underline" (click)="showHelp('error')">Similitude d'erreur</span>: <span [ngClass]="{'positive': errorSimilarity < 50, 'negative': errorSimilarity > 50}">{{errorSimilarity}}%</span></h2>
-        <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('globalError')">Similitude d'erreur</span>: <span [ngClass]="{'positive': globalErrorSimilarity < 50, 'negative': globalErrorSimilarity > 50}">{{globalErrorSimilarity}}%</span> (<span (click)="showProblematicQuestions()" class="underline">voir questions problématiques</span>)</h2>
-        <h2 *ngIf="type==='global'"><span class="underline" (click)="showHelp('time')">Temps moyen par question</span>: {{meanTime}}s (<span [ngClass]="{'positive':timeProgression < 0, 'negative':timeProgression > 0}">{{timeProgression}}s</span>)</h2>
+        <h2 *ngIf="this.lastGame===0 && type==='global' && this.numberTry > 0">Dernière partie : Aujourd'hui</h2>
+        <h2 *ngIf="this.lastGame===1 && type==='global' && this.numberTry > 0">Dernière partie: Il y a 1 jour</h2>
+        <h2 *ngIf="this.lastGame>1 && type==='global' && this.numberTry > 0">Dernière partie: Il y a {{this.lastGame}} jours</h2>
+        <h2 id="selectable"*ngIf="type==='global'"><span class="underline" (click)="showHelp('progression')">Progression</span>: <span (click)="showHelp('progression')" [ngClass]="{'positive': this.progression > 0, 'negative': this.progression < 0}">{{this.progression}}%</span></h2>
+        <h2 id="selectable" *ngIf="type==='date'"><span class="underline" (click)="showHelp('error')">Similitude d'erreur</span>: <span (click)="showHelp('error')" [ngClass]="{'positive': errorSimilarity < 50, 'negative': errorSimilarity > 50}">{{errorSimilarity}}%</span></h2>
+        <h2 id="selectable" *ngIf="type==='global'"><span class="underline" (click)="showHelp('globalError')">Similitude d'erreur</span>: <span (click)="showHelp('globalError')" [ngClass]="{'positive': globalErrorSimilarity < 50, 'negative': globalErrorSimilarity > 50}">{{globalErrorSimilarity}}%</span> (<span (click)="showProblematicQuestions()" class="underline">voir questions problématiques</span>)</h2>
+        <h2 id="selectable" *ngIf="type==='global' && this.numberTry > 0"><span class="underline" (click)="showHelp('time')">Temps moyen par question</span>: {{meanTime}}s (<span (click)="showHelp('time')"[ngClass]="{'positive':timeProgression < 0, 'negative':timeProgression > 0}">{{timeProgression}}s</span>)</h2>
       </div>
       <div class="chart">
-        <select (change)="updateChart($event.target.value)" style="border-radius: 5px; padding: 10px;">
+        <select id="selectable" (change)="updateChart($event.target.value)" style="width:300px; height:50px;border-radius: 5px; padding: 10px;">
           <option value="Global">Global</option>
           <option *ngFor="let date of dates" value="{{date}}">{{date}}</option>
         </select>
@@ -34,4 +33,3 @@
       </div>
     </div>
 </div>
-  

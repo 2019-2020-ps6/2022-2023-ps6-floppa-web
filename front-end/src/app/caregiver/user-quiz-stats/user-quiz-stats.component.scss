@@ -1,5 +1,5 @@
 @import '~chart.js/dist/Chart.css';
-
+@import '../../../styles.scss';
 #back {
     margin-top: 10px;
     max-width: 121px;
@@ -17,6 +17,7 @@ hr {
     max-width: 200px;
     max-height: 200px;
     border-radius: 50%;
+    object-fit: cover;
 }
 
 h2 {
@@ -25,9 +26,10 @@ h2 {
 }
 
 #quiz-img {
-    max-width: 166px;
-    max-height: 166px;
+    width: 166px;
+    height: 166px;
     border-radius: 25px;
+    object-fit: cover;
 }
 
 .positive {

@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewChild, ElementRef,AfterViewInit } from '@angular/core';
 import { Association, Connection } from 'src/models/association.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { User } from 'src/models/user.model';
 import { QuizService } from 'src/services/quiz.service';
 import { QuestionService } from 'src/services/question.service';
@@ -36,14 +35,15 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     public user: User;
 
     @Output()
-    answer = new EventEmitter<number>();
+    answer = new EventEmitter<boolean>();
 
     @Output()
-  nextQuestion = new EventEmitter<void>();
+    nextQuestion = new EventEmitter<void>();
 
     constructor(private route: ActivatedRoute, public quizService: QuizService, public questionService: QuestionService) {
-        
-    }
+        }
+
+    
 
     ngAfterViewInit() {
         // Access the SVG element here
@@ -57,15 +57,18 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
             this.associationToPlay.isCorrect = false;
             this.questionService.getConnections(Number(id),Number(this.associationToPlay.id)).subscribe((connections) => {
                 this.connections = connections;
+                console.log(connections);
                 for(const element of connections){
-                    this.shuffledValuesToConnect.push([element.valueToConnect, element.imageCoverToConnect]);
-                    this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.imageCoverToBeConnected]);
+                    this.shuffledValuesToConnect.push([element.valueToConnect, element.coverImageToConnect]);
+                    this.shuffledValuesToBeConnected.push([element.valueToBeConnected, element.coverImageToBeConnected]);
                 }
                 
                 this.shuffledValuesToConnect = this.shuffle(this.shuffledValuesToConnect);
                 this.shuffledValuesToBeConnected = this.shuffle(this.shuffledValuesToBeConnected);
                 
                 this.currentLines = [...Array(this.shuffledValuesToConnect.length)].map(e => Array(this.shuffledValuesToBeConnected.length));
+                console.log(this.shuffledValuesToConnect);
+                console.log(this.shuffledValuesToBeConnected);
             })
         })
     }
@@ -179,7 +182,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
             let connectionToCheck = this.connections.find((connectionToCheck) => connectionToCheck.valueToConnect === connection[0] && connectionToCheck.valueToBeConnected === connection[1]);
 
             if(!connectionToCheck){
-                console.log("Incorrect");
+                console.log(false);
                 this.answer.emit();
                 this.resetAssociation();
                 return;
@@ -189,7 +192,7 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
         console.log("Correct");
         this.associationToPlay.isCorrect = true;
         this.questionService.updateAssociation(Number(id),Number(this.associationToPlay.id),this.associationToPlay);
-        this.answer.emit();
+        this.answer.emit(true);
         this.resetAssociation();
     }
 

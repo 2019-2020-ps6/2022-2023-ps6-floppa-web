@@ -4,6 +4,23 @@
     width:100px;
     height:100px;
     border-radius: 50%;
+    object-fit: cover;
+}
+
+.add-user-img{
+  width:75px;
+  height:75px;
+}
+
+.quiz-img{
+  width: 100%;
+  max-width: 200px;
+  max-height: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  border-radius: 44px;
+  margin-right:20px;
+  object-fit: cover;
 }
 
 .top {

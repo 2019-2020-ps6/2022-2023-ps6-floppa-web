@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Theme } from 'src/models/theme.model';
 import Swal from 'sweetalert2';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Quiz } from 'src/models/quiz.model';
 import { ThemeService } from 'src/services/theme.service';
 import { QuizService } from 'src/services/quiz.service';
@@ -16,7 +14,6 @@ import { QuizService } from 'src/services/quiz.service';
 })
 export class ThemeEditorComponent implements OnInit {
   public themeList: Theme[];
-  public static counter: number = THEME_QUIZ_LIST.length;
 
   constructor(private router: Router, private route: ActivatedRoute, public themeService: ThemeService, public quizService: QuizService) {
 
@@ -31,10 +28,6 @@ export class ThemeEditorComponent implements OnInit {
 
   goToTheme(themeIndex: number): void {
     this.router.navigate(["/quiz-editor/" + themeIndex]);
-  }
-
-  themeNotExists(themeTitle: string): boolean {
-    return THEME_QUIZ_LIST.map(theme => theme.title).find(title => title === themeTitle) !== undefined;
   }
   
 
@@ -62,21 +55,26 @@ export class ThemeEditorComponent implements OnInit {
         const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
         const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
         const title = titleInput.value;
-        const image = imageInput.value;
+        let image = imageInput.value;
+        image.trim();
+        let themeExists = this.themeList.map(theme => theme.title).find(otherTitle => otherTitle === title) === undefined;
         if (!title) {
           Swal.showValidationMessage("Veuillez saisir un titre pour le thème")
         }
-        else if (this.themeNotExists(title)) {
+        if(!image|| image === "") {
+          image = "/assets/default.png";
+        }
+        else if (!themeExists) {
           Swal.showValidationMessage("Ce thème existe déjà")
         }
         return { title: title, image: image}
       }
     }).then((result) => {
-      console.log(result);
       let themeToPush: any = {
         title: result.value.title,
-        coverImage: result.value.image
+        coverImage: result.value.image.replace(/\s+/g, '')
       };
+
       this.themeService.addTheme(themeToPush);
       this.themeService.getThemes().subscribe((themes) => {
         this.themeList = themes;
@@ -122,6 +120,8 @@ export class ThemeEditorComponent implements OnInit {
               this.quizService.deleteQuiz(quizzes[i]);
             }
           }
+          window.location.reload();
+
         }
       });
     })

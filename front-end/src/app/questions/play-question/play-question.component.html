@@ -5,7 +5,7 @@
             <h2 style="align-self: center;">Accueil</h2>
         </div>
         <h1 style="text-align:center;flex: 1;display: flex;justify-content: center;">{{quiz.questions[numQuestion-1].label}}</h1>
-        <div style="margin-left:100px;justify-content:right;flex: 1;display: flex; display:flex;flex-direction: column; align-items: center; " (click)="goToNextQuestion()">
+        <div style="justify-content:right;flex: 1;display: flex; display:flex;flex-direction: column; align-items: center; " (click)="goToNextQuestion()">
             <img src="/assets/next.png" alt="next-img" id="next">
             <h2 style="align-self: center;">Question Suivante</h2>
         </div>
@@ -13,9 +13,9 @@
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:80%;">
         <div *ngFor="let answer of question.answers; let i=index">
             <div class="answer" id="selectable" style="display:flex; flex-direction:column; align-items: center;">
-                <button id="button-card" style="font-size: 14px;" *ngIf="answer.value != null" (click)="check(i+1)"
+                <button class="button-card" style="font-size: 20px;" *ngIf="answer.value != null" (click)="check(i+1)"
                 [ngClass]="{'correct-answer': answer.isCorrect && assistance % 1000 > 100}">{{answer.value}}</button>
-                <img *ngIf="answer.img != ''" class="img-answer" alt="answer-{{i+1}}" src="{{answer.img}}" (click)="check(i+1)" 
+                <img *ngIf="answer.img != ''" onerror="this.onerror=null; this.src='/assets/quiz-img/selectionner.png'; this.style='width:200px; height: auto;'" class="img-answer" alt="answer-{{i+1}}" src="{{answer.img}}" (click)="check(i+1)" 
                 [ngClass]="{'correct-answer': answer.isCorrect && assistance % 1000 > 100}">
             </div>
         </div>

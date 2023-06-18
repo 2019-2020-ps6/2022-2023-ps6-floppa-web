@@ -20,12 +20,12 @@ export class QuestionComponent implements OnInit {
 
   constructor(private quizService: QuizService) { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   delete(): void {
     //this.deleteQuestion.emit(this.question);
     this.quizService.deleteQuestionFromQuiz(this.quiz, this.question);
+    window.location.reload();
   }
 
 }

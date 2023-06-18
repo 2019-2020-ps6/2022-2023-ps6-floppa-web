@@ -5,8 +5,6 @@ import { Quiz } from '../../../models/quiz.model';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
 import { Theme } from 'src/models/theme.model';
-import { USER_LIST } from 'src/mocks/user-list.mock';
-import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { UserService } from 'src/services/user.service';
 import { ThemeService } from 'src/services/theme.service';
 
@@ -51,11 +49,6 @@ export class QuizListComponent implements OnInit {
         }
       })
     });
-    /*for (let i=0; i<QUIZ_LIST.length; i++) {
-      if (THEME_QUIZ_LIST[this.themeIndex].title === QUIZ_LIST[i].theme) {
-        this.quizList.push(QUIZ_LIST[i]);
-      }
-    }*/
   }
 
   ngOnInit(): void {

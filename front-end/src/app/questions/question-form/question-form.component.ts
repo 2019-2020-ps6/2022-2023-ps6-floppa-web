@@ -4,7 +4,6 @@ import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
 import { Question } from 'src/models/question.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST, THEME_QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { QuestionService } from 'src/services/question.service';
 import { AnswerService } from 'src/services/answer.service';
 
@@ -43,7 +42,7 @@ export class QuestionFormComponent implements OnInit {
   private createAnswer(): FormGroup {
     return this.formBuilder.group({
       value:['', Validators.required],
-      img:'',
+      img:['', Validators.required],
       isCorrect: false,
     });
   }
@@ -77,9 +76,10 @@ export class QuestionFormComponent implements OnInit {
     const question = this.questionForm.getRawValue() as Question;
     this.questionService.addQuestion({label: question.label, quizId: Number(this.quizId)}, Number(this.quizId)).subscribe((newQuestion) => {
       for (let answer of question.answers) {
+        answer.img = answer.img.replace(/\s+/g, '')
         this.answerService.addAnswer({...answer, questionId: Number(newQuestion.id)}, Number(this.quizId), Number(newQuestion.id)).subscribe();
       }
     });
-    this.initializeQuestionForm();
+    //this.initializeQuestionForm();
   }
 }

@@ -28,6 +28,7 @@ export class AssociationComponent implements OnInit {
 
     delete(): void {
         this.quizService.deleteAssociationFromQuiz(this.quiz, this.association);
+        window.location.reload();
     }
     
 }

@@ -2,14 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Observable } from 'rxjs';
-import { login } from 'src/mocks/quiz-list.mock';
 import { Login } from 'src/models/login.model';
 import { newArray } from '@angular/compiler/src/util';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HomeService {
+
+  private loginUrl = environment.apiUrl+"/login";
+
   constructor(private http: HttpClient) {
   }
 
@@ -25,7 +28,7 @@ export class HomeService {
         id: pswId,
         password: newPassword
       };
-      return this.http.put<Login>("http://localhost:9428/api/login/"+pswId, newLogin).subscribe(
+      return this.http.put<Login>(this.loginUrl+"/"+pswId, newLogin).subscribe(
         res => {
           console.log(res);
         },
@@ -38,7 +41,7 @@ export class HomeService {
   getLogin(): Observable<Login> {
     // const headers = new HttpHeaders().set('Authorization', 'Bearer your_token_here');
     // const urlWithId = this.passwordUrl + '/' + encodeURIComponent(password.password);
-    return this.http.get<Login>("http://localhost:9428/api/login/1686835438071");
+    return this.http.get<Login>(this.loginUrl+"/1686835438071");
     //return this.http.get<string>(urlWithId, { ...this.httpOptions, headers });
   }
 }

@@ -5,8 +5,8 @@ import { QuizSession, User } from '../models/user.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { ThisReceiver } from '@angular/compiler';
 import { UserEditComponent } from 'src/app/users/user-edit/user-edit.component';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { Quiz } from 'src/models/quiz.model';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,7 @@ export class UserService {
   /*
    The list of user.
    */
-  private users: User[] = USER_LIST;
+  private users: User[];
 
   /*
    Observable which contains the list of the user.
@@ -25,16 +25,14 @@ export class UserService {
 
   public userSelected$: Subject<User> = new Subject();
 
-  private userUrl = serverUrl + '/users';
-
-  private httpOptions = httpOptionsBase;
+  private userUrl = environment.apiUrl+"/users";
 
   constructor(private http: HttpClient) {
     this.retrieveUsers();
   }
 
   getUsers(): Observable<User[]> {
-    return this.http.get<User[]>("http://localhost:9428/api/users");
+    return this.http.get<User[]>(this.userUrl);
   }
 
   retrieveUsers(): void {
@@ -43,12 +41,12 @@ export class UserService {
 
   getUser(userId: string): Observable<User> {
     const urlWithId = this.userUrl + '/' + userId;
-    return this.http.get<User>("http://localhost:9428/api/users/"+userId);
+    return this.http.get<User>(this.userUrl+"/"+userId);
   }
 
   addUser(user: User): void {
     console.log(user);
-    this.http.post<User>("http://localhost:9428/api/users", user).subscribe(
+    this.http.post<User>(this.userUrl, user).subscribe(
       res => {
         console.log(res);
       },
@@ -70,7 +68,7 @@ export class UserService {
 
   deleteUser(user: User): void {
     const userId = user.id;
-    this.http.delete<User>("http://localhost:9428/api/users/"+userId).subscribe(
+    this.http.delete<User>(this.userUrl+"/"+userId).subscribe(
       res => {
         console.log(res);
       },
@@ -90,7 +88,7 @@ export class UserService {
     console.log(user.id);
 
     const userId = user.id;
-    this.http.put<User>("http://localhost:9428/api/users/"+userId, user).subscribe(
+    this.http.put<User>(this.userUrl+"/"+userId, user).subscribe(
       res => {
         console.log(res);
       },
@@ -98,20 +96,6 @@ export class UserService {
         console.log('Error occured:' , err);
       }
     );
-
-  //   const index = parseInt(user.id)-1;
-  //   console.log(index);
-  //   if (parseInt(user.id)-1 >= 0) {
-  //     console.log("hello");
-  //     this.users[index].firstName = user.firstName;
-  //     this.users[index].lastName = user.lastName;
-  //     this.users[index].alzheimerStade = user.alzheimerStade;
-  //     this.users[index].assistance = user.assistance;
-  //     this.users[index].photo = user.photo;
-  //     this.users[index].timer = user.timer;
-
-  //     console.log(this.users);
-  //   }
   }
 
   createQuizSession(user: User, quiz: Quiz): void {
@@ -123,7 +107,7 @@ export class UserService {
       userId: user.id
     }
 
-    this.http.put<User>("http://localhost:9428/api/users/" + user.id + '/quizSession', quizSession)
+    this.http.put<User>(this.userUrl+"/" + user.id + '/quizSession', quizSession)
       .subscribe(
         (res) => {
           console.log(res);
@@ -137,7 +121,7 @@ export class UserService {
   updateQuizSession(user: User, isCorrect: boolean, elapsedTime: number, quizSessionId: number): void {
     const req = {answer: isCorrect, time: Math.round(elapsedTime/1000)};
     console.log(req);
-    this.http.put<User>("http://localhost:9428/api/users/" + user.id + '/quizSession/' + String(quizSessionId), req)
+    this.http.put<User>(this.userUrl+"/" + user.id + '/quizSession/' + String(quizSessionId), req)
       .subscribe(
         (res) => {
           console.log(res);

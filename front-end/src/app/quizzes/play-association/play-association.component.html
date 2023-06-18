@@ -1,25 +1,29 @@
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
-    <div style="display: inline-block;">
-        <label style="font-weight: bold; font-size: 35px;">{{associationToPlay.label}}</label>
-        <Button class="validate-button" style= "position:relative; width:100px; height:60px; margin: 5px; font-size: 20px;" (click)="check()">Valider</Button>
-        <Button class="validate-button" style= "position:relative; width:150px; height:60px; margin: 10px; font-size: 20px;" (click)="deleteAllConnections()">Réinitialiser</Button>
-    </div>
-    <div style="display:flex; flex-direction: row; justify-content: space-between; width:100%">
-        <div style="display:flex;flex-direction: column; align-items: center; justify-content: flex-start;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+    <div style="display:flex; flex-direction: row; width:100%;  gap: 20px;">
+        <div style="flex: 1;display: flex;justify-content:left;display:flex;flex-direction: column; align-items: center;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
             <img src="/assets/home.png" alt="home-img" id="home">
             <h2 style="align-self: center;">Accueil</h2>
         </div>
-        <div style="display:flex;flex-direction: column; align-items: center;" (click)="goToNextQuestion()">
+        <div style="display: flex; flex-direction: column; align-items: center;">
+            <label style="font-weight: bold; font-size: 35px;">{{associationToPlay.label}}</label>
+            <div style="display: inline-block;">
+            <Button class="validate-button" style= "position:relative; width:150px; height:60px; margin: 10px; font-size: 20px;" (click)="deleteAllConnections()">Réinitialiser</Button>
+            <Button *ngIf="this.currentConnections.length != 0" class="validate-button" style= "position:relative; width:100px; height:60px; margin: 5px; font-size: 20px;" (click)="check()">Valider</Button>
+        </div>
+        </div>
+            <div style="justify-content:right;flex: 1;display: flex; display:flex;flex-direction: column; align-items: center; " (click)="goToNextQuestion()">
             <img src="/assets/next.png" alt="next-img" id="next">
-            <h2>Question Suivante</h2>
+            <h2 style="align-self: center;">Question Suivante</h2>
         </div>
     </div>
+    <label *ngIf="selectedRight == '' && selectedLeft == ''" style="color:#485dd0; font-style: bold;">Sélectionnez un bouton</label>
+    <label *ngIf="selectedRight != '' || selectedLeft != ''" style="color:#485dd0; font-style: bold;">Sélection : {{selectedRight}}{{selectedLeft}}</label>
     <div class = "association-game">
         <div class= "connectors-left">
             <div *ngFor = "let value of shuffledValuesToConnect; let i=index" >
                 <div id="selectable" style="display: flex; margin-top:50px;  flex-basis: 0;">
-                    <img style="margin-right: 50px; transform: scale(1.5); display: block; max-width:500px; max-height:100px; border-radius: 20px;"alt = "left-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != null && value[0] != null" (click)="selectLeft(value[0], i)">
-                    <Button on attr.id = "left-button{{i}}" style="width: 500px; height:100px; font-size: 25px;" class = "button" *ngIf = "value[0] != null" (click)="selectLeft(value[0], i)">
+                    <img style="margin-right: 50px; transform: scale(1.5); display: block; max-width:500px; max-height:100px; border-radius: 20px;"alt = "left-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != '' && value[0] != null" (click)="selectLeft(value[0], i)">
+                    <Button attr.id = "left-button{{i}}" style="width: 500px; height:100px;max-width: 500px; font-size: 25px;" class = "button" *ngIf = "value[0] != null" (click)="selectLeft(value[0], i)">
                         {{value[0]}}
                     </Button>
                 </div>
@@ -31,12 +35,12 @@
                     <Button attr.id = "right-button{{i}}" style="width: 500px; height:100px; font-size: 25px;" class = "button" *ngIf = "value[0] != null" (click)="selectRight(value[0], i)">
                         {{value[0]}}
                     </Button>
-                    <img style="transform: scale(1.5); display: block; max-width:500px;  margin-left: 50px; max-height:100px; border-radius: 20px;" alt = "right-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != null && value[0] != null" (click)="selectRight(value[0], i)">
+                    <img style="transform: scale(1.5); display: block; max-width:500px;  margin-left: 50px; max-height:100px; border-radius: 20px;" alt = "right-image{{i}}" src="{{value[1]}}" *ngIf = "value[1] != '' && value[0] != null" (click)="selectRight(value[0], i)">
                 </div>
             </div>
         </div>
     </div>
 </div>
-<svg #linescontainer style="position: absolute; width:100%; height:100%; top: 0;
+<svg #linescontainer style="position: absolute; width:110%; height:100%; top: 0;
 left: 0; pointer-events: none;">
 </svg>

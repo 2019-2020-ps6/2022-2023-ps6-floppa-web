@@ -3,7 +3,6 @@ import { ActivatedRoute } from '@angular/router';
 
 import { User } from '../../../models/user.model';
 import { UserService } from '../../../services/user.service';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 
 @Component({
   selector: 'app-user-list',

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject, Observable } from 'rxjs';
 import { Quiz } from '../models/quiz.model';
-import { QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Question } from '../models/question.model';
 import { serverUrl, httpOptionsBase } from '../configs/server.config';
 import { Association } from '../models/association.model';
-import { THEME_QUIZ_LIST } from '../mocks/quiz-list.mock';
 import { Theme } from '../models/theme.model';
 import { User } from 'src/models/user.model';
 import { QuestionService } from './question.service';
+import { environment } from 'src/environments/environment'; 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -23,7 +23,7 @@ export class QuizService {
    The list of quiz.
    The list is retrieved from the mock.
    */
-  private quizzes: Quiz[] = QUIZ_LIST;
+  private quizzes: Quiz[];
 
   private score: number = 0;
   /*
@@ -31,11 +31,11 @@ export class QuizService {
    Naming convention: Add '$' at the end of the variable name to highlight it as an Observable.
    */
   public quizzes$: BehaviorSubject<Quiz[]>
-    = new BehaviorSubject(this.quizzes);
+    = new BehaviorSubject([]);//(this.quizzes);
 
   public quizSelected$: Subject<Quiz> = new Subject();
 
-  private quizUrl = serverUrl + '/quizzes';
+  private quizUrl = environment.apiUrl + '/quizzes';
   private questionsPath = 'questions';
   private associationsPath = 'associations';
 
@@ -53,11 +53,11 @@ export class QuizService {
   }
 
   getQuizData(): Observable<Quiz[]> {
-    return this.http.get<Quiz[]>('http://localhost:9428/api/quizzes');
+    return this.http.get<Quiz[]>(this.quizUrl);
   }
 
   addQuiz(quiz: Quiz): void {
-    this.http.post<Quiz>(this.quizUrl, quiz, this.httpOptions)
+    this.http.post<Quiz>(this.quizUrl, quiz)
       .subscribe(
         (res) => {
           console.log(res);
@@ -104,7 +104,7 @@ export class QuizService {
   }
   //temporaire, à changer pour le back end
   deleteQuestionFromQuiz(quiz: Quiz, question: Question): void {
-    this.http.delete<Question>("http://localhost:9428/api/quizzes/"+quiz.id+"/questions/"+question.id)
+    this.http.delete<Question>(this.quizUrl+"/"+quiz.id+"/questions/"+question.id)
     .subscribe(
       (res) => {
         console.log(res);
@@ -116,7 +116,7 @@ export class QuizService {
   }
 
   deleteAssociationFromQuiz(quiz: Quiz, association: Association): void {
-    this.http.delete<Association>("http://localhost:9428/api/quizzes/"+quiz.id+"/associations/"+association.id)
+    this.http.delete<Association>(this.quizUrl+"/"+quiz.id+"/associations/"+association.id)
     .subscribe(
       (res) => {
         console.log(res);
@@ -142,8 +142,8 @@ export class QuizService {
 
   addUserToQuiz(quiz: Quiz, user: User): void {
     quiz.users.push(user.id);
-    console.log('http://localhost:9428/api/quizzes/'+quiz.id);
-    this.http.put<Quiz>('http://localhost:9428/api/quizzes/'+quiz.id,quiz).subscribe(
+    console.log(this.quizUrl+''+quiz.id);
+    this.http.put<Quiz>(this.quizUrl+'/'+quiz.id,quiz).subscribe(
       (res) => {
         console.log(res);
       },
@@ -154,7 +154,7 @@ export class QuizService {
   }
 
   removeUserToQuiz(quiz: Quiz): void {
-    this.http.put<Quiz>('http://localhost:9428/api/quizzes/'+quiz.id,quiz).subscribe(
+    this.http.put<Quiz>(this.quizUrl+'/'+quiz.id,quiz).subscribe(
       (res) => {
         console.log(res);
       },

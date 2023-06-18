@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
 import { UserService } from 'src/services/user.service';
 import { Location } from '@angular/common';
 import { HomeService } from 'src/services/home.service';
-import { login } from 'src/mocks/quiz-list.mock';
 import Swal from 'sweetalert2';
 
 @Component({
@@ -114,13 +112,12 @@ export class UserManagementComponent implements OnInit {
           if (oldMdp != oldLoginPassword){
             Swal.showValidationMessage("Veuillez saisir le bon mot de passe actuel.")
           }
-  
           if(oldMdp === newMdp) {
             Swal.showValidationMessage("Vous venez de saisir le même mot de passe actuel. Veuillez saisir un nouveau mot de passe.")
           }
           return { oldMdp: oldMdp, newMdp: newMdp}
         }
-      }).then((result) => {
+        }).then((result) => {
         let newMdp = result.value.newMdp;
         this.changePassword(newMdp);
       })
