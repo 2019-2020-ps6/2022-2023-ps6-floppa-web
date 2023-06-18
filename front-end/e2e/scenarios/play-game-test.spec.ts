@@ -1,9 +1,11 @@
 import { test, expect } from '@playwright/test';
-import { testUrl } from 'e2e/e2e.config';
+import { homeProfilChoiceUrl } from 'e2e/e2e.config';
+import { userManagementUrl } from 'e2e/e2e.config';
+import { statsValeriePentacleUrl } from 'e2e/e2e.config';
 
 test.describe('Play Game Valerie Pentacle and see stats', () => {
     test('Play Game Valerie Pentacle', async ({ page }) => {
-        await page.goto('http://localhost:4200/home-profil-choice');
+        await page.goto(homeProfilChoiceUrl);
         await page.getByAltText('user-img-Valerie-Pentacle').click();
         await page.getByAltText('theme-Les Animaux').click();
         await page.getByAltText('quiz-img-Les félins').click();
@@ -38,7 +40,7 @@ test.describe('Play Game Valerie Pentacle and see stats', () => {
     })
 
     test('See statisques after game',async ({page}) => {
-        await page.goto('http://localhost:4200/user-management');
+        await page.goto(userManagementUrl);
 
         await expect(page.getByTestId('add-button')).toBeVisible();
         
@@ -50,7 +52,7 @@ test.describe('Play Game Valerie Pentacle and see stats', () => {
         await expect(page.getByText('Valerie Pentacle')).toBeVisible();
         await expect(page.getByAltText('user-img')).toBeVisible();
         await page.getByRole('button', { name : 'Statistiques par quiz'}).click();
-        await expect(page).toHaveURL('http://localhost:4200/theme-list/Valerie-Pentacle/stats');
+        await expect(page).toHaveURL(statsValeriePentacleUrl);
         await expect(page.getByText('Choisissez un thème')).toBeVisible();
         await page.getByAltText('theme-Les Animaux').click();
         await expect(page.getByText('Valerie Pentacle')).toBeVisible();
