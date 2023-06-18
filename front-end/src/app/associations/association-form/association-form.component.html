@@ -21,12 +21,12 @@
         <div class="answer-form" [formGroupName]="i" style="display:flex;">
             <label style="font-weight: bold; margin-right: 10px;">Connexion {{i + 1}}</label>
             <div style="display:flex; flex-direction: column;">
-              <input placeHolder = "Label" class= "input-text" type="text" [formControlName]="'valueToConnect'" maxlength="30">
+              <input placeHolder = "Label" class= "input-text" type="text" [formControlName]="'valueToConnect'" maxlength="15">
               <input placeHolder = "Lien d'image" class= "input-text" type="text" [formControlName]="'coverImageToConnect'">
             </div>
             <img style= "padding:5px;" alt="->" width = "30x"  height= "auto" src="/assets/quiz-editor/association-arrow.svg"> 
             <div style="display:flex; flex-direction: column;">
-              <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'" maxlength="20">
+              <input class = "input-text" type="text" [formControlName]="'valueToBeConnected'" maxlength="15">
               <input class= "input-text" type="text" [formControlName]="'coverImageToBeConnected'">
             </div>
         </div>

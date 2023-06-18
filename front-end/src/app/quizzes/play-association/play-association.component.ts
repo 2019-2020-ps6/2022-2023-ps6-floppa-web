@@ -41,8 +41,9 @@ export class PlayAssociationComponent implements AfterViewInit, OnInit {
     nextQuestion = new EventEmitter<void>();
 
     constructor(private route: ActivatedRoute, public quizService: QuizService, public questionService: QuestionService) {
-        
-    }
+        }
+
+    
 
     ngAfterViewInit() {
         // Access the SVG element here

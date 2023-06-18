@@ -1,16 +1,14 @@
 @import "../../../styles.scss";
 @import "../../../styles/card.scss";
 
-h1{
-    margin:0px;
-}
+
 
 .img-answer {
-    max-width: 250px;
-    max-height: 250px;
-    object-fit: contain;
-    margin-left: 80px;
-    margin-right: 80px;
+    width: 230px;
+    height: 230px;
+    object-fit: cover;
+    margin-left: 20px;
+    margin-right: 20px;
     margin-bottom: 10px;
 }
 
@@ -25,6 +23,7 @@ h1{
     background-color: $white;
     border: solid 1px $blue;
     border-radius: 10px;
+    width:fit-content;
     font-weight: bold;
     padding: 0.5em 1em;
 }

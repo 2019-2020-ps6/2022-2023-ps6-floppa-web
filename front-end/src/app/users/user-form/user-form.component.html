@@ -74,7 +74,7 @@
         </div>
         <br>
       </label>
-      <button type="submit" class="create-user-button" (click)="addUser()" routerLink="/user-management">Créer utilisateur</button>
+      <button [disabled]="!this.isFormValid()" type="submit" class="create-user-button" (click)="addUser()" routerLink="/user-management">Créer utilisateur</button>
     </div>
     
 

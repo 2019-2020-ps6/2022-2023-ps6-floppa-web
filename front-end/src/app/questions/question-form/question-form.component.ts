@@ -76,6 +76,7 @@ export class QuestionFormComponent implements OnInit {
     const question = this.questionForm.getRawValue() as Question;
     this.questionService.addQuestion({label: question.label, quizId: Number(this.quizId)}, Number(this.quizId)).subscribe((newQuestion) => {
       for (let answer of question.answers) {
+        answer.img = answer.img.replace(/\s+/g, '')
         this.answerService.addAnswer({...answer, questionId: Number(newQuestion.id)}, Number(this.quizId), Number(newQuestion.id)).subscribe();
       }
     });

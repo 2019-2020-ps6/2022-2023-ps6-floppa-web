@@ -103,9 +103,12 @@ export class QuizEditorComponent implements OnInit {
         const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
         const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
         const title = titleInput.value;
-        const image = imageInput.value;
+        let image = imageInput.value;
         if (!title) {
           Swal.showValidationMessage("Veuillez saisir un titre pour le quiz")
+        }
+        if(!image || image==="") {
+            image = "assets/quiz-img/default.png";
         }
         return { title: title, image: image}
       }
@@ -116,7 +119,7 @@ export class QuizEditorComponent implements OnInit {
         questions : [],
         associations : [],
         users : [],
-        coverImage : result.value.image,
+        coverImage : result.value.image.replace(/\s+/g, ''),
       };
       
       this.quizService.addQuiz(quizToCreate);

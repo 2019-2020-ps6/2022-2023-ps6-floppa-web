@@ -55,10 +55,14 @@ export class ThemeEditorComponent implements OnInit {
         const titleInput = Swal.getPopup().querySelector('#title') as HTMLInputElement;
         const imageInput = Swal.getPopup().querySelector('#image') as HTMLInputElement;
         const title = titleInput.value;
-        const image = imageInput.value;
+        let image = imageInput.value;
+        image.trim();
         let themeExists = this.themeList.map(theme => theme.title).find(otherTitle => otherTitle === title) === undefined;
         if (!title) {
           Swal.showValidationMessage("Veuillez saisir un titre pour le thème")
+        }
+        if(!image|| image === "") {
+          image = "/assets/default.png";
         }
         else if (!themeExists) {
           Swal.showValidationMessage("Ce thème existe déjà")
@@ -66,11 +70,11 @@ export class ThemeEditorComponent implements OnInit {
         return { title: title, image: image}
       }
     }).then((result) => {
-      console.log(result);
       let themeToPush: any = {
         title: result.value.title,
-        coverImage: result.value.image
+        coverImage: result.value.image.replace(/\s+/g, '')
       };
+
       this.themeService.addTheme(themeToPush);
       this.themeService.getThemes().subscribe((themes) => {
         this.themeList = themes;

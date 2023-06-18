@@ -195,6 +195,22 @@ export class UserFormComponent implements OnInit {
     }
   }
 
+  isFormValid(): boolean {
+    const newUser: User = this.userForm.getRawValue() as User;
+    const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
+
+    if (newUser.firstName == "" || newUser.lastName == "" || newUser.alzheimerStade == "") {
+      return false;
+    }
+    return true;
+  }
+
   addUser(): void {
     const userInfo: User = this.userForm.getRawValue() as User;
     const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
@@ -209,12 +225,16 @@ export class UserFormComponent implements OnInit {
       firstName: userInfo.firstName,
       lastName: userInfo.lastName,
       alzheimerStade: userInfo.alzheimerStade,
-      photo: userInfo.photo,
+      photo: userInfo.photo.replace(/\s+/g, ''),
       timer: Number(timers.timerMinute) + Number(timers.timerSeconds)/60,
       assistance: this.getAssistance(userInfo),
       quizSessions: [],
       id:""
     };
+
+    if(userToCreate.photo == "") {
+      userToCreate.photo = "assets/users/user.png"
+    }
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
   }

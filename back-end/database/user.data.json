@@ -42,6 +42,32 @@
         "timePerQuestion": [],
         "userId": 1685885719423,
         "id": 1687071134546
+      },
+      {
+        "date": 1687080065943,
+        "answers": [
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1
+        ],
+        "userId": 1685885719423,
+        "id": 1687080065948
+      },
+      {
+        "date": 1687084518765,
+        "answers": [
+          true,
+          true
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          9,
+          30
+        ],
+        "userId": 1685885719423,
+        "id": 1687084518779
       }
     ],
     "id": 1685885719423,
@@ -191,6 +217,180 @@
         ],
         "userId": 1685946978359,
         "id": 1687075055395
+      },
+      {
+        "date": 1687078724463,
+        "answers": [],
+        "quizId": 1687040010856,
+        "timePerQuestion": [],
+        "userId": 1685946978359,
+        "id": 1687078724478
+      },
+      {
+        "date": 1687079608097,
+        "answers": [
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          12
+        ],
+        "userId": 1685946978359,
+        "id": 1687079608100
+      },
+      {
+        "date": 1687080084321,
+        "answers": [
+          false,
+          true,
+          true,
+          true,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          2,
+          7,
+          1,
+          1,
+          1,
+          17
+        ],
+        "userId": 1685946978359,
+        "id": 1687080084325
+      },
+      {
+        "date": 1687080267183,
+        "answers": [
+          false,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1,
+          1,
+          53
+        ],
+        "userId": 1685946978359,
+        "id": 1687080267189
+      },
+      {
+        "date": 1687081184970,
+        "answers": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1,
+          1,
+          13,
+          4,
+          20,
+          1,
+          7
+        ],
+        "userId": 1685946978359,
+        "id": 1687081184985
+      },
+      {
+        "date": 1687081502862,
+        "answers": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          11,
+          3,
+          4,
+          2
+        ],
+        "userId": 1685946978359,
+        "id": 1687081502876
+      },
+      {
+        "date": 1687082210158,
+        "answers": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          15,
+          2,
+          37
+        ],
+        "userId": 1685946978359,
+        "id": 1687082210163
+      },
+      {
+        "date": 1687083605262,
+        "answers": [
+          false,
+          false,
+          false,
+          false,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          2
+        ],
+        "userId": 1685946978359,
+        "id": 1687083605275
+      },
+      {
+        "date": 1687083772733,
+        "answers": [
+          false,
+          false,
+          false,
+          false,
+          null,
+          false,
+          true,
+          true
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1,
+          1,
+          1,
+          1,
+          14,
+          1,
+          34,
+          2
+        ],
+        "userId": 1685946978359,
+        "id": 1687083772737
       }
     ],
     "photo": "https://cdn-icons-png.flaticon.com/512/374/374995.png",
@@ -256,6 +456,38 @@
         ],
         "userId": 1685947238439,
         "id": 1687070896371
+      },
+      {
+        "date": 1687081775423,
+        "answers": [
+          false,
+          false,
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          1,
+          1,
+          1,
+          7
+        ],
+        "userId": 1685947238439,
+        "id": 1687081775438
+      },
+      {
+        "date": 1687088758008,
+        "answers": [
+          false,
+          false
+        ],
+        "quizId": 1687040010856,
+        "timePerQuestion": [
+          3,
+          6
+        ],
+        "userId": 1685947238439,
+        "id": 1687088758014
       }
     ],
     "photo": "https://cdn-icons-png.flaticon.com/512/5255/5255937.png",

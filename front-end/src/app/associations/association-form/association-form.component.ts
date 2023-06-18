@@ -66,7 +66,8 @@ export class AssociationFormComponent implements OnInit {
     const association = this.associationForm.getRawValue() as Association;
     this.quizService.addAssociation(this.quizId, {label: association.label}).subscribe((newAssociation) => {
       for (let connection of association.connections) {
-        console.log(connection);
+        connection.coverImageToBeConnected = connection.coverImageToBeConnected.replace(/\s+/g, '');
+        connection.coverImageToConnect = connection.coverImageToConnect.replace(/\s+/g, '');
         this.questionService.addConnection(Number(this.quizId), Number(newAssociation.id),connection);
       }
     });
