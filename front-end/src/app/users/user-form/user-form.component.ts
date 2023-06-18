@@ -5,7 +5,6 @@ import { UserService } from '../../../services/user.service';
 import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import {Location} from '@angular/common';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 
 @Component({
   selector: 'app-user-form',
@@ -191,10 +190,13 @@ export class UserFormComponent implements OnInit {
     if (this.getIndice()){
       return "1001";
     }
+    else {
+      return "1000";
+    }
   }
 
-  addUser(): void {
-    const userToCreate: User = this.userForm.getRawValue() as User;
+  isFormValid(): boolean {
+    const newUser: User = this.userForm.getRawValue() as User;
     const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
     if (timers.timerMinute === null) {
       timers.timerMinute = 0;
@@ -202,10 +204,37 @@ export class UserFormComponent implements OnInit {
     if (timers.timerSeconds === null) {
       timers.timerSeconds = 0;
     }
-    userToCreate.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
-    userToCreate.assistance = this.getAssistance(userToCreate);
-    userToCreate.id = String(USER_LIST.length + 1);
-    userToCreate.quizSessions = {};
+
+    if (newUser.firstName == "" || newUser.lastName == "" || newUser.alzheimerStade == "") {
+      return false;
+    }
+    return true;
+  }
+
+  addUser(): void {
+    const userInfo: User = this.userForm.getRawValue() as User;
+    const timers: {timerMinute:number, timerSeconds: number} = this.userForm.getRawValue();
+    if (timers.timerMinute === null) {
+      timers.timerMinute = 0;
+    }
+    if (timers.timerSeconds === null) {
+      timers.timerSeconds = 0;
+    }
+
+    let userToCreate: User = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      alzheimerStade: userInfo.alzheimerStade,
+      photo: userInfo.photo.replace(/\s+/g, ''),
+      timer: Number(timers.timerMinute) + Number(timers.timerSeconds)/60,
+      assistance: this.getAssistance(userInfo),
+      quizSessions: [],
+      id:""
+    };
+
+    if(userToCreate.photo == "") {
+      userToCreate.photo = "assets/users/user.png"
+    }
     console.log(userToCreate);
     this.userService.addUser(userToCreate);
   }

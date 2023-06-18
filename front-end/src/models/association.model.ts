@@ -1,13 +1,13 @@
 export interface Connection {
     valueToConnect: string;
-    imageCoverToConnect?: string;
+    coverImageToConnect?: string;
     valueToBeConnected: string;
-    imageCoverToBeConnected?: string;
+    coverImageToBeConnected?: string;
 }
 
 export interface Association {
-    id: string;
+    id?: string;
     label: string;
-    connections: Connection[];
-    isCorrect: boolean;
+    connections?: Connection[];
+    isCorrect?: boolean;
 }

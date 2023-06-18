@@ -2,10 +2,12 @@ export interface Answer {
     value: string;
     isCorrect: boolean;
     img: string;
+    questionId: number;
 }
 
 export interface Question {
-    id: string;
+    id?: string;
     label: string;
-    answers: Answer[];
+    answers?: Answer[];
+    quizId: number;
 }

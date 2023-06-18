@@ -1,0 +1,28 @@
+<div class="top">
+    <div>
+        <img id="back" style="margin:20px" src="/assets/back.png" alt="back" routerLink="/home">
+        <h2>Retour</h2>
+    </div>
+    <h1 style="font-size: 48px; text-align: center; margin-left:200px;">
+    Page du personnel
+    </h1>
+    <div id="selectable" (click)="inputNewPassword()" style="background-color: rgb(161, 107, 255);    border: 0;
+     border-radius: 25px; font-size: 28px; font-style: bold;"><div style="padding:5%;">
+        Modifier code secret
+        <img style=" width:50px; height:50px; align-self: center;" src="/assets/edit.png" alt="edit">
+    </div>        
+</div>
+
+</div>
+<hr style="border:none;height:2px;background-color: black; width:70%">
+<div class="body">
+    <div class="button-grow" routerLink="/user-management">
+        Gérer patients
+        <img style="width:100px; height:100px; align-self: auto;" src="/assets/users/user.png" alt="edit">
+    </div>
+<div class="button-grow" routerLink="/theme-editor" data-testid="edit-button">
+    Éditeur de Quiz
+    <img style="margin:-10px;width:100px; height:100px; align-self: auto;" src="/assets/floppa_web_logo_blank.svg" alt="edit">
+</div>
+
+</div>

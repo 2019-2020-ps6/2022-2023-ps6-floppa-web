@@ -2,25 +2,25 @@
     <div style="display:flex; flex-direction: row;">
         <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
         <div style="display: flex; flex-direction: column; margin-left: 16px; align-self: center;">
-            <h4>{{quiz.name}}</h4>
+            <h2>{{quiz.name}}</h2>
         </div>
     </div>
     <div style="display: flex; flex-direction: row;">
         <h2 style="display:flex; align-self: center; float: right; margin-right: 16px;">{{user.firstName}} {{user.lastName}}</h2>
-        <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="quiz-img">
+        <img src="{{user.photo}}" alt="user-img" id="user-img" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img">
     </div>
 </div>
 
-<div id="result" style="align-items: center;">
-    <h1>Félicitations</h1>
-    <h2>vous avez terminé le quiz !</h2>
-    <h2>Vous avez réussi : {{score}}/{{quiz.questions.length + quiz.associations.length}} questions</h2>
+<div id="result" style="align-items: center; align-content: center; text-align: center;">
+    <h1 class="title">Félicitations</h1>
+    <h2>Vous avez terminé le quiz !</h2>
+    <h2>Vous avez réussi {{score}} sur {{this.quizQuestions.length + this.quizAssociations.length}} questions</h2>
 </div>
 
 <div id="goHome">
     <div style="display: flex; flex-direction: column; align-items: center;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
       <img id="home" src="/assets/home.png" alt="home">
-      <h4 style="margin-top: 10px;">Accueil</h4>
+      <h2 style="margin-top: 10px;">Accueil</h2>
     </div>
   </div>
   

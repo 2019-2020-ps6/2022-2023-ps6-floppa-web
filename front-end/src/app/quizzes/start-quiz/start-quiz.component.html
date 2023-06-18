@@ -6,7 +6,7 @@
     <div>
         <h2>{{user.firstName}} {{user.lastName}}</h2>
         <div *ngIf="user.photo !==''">
-            <img src="{{user.photo}}" alt="user-img">
+            <img class="user-img" src="{{user.photo}}" alt="user-img">
         </div>
         <div *ngIf="user.photo===''">
             <img src="/assets/users/user.png" alt="user-img">
@@ -16,5 +16,7 @@
 
 <img id="quiz-img" src="{{quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" alt="quiz-img">
 <h2 id="quiz-name">{{quiz.name}}</h2>
-<span id="nb-of-question">{{quiz.questions.length+ quiz.associations.length}} questions</span>
-<button id="start-quiz-button" routerLink="/play-quiz/{{quiz.id}}/{{0}}/{{1}}/{{user.id}}" (click)="createSession()">Démarrer le quiz</button>
+<span id="nb-of-question">{{quizQuestions.length + quizAssociations.length}} questions</span>
+<button id="start-quiz-button" *ngIf="quizQuestions.length + quizAssociations.length > 0" routerLink="/play-quiz/{{quiz.id}}/{{0}}/{{1}}/{{user.id}}" (click)="createSession()">Démarrer le quiz</button>
+<span *ngIf="this.quizQuestions.length+ this.quizAssociations.length > 0" id="nb-of-question">{{quiz.questions.length+ quiz.associations.length}} questions</span>
+<span *ngIf="this.quizQuestions.length+ this.quizAssociations.length <= 0" id="nb-of-question">Ce quiz ne contient pas encore de questions.</span>

@@ -4,11 +4,11 @@
         <h2 style="color:gray">Retour</h2>
     </div>
     <div style="display:flex">
-        <img src="{{this.quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" style="border-radius: 44px; margin-right:20px">
+        <img class="quiz-img" src="{{this.quiz.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'">
         <div>
         Titre : {{this.quiz.name}}<br>
-        Nombre de questions : {{this.quiz.questions.length}}<br>
-        Nombre d'associations : {{this.quiz.associations.length}}<br>
+        Nombre de questions : {{this.quizQuestions.length}}<br>
+        Nombre d'associations : {{this.quizAssociations.length}}<br>
         <div *ngIf="this.quiz.users.length > 0">
             Nombre de patients attribués : {{this.quiz.users.length}}<br>
         </div>
@@ -18,51 +18,54 @@
     </div>
     </div>
     <div>
-        <img style="width: 100px; height: 100px;" src="/assets/folder.png" alt="add-element" (click)="createElement()">
+        <img id="selectable" style="width: 150px; height: 150px;" src="/assets/folder.png" alt="add-element" (click)="createElement()">
         <h3>Ajouter élément de Quiz</h3>
     </div>
-    <div>
+    <div style="margin-right: 20px;">
         <img style="width: 100px; height: 100px;" src="/assets/edit.png" alt="edit">
-        <h3>PolyQuiz Editor</h3>
+        <h3 style="text-align: center; max-width: 100px;">Éditeur de Quiz</h3>
     </div>
 </div>
 
-<h1 style="display: flex; justify-content: center;">{{this.quiz.name}}</h1>
+<h1 style="display: flex; justify-content: center; font-size:32px;">{{this.quiz.name}}</h1>
 <hr style="border:none;height:1px;background-color: black; width:70%">
 
-<div style="display: flex; flex-direction: row; justify-content: center;">
+<div style="display: flex; flex-direction: row; justify-content: center; margin-left:40px;">
 
     <div style="max-width: 500px; min-width: 400px;">
         <h3>Patients attribués :</h3>
         <p style="color:gray">Cliquez sur l'icône pour ajouter un patient</p>
-        <div style="display: flex; flex-direction: row;">
-            <img class="user-img" src="/assets/users/add-user.png" alt="add-user-img" (click)="displayUserToAdd()">
-            <div *ngFor="let user of this.userList" style="display: flex; flex-direction: column; margin-left: 15px; margin-right: 15px; align-items: center;">
-                <img class="user-img" src="{{this.user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" (click)="removeUserToQuiz(user)">
+        <div style="display: flex; flex-direction: row; flex-wrap: wrap;">
+            <img id="selectable" class="add-user-img" src="/assets/users/add-user.png" alt="add-user-img" (click)="displayUserToAdd()">
+            <div *ngFor="let user of this.userListQuiz" style="display: flex; flex-direction: column; margin-left: 15px; margin-right: 15px; align-items: center;">
+                <img id="selectable" class="user-img" src="{{this.user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" (click)="removeUserToQuiz(user)">
                 <p style="display: flex; justify-content: center; align-self: center; max-width: 100px;">{{user.firstName}} {{user.lastName}}</p>
             </div>
         </div>
-        <div id="user-to-add" style="display: none; flex-direction: column;">
+        <div id="user-to-add" style="display: flex; flex-direction: column;">
             <p style="color:gray">Cliquez sur les utilisateurs que vous souhaitez ajouter</p>
-            <div style="display: flex; flex-direction: row;">
+            <div style="display: flex; flex-direction: row;flex-wrap:wrap;">
                 <div *ngFor="let user of remainingUsers" style="display: flex; flex-direction: row; align-items: center;">
                     <div style="display: flex; flex-direction: column; align-items: center;">
-                        <img class="user-img" src="{{this.user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" (click)="addUserToQuiz(user)">
+                        <img id="selectable" class="user-img" src="{{this.user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'" alt="user-img" (click)="addUserToQuiz(user)">
                         <p style="display: flex; justify-content: center; align-self: center; max-width: 100px;">{{user.firstName}} {{user.lastName}}</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <div style="display:flex; margin-left:100px;">
+        <div style="display:flex; flex-direction: column; max-width: 500px; min-width: 500px;">
+            <img src="assets/question_choice.png" style="max-width: 100px;margin-left: 50px;">
+            <h3>Questions à choix :</h3>
+            <app-question-list [quiz]="quiz"></app-question-list>
+        </div>
 
-    <div style="display:flex; flex-direction: column; max-width: 500px; min-width: 500px;">
-        <h3>Questions à choix :</h3>
-        <app-question-list [quiz]="quiz"></app-question-list>
-    </div>
-
-    <div style="display:flex; flex-direction: column; max-width: 500px; min-width: 500px;">
-        <h3>Associations :</h3>
-        <app-association-list [quiz]="quiz"></app-association-list>
+        <div style="display:flex; flex-direction: column; max-width: 500px; min-width: 500px;">
+            <img src="assets/association.png" style="max-width: 100px;margin-left: 20px">
+            <h3>Associations :</h3>
+            <app-association-list [quiz]="quiz"></app-association-list>
+        </div>
     </div>
 </div>
 

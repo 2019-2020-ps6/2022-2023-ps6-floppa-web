@@ -1,5 +1,5 @@
 <div class="association-list">
-    <div class="association" *ngFor="let association of quiz.associations">
+    <div class="association" *ngFor="let association of this.associations">
         <app-association [association]="association" [quiz] = "quiz" (editAssociation)="editAssociation($event)" (deleteAssociation)="deleteAssociation($event)"></app-association>
     </div>
   </div>

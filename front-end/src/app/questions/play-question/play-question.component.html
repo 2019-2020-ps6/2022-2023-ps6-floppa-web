@@ -1,19 +1,21 @@
-<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; margin-top: 32px;">
-    <div style="display:flex; flex-direction: row; justify-content: space-between; width:100%">
-        <div style="display:flex;flex-direction: row; align-items: center; justify-content: flex-start;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div style="display:flex; flex-direction: row; width:100%">
+        <div style="flex: 1;display: flex;justify-content:left;display:flex;flex-direction: column; align-items: center;" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
             <img src="/assets/home.png" alt="home-img" id="home">
             <h2 style="align-self: center;">Accueil</h2>
         </div>
-        <h1>{{quiz.questions[numQuestion-1].label}}</h1>
-        <div style="display:flex;flex-direction: row; align-items: center; justify-content: flex-start;" (click)="goToNextQuestion()">
-            <h2 style="align-self: center;">Question Suivante</h2>
+        <h1 style="text-align:center;flex: 1;display: flex;justify-content: center;">{{quiz.questions[numQuestion-1].label}}</h1>
+        <div style="justify-content:right;flex: 1;display: flex; display:flex;flex-direction: column; align-items: center; " (click)="goToNextQuestion()">
             <img src="/assets/next.png" alt="next-img" id="next">
+            <h2 style="align-self: center;">Question Suivante</h2>
         </div>
     </div>
     <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:80%;">
         <div *ngFor="let answer of question.answers; let i=index">
-            <div style="display:flex; flex-direction:column; align-items: center;">
-                <img class="answer" alt="answer-{{i+1}}" src="{{answer.img}}" (click)="check(i+1)" 
+            <div class="answer" id="selectable" style="display:flex; flex-direction:column; align-items: center;">
+                <button class="button-card" style="font-size: 20px;" *ngIf="answer.value != null" (click)="check(i+1)"
+                [ngClass]="{'correct-answer': answer.isCorrect && assistance % 1000 > 100}">{{answer.value}}</button>
+                <img *ngIf="answer.img != ''" onerror="this.onerror=null; this.src='/assets/quiz-img/selectionner.png'; this.style='width:200px; height: auto;'" class="img-answer" alt="answer-{{i+1}}" src="{{answer.img}}" (click)="check(i+1)" 
                 [ngClass]="{'correct-answer': answer.isCorrect && assistance % 1000 > 100}">
             </div>
         </div>

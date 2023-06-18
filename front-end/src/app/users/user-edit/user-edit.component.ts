@@ -6,7 +6,7 @@ import { User } from '../../../models/user.model';
 import { ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { USER_LIST } from 'src/mocks/user-list.mock';
+import { stringify } from 'querystring';
 
 
 @Component({
@@ -38,34 +38,28 @@ export class UserEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    let id = this.route.snapshot.paramMap.get('id');
-    this.user = this.userService.users$.getValue()[parseInt(id)-1];
-    console.log(this.user.timer)
-    let tm: number = Math.trunc(this.user.timer);
-    let ts: number = Math.round((this.user.timer - tm) * 60);
+    let id = (this.route.snapshot.paramMap.get('id')).toString();
+    console.log(id);
+    this.userService.getUser(id).subscribe((user) => {
+      this.user = user;
+      console.log(this.user)
+      console.log(this.user.timer)
+      let tm: number = Math.trunc(this.user.timer);
+      let ts: number = Math.round((this.user.timer - tm) * 60);
 
-    this.userEdit = this.formBuilder.group({
-      firstName: [this.user.firstName],
-      lastName: [this.user.lastName],
-      indice: [this.getIndice()],
-      vocale: [this.getVocale()],
-      visual: [this.getVisual()],
-      alzheimerStade: [this.user.alzheimerStade],
-      photo: [this.user.photo],
-      timerMinute: [tm],
-      timerSeconds: [ts],
+      this.userEdit = this.formBuilder.group({
+        firstName: [this.user.firstName],
+        lastName: [this.user.lastName],
+        indice: [this.getIndice(user)],
+        vocale: [this.getVocale(user)],
+        visual: [this.getVisual(user)],
+        alzheimerStade: [this.user.alzheimerStade],
+        photo: [this.user.photo],
+        timerMinute: [tm],
+        timerSeconds: [ts]
+      });
+      console.log(this.userEdit.value.indice);
     });
-    console.log(this.getVisual());
-    console.log(this.user.assistance);
-  }
-
-  getIndice(): string {
-    if (this.user.assistance == "1111" || this.user.assistance == "1101" || this.user.assistance == "1011" || this.user.assistance == "1001"){
-      return "oui";
-    }
-    else {
-      return "non";
-    }
   }
   
   setAssistanceValue(): void {
@@ -127,8 +121,8 @@ export class UserEditComponent implements OnInit {
 
   }
 
-  getVocale(): string {
-    if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1011" || this.user.assistance == "1010"){
+  getIndice(user: User): string {
+    if (user.assistance == "1111" || user.assistance == "1101" || user.assistance == "1011" || user.assistance == "1001"){
       return "oui";
     }
     else {
@@ -136,8 +130,17 @@ export class UserEditComponent implements OnInit {
     }
   }
 
-  getVisual(): string {
-    if (this.user.assistance == "1111" || this.user.assistance == "1110" || this.user.assistance == "1101" || this.user.assistance == "1100"){
+  getVocale(user: User): string {
+    if (user.assistance == "1111" || user.assistance == "1110" || user.assistance == "1011" || user.assistance == "1010"){
+      return "oui";
+    }
+    else {
+      return "non";
+    }
+  }
+
+  getVisual(user: User): string {
+    if (user.assistance == "1111" || user.assistance == "1110" || user.assistance == "1101" || user.assistance == "1100"){
       return "oui";
     }
     else {
@@ -238,12 +241,16 @@ export class UserEditComponent implements OnInit {
     if (this.getNewIndice()){
       return "1001";
     }
+
+    if (!this.getNewIndice() && !this.getNewVisual() && !this.getNewVocale()){
+      return "1000";
+    }
     else return this.user.assistance;
   }
 
 
   edit(): void {
-    const userToEdit: User = this.userEdit.getRawValue() as User;
+    const userInfo: User = this.userEdit.getRawValue() as User;
     const timers: {timerMinute:number, timerSeconds: number} = this.userEdit.getRawValue();
     if (timers.timerMinute === null) {
       timers.timerMinute = 0;
@@ -251,9 +258,17 @@ export class UserEditComponent implements OnInit {
     if (timers.timerSeconds === null) {
       timers.timerSeconds = 0;
     }
-    userToEdit.timer = Number(timers.timerMinute) + Number(timers.timerSeconds)/60;
-    userToEdit.id = this.user.id;
-    userToEdit.assistance = this.getNewAssistance(userToEdit);
+
+    let userToEdit: User = {
+      firstName: userInfo.firstName,
+      lastName: userInfo.lastName,
+      alzheimerStade: userInfo.alzheimerStade,
+      photo: userInfo.photo,
+      timer: Number(timers.timerMinute) + Number(timers.timerSeconds)/60,
+      assistance: this.getNewAssistance(userInfo),
+      quizSessions: [],
+      id: this.user.id
+    };
     console.log(userToEdit);
     this.userService.edit(userToEdit);
   }

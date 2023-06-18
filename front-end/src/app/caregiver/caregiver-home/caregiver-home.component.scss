@@ -1,0 +1,106 @@
+@import '../../../styles/variables.scss';
+@import '../../../styles.scss';
+
+.user-img {
+    max-width: 175px;
+    max-height: 175px;
+    min-width: 175px;
+    min-height: 175px;
+    width: 100%;
+    border-radius: 50%;
+    margin-bottom: 10px;
+    object-fit: cover;
+}
+
+.button-grow {
+    align-self: center;
+    color: black;
+    background-color: rgb(98, 165, 241);
+    border: 0;
+    border-radius: 25px;
+    width: 350px;
+    height: 200px;
+    font-size: 38px;
+    gap:20px;
+    padding:1%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+
+  }
+  
+  .button-grow:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 5px 5px  rgb(38, 38, 112);
+  }
+
+.user-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: calc(19% - 10px);
+    margin: 10px;
+}
+
+#back {
+    margin-top: 10px;
+    max-width: 100px;
+    max-height: 100px;
+}
+
+.top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.top h2 {
+    margin-top: 0;
+    color: grey;
+    margin-left: 30px;
+}
+
+#editor-button {
+    display: block;
+    border-radius: 25px;
+    width: 354px;
+    height: 75px;
+    font-size: 24px;
+}
+
+
+.button-div {
+    margin:30px;
+    display: flex; 
+    flex-direction: row;
+    border: 3px solid black;
+    background-color: rgb(207, 207, 207);
+    border-radius: 22px;
+}
+
+
+.trash {
+    width: 50px;
+    height: 60px;
+}
+
+h2{
+    text-align: center;
+}
+
+.body{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 200px;
+}

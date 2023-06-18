@@ -1,0 +1,66 @@
+[
+  {
+    "valueToConnect": "Chat",
+    "valueToBeConnected": "Maison",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "",
+    "associationId": 1686949438933,
+    "id": 1686949439010
+  },
+  {
+    "valueToConnect": "Lion",
+    "valueToBeConnected": "Savane",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "",
+    "associationId": 1686949438933,
+    "id": 1686949439019
+  },
+  {
+    "valueToConnect": "Caracal",
+    "valueToBeConnected": "Photo A",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "https://animals.sandiegozoo.org/sites/default/files/2016-10/animals_hero_caracal.jpg",
+    "associationId": 1687040433793,
+    "id": 1687040433819
+  },
+  {
+    "valueToConnect": "Lynx",
+    "valueToBeConnected": "Photo C",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "https://defenders.org/sites/default/files/styles/original_size/public/2020-06/natdiglib_30836_full.jpg?itok=ecCs-CT0",
+    "associationId": 1687040433793,
+    "id": 1687040433825
+  },
+  {
+    "valueToConnect": "Serval",
+    "valueToBeConnected": "Photo B",
+    "coverImageToConnect": "",
+    "coverImageToBeConnected": "https://upload.wikimedia.org/wikipedia/commons/7/70/Leptailurus_serval_-Serengeti_National_Park%2C_Tanzania-8.jpg",
+    "associationId": 1687040433793,
+    "id": 1687040433829
+  },
+  {
+    "valueToConnect": "ezrgrtggzgtgrztgtrzgzrgze",
+    "valueToBeConnected": "egezrtgezgzzzzzzzzzz",
+    "coverImageToConnect": "https://i.kym-cdn.com/entries/icons/facebook/000/034/421/cover1.jpg",
+    "coverImageToBeConnected": "https://i.kym-cdn.com/entries/icons/facebook/000/034/421/cover1.jpg",
+    "associationId": 1687082204744,
+    "id": 1687082204765
+  },
+  {
+    "valueToConnect": "zefazf",
+    "valueToBeConnected": "refrezafregfreg",
+    "coverImageToConnect": "https://i.kym-cdn.com/entries/icons/facebook/000/034/421/cover1.jpg",
+    "coverImageToBeConnected": "https://i.kym-cdn.com/entries/icons/facebook/000/034/421/cover1.jpg",
+    "associationId": 1687082204744,
+    "id": 1687082204768
+  },
+  {
+    "valueToConnect": "aaaaaaaaaaaaaaa",
+    "valueToBeConnected": "aaaaaaaaaaaaaaa",
+    "coverImageToConnect": "white-space:nowrap;overflow:hidden;text-overflow:ellipsis;",
+    "coverImageToBeConnected": "white-space:nowrap;overflow:hidden;text-overflow:ellipsis;",
+    "associationId": 1687083600360,
+    "id": 1687083600382
+  }
+]

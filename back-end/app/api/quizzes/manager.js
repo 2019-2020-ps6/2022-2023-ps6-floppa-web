@@ -26,7 +26,19 @@ const buildQuizzes = () => {
   return quizzes.map((quiz) => buildQuizz(quiz.id))
 }
 
+/**
+ * filterQuizzesFromTheme.
+ * This function filters among the quizzes to return only the quiz linked with the given themeId.
+ * @param themeId
+ */
+const filterQuizzesFromTheme = (themeId) => {
+  const quizzes = Quiz.get()
+  const parsedId = parseInt(themeId, 10)
+  return quizzes.filter((quiz) => quiz.themeId === parsedId)
+}
+
 module.exports = {
   buildQuizz,
   buildQuizzes,
+  filterQuizzesFromTheme,
 }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
+import { UserService } from 'src/services/user.service';
+import { QuizService } from 'src/services/quiz.service';
+import { Quiz } from 'src/models/quiz.model';
 
 @Component({
   selector: 'app-user-stats',
@@ -17,15 +18,21 @@ export class UserStatsComponent implements OnInit {
     public numberPlayed: number;
     public lastGame: number;
     public favoriteQuiz: string;
+    public quizList: Quiz[];
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    this.username = this.route.snapshot.paramMap.get("user");
-    this.userList = USER_LIST;
-    this.getUser(this.username);
-    this.getStats();
+  constructor(private router: Router, private route: ActivatedRoute, public userService: UserService, public quizService: QuizService) {
   }
 
   ngOnInit(): void {
+    this.username = this.route.snapshot.paramMap.get("user");
+    this.userService.getUsers().subscribe((users) => {
+      this.userList = users;
+      this.getUser(this.username);
+      this.quizService.getQuizData().subscribe((quizData) => {
+        this.quizList = quizData;
+        this.getStats();
+      })
+    })
   }
 
   getUser(username: string): void {
@@ -65,7 +72,12 @@ export class UserStatsComponent implements OnInit {
           }
       }
 
-      this.favoriteQuiz = QUIZ_LIST[mostFrequentQuizId - 1].name;
+      console.log(mostFrequentQuizId);
+      for (let quiz of this.quizList) {
+        if (Number(quiz.id) === Number(mostFrequentQuizId)) {
+          this.favoriteQuiz = quiz.name;
+        }
+      }
     }
   }
 }

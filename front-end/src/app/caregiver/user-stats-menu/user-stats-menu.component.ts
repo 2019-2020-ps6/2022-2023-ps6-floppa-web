@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { USER_LIST } from 'src/mocks/user-list.mock';
 import { User } from 'src/models/user.model';
 import { ActivatedRoute } from '@angular/router';
+import { UserService } from 'src/services/user.service';
 
 @Component({
   selector: 'app-user-stats-menu',
@@ -13,11 +13,16 @@ export class UserStatsMenuComponent implements OnInit {
 
   public user: User;
 
-  constructor(private router: Router, private route: ActivatedRoute) {
-    let userid = this.route.snapshot.paramMap.get("userid");
-    this.user = USER_LIST[Number(userid)-1];
+  constructor(private router: Router, private route: ActivatedRoute, public userService: UserService) {
   }
 
   ngOnInit(): void {
+    let id = this.route.snapshot.paramMap.get('userid');
+    let userid = this.route.snapshot.paramMap.get('userid');
+    this.userService.getUsers().subscribe((users) => {
+      for (let userInList of users) {
+        if (Number(userInList.id) === Number(userid)) this.user = userInList;
+      }
+    })
   }
 }

@@ -3,8 +3,8 @@ import { FormGroup, FormBuilder, FormArray, Validators } from '@angular/forms';
 import { QuizService } from '../../../services/quiz.service';
 import { Quiz } from 'src/models/quiz.model';
 import { ActivatedRoute } from '@angular/router';
-import { QUIZ_LIST } from 'src/mocks/quiz-list.mock';
 import { Association } from 'src/models/association.model';
+import { QuestionService } from 'src/services/question.service';
 
 @Component({
   selector: 'app-association-form',
@@ -19,7 +19,7 @@ export class AssociationFormComponent implements OnInit {
 
   public associationForm: FormGroup;
 
-  constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone) {
+  constructor(public formBuilder: FormBuilder, private quizService: QuizService, private route: ActivatedRoute, private ngZone: NgZone, public questionService: QuestionService) {
   }
 
   private initializeAssociationForm(): void {
@@ -64,10 +64,14 @@ export class AssociationFormComponent implements OnInit {
   addAssociation(): void {
     if (!this.isAssociationFormValid) return;
     const association = this.associationForm.getRawValue() as Association;
-    this.quizService.addAssociation(this.quizId, association);
-    //Change for the Back End since the http push doesn't work
-
-    QUIZ_LIST.find(quiz => quiz.id === this.quizId)?.associations.push(association);
-    console.log(association);
+    this.quizService.addAssociation(this.quizId, {label: association.label}).subscribe((newAssociation) => {
+      for (let connection of association.connections) {
+        connection.coverImageToBeConnected = connection.coverImageToBeConnected.replace(/\s+/g, '');
+        connection.coverImageToConnect = connection.coverImageToConnect.replace(/\s+/g, '');
+        this.questionService.addConnection(Number(this.quizId), Number(newAssociation.id),connection);
+      }
+    });
+    
+    
   }
 }

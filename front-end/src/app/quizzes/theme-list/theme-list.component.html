@@ -6,14 +6,14 @@
     </div>
     <div style="display: flex; flex-direction: row; justify-content: flex-end; align-items: center;">
         <h2 style="display: flex; justify-content: flex-end; margin-right: 16px;">{{user.firstName}} {{user.lastName}}</h2>
-        <img id="user-img" alt="user-img" src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'">
+        <img id="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src="{{user.photo}}" onerror="this.onerror=null; this.src='/assets/users/user.png'">
     </div>
 </div>
 <h1 style="display: flex; justify-content: center;">Choisissez un thème</h1>
 <div style="display: flex; flex-wrap: wrap; justify-content: center; align-items: center; width:100%;">
     <div *ngFor="let theme of themeList, let i=index">
         <div class="theme">
-            <img class="theme-img" alt="theme-{{i+1}}" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" (click)="goToTheme(i)">
+            <img id="selectable" class="theme-img" alt="theme-{{theme.title}}" src="{{theme.coverImage}}" onerror="this.onerror=null; this.src='/assets/quiz-img/default.png'" (click)="goToTheme(theme.id)">
             <h2 style="display: flex; justify-content: center;">{{theme.title}}</h2>
         </div>
     </div>

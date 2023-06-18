@@ -3,22 +3,21 @@
         <img id="back" src="/assets/back.png" alt="back" routerLink="/home">
         <h2>Retour</h2>
     </div>
-    <div style="display: flex; flex-basis: 90%; flex-direction: column; margin-top: 100px;">
-        <h1 style="display: flex; justify-content: center; align-self: center;">Cliquer sur la photo de vous</h1>
-        <h1 style="display: flex; justify-content: center; align-self: center;">avec votre nom</h1>
+    <div style="display: flex; flex-basis: 90%; flex-direction: column; margin-top: 50px;">
+        <h1 style="font-size: 58px; display: flex; justify-content: center; align-self: center;">Cliquer sur la photo de vous</h1>
+        <h1 style="font-size: 58px; display: flex; justify-content: center; align-self: center;">avec votre nom</h1>
     </div>
     <div style="display: flex; flex-basis: 5%;"></div>
 </div>
-
-
+<hr style="border:none;height:2px;background-color: black; width:70%">
 
 <div class="user-list">
     <div *ngFor="let user of userList" class="user">
         <div *ngIf="user.photo!==''">
-            <img class="user-img" alt="user-img" src={{user.photo}} routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+            <img id="selectable" class="user-img" alt="user-img-{{user.firstName}}-{{user.lastName}}" src={{user.photo}} routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
         </div>
         <div *ngIf="user.photo===''">
-            <img class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
+            <img id="selectable" class="user-img" alt="user-img" src="/assets/users/user.png" routerLink="/theme-list/{{user.firstName}}-{{user.lastName}}/play">
         </div>
         <h1>{{user.firstName}} {{user.lastName}}</h1>
     </div>

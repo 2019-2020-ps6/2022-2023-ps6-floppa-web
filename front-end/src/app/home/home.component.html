@@ -1,14 +1,15 @@
 <div id="title">
+    <img src="/assets/floppa_web_logo.svg" style="max-width: 250px; max-height: 250px; margin: -30px;" alt="logo">
     <h1>FLOPPA WEB</h1>
-    <h2>Poly Quiz</h2>
+    <h3>Stimulez Votre Cerveau avec des Quiz !</h3>
 </div>
-<p style="display: flex; font-size: 64px; justify-content: center;">Cliquez sur le bouton qui vous correspond</p>
+<p style="display: flex; font-size: 38px; justify-content: center;">Cliquez sur le bouton qui vous correspond</p>
 <div id="button-container">
     <div id="user-side">
-        <button class="btn" routerLink="/home-profil-choice">Je suis une personne âgée</button>
-        <p id="countdown" style="color:rgb(202, 202, 69); font-size: 36px; max-width: 567px;">Le site changera vers cette page automatiquement dans 120 secondes...</p>
+        <button class="button-grow" data-testid="user-page" name="user" routerLink="/home-profil-choice">Je suis une personne âgée</button>
+        <p id="countdown" style="color:rgb(202, 202, 69); font-size: 28px; max-width: 567px;">Le site changera vers cette page automatiquement dans 120 secondes...</p>
     </div>
     <div id="caregiver-side">
-        <button class="btn" (click)="check()">Je suis du personnel</button>
+        <button class="button-grow" data-testid="caregiver-page" name="caregiver" (click)="check()">Je suis du personnel</button>
     </div>
 </div>
