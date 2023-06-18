@@ -1,4 +1,10 @@
 # FLOPPA WEB - Projet PS6
+
+## Notes d'utilisation du site importante
+
+Pour accéder à la partie soignante, il faut saisir un code PIN de base qui sera modifiable dans l'écran suivant.
+Le code secret est "0000".
+
 ## Statut lors de la livraison :
 
 - Étape 1 : Done
