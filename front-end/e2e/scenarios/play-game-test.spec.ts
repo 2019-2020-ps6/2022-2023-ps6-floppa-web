@@ -1,3 +1,4 @@
+import { parseLazyRoute } from '@angular/compiler/src/aot/lazy_routes';
 import { test, expect } from '@playwright/test';
 import { homeProfilChoiceUrl } from 'e2e/e2e.config';
 import { userManagementUrl } from 'e2e/e2e.config';
@@ -12,28 +13,30 @@ test.describe('Play Game Valerie Pentacle and see stats', () => {
 
         await page.getByRole('button', {name: 'Démarrer le quiz'}).click();
 
+        await page.getByAltText('sound').click();
         await page.getByAltText('hint').click();
-        await page.getByAltText('answer-2').click();
+        await page.getByAltText('answer-1').click();
 
         await expect(page.getByText('Bravo !')).toBeVisible();
         await page.getByRole('button', {name: 'Question Suivante'}).click();
 
-        await page.getByAltText('sound').click();
-        await page.getByAltText('answer-2').click();
+        await expect(page.getByText('Associez les félins à leur nom')).toBeVisible();
+        await expect(page.getByRole('button', {name: 'Valider'})).toBeHidden();
+
+        await page.getByRole('button', {name: 'Serval'}).click();
+        await page.getByRole('button', {name: 'Photo C'}).click();
+        await page.getByRole('button', {name: 'Lynx'}).click();
+        await page.getByRole('button', {name: 'Photo A'}).click();
+        await page.getByRole('button', {name: 'Réinitialiser'}).click();
+        await page.getByRole('button', {name: 'Serval'}).click();
+        await page.getByRole('button', {name: 'Photo C'}).click();
+        await page.getByRole('button', {name: 'Lynx'}).click();
+        await page.getByRole('button', {name: 'Photo B'}).click();
+        await page.getByRole('button', {name: 'Caracal'}).click();
+        await page.getByRole('button', {name: 'Photo A'}).click();
+        await page.getByRole('button', {name: 'Valider'}).click();
 
         await expect(page.getByText('La bonne réponse est :')).toBeVisible();
-        await page.getByRole('button', {name: 'Question Suivante'}).click();
-
-        await page.getByRole('button', {name: 'Lion'}).click();
-        await page.getByRole('button', {name: 'Maison'}).click();
-        await page.getByRole('button', {name: 'Chat'}).click();
-        await page.getByRole('button', {name: 'Savane'}).click();
-        await page.getByRole('button', {name: 'Réinitialiser'}).click();
-        await page.getByRole('button', {name: 'Lion'}).click();
-        await page.getByRole('button', {name: 'Savane'}).click();
-        await page.getByRole('button', {name: 'Chat'}).click();
-        await page.getByRole('button', {name: 'Maison'}).click();
-        await page.getByRole('button', {name: 'Valider'}).click();
 
         await page.getByRole('button', {name: 'Question Suivante'}).click();
         await expect(page.getByText('FÉLICITATIONS')).toBeVisible();
